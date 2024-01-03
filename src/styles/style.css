@@ -1,5 +1,110 @@
+/* ----------- 해당 항목들은 항상 상단에 위치시키기 ----------- */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url(/src/styles/reset.css);
+@import url(/src/styles/font.css);
+/* ---------------------------------------------------------- */
 
 
-#app{
-  background: orange
+/* ----------- 페이지별 css 폴더 여기에 import 하기 ----------- */
+
+
+
+/* ---------------------------------------------------------- */
+
+
+/* 변수 선언 */
+:root {
+  /* foundation color */
+  --primary: #373F67;
+  --secondary: #5A85EE;
+  --tertiary: #719CF7;
+  --negative: #E11900;
+  --background: #ffffff;
+  
+  /* content color */
+  --Contents-contentPrimary : black;
+  --Contents-contentSecondary : #919191;
+  --Contents-contentTertiary : #9DA1B4;
+}
+
+
+/* ------ 페이지 기본 구성 네비게이션 바 ------ */
+
+/* 핸드폰 상태바 */
+.temp-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 24px 8px 24px;
+  position: sticky;
+  background: var(--background);
+  top: 0;
+
+  & .temp-bar-icon-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 80px;
+    overflow: hidden;
+
+    & .lte, .battery {
+      position: absolute;
+      left: 20px;
+    }
+    & .battery {
+      left: 50px;
+    }
+  }
+}
+
+/* 상단 네비게이션 바 */
+.top-bar-container {
+  display: flex;
+  padding: 6px 20px;
+  justify-content: space-between;
+  align-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--gray-200, #D3D3D3);
+  background: var(--background, #FFF);
+  position: sticky;
+  top: 37px;
+
+  & .top-bar-buttons {
+    display: flex;
+    gap: 7px;
+
+    & button {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    }
+  }
+}
+
+/* 하단 네비게이션 바 */
+.bottom-bar-container {
+  position: fixed;
+  bottom: 0;
+  overflow: hidden;
+  width: 100%;
+  max-width: inherit;
+  
+  background: var(--background);
+  
+
+  & ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px 24px 12px;
+
+    & a {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+    }
+  }
 }
