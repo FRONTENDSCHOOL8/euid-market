@@ -1,0 +1,85 @@
+.heading-xl,
+.heading-l,
+.heading-m,
+.heading-s,
+.label-xl,
+.label-l,
+.label-m,
+.label-s,
+.paragraph-xl,
+.paragraph-l,
+.paragraph-m,
+.paragraph-s {
+  color: var(--Contents-contentPrimary, #000);
+  font-family: Pretendard;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+:root {
+  /* 폰트 크기 변수 */
+  --font-3xl : 44.202px;
+  --font-2xl : 33.16px;
+  --font-xl : 24.876px;
+  --font-l : 18.662px;
+  --font-m : 14px;
+  --font-s : 10.503px;
+}
+
+
+/* --------------- Heading 사전 설정 --------------- */
+.heading-xl {
+  font-size: var(--font-3xl);
+}
+
+.heading-l {
+  font-size: var(--font-2xl);
+}
+
+.heading-m {
+  font-size: var(--font-xl);
+}
+
+.heading-s {
+  font-size: var(--font-l);
+}
+
+/* --------------- Label 사전 설정 --------------- */
+.label-xl { 
+  font-size: var(--font-2xl);
+}
+
+.label-l { 
+  font-size: var(--font-xl)
+}
+
+.label-m { 
+  font-size: var(--font-l);
+}
+
+.label-s { 
+  font-size: var(--font-m);
+}
+
+/* --------------- Paragraph 사전 설정 --------------- */
+.paragraph-xl, .paragraph-l, .paragraph-m, .paragraph-s, .paragraph-s {
+  font-weight: 400;
+}
+
+.paragraph-xl {
+  font-size: var(--font-xl)
+}
+
+.paragraph-l {
+  font-size: var(--font-l)
+}
+
+.paragraph-m {
+  font-size: var(--font-m)
+}
+
+.paragraph-s {
+  font-size: var(--font-s)
+}
+
