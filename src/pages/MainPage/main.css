@@ -13,8 +13,8 @@
     overflow: hidden;
 
     & > div {
-      padding: 20px;
-      margin-bottom: 45px;
+      padding: 1.25rem;
+      margin-bottom: 2.8125rem;
 
       & h3 {
         display: flex;
@@ -30,7 +30,7 @@
       }
 
       & > div {
-        margin-top: 58px;
+        margin-top: 3.625rem;
 
         & svg {
           vertical-align: middle;
@@ -48,7 +48,7 @@
 
   & .Main-menu-bar {
     background: var(--primary);
-    padding: 8px;
+    padding: 0.5rem;
     font-size: var(--font-m);
 
     & .Main-menu-list {
@@ -66,23 +66,23 @@
     display: none;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
-    row-gap: 28px;
-    padding: 12px 0;
+    row-gap: 1.75rem;
+    padding: 0.75rem 0;
 
     & li {
-      width: 138px;
+      width: 8.625rem;
       display: flex;
       flex-flow: column nowrap;
       justify-content: center;
       align-items: center;
 
-      gap: 12px;
-      font-size: 10.503px;
+      gap: 0.75rem;
+      font-size: 0.6564375rem;
 
       & figcaption {
         display: flex;
         flex-flow: column nowrap;
-        gap: 4px;
+        gap: 0.25rem;
 
         & div:nth-child(1) {
           line-height: 1.5;
@@ -111,8 +111,8 @@
       & a {
         display: flex;
         flex-flow: row nowrap;
-        gap: 12px;
-        padding: 12px;
+        gap: 0.75rem;
+        padding: 0.75rem;
 
         & figcaption {
           display: flex;
@@ -120,26 +120,26 @@
           justify-content: space-evenly;
 
           & .product-title {
-            font-size: 14px;
+            font-size: 0.875rem;
           }
 
           & .product-info-container {
             color: var(--Contents-contentTertiary, #9da1b4);
-            font-size: 10.503px;
+            font-size: 0.6564375rem;
           }
 
           & .product-state-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 4px;
+            gap: 0.25rem;
 
             & .product-state {
-              padding: 4px 4px;
-              border-radius: 4px;
+              padding: 0.25rem 0.25rem;
+              border-radius: 0.25rem;
               background: var(--tertiary);
               color: var(--background);
-              font-size: 10.503px;
+              font-size: 0.6564375rem;
             }
           }
         }
