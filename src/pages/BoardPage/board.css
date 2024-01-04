@@ -1,7 +1,9 @@
-
+.hidden {
+  display: none;
+}
 
 .board--container {
-  padding-bottom: 90px;
+  padding-bottom: 68px;
 }
 
 .board--category-bar-container {
@@ -58,8 +60,11 @@
 
 }
 
-.board--category-popup {
-  
+.board--popup-container {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding-bottom: inherit;
 
   & .board--popup-header {
     border-radius: 8px 8px 0px 0px;
@@ -81,27 +86,47 @@
   }
 
   & .board--popup-body {
-
-
-
-    & li {
+    
+    & ul {
       display: flex;
-      padding: 12px 0px 12px 12px;
-      align-items: center;
-      align-self: stretch;
-      background: var(--primary, #373F67);
-      color: var(--background);
-
-      & div {
+      flex-flow: column;
+      
+      & li {
         display: flex;
+        padding: 12px 0px 12px 12px;
         align-items: center;
-        gap: 8px;
+        align-self: stretch;
+        background: var(--primary, #373F67);
+        color: var(--background);
+  
+        & div {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+  
+        & img {
+          width: 34px;
+          height: 34px;
+        }
       }
+    
+    }
 
-      & img {
-        width: 34px;
-        height: 34px;
-      }
+  }
+
+  & .board--popup-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 14px;
+    background: none;
+    border: none;
+    padding: 2px;
+    
+
+    & img {
+      height: 18px;
+      width: 18px;
     }
   }
 }

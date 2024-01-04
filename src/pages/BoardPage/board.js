@@ -2,7 +2,7 @@
 import data from "./temp_data/data.json"
 
 import { getNode } from "../../lib/index.js";
-import { createPost } from "./util/dom/createPost.js";
+import { createPost, addClass, removeClass } from "./util/dom/index.js";
 
 /* -------------- debugging area --------------*/
 function extractData() { 
@@ -16,16 +16,10 @@ extractData();
 
 
 
-
-
-
-
-
-
-// Function for Category Section
-// function popUpCategory() {
-
-// }
+const popUpCloseBtn = getNode('.board--popup-close-btn');
+const popUp = getNode('.board--popup-container');
+console.log(popUp);
+popUpCloseBtn.addEventListener('click', () => addClass(popUp, 'hidden'));
 
 
 
@@ -34,7 +28,6 @@ extractData();
 
 //Category Bar Event Listener Function
 
-const boardContainer = getNode('.board--category-bar-container')
 
 function handleCategory(e) {
     e.preventDefault();
@@ -48,7 +41,7 @@ function handleCategory(e) {
     
     // switch 대신 객체를 사용한 방법
     const targetBtn = {
-      "1": () => console.log("주제"),
+      "1": () => removeClass(popUp, 'hidden'),
       "2": () => console.log("인기글"),
       "3": () => console.log("같이해요"),
       "4": () => console.log("질의응답"),
@@ -59,4 +52,5 @@ function handleCategory(e) {
     pickButton();
 }
 
+const boardContainer = getNode('.board--category-bar-container')
 boardContainer.addEventListener('click', handleCategory);
