@@ -1,63 +1,56 @@
 // import PocketBase from 'pocketbase';
+import data from "./temp_data/data.json"
 
+import { getNode } from "../../lib/index.js";
+import { createPost, addClass, removeClass } from "./util/dom/index.js";
 
-import { getNode, insertLast } from "../../lib/index.js";
-
-// const pb = new PocketBase('http://127.0.0.1:8090');
-
-
-
-// const records = await pb.collection('users').getFullList({
-//   sort: '-created',
-// });
-
-// const response = await fetch(
-//   `http://127.0.0.1:8090/api/collections/products/records`
-// );
-
-// const hello = $('.hello');
-
-
-
-// response.data = await response.json();
-// const items = response.data.items;
-
-// items.forEach((item) => {
-//   const template =  /* html */ `
-//     <p>${item.description}</p>
-//   `;
-
-//   insertLast(hello, template);
-
-
-// })
-// const descData = response.data.items[1].description;
-// insertLast(hello, descData);
-
-// console.log(response.data.items[0].description);
-
-
-
-function createPost() {
-  const template = /* html */ `
-    <div class="board--post-instance">
-      <label class=" label-s board--badge">같이해요</label> 
-      <h2>youtube 클론 프젝 같이 하실분~!</h2>
-      <div class="board--flex">
-        <img src="/src/assets/icons/fullpeople.svg" alt="" >
-        <p>누구나 참여 가능</p>
-      </div>
-      
-      <div class="board--flex">
-        <img src="/src/assets/icons/calendar.svg" alt="" >
-        <p>내일, 오후 7:00</p>
-      </div>
-  `
-
-  for(let i=0; i<10; i++) {
-    insertLast(getNode('.board--post-list'), template);
-  }
-  
+/* -------------- debugging area --------------*/
+function extractData() { 
+  console.log(data);
 }
 
 createPost();
+extractData();
+/*--------------------------------------------*/
+
+
+
+
+const popUpCloseBtn = getNode('.board--popup-close-btn');
+const popUp = getNode('.board--popup-container');
+console.log(popUp);
+popUpCloseBtn.addEventListener('click', () => addClass(popUp, 'hidden'));
+
+
+
+
+
+
+//Category Bar Event Listener Function
+
+
+function handleCategory(e) {
+    e.preventDefault();
+
+    const target = e.target;
+
+    const button = target.closest("button");
+
+    if(!button) return;
+    console.log(button);
+    
+    // switch 대신 객체를 사용한 방법
+    const targetBtn = {
+      "1": () => removeClass(popUp, 'hidden'),
+      "2": () => console.log("인기글"),
+      "3": () => console.log("같이해요"),
+      "4": () => console.log("질의응답"),
+      "5": () => console.log("자유게시판")
+    };
+    
+    const pickButton = targetBtn[button.dataset.index];
+    pickButton();
+}
+
+const boardContainer = getNode('.board--category-bar-container')
+boardContainer.addEventListener('click', handleCategory);
