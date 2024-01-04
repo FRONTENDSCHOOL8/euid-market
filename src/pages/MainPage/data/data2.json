@@ -16,5 +16,68 @@
     "time": "time",
     "state": "거래 완료",
     "price": "50,000원"
+  },
+  {
+    "id": 2,
+    "img": "/src/assets/exchangeThumbnail.png",
+    "title": "text",
+    "location": "text",
+    "time": "time",
+    "state": "거래 완료",
+    "price": "50,000원"
+  },
+  {
+    "id": 2,
+    "img": "/src/assets/exchangeThumbnail.png",
+    "title": "text",
+    "location": "text",
+    "time": "time",
+    "state": "거래 완료",
+    "price": "50,000원"
+  },
+  {
+    "id": 2,
+    "img": "/src/assets/exchangeThumbnail.png",
+    "title": "text",
+    "location": "text",
+    "time": "time",
+    "state": "거래 완료",
+    "price": "50,000원"
+  },
+  {
+    "id": 2,
+    "img": "/src/assets/exchangeThumbnail.png",
+    "title": "text",
+    "location": "text",
+    "time": "time",
+    "state": "거래 완료",
+    "price": "50,000원"
+  },
+  {
+    "id": 2,
+    "img": "/src/assets/exchangeThumbnail.png",
+    "title": "text",
+    "location": "text",
+    "time": "time",
+    "state": "거래 완료",
+    "price": "50,000원"
+  },
+  {
+    "id": 2,
+    "img": "/src/assets/exchangeThumbnail.png",
+    "title": "text",
+    "location": "text",
+    "time": "time",
+    "state": "거래 완료",
+    "price": "50,000원"
+  },
+  {
+    "id": 2,
+    "img": "/src/assets/exchangeThumbnail.png",
+    "title": "text",
+    "location": "text",
+    "time": "time",
+    "state": "거래 완료",
+    "price": "50,000원"
   }
 ]
