@@ -15,33 +15,48 @@ extractData();
 
 
 
-//create event listener for categories
-const boardContainer = getNode('.board--category-bar-container');
 
+
+
+
+
+
+
+// Function for Category Section
+// function popUpCategory() {
+
+// }
+
+
+
+
+
+
+//Category Bar Event Listener Function
+
+const boardContainer = getNode('.board--category-bar-container')
 
 function handleCategory(e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  const target = e.target;
+    const target = e.target;
 
-  const button = target.closest("button");
+    const button = target.closest("button");
 
-  if(!button) return;
-  console.log(button);
-  
-  // switch 대신 객체를 사용한 방법
-  const targetBtn = {
-    "1": () => console.log("주제"),
-    "2": () => console.log("인기글"),
-    "3": () => console.log("같이해요"),
-    "4": () => console.log("질의응답"),
-    "5": () => console.log("자유게시판")
-  };
-  
-  const pickButton = targetBtn[button.dataset.index];
-  pickButton();
-
+    if(!button) return;
+    console.log(button);
+    
+    // switch 대신 객체를 사용한 방법
+    const targetBtn = {
+      "1": () => console.log("주제"),
+      "2": () => console.log("인기글"),
+      "3": () => console.log("같이해요"),
+      "4": () => console.log("질의응답"),
+      "5": () => console.log("자유게시판")
+    };
+    
+    const pickButton = targetBtn[button.dataset.index];
+    pickButton();
 }
-
 
 boardContainer.addEventListener('click', handleCategory);
