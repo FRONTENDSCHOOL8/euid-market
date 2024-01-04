@@ -1,0 +1,47 @@
+.app {
+  max-width: 599px;
+  margin: 0 auto;
+  background-color: #ffff00;
+}
+
+.Main-banner {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  color: var(--background);
+  background-color: var(--Contents-contentTertiary);
+  overflow: hidden;
+
+  & .Main-container {
+    padding: 20px;
+    margin-bottom: 45px;
+  }
+
+  & h3 {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.5rem;
+    font-size: var(--font-l);
+  }
+
+  & a {
+    color: var(--background);
+    font-size: var(--font-s);
+    font-weight: 400;
+  }
+
+  & .Main-page-number {
+    margin-top: 58px;
+
+    & svg {
+      vertical-align: middle;
+    }
+  }
+
+  & img {
+    position: absolute;
+    right: -210px;
+    bottom: -120px;
+    transform: scale(0.5);
+  }
+}
