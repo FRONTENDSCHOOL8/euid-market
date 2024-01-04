@@ -53,13 +53,10 @@
   & .Main-menu-list {
     display: flex;
     justify-content: space-between;
-  }
-
-  & a {
     color: var(--Contents-contentTertiary);
   }
 
-  .isActive > a {
+  .isActive {
     color: var(--background);
   }
 }
@@ -103,7 +100,7 @@
 }
 
 .Main-exchange {
-  display: flex;
+  display: none;
   flex-flow: column nowrap;
   justify-content: center;
 
@@ -147,4 +144,8 @@
       }
     }
   }
+}
+
+.Main-exchange.isActive {
+  display: flex;
 }
