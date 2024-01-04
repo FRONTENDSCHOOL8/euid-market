@@ -1,5 +1,11 @@
 
 
+.board--container {
+  padding-bottom: 90px;
+}
+
+
+
 .board--category-bar-container {
 
   & ul {
@@ -27,6 +33,7 @@
 
 .board--post-instance {
   padding: 12px;
+  
   display: flex;
   flex-flow: column;
   gap: 5px;
