@@ -1,8 +1,8 @@
 // import PocketBase from 'pocketbase';
 import data from "./temp_data/data.json"
-
-import { getNode } from "../../lib/index.js";
+import { getNode, insertLast } from "../../lib/index.js";
 import { createPost, addClass, removeClass } from "./util/dom/index.js";
+import { boardContent } from "../BoardPage/children_pages/boardContent/boardContent.js";
 
 /* -------------- debugging area --------------*/
 function extractData() { 
@@ -16,19 +16,15 @@ extractData();
 
 
 
+
+
 const popUpCloseBtn = getNode('.board--popup-close-btn');
 const popUp = getNode('.board--popup-container');
-console.log(popUp);
 popUpCloseBtn.addEventListener('click', () => addClass(popUp, 'hidden'));
 
 
 
-
-
-
 //Category Bar Event Listener Function
-
-
 function handleCategory(e) {
     e.preventDefault();
 
@@ -52,5 +48,10 @@ function handleCategory(e) {
     pickButton();
 }
 
-const boardContainer = getNode('.board--category-bar-container')
-boardContainer.addEventListener('click', handleCategory);
+const categoryBar = getNode('.board--category-bar-container')
+categoryBar.addEventListener('click', handleCategory);
+
+const boardContainer = getNode('.board--container');
+
+insertLast(boardContainer, boardContent())
+
