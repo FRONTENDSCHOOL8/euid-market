@@ -49,10 +49,10 @@
 }
 
 .login--step-next-container{
-  position: fixed; /* 또는 position: absolute; */
-  bottom: 5rem; /* 하단에 위치 */
-  left: 0; /* 왼쪽 정렬 (필요에 따라 조정) */
-  right: 0; /* 오른쪽 정렬 (필요에 따라 조정) */
+  position: fixed;
+  bottom: 5rem; 
+  left: 0; 
+  right: 0;
   gap: 1.5rem;
   align-items: center;
   justify-content: center;
@@ -64,12 +64,13 @@
     text-decoration: none;
     color: #FFF;
     display: inline-flex;
-    padding: 8px 126px;
+    padding: 10px 126px 8px;
     justify-content: center;
     align-items: center;
     gap: 4px;
     border-radius: 8px;
     background: var(--primary, #373F67);
+
   }
   & .login{ 
     text-decoration: none;
@@ -78,7 +79,7 @@
   }
   & span {
     color: var(--primary, #373F67);
-
+    margin-left: 1rem
   }
 }
 
