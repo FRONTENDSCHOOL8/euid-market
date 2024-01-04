@@ -29,11 +29,14 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, calc(-50% - 10px));
+  
+  & img {
+    width: 6rem;
+  }
 
   & h2 {
     color: var(--primary, #373F67);
