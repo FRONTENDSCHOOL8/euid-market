@@ -1,4 +1,4 @@
-export function topBar(titleText="", option) {
+export function renderTopBar(option="blank", titleText="같이해요") {
   const blank = /* html */ `
     <div class="board--page-controller">
       <a href="/">
@@ -63,3 +63,4 @@ export function topBar(titleText="", option) {
     return withHome;
   }
 }
+
