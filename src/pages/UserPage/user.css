@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+}
+.app {
+  height: 100%;
+}
+.user--profile-menu {
+  width: 100%;
+  display: flex;
+  padding: 42px 31px 18px 31px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  & figure {
+    text-align: center;
+    width: 100%;
+    position: relative;
+
+    .user--profile-picture {
+      width: 68px;
+      height: 66px;
+      border-radius: 50%;
+      background: lightgray 50% / cover no-repeat;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+    .user--profile-modify {
+      position: absolute;
+      top: 49px;
+      left: 175px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50px;
+      background: var(--background, #fff);
+      box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    }
+    & figcaption {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      padding-top: 9px;
+    }
+    & figcaption > p {
+      color: var(--Contents-contentPrimary, #000);
+      font-family: Pretendard;
+      font-size: var(--font-l);
+      font-style: normal;
+      font-weight: 600;
+      line-height: 150%;
+      & span {
+        margin-left: 6px;
+        border-radius: 50px;
+        padding: 0 4px;
+        line-height: 160%;
+        font-size: var(--font-s);
+        font-style: normal;
+        font-weight: 400;
+        border: 0.7px solid var(--secondary, #5a85ee);
+      }
+    }
+    .user--answer {
+      font-size: var(--font-s);
+      font-weight: 400;
+
+      color: var(--Contents-contentSecondary);
+    }
+  }
+
+  & ul {
+    display: flex;
+    width: 100%;
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-end;
+    gap: 62px;
+
+    & a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & span {
+        margin-top: 9px;
+        font-size: var(--font-s);
+        font-weight: 600;
+      }
+    }
+    & img {
+      width: 26px;
+      height: 26px;
+    }
+  }
+}
+
+/* 열정온도 */
+.user--profile-temperture {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+
+  & label > a {
+    font-size: 12px;
+    font-weight: 400;
+
+    & img {
+      width: 14px;
+    }
+  }
+  & progress {
+    appearance: none;
+    width: 100%;
+  }
+  & progress::-webkit-progress-bar {
+    background-color: var(--Contents-contentSecondary);
+    border-radius: 10px;
+    height: 8.26px;
+  }
+  & progress::-webkit-progress-value {
+    border-radius: 10px;
+    background-color: var(--primary);
+  }
+  .user--temperature-progressbar-wrapper {
+    position: relative;
+    height: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    & span {
+      bottom: 30px;
+      position: absolute;
+    }
+
+    .user--default-temperture {
+      display: flex;
+      left: calc(36% - 33px);
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-s);
+      font-style: normal;
+      line-height: 160%;
+      font-weight: 400;
+      & img {
+        width: 10.8px;
+        height: 6px;
+      }
+    }
+    .user--temperture {
+      right: 0;
+      color: var(--secondary);
+      font-size: var(----font-m);
+      font-style: normal;
+      line-height: 150%;
+    }
+  }
+}
+
+/* 좋아요, 응답률 */
+
+.user--profile-percents {
+  padding: 0 20px 16px;
+
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  & img {
+    width: 16px;
+  }
+  .user--profile-percent {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .user--profile-evaluation {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    & p,
+    & span {
+      font-size: var(--font-s);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 160%;
+    }
+    & p > span {
+      font-weight: 600;
+    }
+    & span:nth-child(2) {
+      color: var(--Contents-contentSecondary, #919191);
+      font-size: var(--font-s);
+      max-width: 120px;
+    }
+  }
+}
+
+/* 프로필 서브메뉴 */
+.user--profile-contents {
+  & li {
+    display: flex;
+    padding: 16px 18px;
+    justify-content: space-between;
+    height: 53px;
+    align-items: center;
+    border-bottom: 0.3px solid var(--Contents-contentSecondary);
+    & button {
+      background-color: transparent;
+      border: none;
+      & img {
+        width: 16px;
+      }
+    }
+  }
+}
+
+/* 하단 기본 메뉴 */
+.user--contents {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 12px 87px 18px;
+  gap: 18px;
+  font-size: var(----font-m);
+  font-style: normal;
+  font-weight: 400;
+
+  & li {
+    display: flex;
+    justify-content: space-between;
+  }
+  .user--logout-nickname {
+    color: var(--secondary);
+  }
+}

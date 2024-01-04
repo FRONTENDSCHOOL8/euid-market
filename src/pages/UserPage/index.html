@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <title>이듬엔터 유저</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/styles/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/src/pages/UserPage/user.js" defer></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="temp-bar">
+        <p class="label-m">2:26</p>
+        <div class="temp-bar-icon-wrapper">
+          <img src="/src/assets/icons/general/cellular.png" alt="cellular" />
+          <img class="lte" src="/src/assets/icons/general/lte.png" alt="lte" />
+          <img
+            class="battery"
+            src="/src/assets/icons/general/battery.png"
+            alt="battery"
+          />
+        </div>
+      </div>
+
+      <!-- 사용자 프로필 + 프로필 메인 메뉴 -->
+      <div class="user--profile-menu">
+        <!-- 사용자 프로필 사진 -->
+        <figure>
+          <img
+            class="user--profile-picture"
+            src="./temp_data/vite.svg"
+            alt="별명 사진"
+          />
+          <a href=""
+            ><img
+              class="user--profile-modify"
+              src="/src/assets/icons/profile/pencil.svg"
+              alt="수정하기"
+          /></a>
+          <figcaption>
+            <p>EUID***<span>4기</span></p>
+            <span class="user--answer">답변 35 </span>
+          </figcaption>
+        </figure>
+
+        <ul>
+          <li>
+            <a
+              ><img src="/src/assets/icons/profile/Q&A.svg" alt="" /><span
+                >나의 Q&A</span
+              ></a
+            >
+          </li>
+          <li>
+            <a
+              ><img src="/src/assets/icons/profile/profile.svg" alt="" /><span
+                >나의 프로필</span
+              ></a
+            >
+          </li>
+          <li>
+            <a
+              ><img src="/src/assets/icons/profile/alramBell.svg" alt="" /><span
+                >내 소식</span
+              ></a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- 열정온도 -->
+      <div class="user--profile-temperture">
+        <label for="temperature"
+          >열정온도
+          <a href=""
+            ><img src="/src/assets/icons/profile/information.svg" alt=""
+          /></a>
+        </label>
+        <div class="user--temperature-progressbar-wrapper">
+          <span class="user--default-temperture"
+            >첫 온도 36.5℃
+            <img src="/src/assets/icons/profile/Polygon.svg" alt="" />
+          </span>
+          <span class="user--temperture">41℃ 😀</span>
+          <progress id="temperature" value="41" max="100">41℃</progress>
+        </div>
+      </div>
+      <!-- 받은 좋아요 응답률 -->
+      <div class="user--profile-percents">
+        <div class="user--profile-percent">
+          <img src="/src/assets/icons/profile/heart.svg" alt="" />
+          <div class="user--profile-evaluation">
+            <p>받은 좋아요 <span>100%</span></p>
+            <span>11개 중 11명이 만족</span>
+          </div>
+        </div>
+        <div class="user--profile-percent">
+          <img src="/src/assets/icons/profile/speech.svg" alt="" />
+          <div class="user--profile-evaluation">
+            <p>응답률 <span> - %</span></p>
+            <span>표시될 만큼 충분히 채팅하지 않았어요</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 프로필 서브 메뉴 -->
+      <ul class="user--profile-contents">
+        <li>
+          <span>활동배지 10개</span>
+          <button>
+            <img src="/src/assets//icons/profile/direction=right.svg" alt="" />
+          </button>
+        </li>
+        <li>
+          <span>판매상품 3개</span>
+          <button>
+            <img src="/src/assets//icons/profile/direction=right.svg" alt="" />
+          </button>
+        </li>
+        <li>
+          <span>받은 매너평가</span>
+          <button>
+            <img src="/src/assets//icons/profile/direction=right.svg" alt="" />
+          </button>
+        </li>
+        <li>
+          <span>받은 거래 후기 1개</span>
+          <button>
+            <img src="/src/assets//icons/profile/direction=right.svg" alt="" />
+          </button>
+        </li>
+      </ul>
+
+      <!-- 기본 메뉴 -->
+      <ul class="user--contents">
+        <li><a href="">보관질문</a></li>
+        <li><a>설정</a></li>
+        <li><a>지식 iN 공식 블로그</a></li>
+        <li><a>서비스 정보</a></li>
+        <li><a>공지사항</a></li>
+        <li>
+          <span>로그아웃</span>
+          <span class="user--logout-nickname">EUID**</span>
+        </li>
+      </ul>
+
+      <!-- 하단 navbar -->
+      <nav class="bottom-bar-container">
+        <ul>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/home.svg" alt="홈" />
+              <p class="paragraph-s">홈</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/fullFile.svg" alt="게시판" />
+              <p class="paragraph-s">게시판</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/map.svg" alt="내 근처" />
+              <p class="paragraph-s">내 근처</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/chat.svg" alt="채팅" />
+              <p class="paragraph-s">채팅</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/my.svg" alt="나의 이듬" />
+              <p class="paragraph-s">나의 이듬</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </body>
+</html>
