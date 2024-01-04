@@ -24,45 +24,38 @@
   }
 }
 
-.board--category-bar-container {
 
-  & ul {
-    display: flex;
-    overflow-x: scroll;
-    padding: 8px 0 8px 12px;
-    align-items: center;
-    gap: 4px;
-    border-bottom: 0.3px solid var(--Contents-contentSecondary, #919191);
-    background: var(--background, #FFF); 
-  }
-  
-}
-
-
-.logo-container{
-
+.login--logo-container{
   display: flex;
   flex-direction: column;
   text-align: center;
 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 10px));
+
   & h2 {
     color: var(--primary, #373F67);
-    text-align: center;
   }
 
   & p {
+    margin: 0;
     color: var(--primary, #373F67);
-    
-
   }
-
-  
 }
 
-.login-register-container{
+.login--step-next-container{
+  position: fixed; /* 또는 position: absolute; */
+  bottom: 5rem; /* 하단에 위치 */
+  left: 0; /* 왼쪽 정렬 (필요에 따라 조정) */
+  right: 0; /* 오른쪽 정렬 (필요에 따라 조정) */
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
   display: flex;
   flex-direction: column;
-  
+
 
   & .register{
     text-decoration: none;
