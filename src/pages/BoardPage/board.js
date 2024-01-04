@@ -1,15 +1,9 @@
 // import PocketBase from 'pocketbase';
-import data from "./temp_data/data.json"
 import { getNode, } from "../../lib/index.js";
-import { createPost, addClass, removeClass } from "./util/dom/index.js";
+import { renderMainPosts, addClass, removeClass } from "./util/dom/index.js";
 
 /* -------------- debugging area --------------*/
-function extractData() { 
-  console.log(data);
-}
-
-createPost();
-extractData();
+renderMainPosts();
 /*--------------------------------------------*/
 
 

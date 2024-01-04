@@ -137,7 +137,7 @@
 }
 
 
-.board--page-controller {
+.page-controller {
   display: flex;
   padding: 8px 12px;
   position: sticky;

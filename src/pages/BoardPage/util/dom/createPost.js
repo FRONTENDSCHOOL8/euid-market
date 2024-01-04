@@ -1,7 +1,8 @@
 import data from '../../temp_data/data.json';
+import togetherData from '../../temp_data/together.json';
 import { insertLast, getNode } from '/src/lib/index';
 
-export function createPost() {
+export function renderMainPosts() {
 
   const postContainer = getNode(".board--post-list");
 
@@ -22,5 +23,24 @@ export function createPost() {
     `
 
     insertLast(postContainer, template);
+  })
+}
+
+export function renderTogetherPosts() {
+  togetherData.forEach((item) => {
+    return ( /* html */ 
+    `
+      <div class="board--together-content">
+        <section>
+          <p>${item.status}</p>
+          <p>${item.type}</p>
+          <p>${item.location}</p>
+        </section>
+        <h2>${item.title}</h2>
+      </div>
+    `
+    
+
+    )
   })
 }
