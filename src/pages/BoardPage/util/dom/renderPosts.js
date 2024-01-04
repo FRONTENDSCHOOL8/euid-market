@@ -1,11 +1,8 @@
 import data from '../../temp_data/data.json';
 import togetherData from '../../temp_data/together.json';
-import { insertLast, getNode } from '/src/lib/index';
+import { insertLast} from '/src/lib/index';
 
-export function renderMainPosts() {
-
-  const postContainer = getNode(".board--post-list");
-
+export function renderMainPosts(container) {
   data.forEach((item) => {
     const template = /* html */ `
       <div class="board--post-instance">
@@ -22,25 +19,30 @@ export function renderMainPosts() {
         </div>
     `
 
-    insertLast(postContainer, template);
+    insertLast(container, template);
   })
 }
 
-export function renderTogetherPosts() {
+export function renderTogetherPosts(container) {
   togetherData.forEach((item) => {
-    return ( /* html */ 
+
+
+    const template = /* html */ 
     `
       <div class="board--together-content">
         <section>
-          <p>${item.status}</p>
-          <p>${item.type}</p>
-          <p>${item.location}</p>
+          <p style=${item.status === "모집중" ? "color:blue;" : "color:red"} class="paragraph-s">${item.status}</p>
+          <p class="paragraph-s"> •${item.type}</p>
+          <p class="paragraph-s"> •${item.location}</p>
         </section>
         <h2>${item.title}</h2>
+
+        <figure>
+          <img src="/src/assets/icons/general/fullpeople.svg" alt="" />
+          <figcaption>${item.requirements}</figcaption>
+        </figure>
       </div>
     `
-    
-
-    )
+    insertLast(container, template)
   })
 }

@@ -69,3 +69,18 @@
     background: var(--background, #FFF);
   }
 }
+
+.board--together-content {
+  display: flex;
+  padding: 12px 13px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border: 0.3px solid var(--Contents-contentTertiary, #9DA1B4);
+  background: var(--background, #FFF);
+
+  & section {
+    display: flex;
+    
+  }
+}

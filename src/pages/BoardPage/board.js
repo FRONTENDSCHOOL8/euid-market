@@ -3,7 +3,8 @@ import { getNode, } from "../../lib/index.js";
 import { renderMainPosts, addClass, removeClass } from "./util/dom/index.js";
 
 /* -------------- debugging area --------------*/
-renderMainPosts();
+const postContainer = getNode(".board--post-list");
+renderMainPosts(postContainer);
 /*--------------------------------------------*/
 
 
