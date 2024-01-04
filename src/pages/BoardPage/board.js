@@ -1,8 +1,7 @@
 // import PocketBase from 'pocketbase';
 import data from "./temp_data/data.json"
-import { getNode, insertLast } from "../../lib/index.js";
+import { getNode, } from "../../lib/index.js";
 import { createPost, addClass, removeClass } from "./util/dom/index.js";
-import { boardContent } from "../BoardPage/children_pages/boardContent/boardContent.js";
 
 /* -------------- debugging area --------------*/
 function extractData() { 
@@ -50,8 +49,4 @@ function handleCategory(e) {
 
 const categoryBar = getNode('.board--category-bar-container')
 categoryBar.addEventListener('click', handleCategory);
-
-const boardContainer = getNode('.board--container');
-
-insertLast(boardContainer, boardContent())
 

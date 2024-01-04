@@ -1,0 +1,25 @@
+
+
+
+.board--together-category {
+  white-space: nowrap;
+
+
+  & ul {
+    display: flex;
+    white-space: nowrap;
+
+    & li {
+
+
+      & button {
+        border-radius: 50px;
+        background: var(--gray-100, #E9E9E9);
+        display: flex;
+        padding: 10px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  }
+}
