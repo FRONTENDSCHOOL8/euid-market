@@ -45,3 +45,17 @@
     transform: scale(0.5);
   }
 }
+
+.Main-menu-bar {
+  background: var(--primary);
+  padding: 8px;
+
+  & .Main-menu-list {
+    display: flex;
+    justify-content: space-between;
+
+    & a {
+      color: var(--background);
+    }
+  }
+}
