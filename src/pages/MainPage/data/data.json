@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "img": "/src/assets/storyThumbnail.png",
+    "title": "디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유",
+    "category": "UIUX",
+    "name": "1기 수강생 박치열"
+  },
+  {
+    "id": 1,
+    "img": "/src/assets/storyThumbnail.png",
+    "title": "디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유",
+    "category": "UIUX",
+    "name": "1기 수강생 박치열"
+  },
+  {
+    "id": 2,
+    "img": "/src/assets/storyThumbnail.png",
+    "title": "영문과 전공생에서 UIUX 디자이너로 취업하기까지",
+    "category": "UIUX",
+    "name": "3기 수강생 김진우"
+  },
+  {
+    "id": 3,
+    "img": "/src/assets/storyThumbnail.png",
+    "title": "나는 프론트일까? 백일까? 여전히 모르겠다면 물어봐!",
+    "category": "UIUX",
+    "name": "2기 수강생 최혜수"
+  },
+  {
+    "id": 4,
+    "img": "/src/assets/storyThumbnail.png",
+    "title": "코딩과 디자인의 그 어딘가 두가지 모두 하고 싶은 욕심쟁이",
+    "category": "UIUX",
+    "name": "5기 수강생 염진희"
+  }
+]
