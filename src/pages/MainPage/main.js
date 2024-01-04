@@ -10,11 +10,17 @@ import {
 } from '/src/lib/';
 import gsap from 'gsap';
 
+gsap.defaults({
+  ease: 'power2.inOut',
+});
+
 const seniorStory = getNode('.Main-menu-story');
 const seniorStoryBoard = getNode('.Main-story-board');
 
 const exchange = getNode('.Main-menu-exchange');
 const exchangeBoard = getNode('.Main-exchange');
+
+const menuBar = getNode('.Main-menu-bar');
 
 function onLoad() {
   dataLoad(data1);
@@ -126,6 +132,19 @@ function handleSeniorStory(e) {
   animation('.story');
 }
 
+function handleNavBar() {
+  const scrollNum = parseInt(window.scrollY);
+
+  console.log(scrollNum);
+
+  if (scrollNum >= 220) {
+    addClass(menuBar, 'fixed');
+  } else {
+    removeClass(menuBar, 'fixed');
+  }
+}
+
 onLoad();
 seniorStory.addEventListener('click', handleSeniorStory);
 exchange.addEventListener('click', handleExchange);
+window.addEventListener('scroll', handleNavBar);
