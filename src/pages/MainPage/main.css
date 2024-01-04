@@ -53,9 +53,13 @@
   & .Main-menu-list {
     display: flex;
     justify-content: space-between;
-
-    & a {
-      color: var(--background);
-    }
   }
+
+  & a {
+    color: var(--Contents-contentTertiary);
+  }
+}
+
+.isActive > a {
+  color: var(--background);
 }
