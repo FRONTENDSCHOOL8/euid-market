@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "img": "/src/assets/exchangeThumbnail.png.png",
+    "img": "/src/assets/exchangeThumbnail.png",
     "title": "2017 mac pro",
     "location": "마포구 신수동",
     "time": "44분전",
@@ -10,7 +10,7 @@
   },
   {
     "id": 2,
-    "img": "/src/assets/exchangeThumbnail.png.png",
+    "img": "/src/assets/exchangeThumbnail.png",
     "title": "text",
     "location": "text",
     "time": "time",
