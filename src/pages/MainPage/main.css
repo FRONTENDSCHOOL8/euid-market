@@ -65,7 +65,7 @@
 
       & .Main-menu-list {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         color: var(--Contents-contentTertiary);
 
         & .isActive {

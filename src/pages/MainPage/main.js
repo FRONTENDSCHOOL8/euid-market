@@ -135,8 +135,6 @@ function handleSeniorStory(e) {
 function handleNavBar() {
   const scrollNum = parseInt(window.scrollY);
 
-  console.log(scrollNum);
-
   if (scrollNum >= 220) {
     addClass(menuBar, 'fixed');
   } else {
