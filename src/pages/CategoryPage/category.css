@@ -1,6 +1,33 @@
 .hidden {
   display: none;
 }
+button, input{
+  background: none;      
+  border: none;          
+  padding: 0;            
+  margin: 0;             
+  outline: none;         
+  text-decoration: none; 
+  cursor: pointer;        
+}
+
+.login--category-wrapper{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login--category-search > input {
+  width: 254px;
+  height: 29px;
+  font-weight: 400;
+  line-height: 160%;
+  margin: 20px;
+  border-bottom: #373F67;
+  /* background-color: palevioletred; */
+}
+
 
 .login--select{
   color: var(--primary, #373F67);
@@ -8,14 +35,21 @@
   line-height: 140%; 
 }
 
-.login--category-container{}
+.login--category-card-wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(6, 1fr);
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
 
-.login--category{
+.login--category-card{
     width: 140px;
     height: 50px;
     padding: 10px;
-    border-radius: 8px;
+    margin: 10px 5px;
     display: flex;
+    border-radius: 8px;
     justify-content: space-between;
     background: var(--gray-400, #A7A7A7);
 
@@ -33,3 +67,13 @@
       padding-right: 5px;
     }
   }
+
+.login--category-submit{
+  width: 330px;
+  color: #fff;
+  padding: 8px 100px;
+  border-radius: 8px;
+  white-space: nowrap;
+  background: var(--primary, #373F67);
+  
+}  

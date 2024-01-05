@@ -20,35 +20,118 @@
         />
       </div>
     </div>
-    <div role="search">
-      <label for="searchBox">검색:</label>
-      <input
-        type="search"
-        id="searchBox"
-        name="search"
-        placeholder="분야(이름)로 검색 (ex.프론트)"
-        aria-label="검색어 입력"
-      />
-      <button type="submit">검색</button>
-    </div>
 
-    <h1 class="login--select heading-s">관심분야를 선택해주세요!</h1>
-    <div class="login--category-container">
-      <div class="login--category">
-        <div class="login--category-name">
-          <p class="paragraph-s">프로그래밍</p>
-          <p class="heading-s">프론트엔드</p>
-        </div>
-        <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+    <div class="login--category-wrapper">
+      <div role="category search" class="login--category-search">
+        <label for="categorySearch" aria-label="검색"></label>
+        <input
+          type="search"
+          class="label-s"
+          id="categorySearch"
+          name="categorySearch"
+          placeholder="분야(이름)로 검색 (ex.프론트)"
+          aria-label="검색어 입력"
+        />
+        <button type="submit" class="hidden">검색</button>
       </div>
-      <div class="login--category">
-        <div class="login--category-name">
-          <p class="paragraph-s">프로그래밍</p>
-          <p class="heading-s">프론트엔드</p>
+
+      <h1 class="login--select heading-s">관심분야를 선택해주세요!</h1>
+      <button type="submit" class="login--category-submit paragragh-s hidden">
+        관심분야 선택하기
+      </button>
+
+      <form class="login--category-container" action="/" method="post">
+        <div class="login--category-card-wrapper">
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
+          <div class="login--category-card">
+            <div class="login--category-name">
+              <p class="paragraph-s">프로그래밍</p>
+              <p class="heading-s">프론트엔드</p>
+            </div>
+            <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+          </div>
         </div>
-        <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
-      </div>
+
+        <button type="submit" class="login--category-submit label-s">
+          이대로 저장할래요
+        </button>
+      </form>
     </div>
-    <button type="submit">이대로 저장할래요</button>
   </body>
 </html>
