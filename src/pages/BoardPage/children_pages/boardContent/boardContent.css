@@ -88,5 +88,51 @@
 
   & figure {
     display: flex;
+    align-content: center;
+
+    gap: 3px;
+
+    & figcaption {
+      display: flex;
+      align-items: center;
+    }
   }
+
+  & .board--together-profile-picture {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  & div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.board--together-post-container {
+  display: flex;
+  overflow: hidden;
+  
+  overflow-y: scroll;
+  flex-flow: column;
+  padding-bottom: inherit;
+  position: relative;
+}
+
+.board--together-create-post {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  bottom: 100px;
+  right: 20px;
+  border-radius: 50px;
+  background: var(--primary, #373F67);
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }

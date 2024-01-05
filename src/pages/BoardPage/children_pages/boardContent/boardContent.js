@@ -28,8 +28,9 @@ import { getNode, insertBefore } from "/src/lib/index.js";
 
 
 const boardContainer = getNode(".board--container");
+const postContainer = getNode(".board--together-post-container");
 insertBefore(boardContainer, renderTopBar("withTitle"));
-insertLast(boardContainer, renderTogetherPosts(boardContainer));
+insertLast(postContainer, renderTogetherPosts(postContainer));
 
 
 

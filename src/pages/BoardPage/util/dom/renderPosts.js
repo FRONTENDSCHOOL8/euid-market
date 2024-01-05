@@ -30,12 +30,14 @@ export function renderTogetherPosts(container) {
     const template = /* html */ 
     `
       <div class="board--together-content">
-        <section>
-          <p style=${item.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"} class="paragraph-s">${item.status}</p>
-          <p class="paragraph-s">• ${item.type}</p>
-          <p class="paragraph-s">• ${item.location}</p>
-        </section>
-        <h2 class="label-m">${item.title}</h2>
+        <header>
+          <section>
+            <p style=${item.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"} class="paragraph-s">${item.status}</p>
+            <p class="paragraph-s">• ${item.type}</p>
+            <p class="paragraph-s">• ${item.location}</p>
+          </section>
+          <h2 class="label-m">${item.title}</h2>
+        </header>
 
         <figure>
           <img src="/src/assets/icons/general/fullpeople.svg" alt="" />
@@ -45,6 +47,15 @@ export function renderTogetherPosts(container) {
           <img src="/src/assets/icons/general/calendar.svg" alt="" />
           <figcaption class="paragraph-s">${item.time}</figcaption>
         </figure>
+
+        <div>
+          <figure>
+            <img class="board--together-profile-picture" src="" alt="" />
+            <figcaption class="paragraph-s">${item.max_people}/${item.curr_people}명</figcaption>
+          </figure>
+
+          <p class="paragraph-s">35분 전</p>
+        </div>
       </div>
     `
     insertLast(container, template)

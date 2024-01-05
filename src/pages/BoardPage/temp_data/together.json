@@ -7,7 +7,8 @@
     "title" : "youtube 클론 프젝 같이 하실분~!",
     "requirements" : "누구나 참여 가능",
     "time" : "내일, 오후 7:00",
-    "max_people" : "",
+    "max_people" : 4,
+    "curr_people" : 3,
     "content": ""
   },
   {
@@ -18,7 +19,8 @@
     "title" : "youtube 클론 프젝 같이 하실분~!",
     "requirements" : "누구나 참여 가능",
     "time" : "내일, 오후 7:00",
-    "max_people" : "",
+    "max_people" : 6,
+    "curr_people" : 2,
     "content": ""
   },
   {
@@ -29,7 +31,8 @@
     "title" : "youtube 클론 프젝 같이 하실분~!",
     "requirements" : "누구나 참여 가능",
     "time" : "내일, 오후 7:00",
-    "max_people" : "",
+    "max_people" : 10,
+    "curr_people" : 1,
     "content": ""
   },
   {
@@ -40,7 +43,8 @@
     "title" : "youtube 클론 프젝 같이 하실분~!",
     "requirements" : "누구나 참여 가능",
     "time" : "내일, 오후 7:00",
-    "max_people" : "",
+    "max_people" : 10,
+    "curr_people" : 3,
     "content": ""
   },
   {
@@ -51,7 +55,8 @@
     "title" : "youtube 클론 프젝 같이 하실분~!",
     "requirements" : "누구나 참여 가능",
     "time" : "내일, 오후 7:00",
-    "max_people" : "",
+    "max_people" : 5,
+    "curr_people" : 4,
     "content": ""
   }
 ]
