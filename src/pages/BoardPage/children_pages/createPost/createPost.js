@@ -68,10 +68,49 @@ function renderCreateFirst(container) {
   insertLast(container, template);
 }
 
-// function renderCreateSecond() {
+function renderCreateSecond(container) {
+  const template = /* html */ 
+  `
+  <div class="board--create-post-page two">
+    <h1 class="label-l">어떤 학생과 함께 할까요?</h1>
+    <section>
+      <div>
+        <figure>
+          <img src="/src/assets/icons/board/gender.svg" alt="">
+          <figcaption>성별</figcaption>
+        </figure>
+        <p>누구나</p>
+      </div>
 
-// }
+      <div>
+        <span class="paragraph-s">누구나 또는 같은 성별 모임으로 설정해주세요</span>
+
+        <div>
+          <button>누구나</button>
+          <button>여자만</button>
+          <button>남자만</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="board--create-option-gender">
+      <figure>
+        <img src="/src/assets/icons/board/people.svg" alt="">
+        <span class="paragraph-m">나이</span>
+      </figure>
+
+      <div>
+        <p>누구나</p>
+      </div>
+    </div>
+
+    <button class="board--fixed-button">일정 만들기</button>
+  </div>
+  `
+  insertLast(container, template);
+}
 
 
 insertBefore(createPostContainer, renderTopBar("blank"));
 renderCreateFirst(createPostContainer);
+renderCreateSecond(createPostContainer);

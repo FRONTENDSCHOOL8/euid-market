@@ -69,8 +69,7 @@
 .board--popup-container {
   position: fixed;
   width: 100%;
-  bottom: 0;
-  padding-bottom: inherit;
+  bottom: 68px;
 
   & .board--popup-header {
     border-radius: 8px 8px 0px 0px;
@@ -92,7 +91,7 @@
   }
 
   & .board--popup-body {
-    
+    background: var(--primary, #373F67);
     & ul {
       display: flex;
       flex-flow: column;
