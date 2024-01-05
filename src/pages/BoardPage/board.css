@@ -1,9 +1,14 @@
+@import url(./children_pages/boardContent/boardContent.css);
+
+
 .hidden {
   display: none;
 }
 
 .board--container {
   padding-bottom: 68px;
+  height: 100vh;
+  width: 100vw;
 }
 
 .board--category-bar-container {
@@ -128,5 +133,28 @@
       height: 18px;
       width: 18px;
     }
+  }
+}
+
+
+.page-controller {
+  display: flex;
+  padding: 8px 12px;
+  position: sticky;
+  top: 43px; 
+  background: var(--background);
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+
+  & h3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  & div {
+    display: flex;
+    gap: 8px;
   }
 }
