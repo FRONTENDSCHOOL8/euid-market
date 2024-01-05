@@ -25,7 +25,7 @@ const productList = getNode('.Main-product-list');
 const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
 
-async function onLoad() {
+function onLoad() {
   dataLoad('senior_story').then(() => {
     animation('.story');
   });
@@ -87,8 +87,8 @@ async function dataLoad(data) {
                     <span>${price}</span>
                   </div>
                 </figcaption>
+                </a>
                 <div class="Main-like-container">
-              </a>
               <button>
                   <img src="/src/assets/icons/main/heart.svg"></img>
                   </button>
@@ -102,14 +102,21 @@ async function dataLoad(data) {
   }
 }
 
-function classClear(node1, node2) {
-  node1.forEach((item) => {
+function classClear() {
+  const menuList = getNodes('.Main-menu-list li');
+  const pageList = getNodes('.page-list');
+  menuList.forEach((item) => {
     removeClass(item, 'isActive');
   });
 
-  node2.forEach((item) => {
+  pageList.forEach((item) => {
     removeClass(item, 'isActive');
   });
+
+  removeClass(plusButton, 'isActive');
+  removeClass(activeButtonList, 'isActive');
+  const whiteURL = '/src/assets/icons/main/plus-white.png';
+  attr(plusButton.firstElementChild, 'src', whiteURL);
 }
 
 function classAdd(node1, node2) {
@@ -119,16 +126,14 @@ function classAdd(node1, node2) {
 
 function activatePage(menuName) {
   const classList = menuName.split(' ');
-  const menuList = getNodes('.Main-menu-list li');
-  const pageList = getNodes('.page-list');
 
   if (menuName === 'Main-menu-exchange' && !classList.includes('isActive')) {
-    classClear(menuList, pageList);
+    classClear();
     classAdd(exchange, exchangeBoard);
   }
 
   if (menuName === 'Main-menu-story' && !classList.includes('isActive')) {
-    classClear(menuList, pageList);
+    classClear();
     classAdd(seniorStory, seniorStoryBoard);
   }
 }

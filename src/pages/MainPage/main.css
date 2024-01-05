@@ -145,6 +145,7 @@
 
             & a {
               padding: 0px;
+              border: 0;
 
               & button {
                 border: 0;
@@ -184,13 +185,12 @@
       }
 
       & li {
-        border-bottom: 1px solid var(--gray-200, #d3d3d3);
-
         & a {
           display: flex;
           flex-flow: row nowrap;
           gap: 0.75rem;
           padding: 0.75rem;
+          border-bottom: 1px solid var(--gray-200, #d3d3d3);
 
           & figcaption {
             display: flex;
