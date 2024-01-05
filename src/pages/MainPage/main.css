@@ -131,7 +131,6 @@
         bottom: 12px;
         z-index: 10;
         border: 0;
-        transition: all 0.5s ease;
 
         & .active-button-list {
           display: none;
@@ -144,10 +143,14 @@
             padding: 10px 12px;
             border-radius: 12px;
 
-            & button {
-              border: 0;
-              background-color: transparent;
-              color: var(--background);
+            & a {
+              padding: 0px;
+
+              & button {
+                border: 0;
+                background-color: transparent;
+                color: var(--background);
+              }
             }
           }
         }
@@ -210,7 +213,7 @@
               gap: 0.25rem;
 
               & .product-state {
-                padding: 0.25rem 0.25rem;
+                padding: 0.35rem 0.3rem;
                 border-radius: 0.25rem;
                 background: var(--tertiary);
                 color: var(--background);
