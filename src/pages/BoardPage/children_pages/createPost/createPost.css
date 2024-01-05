@@ -1,6 +1,6 @@
 
 
-.board--create-post-container {
+.board--create-post-page.one {
 
   & form {
     display: flex;
@@ -85,5 +85,68 @@
 
 
 
+  
+}
+
+.board--create-post-page.two {
+
+  & h1 {
+    padding: 12px;
+  }
+
+  & .board--create-option-gender {
+    display: flex;
+    justify-content: space-between;
+    display: flex;
+    padding: 12px 20px;
+    align-items: center;
+  }
+
+  & section {
+    display: flex;
+    flex-flow: column;
+    width: 100vw;
+
+    & figure {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    & div:nth-child(1) {
+      display: flex;
+      padding: 12px 20px;
+      justify-content: space-between;
+      align-items: center;
+      align-self: stretch;
+    }
+
+    & div:nth-child(2) {
+      display: flex;
+      padding: 12px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      align-self: stretch;
+
+      & div {
+        display: flex;
+        gap: 7px;
+        flex-flow: row;
+        padding: 0;
+
+        & button {
+          display: flex;
+          padding: 8px 12px;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20px;
+          border: 1px solid var(--gray-300, #BDBDBD);
+          background: var(--background, #FFF);
+        }
+      }
+      
+    }
+  }
   
 }
