@@ -1,5 +1,3 @@
-import data1 from '/src/pages/MainPage/data/data1.json';
-import data2 from '/src/pages/MainPage/data/data2.json';
 import {
   getNodes,
   getNode,
@@ -10,6 +8,8 @@ import {
   attr,
   toggleClass,
 } from '/src/lib/';
+import pb from '/src/pages/MainPage/pocketbase.js';
+import { getPbImageURL } from '/src/pages/MainPage/getPbImage.js';
 import gsap from 'gsap';
 
 gsap.defaults({
@@ -25,36 +25,44 @@ const productList = getNode('.Main-product-list');
 const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
 
-function onLoad() {
-  dataLoad(data1);
-  animation('.story');
+async function onLoad() {
+  dataLoad('senior_story').then(() => {
+    animation('.story');
+  });
 }
 
-function dataLoad(data) {
-  if (data === data1) {
-    data.forEach((item) => {
+async function dataLoad(data) {
+  if (data === 'senior_story') {
+    const response = await pb.collection(data).getList();
+    const storyData = response.items;
+
+    storyData.forEach((item) => {
+      const { title, major, year, name } = item;
+
       const template = /* html */ `
       <li class="story">
         <a href="/">
-                <figure>
-                  <img src=${item.img} alt="" />
-                </figure>
-                <figcaption>
-                  <div class="story-title">
-                    ${item.title}
-                  </div>
-                  <div>${item.category} | ${item.name}</div>
-                </figcaption>
-                </a>
-              </li>
-              
+          <figure>
+            <img src="${getPbImageURL(item)}" alt="안나옴" />
+          </figure>
+          <figcaption>
+            <div class="story-title">
+              ${title}
+            </div>
+            <div>${major} | ${year}기 수강생 ${name}</div>
+            </figcaption>
+          </a>
+      </li>
     `;
 
       insertLast('.Main-story-board', template);
     });
-  } else if (data === data2) {
-    data.forEach((item) => {
-      const { img, title, location, time, state, price } = item;
+  } else if (data === 'product_list') {
+    const response = await pb.collection(data).getList();
+    const productData = response.items;
+
+    productData.forEach((item) => {
+      const { title, location, price, state, save } = item;
 
       let stateClass;
       if (state === '예약중') stateClass = 'book';
@@ -65,14 +73,14 @@ function dataLoad(data) {
     <li class="product">
               <a href="/">
                 <figure>
-                  <img src=${img} alt="" />
+                  <img src="${getPbImageURL(item)}" alt="안나옴" />
                 </figure>
                 <figcaption>
                   <div class="product-title">${title}</div>
                   <div class="product-info-container">
                     <span class="product-location">${location}</span>
                     <span>•</span>
-                    <span>${time}</span>
+                    <span>1일전</span>
                   </div>
                   <div class="product-state-container">
                     <span class="product-state ${stateClass}">${state}</span>
@@ -84,12 +92,12 @@ function dataLoad(data) {
               <button>
                   <img src="/src/assets/icons/main/heart.svg"></img>
                   </button>
-                  <span>4</span>
+                  <span>${save}</span>
                 </div>
             </li>
   `;
 
-      insertLast('.Main-exchange', template);
+      insertLast('.Main-product-list', template);
     });
   }
 }
@@ -137,16 +145,18 @@ function handleExchange(e) {
   const menuName = e.currentTarget.className;
   activatePage(menuName);
   clearContents(productList);
-  dataLoad(data2);
-  animation('.product, .Main-plus-button');
+  dataLoad('product_list').then(() => {
+    animation('.product, .Main-plus-button');
+  });
 }
 
 function handleSeniorStory(e) {
   const menuName = e.currentTarget.className;
   activatePage(menuName);
   clearContents(seniorStoryBoard);
-  dataLoad(data1);
-  animation('.story');
+  dataLoad('senior_story').then(() => {
+    animation('.story');
+  });
 }
 
 function handleNavBar() {
