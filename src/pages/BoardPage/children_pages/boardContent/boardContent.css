@@ -81,6 +81,12 @@
 
   & section {
     display: flex;
-    
+    color: #919191;
+    gap: 4px;
+
+  }
+
+  & figure {
+    display: flex;
   }
 }

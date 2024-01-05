@@ -31,15 +31,19 @@ export function renderTogetherPosts(container) {
     `
       <div class="board--together-content">
         <section>
-          <p style=${item.status === "모집중" ? "color:blue;" : "color:red"} class="paragraph-s">${item.status}</p>
-          <p class="paragraph-s"> •${item.type}</p>
-          <p class="paragraph-s"> •${item.location}</p>
+          <p style=${item.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"} class="paragraph-s">${item.status}</p>
+          <p class="paragraph-s">• ${item.type}</p>
+          <p class="paragraph-s">• ${item.location}</p>
         </section>
-        <h2>${item.title}</h2>
+        <h2 class="label-m">${item.title}</h2>
 
         <figure>
           <img src="/src/assets/icons/general/fullpeople.svg" alt="" />
-          <figcaption>${item.requirements}</figcaption>
+          <figcaption class="paragraph-s">${item.requirements}</figcaption>
+        </figure>
+        <figure>
+          <img src="/src/assets/icons/general/calendar.svg" alt="" />
+          <figcaption class="paragraph-s">${item.time}</figcaption>
         </figure>
       </div>
     `
