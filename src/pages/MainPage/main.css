@@ -4,6 +4,8 @@
 }
 
 .Main-contents {
+  position: relative;
+
   & .Main-banner {
     position: fixed;
     max-width: 599px;
@@ -67,6 +69,7 @@
         display: flex;
         justify-content: space-around;
         color: var(--Contents-contentTertiary);
+        cursor: pointer;
 
         & .isActive {
           color: var(--background);
@@ -112,10 +115,68 @@
       display: grid;
     }
 
-    .Main-exchange {
+    & .Main-exchange {
       display: none;
       flex-flow: column nowrap;
       justify-content: center;
+
+      & .Main-button-list {
+        position: fixed;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: end;
+        gap: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 10;
+        border: 0;
+
+        & .active-button-list {
+          display: none;
+        }
+
+        & .active-button-list.isActive {
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: start;
+          gap: 4px;
+
+          & li {
+            display: flex;
+            align-self: stretch;
+            border: 0;
+            background-color: var(--primary);
+            padding: 10px 12px;
+            border-radius: 12px;
+
+            & button {
+              border: 0;
+              background-color: transparent;
+              color: var(--background);
+            }
+          }
+        }
+
+        & .Main-plus-button {
+          display: flex;
+          padding: 12px;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
+          right: 12px;
+          bottom: 12px;
+          border: 0;
+          border-radius: 50px;
+          background: var(--primary);
+          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+          z-index: 10;
+        }
+
+        & .Main-plus-button.isActive {
+          background-color: white;
+        }
+      }
 
       & li {
         border-bottom: 1px solid var(--gray-200, #d3d3d3);

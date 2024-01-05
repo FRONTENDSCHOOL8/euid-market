@@ -7,6 +7,8 @@ import {
   clearContents,
   addClass,
   removeClass,
+  attr,
+  toggleClass,
 } from '/src/lib/';
 import gsap from 'gsap';
 
@@ -16,10 +18,11 @@ gsap.defaults({
 
 const seniorStory = getNode('.Main-menu-story');
 const seniorStoryBoard = getNode('.Main-story-board');
-
+const activeButtonList = getNode('.active-button-list');
 const exchange = getNode('.Main-menu-exchange');
 const exchangeBoard = getNode('.Main-exchange');
-
+const productList = getNode('.Main-product-list');
+const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
 
 function onLoad() {
@@ -44,6 +47,7 @@ function dataLoad(data) {
                 </figcaption>
                 </a>
               </li>
+              
     `;
 
       insertLast('.Main-story-board', template);
@@ -119,9 +123,9 @@ function animation(node) {
 function handleExchange(e) {
   const menuName = e.currentTarget.className;
   activatePage(menuName);
-  clearContents(exchangeBoard);
+  clearContents(productList);
   dataLoad(data2);
-  animation('.product');
+  animation('.product, .Main-plus-button');
 }
 
 function handleSeniorStory(e) {
@@ -142,7 +146,48 @@ function handleNavBar() {
   }
 }
 
+function buttonControl() {
+  plusButton.addEventListener('mouseover', () => {
+    gsap.to('.Main-plus-button', {
+      duration: 0.2,
+      scale: 1.08,
+      y: -5,
+    });
+  });
+
+  plusButton.addEventListener('mouseout', () => {
+    gsap.to('.Main-plus-button', {
+      duration: 0.2,
+      scale: 1,
+      y: 0,
+    });
+  });
+
+  plusButton.addEventListener('click', () => {
+    const whiteURL = '/src/assets/icons/main/plus-white.png';
+    const blackURL = '/src/assets/icons/main/plus-black.png';
+    if (attr(plusButton.firstElementChild, 'src') === whiteURL) {
+      attr(plusButton.firstElementChild, 'src', blackURL);
+    } else {
+      attr(plusButton.firstElementChild, 'src', whiteURL);
+    }
+    toggleClass(plusButton, 'isActive');
+    toggleClass(activeButtonList, 'isActive');
+
+    if (Array.from(activeButtonList.classList).includes('isActive')) {
+      gsap.from('.active-button-list > li', {
+        opacity: 0,
+        x: 15,
+        y: 15,
+        stagger: 0.02,
+        ease: 'power2.out',
+      });
+    }
+  });
+}
+
 onLoad();
 seniorStory.addEventListener('click', handleSeniorStory);
 exchange.addEventListener('click', handleExchange);
 window.addEventListener('scroll', handleNavBar);
+buttonControl();
