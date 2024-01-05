@@ -236,6 +236,23 @@
             }
           }
         }
+
+        & .Main-like-container {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          bottom: 6px;
+          right: 15px;
+          font-size: 0.8rem;
+
+          & button {
+            border: 0;
+            background: transparent;
+            padding: 0;
+            transform: translate(-1px, 1px);
+          }
+        }
       }
     }
 

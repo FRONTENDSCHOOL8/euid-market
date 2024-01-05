@@ -79,7 +79,13 @@ function dataLoad(data) {
                     <span>${price}</span>
                   </div>
                 </figcaption>
+                <div class="Main-like-container">
               </a>
+              <button>
+                  <img src="/src/assets/icons/main/heart.svg"></img>
+                  </button>
+                  <span>4</span>
+                </div>
             </li>
   `;
 
