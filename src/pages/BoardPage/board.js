@@ -1,34 +1,24 @@
 // import PocketBase from 'pocketbase';
-import data from "./temp_data/data.json"
-
-import { getNode } from "../../lib/index.js";
-import { createPost, addClass, removeClass } from "./util/dom/index.js";
+import { getNode, } from "../../lib/index.js";
+import { renderMainPosts, addClass, removeClass } from "./util/dom/index.js";
 
 /* -------------- debugging area --------------*/
-function extractData() { 
-  console.log(data);
-}
-
-createPost();
-extractData();
+const postContainer = getNode(".board--post-list");
+renderMainPosts(postContainer);
 /*--------------------------------------------*/
+
+
 
 
 
 
 const popUpCloseBtn = getNode('.board--popup-close-btn');
 const popUp = getNode('.board--popup-container');
-console.log(popUp);
 popUpCloseBtn.addEventListener('click', () => addClass(popUp, 'hidden'));
 
 
 
-
-
-
 //Category Bar Event Listener Function
-
-
 function handleCategory(e) {
     e.preventDefault();
 
@@ -52,5 +42,6 @@ function handleCategory(e) {
     pickButton();
 }
 
-const boardContainer = getNode('.board--category-bar-container')
-boardContainer.addEventListener('click', handleCategory);
+const categoryBar = getNode('.board--category-bar-container')
+categoryBar.addEventListener('click', handleCategory);
+
