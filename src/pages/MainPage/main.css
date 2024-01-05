@@ -208,14 +208,28 @@
 
             & .product-state-container {
               display: flex;
-              justify-content: center;
+              justify-content: start;
               align-items: center;
-              gap: 0.25rem;
+              gap: 0.5rem;
 
               & .product-state {
+                display: none;
+              }
+
+              & .product-state.book {
+                display: inline;
                 padding: 0.35rem 0.3rem;
                 border-radius: 0.25rem;
                 background: var(--tertiary);
+                color: var(--background);
+                font-size: 0.6564375rem;
+              }
+
+              & .product-state.done {
+                display: inline;
+                padding: 0.35rem 0.3rem;
+                border-radius: 0.25rem;
+                background: var(--Contents-contentTertiary);
                 color: var(--background);
                 font-size: 0.6564375rem;
               }

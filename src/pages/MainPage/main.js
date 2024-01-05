@@ -54,22 +54,29 @@ function dataLoad(data) {
     });
   } else if (data === data2) {
     data.forEach((item) => {
+      const { img, title, location, time, state, price } = item;
+
+      let stateClass;
+      if (state === '예약중') stateClass = 'book';
+      else if (state === '거래 완료') stateClass = 'done';
+      else stateClass = '';
+
       const template = /* html */ `
     <li class="product">
               <a href="/">
                 <figure>
-                  <img src=${item.img} alt="" />
+                  <img src=${img} alt="" />
                 </figure>
                 <figcaption>
-                  <div class="product-title">${item.title}</div>
+                  <div class="product-title">${title}</div>
                   <div class="product-info-container">
-                    <span class="product-location">${item.location}</span>
+                    <span class="product-location">${location}</span>
                     <span>•</span>
-                    <span>${item.time}</span>
+                    <span>${time}</span>
                   </div>
                   <div class="product-state-container">
-                    <span class="product-state">${item.state}</span>
-                    <span>${item.price}</span>
+                    <span class="product-state ${stateClass}">${state}</span>
+                    <span>${price}</span>
                   </div>
                 </figcaption>
               </a>
