@@ -36,6 +36,10 @@ export function renderPostInfo(container) {
       <h3>연남동 인증 4회</h3>
       
     </figure>
+
+    <button class="board--post-info-participate label-m">
+      참여하기
+    </button>
   
   </div>
   `
