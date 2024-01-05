@@ -37,7 +37,7 @@ export function renderPostInfo(container) {
       
     </figure>
 
-    <button class="board--post-info-participate label-m">
+    <button class="board--fixed-button">
       참여하기
     </button>
   

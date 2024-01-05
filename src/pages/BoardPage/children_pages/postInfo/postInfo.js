@@ -4,6 +4,6 @@ import { renderPostInfo } from "../../util/dom/index";
 
 
 
-const container = getNode(".board--create-post-container");
+const container = getNode(".board--post-info-container");
 insertBefore(container, renderTopBar("withShare"));
 renderPostInfo(container);
