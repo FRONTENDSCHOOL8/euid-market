@@ -14,7 +14,6 @@
   gap: 15px;
   & figure {
     text-align: center;
-
     .user--profile-picture-wrapper {
       padding: 0;
       position: relative;
@@ -59,7 +58,6 @@
         margin-left: 6px;
         border-radius: 50px;
         padding: 3px 4px;
-
         font-size: var(--font-s);
         font-style: normal;
         font-weight: 400;
@@ -207,7 +205,8 @@
 
 /* 프로필 서브메뉴 */
 .user--profile-contents {
-  & li {
+  & li,
+  .user--profcile-content {
     display: flex;
     padding: 16px 18px;
     justify-content: space-between;
@@ -220,6 +219,63 @@
       & img {
         width: 16px;
       }
+    }
+  }
+
+  /* 더보기 버튼 */
+  .user--profile-more-button.is-active {
+    transform: rotate(0.25turn);
+  }
+  .user--profile-manner.is-active {
+    border: none;
+  }
+  /* 매너평가 */
+  .user--profile-manner-wrapper {
+    padding: 14px 10px;
+    border-bottom: 0.3px solid var(--Contents-contentSecondary);
+    .user--profile-manner-detail {
+      display: flex;
+      align-items: center;
+      & img {
+        width: 16px;
+      }
+      & span {
+        margin-left: 5px;
+        margin-right: 16px;
+      }
+      & p {
+        padding: 8px;
+        background-color: #5a85ee;
+        border-radius: 0px 8px 8px 8px;
+      }
+    }
+  }
+
+  /* 뱃지  */
+  .user--profile-badge.is-active {
+    border: none;
+  }
+  .user--profile-badge-button.is-active {
+    transform: rotate(0.25turn);
+  }
+  .user--profile-badge-detail.is-active {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 1rem;
+    text-align: center;
+    padding: 14px 10px;
+    border-bottom: 0.3px solid var(--Contents-contentSecondary);
+    width: 100%;
+    height: 100%;
+    & img {
+      width: 35%;
+    }
+    & p:nth-child(1) {
+      font-size: var(--font-m);
+    }
+    & p:nth-child(2) {
+      text-align: left;
+      font-size: var(--font-s);
     }
   }
 }
