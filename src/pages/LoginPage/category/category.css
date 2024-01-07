@@ -12,10 +12,49 @@ button, input{
 }
 
 .login--category-wrapper{
+  /* margin: 0 auto; */
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+
+  & h1 {
+    color: var(--primary, #373F67);
+    font-weight: 700;
+    line-height: 140%;
+    padding: 20px;
+    /* text-align: left; */
+  }
+
+  & ul {
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap:2rem ;
+    margin: 2.5rem;
+  } 
+  
+ & button {
+    width: 300px;
+    color: #fff;
+    padding: 10px 100px;
+    border-radius: 8px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: var(--primary, #373F67);
+  }
+}
+
+
+.login--category-submit {
+  width: 300px;
+  position: fixed;
+  bottom: 50px;
+  font-size: 16px;
+  z-index: 10;
 }
 
 .login--category-search > input {
@@ -28,20 +67,15 @@ button, input{
   /* background-color: palevioletred; */
 }
 
-
-.login--select{
-  color: var(--primary, #373F67);
-  font-weight: 700;
-  line-height: 140%; 
-}
-
-.login--category-card-wrapper{
+/* .login--category-container{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(2, 1fr); 
+  grid-gap: 10px; 
+  list-style: none; 
+  padding: 0; 
   margin-top: 13px;
   margin-bottom: 13px;
-}
+} */
 
 .login--category-card{
     width: 140px;
@@ -68,12 +102,4 @@ button, input{
     }
   }
 
-.login--category-submit{
-  width: 330px;
-  color: #fff;
-  padding: 8px 100px;
-  border-radius: 8px;
-  white-space: nowrap;
-  background: var(--primary, #373F67);
-  
-}  
+ 
