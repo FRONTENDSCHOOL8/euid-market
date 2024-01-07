@@ -1,6 +1,13 @@
 import data from '../../temp_data/data.json';
-import togetherData from '../../temp_data/together.json';
 import { insertLast} from '/src/lib/index';
+
+
+const response = await fetch(
+  `http://127.0.0.1:8090/api/collections/posts_together/records`
+);
+
+response.data = await response.json();
+const items = response.data.items;
 
 export function renderMainPosts(container) {
   data.forEach((item) => {
@@ -24,7 +31,9 @@ export function renderMainPosts(container) {
 }
 
 export function renderTogetherPosts(container) {
-  togetherData.forEach((item) => {
+  console.log(items[0].status)
+  // console.log(items);
+  items.forEach((item) => {
 
 
     const template = /* html */ 
