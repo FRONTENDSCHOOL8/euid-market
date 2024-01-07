@@ -70,7 +70,6 @@
   border-bottom: 1px solid var(--gray-200, #D3D3D3);
   background: var(--background, #FFF);
   position: sticky;
-  top: 37px;
 
   & .top-bar-buttons {
     display: flex;

@@ -7,7 +7,7 @@ function renderCreateFirst(container) {
   
   const template = /* html */
   `
-  <main class="board--create-post-page one hidden">
+  <main class="board--create-post-page one">
     <form action="/" method="post">
       <input type="text" placeholder="제목을 입력해주세요" id="board--post-title">
 
@@ -71,7 +71,7 @@ function renderCreateFirst(container) {
 function renderCreateSecond(container) {
   const template = /* html */ 
   `
-  <div class="board--create-post-page two">
+  <div class="board--create-post-page two hidden">
     <h1 class="label-l">어떤 학생과 함께 할까요?</h1>
     <section>
       <div>
@@ -110,7 +110,7 @@ function renderCreateSecond(container) {
   insertLast(container, template);
 }
 
-
+console.log(createPostContainer);
 insertBefore(createPostContainer, renderTopBar("blank"));
 renderCreateFirst(createPostContainer);
 renderCreateSecond(createPostContainer);
