@@ -1,6 +1,4 @@
-.hidden {
-  display: none;
-}
+
 button, input{
   background: none;      
   border: none;          
@@ -10,8 +8,30 @@ button, input{
   text-decoration: none; 
   cursor: pointer;        
 }
+:focus{
+  outline: 3px solid orange; 
+  border-radius: 5px;
+}
 .login--top-bar{
   padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* position: fixed; */
+}
+
+#categorySearch {
+  /* background-color: pink; */
+  border-bottom: 1px solid black;
+  background-image: url('/src/assets/icons/login/search.svg');
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position:0 center;
+  padding-left: 25px;
+  display: inline-block;
+  width: 280px;
+  height: 35px;
 }
 .login--category-wrapper{
   /* margin: 0 auto; */
@@ -19,35 +39,34 @@ button, input{
   flex-flow: column;
   justify-content: center;
   align-items: center;
-
-  & h1 {
-    color: var(--primary, #373F67);
-    font-weight: 700;
-    line-height: 140%;
-    padding: 20px;
-    /* text-align: left; */
-  }
-
-  & ul {
-    display: grid;
-    place-items: center;
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    gap:2rem ;
-    margin: 2.5rem;
-  } 
-
- & button {
-    width: 300px;
-    color: #fff;
-    padding: 10px 100px;
-    border-radius: 8px;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    background: var(--primary, #373F67);
-  }
+}
+.login--category-wrapper h1{
+  color: var(--primary, #373F67);
+  font-weight: 700;
+  line-height: 140%;
+  padding: 20px;
+  position: relative;
+  top: -10px;
+  left: -65px;
+}
+.login--category-wrapper button {
+  width: 300px;
+  color: #fff;
+  padding: 10px 100px;
+  border-radius: 8px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: var(--primary, #373F67);
+}
+.login--category-wrapper ul{
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap:2rem ;
+  margin: 2.5rem;
 }
 
 
@@ -59,49 +78,55 @@ button, input{
   z-index: 10;
 }
 
-.login--category-search > input {
-  width: 254px;
-  height: 29px;
-  font-weight: 400;
-  line-height: 160%;
-  margin: 20px;
-  border-bottom: #373F67;
-  /* background-color: palevioletred; */
-}
-
-/* .login--category-container{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  grid-gap: 10px; 
-  list-style: none; 
-  padding: 0; 
-  margin-top: 13px;
-  margin-bottom: 13px;
-} */
 
 .login--category-card{
-    width: 140px;
-    height: 50px;
-    padding: 10px;
-    margin: 10px 5px;
-    display: flex;
-    border-radius: 8px;
-    justify-content: space-between;
-    background: var(--gray-400, #A7A7A7);
+  display: inline-block;
+  width: 140px;
+  height: 60px;
+  padding: 10px;
+  margin: 10px 5px;
+  display: flex;
+  border-radius: 8px;
+  justify-content: space-between;
+  background: var(--gray-400, #A7A7A7);
+  transition: all 0.2s;
 
     & .login--category-name{
-    padding: 2px;
-    }
-    & p:nth-child(1){
-      font-weight: 600;
-      line-height: 150%;
-      padding-bottom: 3px;
-      color: var(--gray-100, #E9E9E9);
+    padding: 5px;
     }
     & img{
-      width: 18px;
+      width: 25px;
       padding-right: 5px;
     }
   }
+.login--category-card p:nth-child(1){
+  font-weight: 600;
+  line-height: 150%;
+  padding-bottom: 3px;
+  color: var(--gray-100, #E9E9E9);
+  }
+.login--category-card:hover{
+  background: var(--primary, #373F67); 
+  }
 
- 
+.login--category-card:hover .paragraph-s,
+.login--category-card:hover .heading-s {
+    color: white;
+}
+
+  .hidden {
+    display: none;
+  }
+  .active-card {
+    background-color: #373F67; /* 활성화된 카드의 배경색 */
+    color: white; /* 활성화된 카드의 글자색 */
+}
+
+.active-card .paragraph-s,
+.active-card .heading-s {
+    color: white; /* 활성화된 카드 내부 글자색 변경 */
+}
+
+.active-card img {
+    src: '/src/assets/icons/login/check.svg'; /* 활성화된 카드의 이미지 변경 */
+}

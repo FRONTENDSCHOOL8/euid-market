@@ -25,22 +25,30 @@
       </div>
     </div>
 
-    <div class="login--top-bar"></div>
+    <div class="login--top-bar">
+      <a href="/">
+        <img
+          src="/src/assets/icons/login/direction=left.svg"
+          alt="뒤로 가기 버튼"
+        />
+      </a>
 
-    <div class="login--category-wrapper">
       <div role="search" class="login--category-search">
-        <label for="searchBox" class="hidden">관심분야 검색</label>
+        <label for="categorySearch" class="hidden">관심분야 검색</label>
         <input
           type="search"
           class="label-s"
-          id="searchBox"
+          id="categorySearch"
           name="categorySearch"
           placeholder="분야(이름)로 검색 (ex.프론트)"
           aria-label="관심분야 검색"
         />
       </div>
+    </div>
+
+    <div class="login--category-wrapper">
       <h1 class="heading-s">관심분야를 선택해주세요!</h1>
-      <button type="submit" class="paragragh-s">
+      <button type="submit" class="paragragh-s hidden">
         <img src="/src/assets/icons/login/position.svg" alt="" />
         관심분야 선택하기
       </button>

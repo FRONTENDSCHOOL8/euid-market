@@ -4,9 +4,7 @@ import { renderTopBar } from '/src/components/general/renderTopBar.js';
 import { getNode, tiger, insertLast } from '/src/lib';
 import { createPost, addClass, removeClass } from './util/dom/index.js';
 
-const categoryTopBar = document.querySelector('.login--top-bar');
-categoryTopBar.innerHTML = renderTopBar();
-
+// 카테고리 리스트 동적 랜더링
 async function renderCategory() {
   const response = await tiger.get(
     'http://127.0.0.1:8090/api/collections/category/records'
@@ -14,7 +12,7 @@ async function renderCategory() {
   const userData = response.data.items;
   userData.forEach((item) => {
     const template = /*html*/ `
-    <li class="login--category-card">
+    <li class="login--category-card" role="button">
     <div class="login--category-name">
       <p class="paragraph-s">${item.main_category}</p>
       <p class="heading-s">${item.sub_category}</p>
@@ -24,9 +22,39 @@ async function renderCategory() {
     `;
     insertLast('.login--category-list', template);
   });
+  addEventListenersToCards();
+}
+
+function addEventListenersToCards() {
+  //이벤트리스너
+  document.querySelectorAll('.login--category-card').forEach((card) => {
+    card.addEventListener('click', function () {
+      this.classList.toggle('active-card');
+
+      // 조건에 따라 이미지 변경
+      const img = this.querySelector('img');
+      if (this.classList.contains('active-card')) {
+        img.src = '/src/assets/icons/login/check.svg'; // 활성화 이미지
+      } else {
+        img.src = '/src/assets/icons/login/plus.svg'; // 비활성화 이미지
+      }
+    });
+  });
 }
 
 renderCategory();
+//키보드 'Enter' 키를 처리하는 함수
+function handleKeyPress(event) {
+  if (event.key === 'Enter') {
+    // 버튼 역할을 하는 요소가 활성화되는 로직
+  }
+}
+
+// 요소에 이벤트 리스너 추가
+document
+  .querySelector('.login--category-card')
+  .addEventListener('keypress', handleKeyPress);
+
 /* -------------- debugging area --------------*/
 function extractData() {
   console.log(data);
