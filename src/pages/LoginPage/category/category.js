@@ -1,8 +1,11 @@
 // import PocketBase from 'pocketbase';
 import data from './temp_data/data.json';
-
+import { renderTopBar } from '/src/components/general/renderTopBar.js';
 import { getNode, tiger, insertLast } from '/src/lib';
 import { createPost, addClass, removeClass } from './util/dom/index.js';
+
+const categoryTopBar = document.querySelector('.login--top-bar');
+categoryTopBar.innerHTML = renderTopBar();
 
 async function renderCategory() {
   const response = await tiger.get(

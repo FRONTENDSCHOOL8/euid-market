@@ -10,7 +10,9 @@ button, input{
   text-decoration: none; 
   cursor: pointer;        
 }
-
+.login--top-bar{
+  padding: 20px;
+}
 .login--category-wrapper{
   /* margin: 0 auto; */
   display: flex;
@@ -33,7 +35,7 @@ button, input{
     gap:2rem ;
     margin: 2.5rem;
   } 
-  
+
  & button {
     width: 300px;
     color: #fff;
