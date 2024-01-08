@@ -12,5 +12,8 @@
     "eslint": "^8.56.0",
     "prettier": "^3.1.1",
     "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "pocketbase": "^0.20.1"
   }
 }

@@ -54,6 +54,9 @@
     align-self: stretch;
 
     & figure {
+      display: flex;
+      align-items: center;
+      gap: 4px;
 
       & img {
         width: 20px;
@@ -115,7 +118,7 @@
 
     & div:nth-child(1) {
       display: flex;
-      padding: 12px 20px;
+      padding: 12px;
       justify-content: space-between;
       align-items: center;
       align-self: stretch;
