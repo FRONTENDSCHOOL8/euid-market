@@ -1,21 +1,30 @@
 // import PocketBase from 'pocketbase';
 import data from './temp_data/data.json';
-import { renderTopBar } from '/src/components/general/renderTopBar.js';
 import { getNode, tiger, insertLast } from '/src/lib';
 import { createPost, addClass, removeClass } from './util/dom/index.js';
 
 // 카테고리 리스트 동적 랜더링
-async function renderCategory() {
-  const response = await tiger.get(
-    'http://127.0.0.1:8090/api/collections/category/records'
-  );
-  const userData = response.data.items;
+async function renderCategory(filteredData = null) {
+  let userData;
+  if (filteredData) {
+    userData = filteredData;
+  } else {
+    const response = await tiger.get(
+      'http://127.0.0.1:8090/api/collections/category/records'
+    );
+    userData = response.data.items;
+  }
+
+  // 기존 카드들을 삭제하고 새로운 데이터로 랜더링
+  const categoryList = document.querySelector('.login--category-list');
+  categoryList.innerHTML = '';
+  // ... (나머지 코드는 동일)
   userData.forEach((item) => {
     const template = /*html*/ `
-    <li class="login--category-card" role="button">
+    <li type="hidden" class="login--category-card" role="button" tabindex="0">
     <div class="login--category-name">
-      <p class="paragraph-s">${item.main_category}</p>
-      <p class="heading-s">${item.sub_category}</p>
+      <p class="login--category-main paragraph-s">${item.main_category}</p>
+      <p class="login--category-sub heading-s">${item.sub_category}</p>
     </div>
     <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
   </li>
@@ -24,12 +33,31 @@ async function renderCategory() {
   });
   addEventListenersToCards();
 }
+//카테고리 데이터 필터링 함수
+function filterCategories(searchTerm) {
+  return data.items.filter(
+    (item) =>
+      item.main_category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.sub_category.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+}
 
 function addEventListenersToCards() {
   //이벤트리스너
   document.querySelectorAll('.login--category-card').forEach((card) => {
     card.addEventListener('click', function () {
       this.classList.toggle('active-card');
+      // 클릭된 카드의 데이터 추출
+      const mainCategory = this.querySelector(
+        '.login--category-main'
+      ).textContent;
+      const subCategory = this.querySelector(
+        '.login--category-sub'
+      ).textContent;
+      const categoryData = `Main Category: ${mainCategory}, Sub Category: ${subCategory}`;
+      console.log(
+        `Main Category: ${mainCategory}, Sub Category: ${subCategory}`
+      );
 
       // 조건에 따라 이미지 변경
       const img = this.querySelector('img');
@@ -43,17 +71,12 @@ function addEventListenersToCards() {
 }
 
 renderCategory();
-//키보드 'Enter' 키를 처리하는 함수
-function handleKeyPress(event) {
-  if (event.key === 'Enter') {
-    // 버튼 역할을 하는 요소가 활성화되는 로직
-  }
-}
 
-// 요소에 이벤트 리스너 추가
-document
-  .querySelector('.login--category-card')
-  .addEventListener('keypress', handleKeyPress);
+//검색 이벤트 리스너
+document.getElementById('categorySearch').addEventListener('input', (e) => {
+  const searchTerm = e.target.value;
+  renderCategory(filterCategories(searchTerm));
+});
 
 /* -------------- debugging area --------------*/
 function extractData() {
@@ -63,36 +86,3 @@ function extractData() {
 createPost();
 extractData();
 /*--------------------------------------------*/
-
-const popUpCloseBtn = getNode('.board--popup-close-btn');
-const popUp = getNode('.board--popup-container');
-console.log(popUp);
-popUpCloseBtn.addEventListener('click', () => addClass(popUp, 'hidden'));
-
-//Category Bar Event Listener Function
-
-function handleCategory(e) {
-  e.preventDefault();
-
-  const target = e.target;
-
-  const button = target.closest('button');
-
-  if (!button) return;
-  console.log(button);
-
-  // switch 대신 객체를 사용한 방법
-  const targetBtn = {
-    1: () => removeClass(popUp, 'hidden'),
-    2: () => console.log('인기글'),
-    3: () => console.log('같이해요'),
-    4: () => console.log('질의응답'),
-    5: () => console.log('자유게시판'),
-  };
-
-  const pickButton = targetBtn[button.dataset.index];
-  pickButton();
-}
-
-const boardContainer = getNode('.board--category-bar-container');
-boardContainer.addEventListener('click', handleCategory);

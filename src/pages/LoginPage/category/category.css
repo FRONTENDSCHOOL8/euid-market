@@ -30,6 +30,7 @@ button, input{
   background-position:0 center;
   padding-left: 25px;
   display: inline-block;
+  font-size: 16px;
   width: 280px;
   height: 35px;
 }
@@ -39,18 +40,21 @@ button, input{
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 90px;
 }
 .login--category-wrapper h1{
   color: var(--primary, #373F67);
   font-weight: 700;
   line-height: 140%;
+  font-size: 20px;
   padding: 20px;
+  padding-bottom: 0;
   position: relative;
   top: -10px;
   left: -65px;
 }
 .login--category-wrapper button {
-  width: 300px;
+  width: 330px;
   color: #fff;
   padding: 10px 100px;
   border-radius: 8px;
@@ -61,14 +65,14 @@ button, input{
   gap: 5px;
   background: var(--primary, #373F67);
 }
-.login--category-wrapper ul{
+.login--category-list {
   display: grid;
   place-items: center;
   grid-template-columns: repeat(2,minmax(0,1fr));
-  gap:2rem ;
-  margin: 2.5rem;
-}
+  margin: 1rem;
+  margin-top: 10px;
 
+}
 
 .login--category-submit {
   width: 300px;
@@ -81,8 +85,8 @@ button, input{
 
 .login--category-card{
   display: inline-block;
-  width: 140px;
-  height: 60px;
+  width: 8.75rem;
+  height: 3.75rem;
   padding: 10px;
   margin: 10px 5px;
   display: flex;
@@ -114,12 +118,9 @@ button, input{
     color: white;
 }
 
-  .hidden {
-    display: none;
-  }
-  .active-card {
-    background-color: #373F67; /* 활성화된 카드의 배경색 */
-    color: white; /* 활성화된 카드의 글자색 */
+.active-card {
+  background-color: #373F67; /* 활성화된 카드의 배경색 */
+  color: white; /* 활성화된 카드의 글자색 */
 }
 
 .active-card .paragraph-s,
@@ -130,3 +131,11 @@ button, input{
 .active-card img {
     src: '/src/assets/icons/login/check.svg'; /* 활성화된 카드의 이미지 변경 */
 }
+
+button[type="reset"]{
+  display: none;
+}
+.hidden {
+  display: none;
+}
+
