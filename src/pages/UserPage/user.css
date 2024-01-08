@@ -22,6 +22,7 @@
       .user--profile-picture {
         display: block;
         width: 100%;
+        height: 100%;
         border-radius: 50%;
         background: lightgray 50% / cover no-repeat;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
@@ -203,7 +204,7 @@
   }
 }
 
-/* 프로필 서브메뉴 */
+/* 프로필 컨텐츠 ( 배지, 상품, 매너평가, 거래후기) */
 .user--profile-contents {
   & li,
   .user--profcile-content {
@@ -221,7 +222,6 @@
       }
     }
   }
-
   /* 더보기 버튼 */
   .user--profile-more-button.is-active {
     transform: rotate(0.25turn);
@@ -300,5 +300,11 @@
   }
   .user--logout-nickname {
     color: var(--secondary);
+  }
+  & button {
+    background-color: transparent;
+    border: none;
+    font-size: var(----font-m);
+    padding: 0;
   }
 }
