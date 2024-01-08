@@ -1,7 +1,7 @@
 // import PocketBase from 'pocketbase';
 import { getNode, } from "../../lib/index.js";
 import { renderMainPosts, addClass, removeClass } from "./util/dom/index.js";
-
+import { relocateLink } from "./util/index.js";
 /* -------------- debugging area --------------*/
 const postContainer = getNode(".board--post-list");
 renderMainPosts(postContainer);
@@ -33,7 +33,7 @@ function handleCategory(e) {
     const targetBtn = {
       "1": () => removeClass(popUp, 'hidden'),
       "2": () => console.log("인기글"),
-      "3": () => console.log("같이해요"),
+      "3": () => relocateLink("/src/pages/BoardPage/children_pages/boardContent/"),
       "4": () => console.log("질의응답"),
       "5": () => console.log("자유게시판")
     };

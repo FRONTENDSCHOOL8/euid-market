@@ -1,13 +1,10 @@
 import data from '../../temp_data/data.json';
 import { insertLast} from '/src/lib/index';
+import { getData } from "../index.js";
 
 
-const response = await fetch(
-  `http://127.0.0.1:8090/api/collections/posts_together/records`
-);
+const items = await getData();
 
-response.data = await response.json();
-const items = response.data.items;
 
 export function renderMainPosts(container) {
   data.forEach((item) => {
@@ -31,6 +28,7 @@ export function renderMainPosts(container) {
 }
 
 export function renderTogetherPosts(container) {
+  console.log(items); 
   items.forEach((item) => {
     const template = /* html */ 
     `
@@ -56,7 +54,7 @@ export function renderTogetherPosts(container) {
         <div>
           <figure>
             <img class="board--together-profile-picture" src="" alt="" />
-            <figcaption class="paragraph-s">${item.max_people}/${item.curr_people}명</figcaption>
+            <figcaption class="paragraph-s">${item.curr_people}/${item.max_people}명</figcaption>
           </figure>
 
           <p class="paragraph-s">35분 전</p>

@@ -1,4 +1,3 @@
-import { insertLast } from "../../../../lib";
 import { renderTopBar } from "/src/components/general/renderTopBar.js";
 import { renderTogetherPosts, relocateLink } from "../../util/index.js";
 import { getNode, insertBefore, insertFirst } from "/src/lib/index.js";
