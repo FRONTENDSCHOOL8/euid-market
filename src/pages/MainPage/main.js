@@ -7,9 +7,11 @@ import {
   removeClass,
   attr,
   toggleClass,
-  comma,
-  getPbImageURL,
 } from '/src/lib/';
+import {
+  storyBoardTemplate,
+  exchangeTemplate,
+} from '/src/pages/MainPage/template.js';
 import pb from '/src/lib/utils/pocketbase.js';
 import gsap from 'gsap';
 
@@ -38,67 +40,14 @@ async function dataLoad(data) {
     const storyData = response.items;
 
     storyData.forEach((item) => {
-      const { title, major, year, name } = item;
-
-      const template = /* html */ `
-      <li class="story">
-        <a href="/">
-          <figure>
-            <img src="${getPbImageURL(item)}" alt="안나옴" />
-          </figure>
-          <figcaption>
-            <div class="story-title">
-              ${title}
-            </div>
-            <div>${major} | ${year}기 수강생 ${name}</div>
-            </figcaption>
-          </a>
-      </li>
-    `;
-
-      insertLast('.Main-story-board', template);
+      insertLast('.Main-story-board', storyBoardTemplate(item));
     });
   } else if (data === 'product_list') {
     const response = await pb.collection(data).getList();
     const productData = response.items;
 
     productData.forEach((item) => {
-      const { title, location, price, state, save } = item;
-
-      let stateClass;
-      if (state === '예약중') stateClass = 'book';
-      else if (state === '거래 완료') stateClass = 'done';
-      else stateClass = '';
-
-      const template = /* html */ `
-    <li class="product">
-              <a href="${`/src/pages/MainPage/detail/index#${item.id}`}">
-                <figure>
-                  <img src="${getPbImageURL(item)}" alt="안나옴" />
-                </figure>
-                <figcaption>
-                  <div class="product-title">${title}</div>
-                  <div class="product-info-container">
-                    <span class="product-location">${location}</span>
-                    <span>•</span>
-                    <span>1일전</span>
-                  </div>
-                  <div class="product-state-container">
-                    <span class="product-state ${stateClass}">${state}</span>
-                    <span>${comma(price)}원</span>
-                  </div>
-                </figcaption>
-                </a>
-                <div class="Main-like-container">
-              <button>
-                  <img src="/src/assets/icons/main/heart.svg"></img>
-                  </button>
-                  <span>${save}</span>
-                </div>
-            </li>
-  `;
-
-      insertLast('.Main-product-list', template);
+      insertLast('.Main-product-list', exchangeTemplate(item));
     });
   }
 }
