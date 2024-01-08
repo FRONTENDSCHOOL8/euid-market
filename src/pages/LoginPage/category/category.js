@@ -1,7 +1,7 @@
 // import PocketBase from 'pocketbase';
 import data from './temp_data/data.json';
 import { getNode, tiger, insertLast } from '/src/lib';
-import { createPost, addClass, removeClass } from './util/dom/index.js';
+import { createPost, addClass, removeClass } from './util/dom/';
 
 // 카테고리 리스트 동적 랜더링
 async function renderCategory() {
@@ -67,6 +67,17 @@ function addEventListenersToCards() {
 }
 
 renderCategory();
+//저장 버튼에 클릭 이벤트 리스너를 추가
+document
+  .querySelector('.login--category-submit')
+  .addEventListener('click', function () {
+    // 로컬 스토리지에 selectedCategories 배열을 JSON 문자열로 저장
+    localStorage.setItem(
+      'selectedCategories',
+      JSON.stringify(selectedCategories)
+    );
+    console.log('저장된 데이터:', localStorage.getItem('selectedCategories'));
+  });
 
 //검색 이벤트 리스너
 document.getElementById('categorySearch').addEventListener('input', (e) => {
