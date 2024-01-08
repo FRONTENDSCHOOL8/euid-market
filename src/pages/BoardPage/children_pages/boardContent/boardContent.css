@@ -1,0 +1,138 @@
+
+
+
+.board--together-category {
+  overflow: hidden;
+
+  & ul {
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: scroll;
+    padding: 8px 20px;
+    gap: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    & li {
+
+
+      & figure {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        gap: 6px;
+      }
+      & button {
+        color: var(--gray-100, #E9E9E9);
+        text-align: center;
+        font-size: 22px;
+        border: none;
+        height: 60px;
+        width: 60px;
+        border-radius: 50px;
+        background: var(--gray-100, #E9E9E9);
+        display: flex;
+        padding: 12px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  }
+}
+
+.board--together-filter {
+  display: flex;
+  padding: 12px 14px;
+  gap: 7px;
+
+
+  & select {
+    display: flex;
+    padding: 6px 12px;
+    justify-content: center;
+    font-size: 10px;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid var(--Contents-contentTertiary, #9DA1B4);
+    background: var(--background, #FFF);
+  }
+
+  & button {
+    display: flex;
+    padding: 6px 26px;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid var(--Contents-contentTertiary, #9DA1B4);
+    background: var(--background, #FFF);
+  }
+}
+
+.board--together-content {
+  display: flex;
+  padding: 12px 13px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border: 0.3px solid var(--Contents-contentTertiary, #9DA1B4);
+  background: var(--background, #FFF);
+
+  & section {
+    display: flex;
+    color: #919191;
+    gap: 4px;
+
+  }
+
+  & figure {
+    display: flex;
+    align-content: center;
+
+    gap: 3px;
+
+    & figcaption {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  & .board--together-profile-picture {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  & div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.board--together-post-container {
+  display: flex;
+  overflow: hidden;
+  
+  overflow-y: scroll;
+  flex-flow: column;
+  padding-bottom: inherit;
+  position: relative;
+}
+
+.board--together-create-post {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  bottom: 100px;
+  right: 20px;
+  border-radius: 50px;
+  background: var(--primary, #373F67);
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}

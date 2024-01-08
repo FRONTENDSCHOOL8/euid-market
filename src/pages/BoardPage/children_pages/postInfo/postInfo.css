@@ -1,0 +1,26 @@
+
+
+
+.board--post-info { 
+  padding: 13px;
+  padding-right: 40px;
+
+  display: flex;
+  flex-flow: column;
+  
+  gap: 20px;
+
+
+  & h1 {
+    display: inline-block
+  }
+
+  & figure {
+    & figcaption {
+      display: inline-block;
+    }
+  }
+
+
+
+}

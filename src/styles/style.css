@@ -7,8 +7,14 @@
 /* ----------- 페이지별 css 폴더 여기에 import 하기 ----------- */
 
 @import url(/src/pages/BoardPage/board.css);
+
 @import url(/src/pages/MainPage/main.css);
 @import url(/src/pages/MainPage/detail/detail.css);
+
+@import url(/src/pages/StartPage/start.css);
+
+
+
 
 /* ---------------------------------------------------------- */
 
@@ -67,7 +73,7 @@
   border-bottom: 1px solid var(--gray-200, #d3d3d3);
   background: var(--background, #fff);
   position: sticky;
-  top: 37px;
+  top: 0;
 
   & .top-bar-buttons {
     display: flex;

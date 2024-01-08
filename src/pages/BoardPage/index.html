@@ -8,111 +8,94 @@
   <script type="module" src="board.js"></script>
 </head>
 <body>
-
-  <div class="temp-bar">
-    <p class="label-m">2:26</p>
-    <div class="temp-bar-icon-wrapper">
-      <img src="/src/assets/icons/general/cellular.png" alt="cellular">
-      <img class="lte" src="/src/assets/icons/general/lte.png" alt="lte">
-      <img class="battery" src="/src/assets/icons/general/battery.png" alt="battery">
-    </div>
-  </div>
-
-
-  <nav class="top-bar-container">
-    <select class="top-bar-location">
-      <option value="">남가좌제2동</option>
-    </select>
-    <div class="top-bar-buttons">
-      <button><img src="/src/assets/icons/general/search.png" alt="검색 아이콘"></button>
-      <button><img src="/src/assets/icons/general/hamburger.svg" alt="알람 아이콘"></button>
-      <button><img src="/src/assets/icons/general/alramBell.png" alt="알림 아이콘"></button>
-    </div>
-  </nav>
-
-
   <div class="board--container">
-    <div class="board--category-bar-container">
-      <ul class="board--category-bar-wrapper">
-        <li>
-          <button data-index="1">주제</button>
-        </li>
-        <li>
-          <button data-index="2">인기글</button>
-        </li>
-        <li>
-          <button data-index="3">같이해요</button>
-        </li>
-        <li>
-          <button data-index="4">질의음답</button>
-        </li>
-        <li>
-          <button data-index="5">자유게시판</button>
-        </li>
-      </ul>
-    </div>
-
-    <div class="board--post-list">
-      <!-- JS로 렌더링 -->
-    </div>
-
-<!-- 일단 하드코딩 하고 나중에 바꾸는걸로 -->
-    <div class="board--popup-container">
-
-      <div class="board--popup-header">
-        <h3 class="label-m">주제목록</h3>
-        <p class="paragraph-m">주제에 참여하고 관심있는 게시글을 둘러보세요.</p>
-      </div>
-
-      <div class="board--popup-body">
-        <ul>
-          <li class="paragraph-m">
-            <div>
-              <img src="" alt="" />
-              <h3>전체</h3>
-            </div>
+    
+    <div class="board--main">
+      <nav class="top-bar-container">
+        <select class="top-bar-location">
+          <option value="">남가좌제2동</option>
+        </select>
+        <div class="top-bar-buttons">
+          <button><img src="/src/assets/icons/general/search.png" alt="검색 아이콘"></button>
+          <button><img src="/src/assets/icons/general/hamburger.svg" alt="알람 아이콘"></button>
+          <button><img src="/src/assets/icons/general/alramBell.png" alt="알림 아이콘"></button>
+        </div>
+      </nav>
+      
+      <div class="board--category-bar-container">
+        <ul class="board--category-bar-wrapper">
+          <li>
+            <button data-index="1">주제</button>
           </li>
-          <li class="paragraph-m">
-            <div>
-              <img src="" alt="" />
-              <h3>프로그래밍</h3>
-            </div>
+          <li>
+            <button data-index="2">인기글</button>
           </li>
-          <li class="paragraph-m">
-            <div>
-              <img src="" alt="" />
-              <h3>디자인</h3>
-            </div>
+          <li>
+            <button data-index="3">같이해요</button>
           </li>
-          <li class="paragraph-m">
-            <div>
-              <img src="" alt="" />
-              <h3>UI-UX</h3>
-            </div>
+          <li>
+            <button data-index="4">질의음답</button>
           </li>
-          <li class="paragraph-m">
-            <div>
-              <img src="" alt="" />
-              <h3>FrontEnd</h3>
-            </div>
-          </li>
-          <li class="paragraph-m">
-            <div>
-              <img src="" alt="" />
-              <h3>BackEnd</h3>
-            </div>
+          <li>
+            <button data-index="5">자유게시판</button>
           </li>
         </ul>
       </div>
-
-      <button class="board--popup-close-btn">
-        <img src="/src/assets/icons/board/close.svg" alt="닫기 버튼">
-      </button>
-
+      <div class="board--post-list">
+        <!-- JS로 렌더링 -->
+      </div>
+      
+      <!-- 일단 하드코딩 하고 나중에 바꾸는걸로 -->
+      <div class="board--popup-container hidden">
+        <div class="board--popup-header">
+          <h3 class="label-m">주제목록</h3>
+          <p class="paragraph-m">주제에 참여하고 관심있는 게시글을 둘러보세요.</p>
+        </div>
+        <div class="board--popup-body">
+          <ul>
+            <li class="paragraph-m">
+              <div>
+                <img src="" alt="" />
+                <h3>전체</h3>
+              </div>
+            </li>
+            <li class="paragraph-m">
+              <div>
+                <img src="" alt="" />
+                <h3>프로그래밍</h3>
+              </div>
+            </li>
+            <li class="paragraph-m">
+              <div>
+                <img src="" alt="" />
+                <h3>디자인</h3>
+              </div>
+            </li>
+            <li class="paragraph-m">
+              <div>
+                <img src="" alt="" />
+                <h3>UI-UX</h3>
+              </div>
+            </li>
+            <li class="paragraph-m">
+              <div>
+                <img src="" alt="" />
+                <h3>FrontEnd</h3>
+              </div>
+            </li>
+            <li class="paragraph-m">
+              <div>
+                <img src="" alt="" />
+                <h3>BackEnd</h3>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <button class="board--popup-close-btn">
+          <img src="/src/assets/icons/board/close.svg" alt="닫기 버튼">
+        </button>
+      </div>
     </div>
-
-
-
   </div>
 
   <nav class="bottom-bar-container">

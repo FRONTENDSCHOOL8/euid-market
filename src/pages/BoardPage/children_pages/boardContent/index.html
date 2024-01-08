@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Board Content</title>
+  <link rel="stylesheet" href="/src/styles/style.css">
+  <script src="./boardContent.js" type="module"></script>
+</head>
+<body>
+
+  <div class="board--container">
+<!-- start of board container -->
+
+    <div class="board--together-category">
+      <ul>
+
+        <li>
+          <figure class="label-s">
+            <button>
+              🙌
+            </button>
+            <figcaption>전체</figcaption>
+          </figure>
+        </li>
+
+        <li>
+          <figure class="label-s">
+            <button>
+              📝
+            </button>
+            <figcaption>스터디</figcaption>
+          </figure>
+        </li>
+
+        <li>
+          <figure class="label-s">
+            <button>
+              💻
+            </button>
+            <figcaption>프로젝트</figcaption>
+          </figure>
+        </li>
+
+        <li>
+          <figure class="label-s">
+            <button>
+              ⚡
+            </button>
+            <figcaption>오프라인</figcaption>
+          </figure>
+        </li>
+
+        <li>
+          <figure class="label-s">
+            <button>
+              🏆
+            </button>
+            <figcaption>같이해요</figcaption>
+          </figure>
+        </li>
+      </ul>
+    </div>
+
+    <div class="board--together-filter">
+      <select>
+        <option value="">최근 작성 순</option>
+      </select>
+      <button>모집 중인 글만</button>
+    </div>
+
+    <div class="board--together-post-container">
+      
+      <!-- posts rendered by jsx -->
+      
+      <button class="board--together-create-post">
+        <img src="/src/assets/icons/board/plus.svg" alt="플러스">
+      </button>
+    </div>
+
+<!-- end of board container here -->
+  </div>
+
+  <nav class="bottom-bar-container">
+    <ul>
+      <li>
+        <a href="/">
+          <img src="/src/assets/icons/general/home.svg" alt="홈">
+          <p class="paragraph-s">홈</p>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <img src="/src/assets/icons/general/fullFile.svg" alt="게시판">
+          <p class="paragraph-s">게시판</p>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <img src="/src/assets/icons/general/map.svg" alt="내 근처">
+          <p class="paragraph-s">내 근처</p>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <img src="/src/assets/icons/general/chat.svg" alt="채팅">
+          <p class="paragraph-s">채팅</p>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <img src="/src/assets/icons/general/my.svg" alt="나의 이듬">
+          <p class="paragraph-s">나의 이듬</p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</body>
+</html>
