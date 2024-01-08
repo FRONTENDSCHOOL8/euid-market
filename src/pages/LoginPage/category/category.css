@@ -1,0 +1,134 @@
+button, input{
+  background: none;      
+  border: none;          
+  padding: 0;            
+  margin: 0;             
+  outline: none;         
+  text-decoration: none; 
+  cursor: pointer;        
+}
+
+.login--top-bar{
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#categorySearch {
+  /* background-color: pink; */
+  border-bottom: 1px solid black;
+  background-image: url('/src/assets/icons/login/search.svg');
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position:0 center;
+  padding-left: 25px;
+  display: inline-block;
+  font-size: 16px;
+  width: 70vw;
+  height: 35px;
+}
+.login--category-wrapper{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 90px;
+
+  & h1{
+    color: var(--primary, #373F67);
+    font-weight: 700;
+    line-height: 140%;
+    font-size: 20px;
+    padding: 5vw;
+    padding-bottom: 0;
+    position: relative;
+    top: -10px;
+    right:15vw ;
+}
+
+  & button {
+    width: 86vw;
+    color: #fff;
+    padding: 10px 100px;
+    border-radius: 8px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: var(--primary, #373F67);
+  }
+}
+
+.login--category-list {
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  margin: 1rem;
+  margin-top: 10px;
+}
+
+.login--category-submit {
+  position: fixed;
+  bottom: 50px;
+  font-size: 16px;
+  z-index: 10;
+}
+
+.login--category-card{
+  display: inline-block;
+  width: 35vw;
+  height: 3.75rem;
+  padding: 10px;
+  margin: 10px 5px;
+  display: flex;
+  border-radius: 8px;
+  justify-content: space-between;
+  background: var(--gray-400, #A7A7A7);
+  transition: all 0.2s;
+
+    & .login--category-name{
+    padding: 5px;
+    white-space: nowrap;
+    }
+    & img{
+      width: 7vw;
+      padding-right: 5px;
+    }
+  }
+.login--category-card p:nth-child(1){
+  font-weight: 600;
+  line-height: 150%;
+  padding-bottom: 3px;
+  color: var(--gray-100, #E9E9E9);
+  }
+.login--category-card:hover{
+  background: var(--primary, #373F67); 
+  }
+
+.login--category-card:hover .paragraph-s,
+.login--category-card:hover .heading-s {
+    color: white;
+}
+
+.active-card {
+  background-color: #373F67; 
+  color: white; 
+}
+
+.active-card .paragraph-s,
+.active-card .heading-s {
+    color: white; 
+}
+
+.active-card img {
+    src: '/src/assets/icons/login/check.svg'; 
+}
+
+button[type="reset"]{
+  display: none;
+}
+
+
