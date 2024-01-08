@@ -166,29 +166,30 @@ const userProfileMannerButton = document.querySelector(
 const userProfileMannerList = document.querySelector('.user--profile-manner');
 async function showManner() {
   const mannerListTemplate = /*html*/ `<div class="user--profile-manner-wrapper ">  </div>`;
-
   if (!Array.from(userProfileMannerButton.classList).includes('is-active')) {
+    userProfileMannerList.insertAdjacentHTML('afterend', mannerListTemplate);
     userProfileMannerButton.classList.add('is-active');
     document.querySelector('.user--profile-manner').classList.add('is-active');
+    // pocektbase 데이터 리스트
     const manner_view = (
       await pb.collection('user_manner_join_view').getList(1, 50, {
         filter: `user_id= "${TEST_USER_ID}" `,
       })
     ).items;
-    manner_view.forEach((item) => {
-      console.log(item);
-      let { manner_title, countManner: count } = item;
-
-      const mannerTemplate = /* html */ `
+    if (!manner_view.length === 0) {
+      manner_view.forEach((item) => {
+        console.log(item);
+        let { manner_title, countManner: count } = item;
+        const mannerTemplate = /* html */ `
       <div class="user--profile-manner-detail">
           <img src="/src//assets/icons/profile/people.svg" alt="" />
           <span>${count}</span><p>${manner_title}</p> 
         </div>`;
-      userProfileMannerList.insertAdjacentHTML('afterend', mannerListTemplate);
-      document
-        .querySelector('.user--profile-manner-wrapper')
-        .insertAdjacentHTML('afterbegin', mannerTemplate);
-    });
+        document
+          .querySelector('.user--profile-manner-wrapper')
+          .insertAdjacentHTML('afterbegin', mannerTemplate);
+      });
+    }
   } else {
     userProfileMannerButton.classList.remove('is-active');
     document.querySelector('.user--profile-manner-wrapper').style =
