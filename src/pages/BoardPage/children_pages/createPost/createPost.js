@@ -1,6 +1,6 @@
 import { renderTopBar } from "/src/components/general/renderTopBar.js";
 import { getNode, insertBefore, insertLast } from "/src/lib/index.js";
-import { addData, createData } from "../../util/index.js";
+import { addData, createData, relocateHREF } from "../../util/index.js";
 
 function renderCreateFirst(container) { 
   const template = /* html */
@@ -65,7 +65,6 @@ function renderCreateFirst(container) {
   `
   insertLast(container, template);
 }
-
 
 function renderCreateSecond(container) {
 
@@ -141,8 +140,24 @@ function insertData() {
   })
 
   addData(testData);
+  relocateHREF('../boardContent/index.html');
 }
-// 밑에 있는 변수 코드는 클릭을 했을 때 생성되게끔 해야됨
+
+function increaseMaxCount() { 
+  let count = getNode('#board--people-count');
+  let countNum = Number(count.textContent);
+  if(countNum === 100) return;
+  countNum = ++countNum;
+  count.textContent = countNum.toString();
+}
+
+function decreaseMaxCount() {
+  let count = getNode('#board--people-count');
+  let countNum = Number(count.textContent);
+  if(countNum === 0) return;
+  countNum = --countNum;
+  count.textContent = countNum.toString();
+}
 
 
 
@@ -153,27 +168,15 @@ function insertData() {
   renderCreateFirst(createPostContainer);
   renderCreateSecond(createPostContainer);
 
-  const submitButton = getNode("#board--submit-data");
-  // button event listener
-  submitButton.addEventListener('click', insertData);
-
-
+  
   const increaseButton = getNode(".board--create-plus-count");
   const decreaseButton = getNode(".board--create-minus-count");
+  const submitButton = getNode("#board--submit-data");
 
-  increaseButton.addEventListener("click", () => { 
-    let count = getNode('#board--people-count');
-    let countNum = Number(count.textContent);
-    if(countNum === 100) return;
-    countNum = ++countNum;
-    count.textContent = countNum.toString();
-  });
-  decreaseButton.addEventListener("click", () => {
-    let count = getNode('#board--people-count');
-    let countNum = Number(count.textContent);
-    if(countNum === 0) return;
-    countNum = --countNum;
-    count.textContent = countNum.toString();
-  });
+
+  // Button Event Listeners
+  submitButton.addEventListener("click", insertData);
+  increaseButton.addEventListener("click", increaseMaxCount);
+  decreaseButton.addEventListener("click", decreaseMaxCount);
 })();
 

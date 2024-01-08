@@ -4,7 +4,6 @@ import PocketBase from 'pocketbase';
 
 export const pb = new PocketBase('http://127.0.0.1:8090');
 
-
 export function createData(args) {
   const data = {
     "status": args.status,
@@ -19,8 +18,6 @@ export function createData(args) {
   };
   return data;
 }
-
-
 
 export async function addData(data) {
   const pb = new PocketBase('http://127.0.0.1:8090');
