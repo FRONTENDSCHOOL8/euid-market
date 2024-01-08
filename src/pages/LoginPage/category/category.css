@@ -8,10 +8,10 @@ button, input{
   text-decoration: none; 
   cursor: pointer;        
 }
-:focus{
+/* :focus{
   outline: 3px solid orange; 
   border-radius: 5px;
-}
+} */
 .login--top-bar{
   padding: 20px;
   display: flex;

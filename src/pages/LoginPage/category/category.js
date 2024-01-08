@@ -6,7 +6,7 @@ import { createPost, addClass, removeClass } from './util/dom/';
 // 카테고리 리스트 동적 랜더링
 async function renderCategory() {
   const response = await tiger.get(
-    'http://127.0.0.1:8090/api/collections/category/records'
+    'http://127.0.0.1:8090/api/collections/interest_category/records'
   );
   const userData = response.data.items;
   userData.forEach((item) => {
@@ -63,6 +63,7 @@ function addEventListenersToCards() {
         ? '/src/assets/icons/login/check.svg'
         : '/src/assets/icons/login/plus.svg';
     });
+    //
   });
 }
 
