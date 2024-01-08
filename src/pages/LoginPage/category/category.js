@@ -1,7 +1,4 @@
-// import PocketBase from 'pocketbase';
-import data from './temp_data/data.json';
-import { getNode, tiger, insertLast } from '/src/lib';
-import { createPost, addClass, removeClass } from './util/dom/';
+import { tiger, insertLast } from '/src/lib';
 
 // 카테고리 리스트 동적 랜더링
 async function renderCategory() {
@@ -79,18 +76,3 @@ document
     );
     console.log('저장된 데이터:', localStorage.getItem('selectedCategories'));
   });
-
-//검색 이벤트 리스너
-document.getElementById('categorySearch').addEventListener('input', (e) => {
-  const searchTerm = e.target.value;
-  renderCategory(filterCategories(searchTerm));
-});
-
-/* -------------- debugging area --------------*/
-function extractData() {
-  console.log(data);
-}
-
-createPost();
-extractData();
-/*--------------------------------------------*/
