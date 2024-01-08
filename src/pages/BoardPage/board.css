@@ -180,8 +180,16 @@
   font-style: normal;
   font-weight: 600;
   line-height: 150%;
-}
 
+  
+}
+.board--fixed-button.hidden { 
+  display: none;
+}
+.board--fixed-button.prev-page {
+  bottom: 95px;
+  background: var(--Contents-contentSecondary);
+}
 .board--fixed-button:active  {
   background: #2b3049;
 }

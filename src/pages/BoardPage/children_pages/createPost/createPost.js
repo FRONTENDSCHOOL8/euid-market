@@ -1,6 +1,7 @@
 import { renderTopBar } from "/src/components/general/renderTopBar.js";
 import { getNode, insertBefore, insertLast } from "/src/lib/index.js";
-import { addData, createData, relocateHREF } from "../../util/index.js";
+import { addClass, addData, createData, relocateHREF, removeClass } from "../../util/index.js";
+import { gsap } from 'gsap';
 
 function renderCreateFirst(container) { 
   const template = /* html */
@@ -39,7 +40,8 @@ function renderCreateFirst(container) {
         <span class="paragraph-m">날짜</span>
       </figure>
 
-      <span>오늘</span>
+      <input type="date" id="board--post-date"/>
+      
     </div>
 
     <div>
@@ -48,7 +50,8 @@ function renderCreateFirst(container) {
         <span class="paragraph-m">시간</span>
       </figure>
 
-      <span id="">오후 8:00</span>
+      <input type="time" id="board--post-time"/>
+    
     </div>
 
     <div>
@@ -60,7 +63,7 @@ function renderCreateFirst(container) {
       <span>입력해주세요</span>
     </div>
     
-    <button class="board--fixed-button hidden">다음</button>
+    
   </main>
   `
   insertLast(container, template);
@@ -71,7 +74,7 @@ function renderCreateSecond(container) {
 
   const template = /* html */ 
   `
-  <div class="board--create-post-page two">
+  <div class="board--create-post-page two hidden">
     <h1 class="label-l">어떤 학생과 함께 할까요?</h1>
     <section>
       <div>
@@ -85,8 +88,8 @@ function renderCreateSecond(container) {
       <div>
         <span class="paragraph-s">누구나 또는 같은 성별 모임으로 설정해주세요</span>
 
-        <div>
-          <button>누구나</button>
+        <div class="board--require-button-container">
+          <button class="board--button-active">누구나</button>
           <button>여자만</button>
           <button>남자만</button>
         </div>
@@ -104,7 +107,6 @@ function renderCreateSecond(container) {
       </div>
     </div>
 
-    <button class="board--fixed-button" id="board--submit-data">일정 만들기</button>
   </div>
   `
   insertLast(container, template);
@@ -116,7 +118,7 @@ function insertData() {
   const location = "연남동";
   const title = getNode("#board--post-title").value;
   const requirements = getNode("#board--post-requirement").textContent;
-  const time =  "오후 4시";
+  const time =  getNode("#board--post-date").value + getNode("#board--post-time").value;
   const max_people = Number(getNode('#board--people-count').textContent);
   const curr_people = 1;
   const content = "check";
@@ -143,6 +145,19 @@ function insertData() {
   relocateHREF('../boardContent/index.html');
 }
 
+function handleRequirement(e) {
+  e.preventDefault();
+  const target = e.target.closest("button");
+  if(!target) return;
+  
+  const buttonContainer = getNode(".board--require-button-container");
+  for(const child of buttonContainer.children) {
+    removeClass(child, "board--button-active");
+  }
+  console.log('checkcheck');
+  addClass(target,"board--button-active");
+}
+
 function increaseMaxCount() { 
   let count = getNode('#board--people-count');
   let countNum = Number(count.textContent);
@@ -159,7 +174,40 @@ function decreaseMaxCount() {
   count.textContent = countNum.toString();
 }
 
+function nextPage() {
+  const firstPage = getNode(".board--create-post-page.one");
+  const secondPage = getNode(".board--create-post-page.two");
+  const nextButton = getNode("#board--next-data");
+  const prevButton = getNode("#board--prev-data");
+  const submitButton = getNode("#board--submit-data");
 
+  
+  addClass(firstPage, "hidden");
+  addClass(nextButton, "hidden");
+  removeClass(prevButton, "hidden");
+  removeClass(submitButton, "hidden");
+  removeClass(secondPage, "hidden");
+  
+  gsap.to(".board--create-post-page.one", {x: -1000, duration: .5});
+  gsap.from(".board--create-post-page.two", {x: 1000, duration: .5});
+}
+
+function prevPage() {
+  const firstPage = getNode(".board--create-post-page.one");
+  const secondPage = getNode(".board--create-post-page.two");
+  const nextButton = getNode("#board--next-data");
+  const prevButton = getNode("#board--prev-data");
+  const submitButton = getNode("#board--submit-data");
+  
+  addClass(secondPage, "hidden");
+  addClass(prevButton, "hidden");
+  addClass(submitButton, "hidden");
+  removeClass(firstPage, "hidden");
+  removeClass(nextButton, "hidden");
+  
+  gsap.to(".board--create-post-page.one", {x: 0, duration: .5});
+  gsap.to(".board--create-post-page.two", {x: 0, duration: .5});
+}
 
 // Run Code nested by IIFE
 (function () {
@@ -171,10 +219,17 @@ function decreaseMaxCount() {
   
   const increaseButton = getNode(".board--create-plus-count");
   const decreaseButton = getNode(".board--create-minus-count");
+  const nextButton = getNode("#board--next-data");
+  const prevButton = getNode("#board--prev-data");
   const submitButton = getNode("#board--submit-data");
-
+  const buttonContainer = getNode(".board--require-button-container");
+  
+  
 
   // Button Event Listeners
+  buttonContainer.addEventListener("click", handleRequirement);
+  nextButton.addEventListener("click", nextPage);
+  prevButton.addEventListener("click", prevPage);
   submitButton.addEventListener("click", insertData);
   increaseButton.addEventListener("click", increaseMaxCount);
   decreaseButton.addEventListener("click", decreaseMaxCount);

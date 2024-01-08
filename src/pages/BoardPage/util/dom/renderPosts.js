@@ -31,11 +31,7 @@ export function renderMainPosts(container) {
 }
 
 export function renderTogetherPosts(container) {
-  console.log(items[0].status)
-  // console.log(items);
   items.forEach((item) => {
-
-
     const template = /* html */ 
     `
       <div class="board--together-content">
@@ -50,7 +46,7 @@ export function renderTogetherPosts(container) {
 
         <figure>
           <img src="/src/assets/icons/general/fullpeople.svg" alt="" />
-          <figcaption class="paragraph-s">${item.requirements}</figcaption>
+          <figcaption class="paragraph-s">${item.requirements} 참여가능</figcaption>
         </figure>
         <figure>
           <img src="/src/assets/icons/general/calendar.svg" alt="" />
