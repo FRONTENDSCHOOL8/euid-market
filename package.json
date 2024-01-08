@@ -7,11 +7,18 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "pocketbase": "src/data/pages/LoginPage/pocketbase/pocketbase serve"
+    "Pb-login": "src/data/pages/LoginPage/pocketbase/pocketbase serve",
+    "pb-main": "src/data/main/pocketbase/pocketbase serve",
+    "pb-user": "src/data/UserPage/pocketbase/pocketbase serve"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
+    "pocketbase": "^0.20.1",
     "prettier": "^3.1.1",
     "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "gsap": "^3.12.4",
+    "pocketbase": "^0.20.1"
   }
 }

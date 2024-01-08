@@ -1,6 +1,13 @@
 import data from '../../temp_data/data.json';
-import togetherData from '../../temp_data/together.json';
 import { insertLast} from '/src/lib/index';
+
+
+const response = await fetch(
+  `http://127.0.0.1:8090/api/collections/posts_together/records`
+);
+
+response.data = await response.json();
+const items = response.data.items;
 
 export function renderMainPosts(container) {
   data.forEach((item) => {
@@ -24,9 +31,7 @@ export function renderMainPosts(container) {
 }
 
 export function renderTogetherPosts(container) {
-  togetherData.forEach((item) => {
-
-
+  items.forEach((item) => {
     const template = /* html */ 
     `
       <div class="board--together-content">
@@ -41,7 +46,7 @@ export function renderTogetherPosts(container) {
 
         <figure>
           <img src="/src/assets/icons/general/fullpeople.svg" alt="" />
-          <figcaption class="paragraph-s">${item.requirements}</figcaption>
+          <figcaption class="paragraph-s">${item.requirements} 참여가능</figcaption>
         </figure>
         <figure>
           <img src="/src/assets/icons/general/calendar.svg" alt="" />
