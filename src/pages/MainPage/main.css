@@ -94,6 +94,15 @@
         gap: 0.75rem;
         font-size: 0.6564375rem;
 
+        & a {
+          & figure {
+            & img {
+              width: 138px;
+              height: 104px;
+            }
+          }
+        }
+
         & figcaption {
           display: flex;
           flex-flow: column nowrap;
