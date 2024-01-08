@@ -4,21 +4,11 @@ import { getNode, tiger, insertLast } from '/src/lib';
 import { createPost, addClass, removeClass } from './util/dom/index.js';
 
 // 카테고리 리스트 동적 랜더링
-async function renderCategory(filteredData = null) {
-  let userData;
-  if (filteredData) {
-    userData = filteredData;
-  } else {
-    const response = await tiger.get(
-      'http://127.0.0.1:8090/api/collections/category/records'
-    );
-    userData = response.data.items;
-  }
-
-  // 기존 카드들을 삭제하고 새로운 데이터로 랜더링
-  const categoryList = document.querySelector('.login--category-list');
-  categoryList.innerHTML = '';
-  // ... (나머지 코드는 동일)
+async function renderCategory() {
+  const response = await tiger.get(
+    'http://127.0.0.1:8090/api/collections/category/records'
+  );
+  const userData = response.data.items;
   userData.forEach((item) => {
     const template = /*html*/ `
     <li type="hidden" class="login--category-card" role="button" tabindex="0">
@@ -33,39 +23,45 @@ async function renderCategory(filteredData = null) {
   });
   addEventListenersToCards();
 }
-//카테고리 데이터 필터링 함수
-function filterCategories(searchTerm) {
-  return data.items.filter(
-    (item) =>
-      item.main_category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.sub_category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-}
+
+// 선택된 카테고리 데이터를 저장하는 배열
+let selectedCategories = [];
 
 function addEventListenersToCards() {
-  //이벤트리스너
   document.querySelectorAll('.login--category-card').forEach((card) => {
     card.addEventListener('click', function () {
-      this.classList.toggle('active-card');
-      // 클릭된 카드의 데이터 추출
       const mainCategory = this.querySelector(
         '.login--category-main'
       ).textContent;
       const subCategory = this.querySelector(
         '.login--category-sub'
       ).textContent;
-      const categoryData = `Main Category: ${mainCategory}, Sub Category: ${subCategory}`;
-      console.log(
-        `Main Category: ${mainCategory}, Sub Category: ${subCategory}`
-      );
+      const categoryData = {
+        mainCategory: mainCategory,
+        subCategory: subCategory,
+      };
+
+      // 카드 활성화/비활성화 상태 토글
+      this.classList.toggle('active-card');
+
+      // 카드가 활성화 상태인지 확인
+      if (this.classList.contains('active-card')) {
+        selectedCategories.push(categoryData); // 데이터 추가
+      } else {
+        selectedCategories = selectedCategories.filter(
+          (item) =>
+            item.mainCategory !== mainCategory ||
+            item.subCategory !== subCategory
+        ); // 데이터 제거
+      }
+
+      console.log(selectedCategories);
 
       // 조건에 따라 이미지 변경
       const img = this.querySelector('img');
-      if (this.classList.contains('active-card')) {
-        img.src = '/src/assets/icons/login/check.svg'; // 활성화 이미지
-      } else {
-        img.src = '/src/assets/icons/login/plus.svg'; // 비활성화 이미지
-      }
+      img.src = this.classList.contains('active-card')
+        ? '/src/assets/icons/login/check.svg'
+        : '/src/assets/icons/login/plus.svg';
     });
   });
 }
