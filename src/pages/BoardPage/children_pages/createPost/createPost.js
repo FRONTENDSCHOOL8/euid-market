@@ -166,6 +166,7 @@ function insertData() {
   // 만약 필요 요소 중 하나라도 비어있다면 아레 코드 미시행
   for(const item in testData) {
     if(testData[item] === "") {
+      alert("모두 채워주세요")
       return;
     }
   }

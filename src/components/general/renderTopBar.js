@@ -21,7 +21,7 @@ export function renderTopBar(option="blank", titleText="같이해요") {
   `;
   const withShare = /* html */ `
     <div class="page-controller">
-      <a href="/">
+      <a href="javascript:history.back()">
         <img src=${directionIcon} alt="뒤로가기" />
       </a>
       <div>

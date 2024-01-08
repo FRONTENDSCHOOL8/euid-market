@@ -32,7 +32,7 @@ export function renderTogetherPosts(container) {
   items.forEach((item) => {
     const template = /* html */ 
     `
-      <div class="board--together-content">
+      <div class="board--together-content" data-id=${item.id}>
         <header>
           <section>
             <p style=${item.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"} class="paragraph-s">${item.status}</p>
