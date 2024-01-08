@@ -28,28 +28,23 @@ const productList = getNode('.Main-product-list');
 const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
 
+const [senior, product] = await Promise.all(dataLoad());
+
+const seniorData = senior.items;
+const productData = product.items;
+
 function onLoad() {
-  dataLoad('senior_story').then(() => {
-    animation('.story');
+  seniorData.forEach((item) => {
+    insertLast('.Main-story-board', storyBoardTemplate(item));
   });
+  animation('.story');
 }
 
-async function dataLoad(data) {
-  if (data === 'senior_story') {
-    const response = await pb.collection(data).getList();
-    const storyData = response.items;
-
-    storyData.forEach((item) => {
-      insertLast('.Main-story-board', storyBoardTemplate(item));
-    });
-  } else if (data === 'product_list') {
-    const response = await pb.collection(data).getList();
-    const productData = response.items;
-
-    productData.forEach((item) => {
-      insertLast('.Main-product-list', exchangeTemplate(item));
-    });
-  }
+function dataLoad() {
+  return [
+    pb.collection('senior_story').getList(),
+    pb.collection('product_list').getList(),
+  ];
 }
 
 function classClear() {
@@ -96,22 +91,32 @@ function animation(node) {
   });
 }
 
+function insertList(data, func) {
+  if (func === exchangeTemplate) {
+    data.forEach((item) => {
+      insertLast('.Main-product-list', func(item));
+    });
+  } else if (func === storyBoardTemplate) {
+    data.forEach((item) => {
+      insertLast('.Main-story-board', func(item));
+    });
+  }
+}
+
 function handleExchange(e) {
   const menuName = e.currentTarget.className;
   activatePage(menuName);
   clearContents(productList);
-  dataLoad('product_list').then(() => {
-    animation('.product, .Main-plus-button');
-  });
+  insertList(productData, exchangeTemplate);
+  animation('.product');
 }
 
 function handleSeniorStory(e) {
   const menuName = e.currentTarget.className;
   activatePage(menuName);
   clearContents(seniorStoryBoard);
-  dataLoad('senior_story').then(() => {
-    animation('.story');
-  });
+  insertList(seniorData, storyBoardTemplate);
+  animation('.story');
 }
 
 function handleNavBar() {
