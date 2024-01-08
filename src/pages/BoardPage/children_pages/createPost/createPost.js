@@ -163,6 +163,13 @@ function insertData() {
     content
   })
 
+  // 만약 필요 요소 중 하나라도 비어있다면 아레 코드 미시행
+  for(const item in testData) {
+    if(testData[item] === "") {
+      return;
+    }
+  }
+
   // 데이터 추가 및 페이지 이동
   addData(testData);
   relocateHREF('../boardContent/index.html');
