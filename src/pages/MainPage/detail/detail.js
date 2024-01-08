@@ -1,6 +1,12 @@
-import { getNode, attr, insertLast, insertFirst, comma } from '/src/lib/';
-import pb from '/src/pages/MainPage/pocketbase.js';
-import { getPbImageURL } from '/src/pages/MainPage/getPbImage';
+import {
+  getNode,
+  attr,
+  insertLast,
+  insertFirst,
+  comma,
+  getPbImageURL,
+} from '/src/lib/';
+import pb from '/src/lib/utils/pocketbase.js';
 
 const hash = window.location.hash.slice(1);
 const productImg = getNode('.Main-visual > img');

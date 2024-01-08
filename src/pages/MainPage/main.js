@@ -7,9 +7,10 @@ import {
   removeClass,
   attr,
   toggleClass,
+  comma,
+  getPbImageURL,
 } from '/src/lib/';
-import pb from '/src/pages/MainPage/pocketbase.js';
-import { getPbImageURL } from '/src/pages/MainPage/getPbImage.js';
+import pb from '/src/lib/utils/pocketbase.js';
 import gsap from 'gsap';
 
 gsap.defaults({
@@ -84,7 +85,7 @@ async function dataLoad(data) {
                   </div>
                   <div class="product-state-container">
                     <span class="product-state ${stateClass}">${state}</span>
-                    <span>${price}</span>
+                    <span>${comma(price)}원</span>
                   </div>
                 </figcaption>
                 </a>
