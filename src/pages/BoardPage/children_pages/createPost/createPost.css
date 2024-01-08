@@ -98,24 +98,24 @@
     padding: 12px;
   }
 
-  & .board--create-option-gender {
+  & .board--create-option-requirements {
     display: flex;
     justify-content: space-between;
     display: flex;
-    padding: 12px 20px;
+    padding: 12px;
     align-items: center;
+
+    & figure {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
   }
 
   & section {
     display: flex;
     flex-flow: column;
     width: 100vw;
-
-    & figure {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
 
     & div:nth-child(1) {
       display: flex;

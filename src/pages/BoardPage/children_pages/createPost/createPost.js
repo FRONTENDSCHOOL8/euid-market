@@ -77,17 +77,16 @@ function renderCreateSecond(container) {
   <div class="board--create-post-page two hidden">
     <h1 class="label-l">어떤 학생과 함께 할까요?</h1>
     <section>
-      <div>
+      <div class="board--create-option-requirements">
         <figure>
           <img src="/src/assets/icons/board/gender.svg" alt="">
-          <figcaption>성별</figcaption>
+          <figcaption class="paragraph-m">성별</figcaption>
         </figure>
-        <p id="board--post-requirement">누구나</p>
+        <p id="board--post-requirement-gender">누구나</p>
       </div>
 
       <div>
         <span class="paragraph-s">누구나 또는 같은 성별 모임으로 설정해주세요</span>
-
         <div class="board--require-button-container">
           <button class="board--button-active">누구나</button>
           <button>여자만</button>
@@ -96,14 +95,14 @@ function renderCreateSecond(container) {
       </div>
     </section>
 
-    <div class="board--create-option-gender">
+    <div class="board--create-option-requirements">
       <figure>
         <img src="/src/assets/icons/board/people.svg" alt="">
         <span class="paragraph-m">나이</span>
       </figure>
 
       <div>
-        <p>누구나</p>
+        <p id="board--post-requirement-age">누구나</p>
       </div>
     </div>
 
@@ -117,7 +116,22 @@ function insertData() {
   const type = getNode("#board--category").value;
   const location = "연남동";
   const title = getNode("#board--post-title").value;
-  const requirements = getNode("#board--post-requirement").textContent;
+  
+  // Requirements
+  const gender = getNode("#board--post-requirement-gender").textContent;
+  const age = getNode("#board--post-requirement-age").textContent;
+
+  let requirements;
+  if(gender === "누구나" && age === "누구나") {
+    requirements = "누구나";
+  } else if(gender === "누구나") {
+    requirements = age;
+  } else if(age === "누구나") {
+    requirements = gender;
+  } else {
+    requirements = `${gender}, ${age}세 이상`;
+  }
+
   const time =  getNode("#board--post-date").value + getNode("#board--post-time").value;
   const max_people = Number(getNode('#board--people-count').textContent);
   const curr_people = 1;
@@ -148,14 +162,17 @@ function insertData() {
 function handleRequirement(e) {
   e.preventDefault();
   const target = e.target.closest("button");
+  const gender = getNode("#board--post-requirement-gender");
+
   if(!target) return;
   
   const buttonContainer = getNode(".board--require-button-container");
   for(const child of buttonContainer.children) {
     removeClass(child, "board--button-active");
   }
-  console.log('checkcheck');
+
   addClass(target,"board--button-active");
+  gender.textContent = target.textContent;
 }
 
 function increaseMaxCount() { 
