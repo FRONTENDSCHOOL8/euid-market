@@ -71,7 +71,7 @@ async function dataLoad(data) {
 
       const template = /* html */ `
     <li class="product">
-              <a href="/">
+              <a href="${`/src/pages/MainPage/detail/index#${item.id}`}">
                 <figure>
                   <img src="${getPbImageURL(item)}" alt="안나옴" />
                 </figure>
