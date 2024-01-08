@@ -19,14 +19,13 @@
 
 :root {
   /* 폰트 크기 변수 */
-  --font-3xl : 44.202px;
-  --font-2xl : 33.16px;
-  --font-xl : 24.876px;
-  --font-l : 18.662px;
-  --font-m : 14px;
-  --font-s : 10.503px;
+  --font-3xl: 44.202px;
+  --font-2xl: 33.16px;
+  --font-xl: 24.876px;
+  --font-l: 18.662px;
+  --font-m: 14px;
+  --font-s: 10.503px;
 }
-
 
 /* --------------- Heading 사전 설정 --------------- */
 .heading-xl {
@@ -46,40 +45,43 @@
 }
 
 /* --------------- Label 사전 설정 --------------- */
-.label-xl { 
+.label-xl {
   font-size: var(--font-2xl);
 }
 
-.label-l { 
-  font-size: var(--font-xl)
+.label-l {
+  font-size: var(--font-xl);
 }
 
-.label-m { 
+.label-m {
   font-size: var(--font-l);
 }
 
-.label-s { 
+.label-s {
   font-size: var(--font-m);
 }
 
 /* --------------- Paragraph 사전 설정 --------------- */
-.paragraph-xl, .paragraph-l, .paragraph-m, .paragraph-s, .paragraph-s {
+.paragraph-xl,
+.paragraph-l,
+.paragraph-m,
+.paragraph-s,
+.paragraph-s {
   font-weight: 400;
 }
 
 .paragraph-xl {
-  font-size: var(--font-xl)
+  font-size: var(--font-xl);
 }
 
 .paragraph-l {
-  font-size: var(--font-l)
+  font-size: var(--font-l);
 }
 
 .paragraph-m {
-  font-size: var(--font-m)
+  font-size: var(--font-m);
 }
 
 .paragraph-s {
-  font-size: var(--font-s)
+  font-size: var(--font-s);
 }
-
