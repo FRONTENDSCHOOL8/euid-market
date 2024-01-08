@@ -1,9 +1,8 @@
 /* ----------- 해당 항목들은 항상 상단에 위치시키기 ----------- */
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 @import url(/src/styles/reset.css);
 @import url(/src/styles/font.css);
 /* ---------------------------------------------------------- */
-
 
 /* ----------- 페이지별 css 폴더 여기에 import 하기 ----------- */
 
@@ -14,22 +13,20 @@
 
 /* ---------------------------------------------------------- */
 
-
 /* 변수 선언 */
 :root {
   /* foundation color */
-  --primary: #373F67;
-  --secondary: #5A85EE;
-  --tertiary: #719CF7;
-  --negative: #E11900;
+  --primary: #373f67;
+  --secondary: #5a85ee;
+  --tertiary: #719cf7;
+  --negative: #e11900;
   --background: #ffffff;
-  
-  /* content color */
-  --Contents-contentPrimary : black;
-  --Contents-contentSecondary : #919191;
-  --Contents-contentTertiary : #9DA1B4;
-}
 
+  /* content color */
+  --Contents-contentPrimary: black;
+  --Contents-contentSecondary: #919191;
+  --Contents-contentTertiary: #9da1b4;
+}
 
 /* ------ 페이지 기본 구성 네비게이션 바 ------ */
 
@@ -50,7 +47,8 @@
     width: 80px;
     overflow: hidden;
 
-    & .lte, .battery {
+    & .lte,
+    .battery {
       position: absolute;
       left: 20px;
     }
@@ -67,8 +65,8 @@
   justify-content: space-between;
   align-content: center;
   overflow: hidden;
-  border-bottom: 1px solid var(--gray-200, #D3D3D3);
-  background: var(--background, #FFF);
+  border-bottom: 1px solid var(--gray-200, #d3d3d3);
+  background: var(--background, #fff);
   position: sticky;
   top: 0;
 
@@ -77,13 +75,13 @@
     gap: 7px;
 
     & button {
-    width: 26px;
-    height: 26px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: none;
-    border: none;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: none;
+      border: none;
     }
   }
 }
@@ -95,9 +93,8 @@
   overflow: hidden;
   width: 100%;
   max-width: inherit;
-  
+
   background: var(--background);
-  
 
   & ul {
     display: flex;
