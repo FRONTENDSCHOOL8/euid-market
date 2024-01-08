@@ -145,6 +145,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 4px;
+  top: 0;
 
   & h3 {
     position: absolute;
