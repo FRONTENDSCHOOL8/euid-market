@@ -27,6 +27,7 @@ const exchangeBoard = getNode('.Main-exchange');
 const productList = getNode('.Main-product-list');
 const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
+const banner = getNode('.Main-banner');
 
 const [senior, product] = await Promise.all(dataLoad());
 
@@ -119,13 +120,15 @@ function handleSeniorStory(e) {
   animation('.story');
 }
 
-function handleNavBar() {
+function handleScroll() {
   const scrollNum = parseInt(window.scrollY);
 
   if (scrollNum >= 220) {
     addClass(menuBar, 'fixed');
   } else {
     removeClass(menuBar, 'fixed');
+
+    banner.style.transform = `translateY(${-window.scrollY / 2.5}px)`;
   }
 }
 
@@ -172,5 +175,5 @@ function buttonControl() {
 onLoad();
 seniorStory.addEventListener('click', handleSeniorStory);
 exchange.addEventListener('click', handleExchange);
-window.addEventListener('scroll', handleNavBar);
+window.addEventListener('scroll', handleScroll);
 buttonControl();
