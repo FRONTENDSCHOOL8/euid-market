@@ -26,5 +26,4 @@ tl.from('body', {
   opacity: 0,
   x: '100%',
   ease: 'power2.inOut',
-  duration: 0.7,
 });
