@@ -8,61 +8,62 @@ import {
   profileSubContentsTemplate,
 } from './template.js';
 import { deleteStorage } from '/src/lib/';
-import PocketBase from 'pocketbase';
+import pb from '/src/lib/api/pocketbase';
 
-const pb = new PocketBase('http://127.0.0.1:8090');
-
-const TEST_USER_ID = 'c24hzewie4gweri';
+const TEST_USER_ID = 'bexmuprbriobf8v';
 
 /* -------------------------------------------------------------------------- */
 /*                             랜더링 후 즉시 실행                                */
 /* -------------------------------------------------------------------------- */
 
-//유저 정보 가져오기
-const userInfoResult = (
-  await pb.collection('users').getList(1, 50, {
-    filter: `id= "${TEST_USER_ID}" `,
-  })
-).items[0];
-
-// 배지 정보 가져오기
-const userBadgeResult = await pb.collection('user_badge').getList(1, 50, {
-  filter: `user_id= "${TEST_USER_ID}"`,
-});
-
-const userProfile = document.querySelector('.user--profile-menu');
-const userProfileContents = document.querySelector('.user--profile-contents');
-const userProfileSubContents = document.querySelector('.user--contents');
-//최상단 프로필
-userProfile.insertAdjacentHTML(
-  'afterbegin',
-  profileMenuTemplate(userInfoResult)
-);
-//열정온도
-document
-  .querySelector('.user--profile-temperture')
-  .insertAdjacentHTML(
+(async () => {
+  //유저 정보 가져오기
+  const userInfoResult = (
+    await pb
+      .collection('users')
+      .getList(1, 50, { filter: `id = "${TEST_USER_ID}" ` })
+  ).items[0];
+  
+  // 배지 정보 가져오기
+  const userBadgeResult = await pb.collection('user_badge').getList(1, 50, {
+    filter: `user_id= "${TEST_USER_ID}"`,
+  });
+  
+  const userProfile = document.querySelector('.user--profile-menu');
+  const userProfileContents = document.querySelector('.user--profile-contents');
+  const userProfileSubContents = document.querySelector('.user--contents');
+  //최상단 프로필
+  userProfile.insertAdjacentHTML(
     'afterbegin',
-    userTemperatureTemplate(userInfoResult.userTemperature)
+    profileMenuTemplate(userInfoResult)
   );
-// 프로필 컨텐츠( 배지, 상품, 매너평가, 거래 후기)
-userProfileContents.insertAdjacentHTML(
-  'afterbegin',
-  profileContentsTemplate(userBadgeResult)
-);
-userProfileSubContents.insertAdjacentHTML(
-  'afterbegin',
-  profileSubContentsTemplate(userInfoResult.nickname)
-);
+  //열정온도
+  document
+    .querySelector('.user--profile-temperture')
+    .insertAdjacentHTML(
+      'afterbegin',
+      userTemperatureTemplate(userInfoResult.user_temperature)
+    );
+  // 프로필 컨텐츠( 배지, 상품, 매너평가, 거래 후기)
+  userProfileContents.insertAdjacentHTML(
+    'afterbegin',
+    profileContentsTemplate(userBadgeResult)
+  );
+  userProfileSubContents.insertAdjacentHTML(
+    'afterbegin',
+    profileSubContentsTemplate(userInfoResult.user_nickname)
+  );
+  
+  //로그아웃
+  const logoutButton = document.querySelector('.user--logout');
+  function handleLogout() {
+    pb.authStore.clear();
+    deleteStorage('auth');
+    window.location.reload();
+  }
+  logoutButton.addEventListener('click', handleLogout);
+})();
 
-//로그아웃
-const logoutButton = document.querySelector('.user--logout');
-function handleLogout() {
-  pb.authStore.clear();
-  deleteStorage('auth');
-  window.location.reload();
-}
-logoutButton.addEventListener('click', handleLogout);
 
 /* -------------------------------------------------------------------------- */
 /*                                더 보기 클릭이벤트                                 */
@@ -88,11 +89,13 @@ async function showBadge() {
       })
     ).items;
     badge_view.forEach((item) => {
-      let { id, badge_image: badgeImage, badge_title: badgeTitle } = item;
-      const imgUrl = `http://127.0.0.1:8090/api/files/user_badge_join_view/${id}/${badgeImage}`;
+      let { id, badge_img, badge_title } = item;
+      const imgUrl = `${
+        import.meta.env.VITE_PB_URL
+      }/api/files/user_badge_join_view/${id}/${badge_img}`;
       document
         .querySelector('.user--profile-badge-detail')
-        .insertAdjacentHTML('afterbegin', badgeTemplate(imgUrl, badgeTitle));
+        .insertAdjacentHTML('afterbegin', badgeTemplate(imgUrl, badge_title));
     });
   } else {
     userProfileBadgeButton.classList.remove('is-active');

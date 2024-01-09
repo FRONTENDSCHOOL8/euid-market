@@ -3,7 +3,6 @@ import { getNode, insertBefore, insertLast } from "/src/lib/index.js";
 import { addClass, addData, createData, relocateHREF, removeClass } from "../../util/index.js";
 import { gsap } from 'gsap';
 
-
 function renderCreateFirst(container) { 
   const template = /* html */
   `
@@ -140,7 +139,7 @@ function insertData() {
   // 날짜 & 시간
   const date = new Date(getNode("#board--post-date").value);
   const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
-  const time =  `${formattedDate}, ${getNode("#board--post-time").value}시`;
+  const time =  `${formattedDate}, ${getNode("#board--post-time").value} 시`;
 
   // 최대 인원수
   const max_people = Number(getNode('#board--people-count').textContent);
@@ -151,7 +150,7 @@ function insertData() {
 
 
   // 데이터 객체 만들기
-  const testData = createData({
+  const data = createData({
     status,
     type,
     location,
@@ -164,15 +163,16 @@ function insertData() {
   })
 
   // 만약 필요 요소 중 하나라도 비어있다면 아레 코드 미시행
-  for(const item in testData) {
-    if(testData[item] === "") {
+  for(const item in data) {
+    if(data[item] === "") {
       alert("모두 채워주세요")
       return;
     }
   }
 
   // 데이터 추가 및 페이지 이동
-  addData(testData);
+  addData(data);
+  
   relocateHREF('../boardContent/index.html');
 }
 
@@ -248,8 +248,6 @@ function prevPage() {
   insertBefore(createPostContainer, renderTopBar("blank"));
   renderCreateFirst(createPostContainer);
   renderCreateSecond(createPostContainer);
-
-  
   const increaseButton = getNode(".board--create-plus-count");
   const decreaseButton = getNode(".board--create-minus-count");
   const nextButton = getNode("#board--next-data");

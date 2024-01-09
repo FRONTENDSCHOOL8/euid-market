@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <title>엔터 이듬 프로필 카드</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/styles/style.css" />
+    <link rel="stylesheet" href="/src/styles/reset.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="profileCard.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <nav class="profile--card-nav">
+        <h1>프로필 수정</h1>
+        <a>
+          <img src="/src/assets/icons/profile/close.svg" alt="" />
+        </a>
+      </nav>
+
+      <!-- 프로필카드 -->
+      <div class="profile--card">
+        <h2>
+          프로필카드
+          <a>
+            <img src="/src/assets/icons/profile/information.svg" alt="" />
+          </a>
+        </h2>
+
+        <section class="profile--user-info">
+          <figure>
+            <figcaption>
+              <p>닉네임</p>
+              <span>4기</span>
+            </figcaption>
+            <img src="./temp_data/test_pho.jpg" alt="" />
+          </figure>
+        </section>
+
+        <!-- 기본정보 -->
+        <section class="profile--card-basic-infos">
+          <div>
+            <h2>기본 정보</h2>
+            <a>수정하기</a>
+          </div>
+          <ul>
+            <li>
+              <p>프로필사진</p>
+              <img
+                class="profile--card-user-img"
+                src="./temp_data/test_pho.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <p>이름(별명)</p>
+              <span>닉네임</span>
+            </li>
+            <li>
+              <p>하는일</p>
+              <span>미입력</span>
+            </li>
+            <li>
+              <p>프로필 키워드</p>
+              <span>미입력</span>
+            </li>
+            <li>
+              <p>성별</p>
+              <span>미입력</span>
+            </li>
+            <li>
+              <p>연령</p>
+              <span>미입력</span>
+            </li>
+            <li>
+              <p>회사</p>
+              <span>미입력</span>
+            </li>
+            <li>
+              <p>학교</p>
+              <span>미입력</span>
+            </li>
+            <li>
+              <p>자격</p>
+              <span>미입력</span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 추가정보  -->
+        <section class="profile--card-additional-infos">
+          <div>
+            <h2>추가 정보</h2>
+            <a>수정하기</a>
+          </div>
+          <ul>
+            <li>
+              <p>소개</p>
+              <span>미입력</span>
+            </li>
+            <li>
+              <p>연관링크</p>
+              <span>미입력</span>
+            </li>
+            <li>
+              <p>활동분야</p>
+              <span>미입력</span>
+            </li>
+            <li>
+              <p>업체정보</p>
+              <span>미입력</span>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <!-- 하단 네비게이션  -->
+      <nav class="bottom-bar-container">
+        <ul>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/home.svg" alt="홈" />
+              <p class="paragraph-s">홈</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/fullFile.svg" alt="게시판" />
+              <p class="paragraph-s">게시판</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/map.svg" alt="내 근처" />
+              <p class="paragraph-s">내 근처</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/chat.svg" alt="채팅" />
+              <p class="paragraph-s">채팅</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/my.svg" alt="나의 이듬" />
+              <p class="paragraph-s">나의 이듬</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </body>
+</html>

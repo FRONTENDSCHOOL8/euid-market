@@ -3,10 +3,11 @@ import { insertLast} from '/src/lib/index';
 import { getData } from "../index.js";
 
 
-const items = await getData();
+// const items = await getData();
 
 
 export function renderMainPosts(container) {
+
   data.forEach((item) => {
     const template = /* html */ `
       <div class="board--post-instance">
@@ -27,7 +28,8 @@ export function renderMainPosts(container) {
   })
 }
 
-export function renderTogetherPosts(container) {
+export async function renderTogetherPosts(container) {
+  const items = await getData();
   items.forEach((item) => {
     const template = /* html */ 
     `

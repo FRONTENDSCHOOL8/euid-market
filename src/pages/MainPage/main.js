@@ -8,9 +8,17 @@ import {
   attr,
   toggleClass,
 } from '/src/lib/';
-import pb from '/src/pages/MainPage/pocketbase.js';
-import { getPbImageURL } from '/src/pages/MainPage/getPbImage.js';
+
+import pb from '/src/lib/api/pocketbase.js';
+
+import {
+  storyBoardTemplate,
+  exchangeTemplate,
+} from '/src/pages/MainPage/template.js';
+
 import gsap from 'gsap';
+
+import { renderNavBar } from "/src/components/general/index.js";
 
 gsap.defaults({
   ease: 'power2.inOut',
@@ -24,82 +32,25 @@ const exchangeBoard = getNode('.Main-exchange');
 const productList = getNode('.Main-product-list');
 const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
+const banner = getNode('.Main-banner');
 
-function onLoad() {
-  dataLoad('senior_story').then(() => {
-    animation('.story');
-  });
-}
+// const [senior, product] = Promise.all(dataLoad());
 
-async function dataLoad(data) {
-  if (data === 'senior_story') {
-    const response = await pb.collection(data).getList();
-    const storyData = response.items;
+// const seniorData = senior.items;
+// const productData = product.items;
 
-    storyData.forEach((item) => {
-      const { title, major, year, name } = item;
+// function onLoad() {
+//   seniorData.forEach((item) => {
+//     insertLast('.Main-story-board', storyBoardTemplate(item));
+//   });
+//   animation('.story');
+// }
 
-      const template = /* html */ `
-      <li class="story">
-        <a href="/">
-          <figure>
-            <img src="${getPbImageURL(item)}" alt="안나옴" />
-          </figure>
-          <figcaption>
-            <div class="story-title">
-              ${title}
-            </div>
-            <div>${major} | ${year}기 수강생 ${name}</div>
-            </figcaption>
-          </a>
-      </li>
-    `;
-
-      insertLast('.Main-story-board', template);
-    });
-  } else if (data === 'product_list') {
-    const response = await pb.collection(data).getList();
-    const productData = response.items;
-
-    productData.forEach((item) => {
-      const { title, location, price, state, save } = item;
-
-      let stateClass;
-      if (state === '예약중') stateClass = 'book';
-      else if (state === '거래 완료') stateClass = 'done';
-      else stateClass = '';
-
-      const template = /* html */ `
-    <li class="product">
-              <a href="${`/src/pages/MainPage/detail/index#${item.id}`}">
-                <figure>
-                  <img src="${getPbImageURL(item)}" alt="안나옴" />
-                </figure>
-                <figcaption>
-                  <div class="product-title">${title}</div>
-                  <div class="product-info-container">
-                    <span class="product-location">${location}</span>
-                    <span>•</span>
-                    <span>1일전</span>
-                  </div>
-                  <div class="product-state-container">
-                    <span class="product-state ${stateClass}">${state}</span>
-                    <span>${price}</span>
-                  </div>
-                </figcaption>
-                </a>
-                <div class="Main-like-container">
-              <button>
-                  <img src="/src/assets/icons/main/heart.svg"></img>
-                  </button>
-                  <span>${save}</span>
-                </div>
-            </li>
-  `;
-
-      insertLast('.Main-product-list', template);
-    });
-  }
+function dataLoad() {
+  return [
+    pb.collection('senior_story').getList(),
+    pb.collection('product_list').getList(),
+  ];
 }
 
 function classClear() {
@@ -146,31 +97,43 @@ function animation(node) {
   });
 }
 
+function insertList(data, func) {
+  if (func === exchangeTemplate) {
+    data.forEach((item) => {
+      insertLast('.Main-product-list', func(item));
+    });
+  } else if (func === storyBoardTemplate) {
+    data.forEach((item) => {
+      insertLast('.Main-story-board', func(item));
+    });
+  }
+}
+
 function handleExchange(e) {
   const menuName = e.currentTarget.className;
   activatePage(menuName);
   clearContents(productList);
-  dataLoad('product_list').then(() => {
-    animation('.product, .Main-plus-button');
-  });
+  insertList(productData, exchangeTemplate);
+  animation('.product');
 }
 
 function handleSeniorStory(e) {
   const menuName = e.currentTarget.className;
   activatePage(menuName);
   clearContents(seniorStoryBoard);
-  dataLoad('senior_story').then(() => {
-    animation('.story');
-  });
+  insertList(seniorData, storyBoardTemplate);
+  animation('.story');
 }
 
-function handleNavBar() {
+function handleScroll() {
   const scrollNum = parseInt(window.scrollY);
 
   if (scrollNum >= 220) {
     addClass(menuBar, 'fixed');
   } else {
     removeClass(menuBar, 'fixed');
+
+    banner.style.transform = `translateY(${-window.scrollY / 2.5}px)`;
   }
 }
 
@@ -213,9 +176,10 @@ function buttonControl() {
     }
   });
 }
-
+renderNavBar();
 onLoad();
 seniorStory.addEventListener('click', handleSeniorStory);
 exchange.addEventListener('click', handleExchange);
-window.addEventListener('scroll', handleNavBar);
+window.addEventListener('scroll', handleScroll);
 buttonControl();
+

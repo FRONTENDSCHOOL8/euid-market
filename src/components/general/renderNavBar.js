@@ -1,5 +1,5 @@
 import { getNode, insertLast } from "../../lib";
-
+import home from '/src/assets/icons/general/fullHome.svg';
 
 const {localStorage:local} = window;
 
@@ -15,7 +15,7 @@ export function renderNavBar() {
     <ul>
       <li>
         <a href="/src/pages/MainPage/" data-index=1>
-          <img src=${local.getItem("curr_page") === "main" ? "/src/assets/icons/general/fullHome.svg" : "/src/assets/icons/general/home.svg"} alt="홈">
+          <img src=${local.getItem("curr_page") === "main" ? home : home} alt="홈">
           <p class="paragraph-s">홈</p>
         </a>
       </li>
