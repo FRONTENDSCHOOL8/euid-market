@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles/style.css" />
+    <title>euid-market signup page</title>
+  </head>
+  <body>
+    <h1>안녕하세요!</h1>
+    <form>
+      <label for="phone">휴대폰 번호:</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="휴대폰 번호(-없이 숫자만 입력)"
+        pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+        required
+      />
+      <button type="button" onclick="requestVerification()">
+        인증문자 받기
+      </button>
+      <p>휴대폰 번호가 변경되었나요?</p>
+      <a href="/">이메일로 계정찾기</a>
+    </form>
+  </body>
+</html>
