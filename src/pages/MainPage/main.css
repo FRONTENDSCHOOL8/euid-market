@@ -8,6 +8,7 @@
 
 .Main-contents {
   position: relative;
+  padding-bottom: 100px;
 
   & .Main-banner {
     position: fixed;
@@ -58,7 +59,7 @@
       position: fixed;
       width: 100%;
       max-width: 599px;
-      top: 0;
+      top: 40px;
       z-index: 10;
     }
 
@@ -140,7 +141,7 @@
         align-items: end;
         gap: 12px;
         right: 12px;
-        bottom: 70px;
+        bottom: 80px;
         z-index: 10;
         border: 0;
 
