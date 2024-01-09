@@ -1,3 +1,6 @@
+@import url(/src/pages/MainPage/detail/detail.css);
+@import url(/src/pages/MainPage/search/search.css);
+
 .app {
   max-width: 599px;
   margin: 0 auto;
