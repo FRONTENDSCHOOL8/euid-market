@@ -23,3 +23,13 @@ export async function addData(data) {
   const pb = new PocketBase('http://127.0.0.1:8090');
   const record = await pb.collection('posts_together').create(data);
 }
+
+export async function getData() {
+  const response = await fetch(
+    `http://127.0.0.1:8090/api/collections/posts_together/records`
+  );
+  
+  response.data = await response.json();
+  const items = response.data.items;
+  return items;
+}

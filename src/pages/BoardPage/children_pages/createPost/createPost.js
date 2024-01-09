@@ -3,11 +3,12 @@ import { getNode, insertBefore, insertLast } from "/src/lib/index.js";
 import { addClass, addData, createData, relocateHREF, removeClass } from "../../util/index.js";
 import { gsap } from 'gsap';
 
+
 function renderCreateFirst(container) { 
   const template = /* html */
   `
   <main class="board--create-post-page one">
-    <form action="/" method="post">
+    <form action="/" method="post" name="title-category">
       <input type="text" placeholder="제목을 입력해주세요" id="board--post-title">
 
       <select name="board--category" id="board--category">
@@ -18,7 +19,7 @@ function renderCreateFirst(container) {
         <option value="공모전">공모전</option>
       </select>
 
-      <textarea name="post" id="board-post-content" placeholder="활동 내용을 입력해주세요"></textarea>
+      <textarea name="post" id="board--post-content" placeholder="활동 내용을 입력해주세요"></textarea>
     </form>
 
     <div>
@@ -40,7 +41,11 @@ function renderCreateFirst(container) {
         <span class="paragraph-m">날짜</span>
       </figure>
 
-      <input type="date" id="board--post-date"/>
+      <input 
+      type="date" 
+      id="board--post-date"
+      max="2077-06-20"
+      min="2020-01-01" />
       
     </div>
 
@@ -117,7 +122,7 @@ function insertData() {
   const location = "연남동";
   const title = getNode("#board--post-title").value;
   
-  // Requirements
+  // 참여 조건
   const gender = getNode("#board--post-requirement-gender").textContent;
   const age = getNode("#board--post-requirement-age").textContent;
 
@@ -132,17 +137,20 @@ function insertData() {
     requirements = `${gender}, ${age}세 이상`;
   }
 
-  const time =  getNode("#board--post-date").value + getNode("#board--post-time").value;
+  // 날짜 & 시간
+  const date = new Date(getNode("#board--post-date").value);
+  const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+  const time =  `${formattedDate}, ${getNode("#board--post-time").value}시`;
+
+  // 최대 인원수
   const max_people = Number(getNode('#board--people-count').textContent);
   const curr_people = 1;
-  const content = "check";
 
-// debugging zone
-  console.log(type);
-  console.log(title);
-  console.log(requirements);
-  console.log(content);
+  // 게시물 내용
+  const content = getNode("#board--post-content").value;
 
+
+  // 데이터 객체 만들기
   const testData = createData({
     status,
     type,
@@ -155,6 +163,15 @@ function insertData() {
     content
   })
 
+  // 만약 필요 요소 중 하나라도 비어있다면 아레 코드 미시행
+  for(const item in testData) {
+    if(testData[item] === "") {
+      alert("모두 채워주세요")
+      return;
+    }
+  }
+
+  // 데이터 추가 및 페이지 이동
   addData(testData);
   relocateHREF('../boardContent/index.html');
 }
@@ -197,7 +214,6 @@ function nextPage() {
   const nextButton = getNode("#board--next-data");
   const prevButton = getNode("#board--prev-data");
   const submitButton = getNode("#board--submit-data");
-
   
   addClass(firstPage, "hidden");
   addClass(nextButton, "hidden");

@@ -3,7 +3,8 @@ import { getNode, insertBefore } from "/src/lib/index.js";
 import { renderPostInfo } from "../../util/dom/index";
 
 
-
+const {localStorage} = window;
+const id = localStorage.curr_id;
 const container = getNode(".board--post-info-container");
 insertBefore(container, renderTopBar("withShare"));
-renderPostInfo(container);
+renderPostInfo(container, id);
