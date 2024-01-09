@@ -28,7 +28,6 @@ export function renderMainPosts(container) {
 }
 
 export function renderTogetherPosts(container) {
-  console.log(items); 
   items.forEach((item) => {
     const template = /* html */ 
     `
