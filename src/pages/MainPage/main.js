@@ -18,6 +18,8 @@ import {
 
 import gsap from 'gsap';
 
+import { renderNavBar } from "/src/components/general/index.js";
+
 gsap.defaults({
   ease: 'power2.inOut',
 });
@@ -32,17 +34,17 @@ const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
 const banner = getNode('.Main-banner');
 
-const [senior, product] = await Promise.all(dataLoad());
+// const [senior, product] = Promise.all(dataLoad());
 
-const seniorData = senior.items;
-const productData = product.items;
+// const seniorData = senior.items;
+// const productData = product.items;
 
-function onLoad() {
-  seniorData.forEach((item) => {
-    insertLast('.Main-story-board', storyBoardTemplate(item));
-  });
-  animation('.story');
-}
+// function onLoad() {
+//   seniorData.forEach((item) => {
+//     insertLast('.Main-story-board', storyBoardTemplate(item));
+//   });
+//   animation('.story');
+// }
 
 function dataLoad() {
   return [
@@ -174,9 +176,10 @@ function buttonControl() {
     }
   });
 }
-
+renderNavBar();
 onLoad();
 seniorStory.addEventListener('click', handleSeniorStory);
 exchange.addEventListener('click', handleExchange);
 window.addEventListener('scroll', handleScroll);
 buttonControl();
+

@@ -1,13 +1,13 @@
 //프로필메뉴
 export function profileMenuTemplate(userobj) {
-  let { id, userPicture, nickname, userYear } = userobj;
+  let { id, user_photo, user_nickname, user_year } = userobj;
   return /*html */ `
 <figure>
 <div class="user--profile-picture-wrapper">
   <img
     class="user--profile-picture"
-    src="http://127.0.0.1:8090/api/files/users/${id}/${userPicture}"
-    alt="${nickname}님의 프로필 사진"
+    src="${import.meta.env.VITE_PB_URL}/api/files/users/${id}/${user_photo}"
+    alt="${user_nickname}님의 프로필 사진"
   />
   <a href=""
     ><img
@@ -17,7 +17,7 @@ export function profileMenuTemplate(userobj) {
   /></a>
 </div>
 <figcaption>
-  <p>${nickname}<span>${userYear}기</span></p>
+  <p>${user_nickname}<span>${user_year}기</span></p>
   <span class="user--answer">답변 35 </span>
 </figcaption>
 </figure>
