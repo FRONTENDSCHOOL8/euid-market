@@ -14,7 +14,6 @@ function popUp() {
 
 function closePopUp() {
   const popUpContainer = getNode(".board--popup-container");
-  gsap.fromTo(popUpContainer, {y:0, duration:.2})
   addClass(popUpContainer, 'hidden');
 }
 
