@@ -1,6 +1,6 @@
 import { renderTopBar, renderNavBar } from "/src/components/general/index.js";
 import { renderTogetherPosts, relocateLink } from "../../util/index.js";
-import { getNode, insertBefore, insertFirst } from "/src/lib/index.js";
+import { getNode, insertBefore } from "/src/lib/index.js";
 
 
 const {localStorage} = window;
@@ -17,6 +17,11 @@ function openPost(e) {
 
   relocateLink("/src/pages/BoardPage/children_pages/postInfo/");
 }
+
+// 추후에 수정 필요
+localStorage.setItem("curr_page", "chat"); 
+// 
+
 
 const boardContainer = getNode(".board--container");
 const postContainer = getNode(".board--together-post-container");

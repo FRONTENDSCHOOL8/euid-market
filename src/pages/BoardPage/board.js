@@ -3,21 +3,22 @@ import { renderNavBar } from "../../components/general/renderNavBar.js";
 import { getNode, } from "../../lib/index.js";
 import { renderMainPosts, addClass, removeClass } from "./util/dom/index.js";
 import { relocateLink } from "./util/index.js";
+import { gsap } from "gsap";
 
 
-(() => {
-  const postContainer = getNode(".board--post-list");
+function popUp() {
+  const popUpContainer = getNode(".board--popup-container");
+  removeClass(popUpContainer, 'hidden');
+  gsap.from(popUpContainer, {y:1000, duration:.2});
+}
 
-  renderMainPosts(postContainer);
-  const popUpCloseBtn = getNode('.board--popup-close-btn');
-  const popUp = getNode('.board--popup-container');
-  const categoryBar = getNode('.board--category-bar-container');
-  
-  
-  popUpCloseBtn.addEventListener('click', () => addClass(popUp, 'hidden'));
-  categoryBar.addEventListener('click', handleCategory);
+function closePopUp() {
+  const popUpContainer = getNode(".board--popup-container");
+  gsap.fromTo(popUpContainer, {y:0, duration:.2})
+  addClass(popUpContainer, 'hidden');
+}
 
-  function handleCategory(e) {
+function handleCategory(e) {
       e.preventDefault();
   
       const target = e.target;
@@ -29,7 +30,7 @@ import { relocateLink } from "./util/index.js";
       
       // switch 대신 객체를 사용한 방법
       const targetBtn = {
-        "1": () => removeClass(popUp, 'hidden'),
+        "1": () => popUp(),
         "2": () => console.log("인기글"),
         "3": () => relocateLink("/src/pages/BoardPage/children_pages/boardContent/"),
         "4": () => console.log("질의응답"),
@@ -39,6 +40,20 @@ import { relocateLink } from "./util/index.js";
       const pickButton = targetBtn[button.dataset.index];
       pickButton();
   }
+
+(() => {
+  const postContainer = getNode(".board--post-list");
+
+  renderMainPosts(postContainer);
+  const popUpCloseBtn = getNode('.board--popup-close-btn');
+  
+  const categoryBar = getNode('.board--category-bar-container');
+  
+  
+  popUpCloseBtn.addEventListener('click', closePopUp);
+  categoryBar.addEventListener('click', handleCategory);
+
+  
 
   renderNavBar();
 })();
