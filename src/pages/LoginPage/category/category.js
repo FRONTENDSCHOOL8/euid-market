@@ -76,3 +76,9 @@ document
     );
     console.log('저장된 데이터:', localStorage.getItem('selectedCategories'));
   });
+//페이지 이동
+document
+  .querySelector('.login--category-submit')
+  .addEventListener('click', function () {
+    window.location.href = '/src/pages/LoginPage/signup/';
+  });
