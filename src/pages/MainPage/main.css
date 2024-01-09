@@ -16,7 +16,8 @@
     color: var(--background);
     background-color: var(--Contents-contentTertiary);
 
-    & > div {
+    & .banner-container {
+      position: relative;
       padding: 1.25rem;
       margin-bottom: 2.8125rem;
 
@@ -40,13 +41,12 @@
           vertical-align: middle;
         }
       }
-    }
-
-    & img {
-      position: absolute;
-      right: -210px;
-      bottom: -120px;
-      transform: scale(0.5);
+      & img {
+        position: absolute;
+        right: -200px;
+        bottom: -160px;
+        transform: scale(0.5);
+      }
     }
   }
 

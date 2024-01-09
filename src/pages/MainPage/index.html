@@ -4,8 +4,15 @@
     <title>Euid-market</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
     <link rel="stylesheet" href="/src/styles/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="/src/pages/MainPage/swiper.js"></script>
     <script type="module" src="/src/pages/MainPage/main.js"></script>
   </head>
   <body>
@@ -37,43 +44,129 @@
           </button>
         </div>
       </nav>
-
       <main class="Main-contents">
         <article class="Main-banner">
-          <div>
-            <h3>
-              <span>풀리지 않는 버그 속</span> <span>개발자로 살아남기</span>
-              <a href="/">자세히 보기</a>
-            </h3>
-            <div>
-              <span>01</span>
-              <span
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="41"
-                  height="2"
-                  viewBox="0 0 41 2"
-                  fill="none"
-                >
-                  <g clip-path="url(#clip0_238_3875)">
-                    <rect y="0.5" width="41" height="1" fill="white" />
-                    <rect y="0.5" width="9" height="1" fill="white" />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_238_3875">
-                      <rect
+          <!-- Slider main container -->
+          <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide">
+                <div class="banner-container">
+                  <h3>
+                    <span>풀리지 않는 버그 속</span>
+                    <span>개발자로 살아남기</span>
+                    <a href="/">자세히 보기</a>
+                  </h3>
+                  <div>
+                    <span>01</span>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
                         width="41"
-                        height="1"
-                        fill="white"
-                        transform="translate(0 0.5)"
-                      />
-                    </clipPath>
-                  </defs></svg
-              ></span>
-              <span>03</span>
+                        height="2"
+                        viewBox="0 0 41 2"
+                        fill="none"
+                      >
+                        <g clip-path="url(#clip0_238_3875)">
+                          <rect y="0.5" width="41" height="1" fill="white" />
+                          <rect y="0.5" width="9" height="1" fill="white" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_238_3875">
+                            <rect
+                              width="41"
+                              height="1"
+                              fill="white"
+                              transform="translate(0 0.5)"
+                            />
+                          </clipPath>
+                        </defs></svg
+                    ></span>
+                    <span>03</span>
+                  </div>
+                  <img src="/src/assets/banner.png" alt="배너 이미지" />
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="banner-container">
+                  <h3>
+                    <span>풀리지 않는 버그 속</span>
+                    <span>개발자로 살아남기</span>
+                    <a href="/">자세히 보기</a>
+                  </h3>
+                  <div>
+                    <span>02</span>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="41"
+                        height="2"
+                        viewBox="0 0 41 2"
+                        fill="none"
+                      >
+                        <g clip-path="url(#clip0_238_3875)">
+                          <rect y="0.5" width="41" height="1" fill="white" />
+                          <rect y="0.5" width="9" height="1" fill="white" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_238_3875">
+                            <rect
+                              width="41"
+                              height="1"
+                              fill="white"
+                              transform="translate(0 0.5)"
+                            />
+                          </clipPath>
+                        </defs></svg
+                    ></span>
+                    <span>03</span>
+                  </div>
+                  <img src="/src/assets/banner.png" alt="배너 이미지" />
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="banner-container">
+                  <h3>
+                    <span>풀리지 않는 버그 속</span>
+                    <span>개발자로 살아남기</span>
+                    <a href="/">자세히 보기</a>
+                  </h3>
+                  <div>
+                    <span>03</span>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="41"
+                        height="2"
+                        viewBox="0 0 41 2"
+                        fill="none"
+                      >
+                        <g clip-path="url(#clip0_238_3875)">
+                          <rect y="0.5" width="41" height="1" fill="white" />
+                          <rect y="0.5" width="9" height="1" fill="white" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_238_3875">
+                            <rect
+                              width="41"
+                              height="1"
+                              fill="white"
+                              transform="translate(0 0.5)"
+                            />
+                          </clipPath>
+                        </defs></svg
+                    ></span>
+                    <span>03</span>
+                  </div>
+                  <img src="/src/assets/banner.png" alt="배너 이미지" />
+                </div>
+              </div>
+              ...
             </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
           </div>
-          <img src="/src/assets/banner.png" alt="배너 이미지" />
         </article>
         <div class="Main-scroll-area">
           <nav class="Main-menu-bar">
