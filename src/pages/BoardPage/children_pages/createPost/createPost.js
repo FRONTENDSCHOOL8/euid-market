@@ -2,7 +2,6 @@ import { renderTopBar } from "/src/components/general/renderTopBar.js";
 import { getNode, insertBefore, insertLast } from "/src/lib/index.js";
 import { addClass, addData, createData, relocateHREF, removeClass } from "../../util/index.js";
 import { gsap } from 'gsap';
-import {pb} from "/src/lib/api/pocketbase.js";
 
 function renderCreateFirst(container) { 
   const template = /* html */
@@ -172,7 +171,7 @@ function insertData() {
   }
 
   // 데이터 추가 및 페이지 이동
-  addData(testData);
+  addData(data);
   
   relocateHREF('../boardContent/index.html');
 }
@@ -249,8 +248,6 @@ function prevPage() {
   insertBefore(createPostContainer, renderTopBar("blank"));
   renderCreateFirst(createPostContainer);
   renderCreateSecond(createPostContainer);
-  console.log(pb);
-  console.log(import.meta.env.VITE_PB_API);
   const increaseButton = getNode(".board--create-plus-count");
   const decreaseButton = getNode(".board--create-minus-count");
   const nextButton = getNode("#board--next-data");

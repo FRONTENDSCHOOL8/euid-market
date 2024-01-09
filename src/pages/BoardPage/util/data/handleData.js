@@ -1,5 +1,5 @@
 
-import pb from '/src/lib/api/pocketbase.js';
+import pb from '/src/lib/api/pocketbase';
 
 export function createData(args) {
   const data = {
@@ -16,10 +16,8 @@ export function createData(args) {
   return data;
 }
 
-export async function addData(data) {
-  // const record = await pb.collection('posts').create(data);
-  const record = await pb.collection('posts').create(data);
-
+export function addData(data) {
+  const record = pb.collection('posts').create(data);
 }
 
 export async function getData() {

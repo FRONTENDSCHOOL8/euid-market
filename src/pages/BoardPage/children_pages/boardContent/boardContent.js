@@ -1,7 +1,7 @@
 import { renderTopBar, renderNavBar } from "/src/components/general/index.js";
 import { renderTogetherPosts, relocateLink } from "../../util/index.js";
 import { getNode, insertBefore } from "/src/lib/index.js";
-
+import pb from "/src/lib/api/pocketbase";
 
 const {localStorage} = window;
 
@@ -23,6 +23,8 @@ localStorage.setItem("curr_page", "chat");
 // 
 
 
+console.log(pb);
+console.log(import.meta.env.VITE_PB_URL);
 const boardContainer = getNode(".board--container");
 const postContainer = getNode(".board--together-post-container");
 insertBefore(boardContainer, renderTopBar("withTitle"));
