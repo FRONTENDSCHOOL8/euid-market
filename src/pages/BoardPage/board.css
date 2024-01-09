@@ -1,5 +1,6 @@
 @import url(./children_pages/boardContent/boardContent.css);
-
+@import url(./children_pages/postInfo/postInfo.css);
+@import url(./children_pages/createPost/createPost.css);
 
 .hidden {
   display: none;
@@ -68,8 +69,7 @@
 .board--popup-container {
   position: fixed;
   width: 100%;
-  bottom: 0;
-  padding-bottom: inherit;
+  bottom: 68px;
 
   & .board--popup-header {
     border-radius: 8px 8px 0px 0px;
@@ -91,7 +91,7 @@
   }
 
   & .board--popup-body {
-    
+    background: var(--primary, #373F67);
     & ul {
       display: flex;
       flex-flow: column;
@@ -141,11 +141,11 @@
   display: flex;
   padding: 8px 12px;
   position: sticky;
-  top: 43px; 
   background: var(--background);
   justify-content: space-between;
   align-items: center;
   gap: 4px;
+  top: 0;
 
   & h3 {
     position: absolute;
@@ -158,3 +158,40 @@
     gap: 8px;
   }
 }
+
+.board--fixed-button {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 40px;
+  width: 90%;
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 10px;
+  background: var(--primary, #373F67);
+  color: white;
+  border: none; 
+  color: var(--background, #FFF);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+
+  
+}
+.board--fixed-button.hidden { 
+  display: none;
+}
+.board--fixed-button.prev-page {
+  bottom: 95px;
+  background: var(--Contents-contentSecondary);
+}
+.board--fixed-button:active  {
+  background: #2b3049;
+}
+
+

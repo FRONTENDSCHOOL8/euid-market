@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login--category</title>
+    <script
+      type="module"
+      src="/src/pages/LoginPage/category/category.js"
+    ></script>
+  </head>
+  <body>
+    <div class="temp-bar">
+      <p class="label-m">2:26</p>
+      <div class="temp-bar-icon-wrapper">
+        <img src="/src/assets/icons/general/cellular.png" alt="cellular" />
+        <img class="lte" src="/src/assets/icons/general/lte.png" alt="lte" />
+        <img
+          class="battery"
+          src="/src/assets/icons/general/battery.png"
+          alt="battery"
+        />
+      </div>
+    </div>
+
+    <div class="login--top-bar">
+      <a href="/">
+        <img
+          src="/src/assets/icons/login/direction=left.svg"
+          alt="뒤로 가기 버튼"
+        />
+      </a>
+
+      <div role="search" class="login--category-search">
+        <label for="categorySearch" class="hidden">관심분야 검색</label>
+        <input
+          type="search"
+          id="categorySearch"
+          name="categorySearch"
+          placeholder="분야(이름)로 검색 (ex.프론트)"
+          aria-label="관심분야 검색"
+        />
+      </div>
+    </div>
+
+    <div class="login--category-wrapper">
+      <h1>관심분야를 선택해주세요!</h1>
+      <button type="reset" class="paragragh-s">
+        <img src="/src/assets/icons/login/position.svg" alt="" />
+        관심분야 선택하기
+      </button>
+
+      <ul role="list" class="login--category-list"></ul>
+      <button type="submit" class="login--category-submit label-s">
+        이대로 저장할래요
+      </button>
+    </div>
+  </body>
+</html>

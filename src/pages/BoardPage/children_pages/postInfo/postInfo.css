@@ -1,0 +1,32 @@
+
+
+
+.board--post-info { 
+  padding: 13px;
+  padding-right: 40px;
+
+  display: flex;
+  flex-flow: column;
+  
+  gap: 20px;
+
+
+  & h1 {
+    display: inline-block
+  }
+
+  & figure {
+    & figcaption {
+      display: inline-block;
+    }
+  }
+}
+
+.board--post-info-badge {
+  padding: 7px 10px;
+  width: fit-content;
+  border-radius: 10px;
+  color: var(--background);
+  background: var(--Contents-contentTertiary);
+  
+}

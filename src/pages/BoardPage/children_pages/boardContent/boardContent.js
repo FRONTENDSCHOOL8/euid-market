@@ -1,37 +1,39 @@
-import { insertLast } from "../../../../lib";
-import { renderTopBar } from "/src/components/general/renderTopBar.js";
-import { renderTogetherPosts } from "../../util/dom/index.js";
+import { renderTopBar, renderNavBar } from "/src/components/general/index.js";
+import { renderTogetherPosts, relocateLink } from "../../util/index.js";
 import { getNode, insertBefore } from "/src/lib/index.js";
+import pb from "/src/lib/api/pocketbase";
+
+const {localStorage} = window;
+
+function openPost(e) {
+  e.preventDefault();
+  
+  const target = e.target.closest(".board--together-content");
+  if(!target) return;
+  
+  const id = target.dataset.id;
+  console.log(id);
+  localStorage.setItem("curr_id", id);
+
+  relocateLink("/src/pages/BoardPage/children_pages/postInfo/");
+}
+
+// 추후에 수정 필요
+localStorage.setItem("curr_page", "chat"); 
+// 
 
 
-
-
-
-// export function boardContent() {
-//   const template = /* html */
-//   `
-
-
-//     <div>
-//       <img src="" alt="" />
-//       <h2>같이해요</h2>
-//     </div>
-
-
-//     <div class="board--content-container">
-      
-//     </div>
-//   `;
-//   return template;
-
-// }
-
-
+console.log(pb);
+console.log(import.meta.env.VITE_PB_URL);
 const boardContainer = getNode(".board--container");
 const postContainer = getNode(".board--together-post-container");
 insertBefore(boardContainer, renderTopBar("withTitle"));
-insertLast(postContainer, renderTogetherPosts(postContainer));
+renderTogetherPosts(postContainer);
+postContainer.addEventListener("click", openPost);
+renderNavBar();
 
+const createPostButton = getNode(".board--together-create-post");
 
-
-
+createPostButton.addEventListener("click", () => {
+  relocateLink("../createPost/")
+});

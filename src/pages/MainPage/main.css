@@ -1,0 +1,285 @@
+@import url(/src/pages/MainPage/detail/detail.css);
+@import url(/src/pages/MainPage/search/search.css);
+
+.app {
+  max-width: 599px;
+  margin: 0 auto;
+}
+
+.Main-contents {
+  position: relative;
+
+  & .Main-banner {
+    position: fixed;
+    max-width: 599px;
+    width: 100%;
+    color: var(--background);
+    background-color: var(--Contents-contentTertiary);
+
+    & .banner-container {
+      position: relative;
+      padding: 1.25rem;
+      margin-bottom: 2.8125rem;
+
+      & h3 {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 0.5rem;
+        font-size: var(--font-l);
+
+        & a {
+          color: var(--background);
+          font-size: var(--font-s);
+          font-weight: 400;
+        }
+      }
+
+      & > div {
+        margin-top: 3.625rem;
+
+        & svg {
+          vertical-align: middle;
+        }
+      }
+      & img {
+        position: absolute;
+        right: -200px;
+        bottom: -160px;
+        transform: scale(0.5);
+      }
+    }
+  }
+
+  & .Main-scroll-area {
+    position: relative;
+    padding-top: 220px;
+
+    & .Main-menu-bar.fixed {
+      position: fixed;
+      width: 100%;
+      max-width: 599px;
+      top: 0;
+      z-index: 10;
+    }
+
+    & .Main-menu-bar {
+      position: relative;
+      background: var(--primary);
+      padding: 0.5rem;
+      font-size: var(--font-m);
+
+      & .Main-menu-list {
+        display: flex;
+        justify-content: space-around;
+        color: var(--Contents-contentTertiary);
+        cursor: pointer;
+
+        & .isActive {
+          color: var(--background);
+        }
+      }
+    }
+
+    & .Main-story-board {
+      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      place-items: center;
+      row-gap: 1.75rem;
+      padding: 0.75rem 0;
+
+      & li {
+        width: 8.625rem;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+
+        gap: 0.75rem;
+        font-size: 0.6564375rem;
+
+        & a {
+          & figure {
+            & img {
+              width: 138px;
+              height: 104px;
+            }
+          }
+        }
+
+        & figcaption {
+          display: flex;
+          flex-flow: column nowrap;
+          gap: 0.25rem;
+
+          & div:nth-child(1) {
+            line-height: 1.5;
+          }
+
+          & div:nth-child(2) {
+            color: var(--Contents-contentSecondary);
+            font-weight: 400;
+          }
+        }
+      }
+    }
+
+    & .Main-story-board.isActive {
+      display: grid;
+    }
+
+    & .Main-exchange {
+      display: none;
+      flex-flow: column nowrap;
+      justify-content: center;
+
+      & .Main-button-list {
+        position: fixed;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: end;
+        gap: 12px;
+        right: 12px;
+        bottom: 70px;
+        z-index: 10;
+        border: 0;
+
+        & .active-button-list {
+          display: none;
+
+          & li {
+            display: flex;
+            align-self: stretch;
+            border: 0;
+            background-color: var(--primary);
+            padding: 10px 12px;
+            border-radius: 12px;
+
+            & a {
+              padding: 0px;
+              border: 0;
+
+              & button {
+                border: 0;
+                background-color: transparent;
+                color: var(--background);
+              }
+            }
+          }
+        }
+
+        & .active-button-list.isActive {
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: start;
+          gap: 4px;
+          opacity: 100;
+        }
+
+        & .Main-plus-button {
+          display: flex;
+          padding: 12px;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
+          right: 12px;
+          bottom: 12px;
+          border: 0;
+          border-radius: 50px;
+          background: var(--primary);
+          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+          z-index: 10;
+        }
+
+        & .Main-plus-button.isActive {
+          background-color: white;
+        }
+      }
+
+      & li {
+        & a {
+          display: flex;
+          flex-flow: row nowrap;
+          gap: 0.75rem;
+          padding: 0.75rem;
+          border-bottom: 1px solid var(--gray-200, #d3d3d3);
+
+          & figure {
+            & img {
+              width: 90px;
+            }
+          }
+
+          & figcaption {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-evenly;
+
+            & .product-title {
+              font-size: 0.875rem;
+            }
+
+            & .product-info-container {
+              color: var(--Contents-contentTertiary, #9da1b4);
+              font-size: 0.6564375rem;
+            }
+
+            & .product-state-container {
+              display: flex;
+              justify-content: start;
+              align-items: center;
+              gap: 0.5rem;
+
+              & .product-state {
+                display: none;
+              }
+
+              & .product-state.book {
+                display: inline;
+                padding: 0.35rem 0.3rem;
+                border-radius: 0.25rem;
+                background: var(--tertiary);
+                color: var(--background);
+                font-size: 0.6564375rem;
+              }
+
+              & .product-state.done {
+                display: inline;
+                padding: 0.35rem 0.3rem;
+                border-radius: 0.25rem;
+                background: var(--Contents-contentTertiary);
+                color: var(--background);
+                font-size: 0.6564375rem;
+              }
+            }
+          }
+        }
+
+        & .Main-like-container {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          bottom: 6px;
+          right: 15px;
+          font-size: 0.8rem;
+
+          & button {
+            border: 0;
+            background: transparent;
+            padding: 0;
+            transform: translate(-1px, 1px);
+          }
+        }
+      }
+    }
+
+    & .Main-exchange.isActive {
+      display: flex;
+    }
+
+    & .Main-list-container {
+      background: var(--background);
+    }
+  }
+}
