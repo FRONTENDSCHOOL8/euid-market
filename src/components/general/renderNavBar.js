@@ -6,6 +6,9 @@ const {localStorage:local} = window;
 
 
 export function renderNavBar() {
+
+  
+
   const template = /* html */ 
   `
   <nav class="bottom-bar-container">
@@ -51,6 +54,8 @@ export function renderNavBar() {
     const target = e.target.closest("nav li a");
     console.log(target);
     if(!target) return;
+
+    
 
     const pages = {
       "1": () => local.setItem("curr_page", "main"),
