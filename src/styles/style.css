@@ -7,15 +7,9 @@
 /* ----------- 페이지별 css 폴더 여기에 import 하기 ----------- */
 
 @import url(/src/pages/BoardPage/board.css);
-
 @import url(/src/pages/MainPage/main.css);
-@import url(/src/pages/MainPage/detail/detail.css);
-
 @import url(/src/pages/StartPage/start.css);
 @import url(/src/pages/LoginPage/category/category.css);
-
-
-
 
 /* ---------------------------------------------------------- */
 
@@ -75,6 +69,7 @@
   background: var(--background, #fff);
   position: sticky;
   top: 0;
+  z-index: 100;
 
   & .top-bar-buttons {
     display: flex;
@@ -99,9 +94,10 @@
   overflow: hidden;
   width: 100%;
   max-width: inherit;
-  -webkit-box-shadow: 0px 7px 19px 11px rgba(0,0,0,0.32);
--moz-box-shadow: 0px 7px 19px 11px rgba(0,0,0,0.32);
-box-shadow: 0px 7px 19px 11px rgba(0,0,0,0.32);
+  -webkit-box-shadow: 0px 7px 19px 11px rgba(0, 0, 0, 0.32);
+  -moz-box-shadow: 0px 7px 19px 11px rgba(0, 0, 0, 0.32);
+  box-shadow: 0px 7px 19px 11px rgba(0, 0, 0, 0.32);
+  z-index: 100;
   background: var(--background);
 
   & ul {
