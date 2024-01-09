@@ -1,3 +1,8 @@
+import pencil from '/src/assets/icons/profile/pencil.svg';
+import rightDirection from '/src/assets/icons/profile/rightDirection.svg';
+import polygon from '/src/assets/icons/profile/polygon.svg';
+import people from '/src/assets/icons/profile/people.svg';
+
 //프로필메뉴
 export function profileMenuTemplate(userobj) {
   let { id, user_photo, user_nickname, user_year } = userobj;
@@ -6,13 +11,13 @@ export function profileMenuTemplate(userobj) {
 <div class="user--profile-picture-wrapper">
   <img
     class="user--profile-picture"
-    src="${import.meta.env.VITE_PB_URL}/api/files/users/${id}/${user_photo}"
+    src="${import.meta.env.VITE_PB_URL}api/files/users/${id}/${user_photo}"
     alt="${user_nickname}님의 프로필 사진"
   />
-  <a href=""
+  <a href="/src/pages/Userpage/children_pages/profileCard/index.html"
     ><img
       class="user--profile-modify"
-      src="/src/assets/icons/profile/pencil.svg"
+      src=${pencil}
       alt="수정하기"
   /></a>
 </div>
@@ -28,25 +33,25 @@ export function profileContentsTemplate(userBadgeResult) {
   return /*html */ `<li class="user--profile-content user--profile-badge">
   <span>활동배지 ${userBadgeResult.items.length}개</span>
   <button class="user--profile-more-button user--profile-badge-button">
-    <img src="/src/assets//icons/profile/direction=right.svg" alt="더 보기" />
+    <img src=${rightDirection} alt="더 보기" />
   </button>
   </li>
 <li>
   <span>판매상품 0개</span>
   <button>
-    <img src="/src/assets//icons/profile/direction=right.svg" alt="더 보기" />
+    <img src=${rightDirection} alt="더 보기" />
   </button>
 </li>
 <li class="user--profile-content user--profile-manner" >
   <span>받은 매너평가</span>
   <button class="user--profile-more-button user--profile-manner-button">
-    <img src="/src/assets//icons/profile/direction=right.svg" alt="더 보기" />
+    <img src=${rightDirection}  alt="더 보기" />
   </button>
 </li>
 <li>
   <span>받은 거래 후기 0개</span>
   <button>
-    <img src="/src/assets//icons/profile/direction=right.svg" alt="더 보기" />
+    <img src=${rightDirection}  alt="더 보기" />
   </button>
  
 </li>
@@ -79,7 +84,7 @@ export function userTemperatureTemplate(userTemperature) {
 <div class="user--temperature-progressbar-wrapper">
   <span class="user--default-temperture"
     >첫 온도 36.5℃
-    <img src="/src/assets/icons/profile/Polygon.svg" alt="" />
+    <img src=${polygon} alt="" />
   </span>
   <span class="user--temperture">${userTemperature}℃ ${
     userTemperature < 36 ? '🙂' : '😎'
@@ -103,7 +108,7 @@ export function badgeTemplate(imgSrc, badgeTitle) {
 export function mannerTemplate(count, manner_title) {
   return /* html */ `
       <div class="user--profile-manner-detail">
-          <img src="/src//assets/icons/profile/people.svg" alt="" />
+          <img src=${people} alt="" />
           <span>${count}</span><p>${manner_title}</p> 
       </div>`;
 }
