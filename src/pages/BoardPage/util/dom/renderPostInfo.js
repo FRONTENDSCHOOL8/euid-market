@@ -1,6 +1,6 @@
 // import togetherData from "../../temp_data/together.json";
 import { insertLast } from "/src/lib/index.js";
-import { pb } from "../index.js";
+import pb from "/src/lib/api/pocketbase.js";
 // import { getData } from "../data/handleData";
 // import PocketBase from "pocketbase";
 
@@ -10,7 +10,7 @@ import { pb } from "../index.js";
 // const data = response[2];  // temporary for testing
 export async function renderPostInfo(container, id) {
   
-  const data = await pb.collection('posts_together').getOne(id);
+  const data = await pb.collection('posts').getOne(id);
 
   const template = /* html */ 
   `
