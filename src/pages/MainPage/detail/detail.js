@@ -1,5 +1,5 @@
 import { getNode, attr, insertLast, insertFirst, comma } from '/src/lib/';
-import pb from '/src/pages/MainPage/pocketbase.js';
+import pb from '/src/lib/api/pocketbase.js';
 import { getPbImageURL } from '/src/pages/MainPage/getPbImage';
 
 const hash = window.location.hash.slice(1);

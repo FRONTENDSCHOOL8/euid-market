@@ -8,7 +8,7 @@ import {
   attr,
   toggleClass,
 } from '/src/lib/';
-import pb from '/src/pages/MainPage/pocketbase.js';
+import pb from '/src/lib/api/pocketbase.js';
 import { getPbImageURL } from '/src/pages/MainPage/getPbImage.js';
 import gsap from 'gsap';
 
