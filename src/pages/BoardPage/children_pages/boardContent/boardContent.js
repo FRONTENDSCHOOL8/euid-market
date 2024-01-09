@@ -22,6 +22,7 @@ function openPost(e) {
 localStorage.setItem("curr_page", "chat"); 
 // 
 
+renderNavBar();
 
 console.log(pb);
 console.log(import.meta.env.VITE_PB_URL);
@@ -30,7 +31,6 @@ const postContainer = getNode(".board--together-post-container");
 insertBefore(boardContainer, renderTopBar("withTitle"));
 renderTogetherPosts(postContainer);
 postContainer.addEventListener("click", openPost);
-renderNavBar();
 
 const createPostButton = getNode(".board--together-create-post");
 
