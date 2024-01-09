@@ -1,0 +1,139 @@
+/* 프로필 수정 네비게이션 바*/
+
+.profile--card-nav {
+  height: 49px;
+  display: flex;
+  padding: 14px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  & h1 {
+    font-size: var(--font-m);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+  }
+}
+
+/* 프로필카드 배경*/
+.profile--card {
+  background: var(--Contents-contentSecondary, #919191);
+  padding: 7px 11px 0px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+  & h2 {
+    line-height: 150%;
+    display: flex;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    & a {
+      width: 14px;
+      height: 14px;
+    }
+  }
+  & section {
+    border-radius: 8px;
+    background: var(--background, #fff);
+
+    box-sizing: border-box;
+  }
+}
+
+/* 이름 ,기수 , 사진 */
+.profile--user-info {
+  & figure {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    & figcaption {
+      gap: 4px;
+      & p {
+        font-size: var(--font-m);
+        font-style: normal;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      & span {
+        display: inline;
+        font-size: 10.503px;
+        font-style: normal;
+        font-weight: 400;
+        color: var(--secondary, #5a85ee);
+        padding: 3px 4px;
+        border: 0.7px solid var(--secondary, #5a85ee);
+        border-radius: 50px;
+      }
+    }
+
+    & img {
+      border-radius: 50px;
+      width: 50px;
+      height: 50px;
+      background: lightgray 50% / cover no-repeat;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+/* 기본정보 */
+.profile--card-basic-infos,
+.profile--card-additional-infos {
+  & div {
+    display: flex;
+    justify-content: space-between;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    border-bottom: 0.3px solid var(--Contents-contentSecondary, #919191);
+    padding: 10px 0px 12px 0px;
+    & h2 {
+      margin: 0;
+      font-size: var(--font-m);
+      margin-left: 12px;
+    }
+    & a {
+      font-size: var(--font-s);
+      font-style: normal;
+      color: var(--secondary, #5a85ee);
+      margin-right: 16px;
+    }
+  }
+  & ul {
+    padding: 10px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+  }
+  & li {
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    display: flex;
+    justify-content: space-between;
+    & p {
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--font-m);
+    }
+    & span {
+      font-size: var(--font-s);
+      color: var(--Contents-contentSecondary, #919191);
+    }
+  }
+  .profile--card-user-img {
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 17px;
+    background: lightgray 50% / cover no-repeat;
+    box-shadow: 0px 1.36px 1.36px 0px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* 추가정보 */
+.profile--card-additional-infos {
+  margin-bottom: 90px;
+}

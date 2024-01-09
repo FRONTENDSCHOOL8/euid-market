@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <title>엔터이듬 프로필 기본 정보 수정</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/styles/style.css" />
+    <link rel="stylesheet" href="/src/styles/reset.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="profileModify.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <nav class="profile--modify-nav">
+        <h1>기본정보</h1>
+        <a>
+          <img src="/src/assets/icons/profile/close.svg" alt="" />
+        </a>
+      </nav>
+      <ul class="profile--modify-details">
+        <li>
+          <p>프로필 사진</p>
+          <a href="" class="profile--modify-add"
+            ><img src="/src/assets/icons/profile/plus.svg" alt="" />프로필
+            사진을 추가해보세요
+          </a>
+        </li>
+        <li>
+          <p>닉네임</p>
+          <a href="" class="profile--modify-add"
+            ><img src="/src/assets/icons/profile/plus.svg" alt="" />프로필
+            사진을 추가해보세요
+          </a>
+        </li>
+        <li>
+          <p>하는 일</p>
+          <a href="" class="profile--modify-add"
+            ><img src="/src/assets/icons/profile/plus.svg" alt="" />본인이 하는
+            일을 추가해보세요</a
+          >
+        </li>
+        <li>
+          <p>프로필 키워드</p>
+          <a href="" class="profile--modify-add"
+            ><img src="/src/assets/icons/profile/plus.svg" alt="" />프로필
+            키워드를 추가해보세요</a
+          >
+        </li>
+        <li>
+          <p>성별</p>
+          <span>정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.</span>
+          <div class="profile--modify-visibility">
+            <button class="profile--modify-private is-active">비공개</button>
+            <button class="profile--modify-public">전체공개</button>
+          </div>
+        </li>
+        <li>
+          <p>연령</p>
+          <span>정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.</span>
+          <div class="profile--modify-visibility">
+            <button class="profile--modify-private">비공개</button>
+            <button class="profile--modify-public is-active">전체공개</button>
+          </div>
+        </li>
+        <li>
+          <p>회사</p>
+          <div class="profile--choice-button-wrapper">
+            <a href="" class="profile--choice-button"
+              ><img
+                src="/src/assets/icons/profile/search.svg"
+                alt=""
+              />검색하기</a
+            >
+            <a href="" class="profile--choice-button"
+              ><img src="/src/assets/icons/profile/pencil.svg" alt="" />직접
+              입력</a
+            >
+          </div>
+        </li>
+        <li>
+          <p>자격</p>
+          <a href="" class="profile--choice-button"
+            ><img src="/src/assets/icons/profile/pencil.svg" alt="" />직접
+            입력</a
+          >
+        </li>
+        <li>
+          <p>취득자격 <img src="" alt="" /></p>
+          <a href="" class="profile--modify-certification"
+            ><img src="/src/assets/icons/profile/detailCard.svg" alt="" />
+            <p>국가자격증을 간편하게 등록해보세요!</p>
+            <span>PC 프로필 설정 > 취득 자격 관리에서 등록 가능합니다.</span></a
+          >
+        </li>
+      </ul>
+      <form class="profile--modify-terms" action="">
+        <div class="profile--terms-all-agree">
+          <input type="checkbox" />
+          <label for="">
+            <span>아래 내용에 전체 동의합니다 .</span>
+            <span>필수동의</span>
+          </label>
+        </div>
+        <ul>
+          <li>
+            <input type="checkbox" id="profile--terms-privacy" />
+
+            <label class="profile--terms-privacy" for="profile--terms-privacy">
+              <span>[ 필수 ] 개인 정보 수집 및 이용 동의</span>
+              <span>
+                입력한 별명, 프로필 사진, 하는 일, 프로필 키워드, 성별, 연령, 회
+                사, 학교, 자격은 엔터이듬 서비스 내 프로필 페이지, 답변자 정보
+                영역, 엔터이듬 홈 및 서비스 내 프로필 공개를 목적으로 합니다.
+              </span>
+              <span>
+                수집된 정보는 언제든지 직접 삭제할 수 있고, 탈퇴 시에는 바로
+                파기됩니다.
+              </span>
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label for=""
+              ><span>[ 필수 ] 프로필 정보 노출 영역 확인</span>
+              <a href="">자세히 > </a>
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label for="">
+              [ 필수 ] 사실과 다른 정보를 기재하여 발생한 문제에 대해서는
+              <br />본인이 일체의 책임을 부담하겠습니다.</label
+            >
+          </li>
+        </ul>
+      </form>
+      <div class="proifle--submit-choice">
+        <div class="profile--choice-button-wrapper">
+          <a class="profile--choice-button" href="">취소</a>
+          <button
+            class="profile--choice-button profile--submit-save-button is-active"
+          >
+            저장
+          </button>
+        </div>
+        <a class="profile--reset-terms" href=""
+          >정보 초기화 및 이용 동의 철회
+        </a>
+      </div>
+      <!-- 하단 네비게 이션  -->
+      <nav class="bottom-bar-container">
+        <ul>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/home.svg" alt="홈" />
+              <p class="paragraph-s">홈</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/fullFile.svg" alt="게시판" />
+              <p class="paragraph-s">게시판</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/map.svg" alt="내 근처" />
+              <p class="paragraph-s">내 근처</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/chat.svg" alt="채팅" />
+              <p class="paragraph-s">채팅</p>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/icons/general/my.svg" alt="나의 이듬" />
+              <p class="paragraph-s">나의 이듬</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </body>
+</html>
