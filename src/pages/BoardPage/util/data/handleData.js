@@ -1,8 +1,5 @@
-import PocketBase from 'pocketbase';
 
-
-
-export const pb = new PocketBase('https://euid-marke.pockethost.io');
+import pb from '/src/lib/api/pocketbase';
 
 export function createData(args) {
   const data = {
@@ -19,15 +16,14 @@ export function createData(args) {
   return data;
 }
 
-export async function addData(data) {
-  const record = await pb.collection('posts').create(data);
+export function addData(data) {
+  const record = pb.collection('posts').create(data);
 }
 
 export async function getData() {
   const response = await fetch(
     `${import.meta.env.VITE_PB_API}/collections/posts/records`
   );
-  
   response.data = await response.json();
   const items = response.data.items;
   return items;
