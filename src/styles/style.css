@@ -13,9 +13,6 @@
 
 @import url(/src/pages/StartPage/start.css);
 
-
-
-
 /* ---------------------------------------------------------- */
 
 /* 변수 선언 */
@@ -74,6 +71,7 @@
   background: var(--background, #fff);
   position: sticky;
   top: 0;
+  z-index: 100;
 
   & .top-bar-buttons {
     display: flex;
@@ -98,6 +96,7 @@
   overflow: hidden;
   width: 100%;
   max-width: inherit;
+  z-index: 100;
 
   background: var(--background);
 
