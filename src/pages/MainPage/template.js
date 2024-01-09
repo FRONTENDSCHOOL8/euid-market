@@ -1,4 +1,5 @@
 import { getPbImageURL, comma } from '/src/lib/';
+import heart from '/src/assets/icons/main/heart.svg';
 
 export function storyBoardTemplate(item) {
   const { title, major, year, name } = item;
@@ -51,7 +52,7 @@ export function exchangeTemplate(item) {
                 </a>
                 <div class="Main-like-container">
               <button>
-                  <img src="/src/assets/icons/main/heart.svg"></img>
+                  <img src="${heart}"></img>
                   </button>
                   <span>${save}</span>
                 </div>
