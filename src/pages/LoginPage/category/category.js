@@ -84,5 +84,3 @@ document
   .addEventListener('click', function () {
     window.location.href = '/src/pages/LoginPage/signup/';
   });
-
-console.log('import.meta.env');
