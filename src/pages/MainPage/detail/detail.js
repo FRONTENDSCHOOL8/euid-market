@@ -1,6 +1,6 @@
-import { getNode, attr, insertLast, insertFirst, comma } from '/src/lib/';
+import { getNode, attr, insertLast, insertFirst } from '/src/lib/';
 import pb from '/src/lib/api/pocketbase.js';
-import { getPbImageURL } from '/src/pages/MainPage/getPbImage';
+import { getPbImageURL } from '/src/lib/utils/getPbImage.js';
 
 import { productDetailTemplate } from '/src/pages/MainPage/template.js';
 import { productPriceTemplate } from '/src/pages/MainPage/template.js';
