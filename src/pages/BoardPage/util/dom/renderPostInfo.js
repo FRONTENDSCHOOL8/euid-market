@@ -1,12 +1,21 @@
-import togetherData from "../../temp_data/together.json";
+// import togetherData from "../../temp_data/together.json";
 import { insertLast } from "/src/lib/index.js";
+import { pb } from "../index.js";
+// import { getData } from "../data/handleData";
+// import PocketBase from "pocketbase";
 
-const data = togetherData[1];  // temporary for testing
-export function renderPostInfo(container) {
+// const response = await getData();
+
+
+// const data = response[2];  // temporary for testing
+export async function renderPostInfo(container, id) {
+  
+  const data = await pb.collection('posts_together').getOne(id);
+
   const template = /* html */ 
   `
   <div class="board--post-info">
-    <figure>
+    <figure class="board--post-info-badge">
       <span>🧀</span>
       <figcaption>${data.type}</figcaption>
     </figure>

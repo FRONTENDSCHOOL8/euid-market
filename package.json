@@ -7,8 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "pb-login": "src/data/login/pocketbase/pocketbase serve",
     "pb-main": "src/data/main/pocketbase/pocketbase serve",
-    "pb-user": "src/data/UserPage/pocketbase/pocketbase serve"
+    "pb-user": "src/data/UserPage/pocketbase/pocketbase serve",
+    "pb-board": "src/data/board/pocketbase/pocketbase serve"
   },
   "devDependencies": {
     "eslint": "^8.56.0",

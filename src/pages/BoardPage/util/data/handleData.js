@@ -2,7 +2,7 @@ import PocketBase from 'pocketbase';
 
 
 
-export const pb = new PocketBase('http://127.0.0.1:8090');
+export const pb = new PocketBase('https://euid-marke.pockethost.io');
 
 export function createData(args) {
   const data = {
@@ -20,6 +20,15 @@ export function createData(args) {
 }
 
 export async function addData(data) {
-  const pb = new PocketBase('http://127.0.0.1:8090');
-  const record = await pb.collection('posts_together').create(data);
+  const record = await pb.collection('posts').create(data);
+}
+
+export async function getData() {
+  const response = await fetch(
+    `${import.meta.env.VITE_PB_API}/collections/posts/records`
+  );
+  
+  response.data = await response.json();
+  const items = response.data.items;
+  return items;
 }
