@@ -20,7 +20,13 @@
       display: inline-block;
     }
   }
+}
 
-
-
+.board--post-info-badge {
+  padding: 7px 10px;
+  width: fit-content;
+  border-radius: 10px;
+  color: var(--background);
+  background: var(--Contents-contentTertiary);
+  
 }

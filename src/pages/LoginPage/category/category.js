@@ -1,10 +1,12 @@
 import { tiger, insertLast } from '/src/lib';
+//import PocketBase from 'pocketbase';
 
 // 카테고리 리스트 동적 랜더링
 async function renderCategory() {
   const response = await tiger.get(
-    'http://127.0.0.1:8090/api/collections/interest_category/records'
+    `${import.meta.env.VITE_PB_API}/collections/interest_category/records`
   );
+
   const userData = response.data.items;
   userData.forEach((item) => {
     const template = /*html*/ `
@@ -76,3 +78,11 @@ document
     );
     console.log('저장된 데이터:', localStorage.getItem('selectedCategories'));
   });
+//페이지 이동
+document
+  .querySelector('.login--category-submit')
+  .addEventListener('click', function () {
+    window.location.href = '/src/pages/LoginPage/signup/';
+  });
+
+console.log('import.meta.env');

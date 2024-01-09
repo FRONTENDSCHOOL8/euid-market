@@ -116,7 +116,6 @@
 .board--together-post-container {
   display: flex;
   overflow: hidden;
-  
   overflow-y: scroll;
   flex-flow: column;
   padding-bottom: inherit;

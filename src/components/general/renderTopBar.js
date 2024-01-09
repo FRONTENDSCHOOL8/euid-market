@@ -6,14 +6,14 @@ export function renderTopBar(option="blank", titleText="같이해요") {
 
   const blank = /* html */ `
     <div class="page-controller">
-      <a href="/">
+      <a href="javascript:history.back()">
         <img src=${directionIcon} alt="뒤로가기" />
       </a>
     </div>
   `;
   const withTitle = /* html */ `
     <div class="page-controller">
-      <a href="/">
+      <a href="javascript:history.back()">
         <img src=${directionIcon} alt="뒤로가기" />
       </a>
       <h3 class="label-s">${titleText}</h3>
@@ -21,7 +21,7 @@ export function renderTopBar(option="blank", titleText="같이해요") {
   `;
   const withShare = /* html */ `
     <div class="page-controller">
-      <a href="/">
+      <a href="javascript:history.back()">
         <img src=${directionIcon} alt="뒤로가기" />
       </a>
       <div>
@@ -37,19 +37,19 @@ export function renderTopBar(option="blank", titleText="같이해요") {
   const withHome = /* html */ `
     <div class="page-controller">
       <div>
-        <a href="/">
+        <a href="javascript:history.back()">
           <img src=${directionIcon} alt="뒤로가기" />
         </a>
-        <a href="/">
+        <a href="javascript:history.back()">
           <img src=${homeIcon} alt="홈페이지" />
         </a>
       </div>
 
       <div>
-        <a href="/">
+        <a href="javascript:history.back()">
           <img src=${shareIcon} alt="공유하기" />
         </a>
-        <a href="/">
+        <a href="javascript:history.back()">
           <img src=${moreIcon} alt="더 보기" />
         </a>
       </div>

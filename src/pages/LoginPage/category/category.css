@@ -17,7 +17,6 @@ button, input{
 }
 
 #categorySearch {
-  /* background-color: pink; */
   border-bottom: 1px solid black;
   background-image: url('/src/assets/icons/login/search.svg');
   background-repeat: no-repeat;
@@ -27,6 +26,7 @@ button, input{
   display: inline-block;
   font-size: 16px;
   width: 70vw;
+  max-width: 800px;
   height: 35px;
 }
 .login--category-wrapper{
@@ -50,6 +50,7 @@ button, input{
 
   & button {
     width: 86vw;
+    max-width: 800px;
     color: #fff;
     padding: 10px 100px;
     border-radius: 8px;
@@ -80,6 +81,7 @@ button, input{
 .login--category-card{
   display: inline-block;
   width: 35vw;
+  max-width: 300px;
   height: 3.75rem;
   padding: 10px;
   margin: 10px 5px;
@@ -95,6 +97,7 @@ button, input{
     }
     & img{
       width: 7vw;
+      max-width: 35px;
       padding-right: 5px;
     }
   }
