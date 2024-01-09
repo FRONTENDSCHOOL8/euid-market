@@ -1,4 +1,4 @@
-import"./tiger-uvPuI86Z.js";import"./main-KEeEo1-v.js";import{p as n}from"./pocketbase-zYAbJ1uT.js";import"./renderNavBar-ZFUfoZJi.js";const{localStorage:d}=window;function m(e){return new Promise((t,s)=>{e?d.removeItem(e):d.clear(),t()})}function g(e){let{id:t,user_photo:s,user_nickname:r,user_year:i}=e;return`
+import"./tiger-uvPuI86Z.js";import"./main-mp0GbRCS.js";import{p as n}from"./pocketbase-zYAbJ1uT.js";import"./renderNavBar-y5sj-VBh.js";const{localStorage:d}=window;function m(e){return new Promise((t,s)=>{e?d.removeItem(e):d.clear(),t()})}function g(e){let{id:t,user_photo:s,user_nickname:r,user_year:i}=e;return`
 <figure>
 <div class="user--profile-picture-wrapper">
   <img

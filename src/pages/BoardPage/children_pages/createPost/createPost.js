@@ -2,6 +2,13 @@ import { renderTopBar } from "/src/components/general/renderTopBar.js";
 import { getNode, insertBefore, insertLast } from "/src/lib/index.js";
 import { addClass, addData, createData, relocateHREF, removeClass } from "../../util/index.js";
 import { gsap } from 'gsap';
+// import pb from "../../../../lib/api/pocketbase.js";
+import PocketBase from "pocketbase";
+import minus from "/src/assets/icons/board/minusCount.svg";
+import plus from "/src/assets/icons/board/plusCount.svg";
+import fullCalendar from "/src/assets/icons/board/fullCalendar.svg";
+import people from "/src/assets/icons/board/people.svg";
+import clock from "/src/assets/icons/board/clock.svg";
 
 function renderCreateFirst(container) { 
   const template = /* html */
@@ -23,20 +30,20 @@ function renderCreateFirst(container) {
 
     <div>
       <figure>
-        <img src="/src/assets/icons/board/people.svg" alt="">
+        <img src=${people} alt="">
         <span class="paragraph-m">인원</span>
       </figure>
 
       <div>
-        <button class="board--create-minus-count"><img src="/src/assets/icons/board/minusCount.svg" alt="Minus"></button>
+        <button class="board--create-minus-count"><img src=${minus} alt="Minus"></button>
         <span id="board--people-count">4</span><span>명</span>
-        <button class="board--create-plus-count"><img src="/src/assets/icons/board/plusCount.svg" alt="Minus"></button>
+        <button class="board--create-plus-count"><img src=${plus} alt="Minus"></button>
       </div>
     </div>
 
     <div>
       <figure>
-        <img src="/src/assets/icons/board/fullCalendar.svg" alt="">
+        <img src=${fullCalendar} alt="">
         <span class="paragraph-m">날짜</span>
       </figure>
 
@@ -50,7 +57,7 @@ function renderCreateFirst(container) {
 
     <div>
       <figure>
-        <img src="/src/assets/icons/board/clock.svg" alt="">
+        <img src=${clock} alt="">
         <span class="paragraph-m">시간</span>
       </figure>
 
@@ -60,7 +67,7 @@ function renderCreateFirst(container) {
 
     <div>
       <figure>
-        <img src="/src/assets/icons/board/people.svg" alt="">
+        <img src=${people} alt="">
         <span class="paragraph-m">장소</span>
       </figure>
 
@@ -115,7 +122,7 @@ function renderCreateSecond(container) {
   insertLast(container, template);
 }
 
-function insertData() {
+async function insertData() {
   const status = "모집중";
   const type = getNode("#board--category").value;
   const location = "연남동";
@@ -171,10 +178,13 @@ function insertData() {
   }
 
   // 데이터 추가 및 페이지 이동
-  addData(data);
+  
+  await addData(data);
+  // await testData();
   
   relocateHREF('../boardContent/index.html');
 }
+
 
 function handleRequirement(e) {
   e.preventDefault();

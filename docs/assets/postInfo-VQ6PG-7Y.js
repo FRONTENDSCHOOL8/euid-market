@@ -1,4 +1,4 @@
-import{i as e,g as i,b as n}from"./tiger-uvPuI86Z.js";import{r as p}from"./renderTopBar-BHiepWVN.js";import{p as c}from"./pocketbase-zYAbJ1uT.js";async function l(o,t){const a=await c.collection("posts").getOne(t),r=`
+import{i as e,g as i,b as n}from"./tiger-uvPuI86Z.js";import{r as p}from"./renderTopBar-hcF64SbR.js";import{p as c}from"./pocketbase-zYAbJ1uT.js";async function l(o,t){const a=await c.collection("posts").getOne(t),r=`
   <div class="board--post-info">
     <figure class="board--post-info-badge">
       <span>🧀</span>
