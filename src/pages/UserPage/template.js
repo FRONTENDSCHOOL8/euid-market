@@ -94,17 +94,21 @@ export function userTemperatureTemplate(userTemperature) {
 }
 
 //뱃지
+//(li 요소(활동배지) 다음으로 넣을 div 템플릿)
+export const badgeListTemplate = /*html */ `  
+<div class="user--profile-badge-detail is-active"><div>`;
+//뱃지 각자 요소
 export function badgeTemplate(imgSrc, badgeTitle) {
   return /* html */ `
-        <a href="/">
-          <figure>
-            <img src="${imgSrc}" />
-            <figcaption><p>${badgeTitle}</p></figcaption>
-          </figure> 
-        </a>
+        <figure>
+          <img src="${imgSrc}" />
+          <figcaption><p>${badgeTitle}</p></figcaption>
+       </figure> 
     `;
 }
+
 // 매너평가
+export const mannerListTemplate = /*html */ `<div class="user--profile-manner-wrapper "> </div>`;
 export function mannerTemplate(count, manner_title) {
   return /* html */ `
       <div class="user--profile-manner-detail">
