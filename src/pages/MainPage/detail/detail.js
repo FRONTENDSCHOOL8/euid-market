@@ -1,16 +1,18 @@
-import { getNode, attr, insertLast, insertFirst } from '/src/lib/';
+import { getNode, attr, insertLast, insertFirst, insertBefore } from '/src/lib/';
 import { getPbImageURL } from '/src/lib/utils/getPbImage.js';
 import {
   productDetailTemplate,
   productPriceTemplate,
   userInfoTemplate,
 } from '/src/pages/MainPage/template.js';
-
+import { renderTopBar } from '/src/components/general/index.js';
 import pb from '/src/lib/api/pocketbase.js';
 
 import gsap from 'gsap';
 const tl = gsap.timeline();
 
+const container = getNode(".app");
+insertBefore(container, renderTopBar("withTitle", "Hello"));
 const hash = window.location.hash.slice(1);
 const productImg = getNode('.Main-visual > img');
 const mainContent = getNode('.main-content');
@@ -37,3 +39,5 @@ pb.collection('product_list')
       ease: 'power2.inOut',
     });
   });
+
+
