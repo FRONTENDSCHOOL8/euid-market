@@ -1,4 +1,5 @@
 import { getPbImageURL, comma } from '/src/lib/';
+import heart from '/src/assets/icons/main/heart.svg';
 
 export function storyBoardTemplate(item) {
   const { title, major, year, name } = item;
@@ -51,7 +52,7 @@ export function exchangeTemplate(item) {
                 </a>
                 <div class="Main-like-container">
               <button>
-                  <img src="/src/assets/icons/main/heart.svg"></img>
+                  <img src="${heart}"></img>
                   </button>
                   <span>${save}</span>
                 </div>
@@ -61,18 +62,18 @@ export function exchangeTemplate(item) {
   return template;
 }
 
-export function productDetailTemplate(item) {
+export function productDetailTemplate({ title, type, description }) {
   const template = /* html */ `
   <div>
-    <h1 class="title">${item.title}</h1>
+    <h1 class="title">${title}</h1>
       <div>
-        <span>${item.type}</span>
+        <span>${type}</span>
         <span>•</span>
         <span>17분전</span>
       </div>
   </div>
   <p>
-  ${item.description}
+  ${description}
   </p>
 `;
 
