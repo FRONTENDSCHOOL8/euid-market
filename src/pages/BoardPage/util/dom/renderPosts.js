@@ -6,22 +6,59 @@ export async function renderMainPosts(container) {
 
   const items = await getData();
   items.forEach((item) => {
-    const template = /* html */ `
+    let template;
+    if(item.category === "같이해요") {
+      template = /* html */ 
+      `
       <div class="board--post-instance">
-        <label class=" label-s board--badge">${item.badge}</label> 
+        <label class=" label-s board--badge">${item.category}</label> 
         <h2>${item.title}</h2>
         <div class="board--flex">
           <img src="/src/assets/icons/general/fullpeople.svg" alt="" >
-          <p>${item.req}</p>
+          <p>${item.requirements}</p>
         </div>
         
         <div class="board--flex">
           <img src="/src/assets/icons/general/calendar.svg" alt="" >
           <p>${item.time}</p>
         </div>
-    `
+      </div>
+      `
+    } else if(item.category === "질의응답") {
+      template = /* html */
+      `
+      <div class="board--post-instance">
+        <label class="label-s board--badge">${item.stack}</label> 
+        <h2>${item.title.length > 20 ? item.content.slice(1, 20) + "..." : item.title}</h2>
+        <p class="paragraph-s board--qna-content">${item.content.length > 30 ? item.content.slice(1, 30) + "..." : item.content}</p>
 
-    insertLast(container, template);
+        <section class="board--flex">
+          <p class="paragraph-s">${item.location}</p>
+          <p class="paragraph-s">• 몇일 전</p>
+          <p class="paragraph-s">• 조회 123</p>
+        </section>
+      </div>
+      `  
+    } else {
+      template = /* html */ 
+      `
+      <div class="board--post-instance">
+        <label class=" label-s board--badge">${item.category}</label> 
+        <h2>${item.title}</h2>
+        <div class="board--flex">
+          <img src="/src/assets/icons/general/fullpeople.svg" alt="" >
+          <p>${item.requirements}</p>
+        </div>
+        
+        <div class="board--flex">
+          <img src="/src/assets/icons/general/calendar.svg" alt="" >
+          <p>${item.time}</p>
+        </div>
+      </div>
+      `
+    }
+
+    insertFirst(container, template);
   })
 }
 

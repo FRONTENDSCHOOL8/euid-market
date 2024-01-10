@@ -34,7 +34,7 @@ function handleCategory(e) {
         "1": () => popUp(),
         "2": () => console.log("인기글"),
         "3": () => relocateLink("/src/pages/BoardPage/children_pages/boardContent/"),
-        "4": () => console.log("질의응답"),
+        "4": () => relocateLink("/src/pages/BoardPage/children_pages/questionPage/"),
         "5": () => console.log("자유게시판")
       };
       

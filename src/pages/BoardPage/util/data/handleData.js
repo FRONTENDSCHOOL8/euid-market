@@ -11,7 +11,9 @@ export function createData(args) {
     "time": args.time,
     "max_people": args.max_people,
     "curr_people": args.curr_people,
-    "content": args.content
+    "content": args.content,
+    "category": args.category,
+    "stack": args.stack
   };
   return data;
 }
@@ -27,4 +29,11 @@ export async function getData() {
   response.data = await response.json();
   const items = response.data.items;
   return items;
+}
+
+export async function getQuestionData() {
+  const resultList = await pb.collection('posts').getList(1, 50, {
+    filter: 'category = "질의응답"',
+  });
+  return resultList;
 }
