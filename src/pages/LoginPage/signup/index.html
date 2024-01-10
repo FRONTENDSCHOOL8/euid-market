@@ -44,7 +44,7 @@
             name="phone"
             aria-required="true"
             placeholder="휴대폰 번호(-없이 숫자만 입력)"
-            onkeyup="formatPhoneNumber()"
+            maxlength="13"
             required
           />
           <!-- 인증문자 받기 버튼 -->
@@ -52,7 +52,6 @@
             type="button"
             id="verify-button"
             aria-disabled="true"
-            onclick="requestVerification()"
           >
             인증문자 받기
           </button>

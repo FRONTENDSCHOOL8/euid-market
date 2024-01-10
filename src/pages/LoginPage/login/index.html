@@ -39,43 +39,43 @@
           <!-- 휴대폰 번호 입력 -->
           <label for="phone" class="hidden">휴대폰 번호:</label>
           <input
-            type="tel"
-            id="phone"
-            name="phone"
-            aria-required="true"
-            placeholder="휴대폰 번호(-없이 숫자만 입력)"
-            onkeyup="formatPhoneNumber()"
-            required
+          type="tel"
+          id="phone"
+          name="phone"
+          aria-required="true"
+          placeholder="휴대폰 번호(-없이 숫자만 입력)"
+          maxlength="13"
+          required
           />
           <!-- 인증문자 받기 버튼 -->
           <button
             type="button"
             id="verify-button"
             aria-disabled="true"
-            onclick="requestVerification()"
           >
             인증문자 받기
           </button>
           <!-- 인증번호 입력 (초기에는 숨겨져 있음) -->
-          <div class="login--code-section">
-            <label for="verification-code" class="hidden">인증번호 입력</label>
+          <div class="login--code-section hidden">
+            <label for="verification-code" >인증번호 입력</label>
             <input
               type="text"
               id="verification-code"
               aria-required="true"
               placeholder="인증번호 입력"
+              class="hidden"
             />
             <p>어떤 경우에도 타인에게 공유하지 마세요!</p>
           </div>
           <!-- 인증번호 인증 완료 후 시작 버튼 -->
-          <button type="submit" id="start-button" aria-disabled="true" onclick="/">
+          <button type="submit" id="start-button" aria-disabled="true" class="hidden">
             동의하고 시작하기
           </button>
         </form>
         <a href="/" class="login--signup-email"
           >휴대폰 번호가 변경되었나요? <span>이메일로 계정찾기</span></a
         >
-        <a href="/src/pages/MainPage/" class="login--nocode">인증번호가 오지 않아요?</a>
+        <a href="/src/pages/MainPage/" class="login--nocode hidden">인증번호가 오지 않아요?</a>
       </div>
     </div>
   </body>
