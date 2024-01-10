@@ -10,11 +10,12 @@ function popUp() {
   const popUpContainer = getNode(".board--popup-container");
   removeClass(popUpContainer, 'hidden');
   gsap.from(popUpContainer, {y:1000, duration:.2});
+  const popUpCloseBtn = getNode('.board--popup-close-btn');
+  popUpCloseBtn.addEventListener('click', closePopUp);
 }
 
 function closePopUp() {
   const popUpContainer = getNode(".board--popup-container");
-  gsap.fromTo(popUpContainer, {y:0, duration:.2})
   addClass(popUpContainer, 'hidden');
 }
 
@@ -39,23 +40,26 @@ function handleCategory(e) {
       
       const pickButton = targetBtn[button.dataset.index];
       pickButton();
-  }
+}
 
 (() => {
+  renderNavBar();
+  // NavBar 이미 설정
+  const {localStorage} = window;
+  localStorage.setItem("curr_page", "board")
+
+
   const postContainer = getNode(".board--post-list");
 
   renderMainPosts(postContainer);
-  const popUpCloseBtn = getNode('.board--popup-close-btn');
-  
+  // const popUpCloseBtn = getNode('.board--popup-close-btn');
   const categoryBar = getNode('.board--category-bar-container');
-  
-  
-  popUpCloseBtn.addEventListener('click', closePopUp);
+  // popUpCloseBtn.addEventListener('click', closePopUp);
   categoryBar.addEventListener('click', handleCategory);
 
   
 
-  renderNavBar();
+  
 })();
 
 
