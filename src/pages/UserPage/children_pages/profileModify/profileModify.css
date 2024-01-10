@@ -176,6 +176,15 @@
     display: flex;
     justify-content: center;
   }
+
+  & button[data-is_public='true'] {
+    background: rgb(255, 255, 255);
+    border-radius: 6px;
+    border: 1px solid var(--tertiary, #719cf7);
+    background: var(--background, #fff);
+    color: var(--secondary, #5a85ee);
+  }
+
   & button.is-active {
     background: rgb(255, 255, 255);
     border-radius: 6px;

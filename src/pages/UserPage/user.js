@@ -13,7 +13,7 @@ import {
 
 import { deleteStorage, getNode, insertFirst, insertAfter } from '/src/lib/';
 //배포전 수정 !!!!!!!!!!!!!!!1
-const TEST_USER_ID = 'c24hzewie4gweri';
+const TEST_USER_ID = 'bexmuprbriobf8v';
 
 /* -------------------------------------------------------------------------- */
 /*                             랜더링 후 즉시 실행                                */
@@ -83,7 +83,7 @@ const TEST_USER_ID = 'c24hzewie4gweri';
         let { id, badge_img, badge_title } = item;
         const imgUrl = `${
           import.meta.env.VITE_PB_URL
-        }api/files/user_badge_join_view/${id}/${badge_img}`;
+        }/api/files/user_badge_join_view/${id}/${badge_img}`;
         insertFirst(
           getNode('.user--profile-badge-detail'),
           badgeTemplate(imgUrl, badge_title)
