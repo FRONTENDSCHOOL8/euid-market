@@ -50,6 +50,7 @@ export default defineConfig({
           __dirname,
           'src/pages/LoginPage/signup/index.html'
         ),
+
       },
     },
   },

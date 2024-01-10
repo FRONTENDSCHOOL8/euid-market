@@ -10,6 +10,9 @@
 @import url(/src/pages/MainPage/main.css);
 @import url(/src/pages/StartPage/start.css);
 @import url(/src/pages/LoginPage/category/category.css);
+@import url(/src/pages/LoginPage/signup/signup.css);
+@import url(/src/pages/LoginPage/login/login.css);
+
 
 /* ---------------------------------------------------------- */
 
