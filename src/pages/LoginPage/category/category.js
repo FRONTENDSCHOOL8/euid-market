@@ -1,4 +1,5 @@
 import { tiger, insertLast } from '/src/lib';
+import plus from '/src/assets/icons/login/plus.svg';
 //import PocketBase from 'pocketbase';
 
 // 카테고리 리스트 동적 랜더링
@@ -15,7 +16,7 @@ async function renderCategory() {
       <p class="login--category-main paragraph-s">${item.main_category}</p>
       <p class="login--category-sub heading-s">${item.sub_category}</p>
     </div>
-    <img src="/src/assets/icons/login/plus.svg" alt="관심분야에 추가" />
+    <img src=${plus} alt="관심분야에 추가" />
   </li>
     `;
     insertLast('.login--category-list', template);
