@@ -12,8 +12,8 @@ async function renderQuestionPage(container) {
     `
       <div class="board--post-instance">
         <label class="label-s board--badge">${item.stack}</label> 
-        <h2>${item.title.length > 20 ? item.content.slice(1, 20) + "..." : item.title}</h2>
-        <p class="paragraph-s board--qna-content">${item.content.length > 30 ? item.content.slice(1, 30) + "..." : item.content}</p>
+        <h2>${item.title.length > 20 ? item.content.slice(0, 20) + "..." : item.title}</h2>
+        <p class="paragraph-s board--qna-content">${item.content.length > 30 ? item.content.slice(0, 30) + "..." : item.content}</p>
 
         <section class="board--flex">
           <p class="paragraph-s">${item.location}</p>
@@ -24,8 +24,7 @@ async function renderQuestionPage(container) {
     ` 
     insertFirst(container, template);
   })
-  
-  
+
 }
 
 

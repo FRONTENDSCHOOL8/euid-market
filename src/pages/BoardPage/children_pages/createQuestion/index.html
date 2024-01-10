@@ -9,30 +9,42 @@
 </head>
 <body>
   <header class="board--create-question-header">
-    <img src="/src/assets/icons/board/closeBlack.svg" alt="">
-    <p>Q&A 글쓰기</p>
+    
+    <a href="javascript:history.back()"><img src="/src/assets/icons/board/closeBlack.svg" alt="뒤로가기"></a>
+    <p class="label-m">Q&A 글쓰기</p>
     <a href="/src/pages/BoardPage/children_pages/questionPage/" type="button" class="label-m board--create-qna-post">완료</a>
   </header>
 
   
   <div class="board--create-question-category-container">
-    <p class="label-m">FRONTEND</p>
-    <img src="/src/assets/icons/board/rightArrow.svg" alt="">
+    <div class="board--create-question-category-wrapper">
+      <p class="label-m board--create-question-category-value">FRONTEND</p>
+      <img src="/src/assets/icons/board/rightArrow.svg" alt="">
+    </div>
     <ul class="board--create-question-category hidden">
       <li>
-        <button type="button" class="label-m">프로그래밍</button>
+        <button type="button" class="label-m" data-label="programming">프로그래밍</button>
       </li>
       <li>
-        <button type="button" class="label-m">디자인</button>
+        <button type="button" class="label-m" data-label="design">디자인</button>
       </li>
       <li>
-        <button type="button" class="label-m">UI•UX</button>
+        <button type="button" class="label-m" data-label="uiux">UI•UX</button>
       </li>
       <li>
-        <button type="button" class="label-m">FrontEnd</button>
+        <button type="button" class="label-m" data-label="frontend">FrontEnd</button>
       </li>
       <li>
-        <button type="button" class="label-m">BackEnd</button>
+        <button type="button" class="label-m" data-label="backend">BackEnd</button>
+      </li>
+      <li>
+        <button type="button" class="label-m" data-label="js">JS</button>
+      </li>
+      <li>
+        <button type="button" class="label-m" data-label="css">CSS</button>
+      </li>
+      <li>
+        <button type="button" class="label-m" data-label="html">HTML</button>
       </li>
     </ul>
   </div>

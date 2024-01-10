@@ -19,18 +19,28 @@ function dropDown() {
 function createQuestion() {
   const title = getNode("#question-title").value;
   const content = getNode("#question-content").value;
+  const category = getNode(".board--create-question-category-value").textContent;
 
   const data = createData({
     "title" : title,
     "content" : content,
     "category" : "질의응답",
-    "stack" : "JS"
+    "stack" : category
   })
 
   addData(data);
 } 
 
-const category = getNode(".board--create-question-category-container");
-category.addEventListener('click', dropDown);
+// function changeCategory(e) {
+
+//   const target = e.target.closest('button');
+//   const currCategory = getNode("")
+
+
+// }
+
+const categoryContainer = getNode(".board--create-question-category-container");
+categoryContainer.addEventListener('click', dropDown);
 const createQuestionBtn = getNode(".board--create-qna-post");
 createQuestionBtn.addEventListener('click', createQuestion);
+
