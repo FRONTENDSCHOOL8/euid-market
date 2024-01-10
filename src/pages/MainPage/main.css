@@ -4,6 +4,28 @@
 .app {
   max-width: 599px;
   margin: 0 auto;
+
+  & .loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    z-index: 500;
+
+    & img {
+      width: 300px;
+      bottom: 0;
+    }
+  }
+
+  & .loading.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .Main-contents {
@@ -28,6 +50,11 @@
         gap: 0.5rem;
         font-size: var(--font-l);
 
+        & strong {
+          color: var(--primary);
+          font-weight: 600;
+        }
+
         & a {
           color: var(--background);
           font-size: var(--font-s);
@@ -42,11 +69,26 @@
           vertical-align: middle;
         }
       }
-      & img {
+      & .banner1 {
         position: absolute;
         right: -200px;
         bottom: -160px;
         transform: scale(0.5);
+      }
+
+      & .banner2 {
+        position: absolute;
+        right: -100px;
+        bottom: -170px;
+        transform: scale(0.4);
+      }
+
+      & .banner3 {
+        position: absolute;
+        right: -80px;
+        bottom: -140px;
+        transform: scale(0.45);
+        border-radius: 50%;
       }
     }
   }
@@ -101,7 +143,8 @@
         & a {
           & figure {
             & img {
-              /* width: 138px; */
+              border-radius: 4px;
+              width: 138p;
               height: 104px;
             }
           }
