@@ -1,6 +1,6 @@
 import { renderNavBar, renderTopBar } from "/src/components/general/index.js";
 import { getNode, insertFirst } from "/src/lib/index";
-import { getData, getQuestionData } from "../../util/index.js";
+import { getQuestionData } from "../../util/index.js";
 
 
 async function renderQuestionPage(container) {
@@ -12,8 +12,8 @@ async function renderQuestionPage(container) {
     `
       <div class="board--post-instance">
         <label class="label-s board--badge">${item.stack}</label> 
-        <h2>${item.title}</h2>
-        <p class="paragraph-s board--qna-content">${item.content}</p>
+        <h2>${item.title.length > 20 ? item.content.slice(1, 20) + "..." : item.title}</h2>
+        <p class="paragraph-s board--qna-content">${item.content.length > 30 ? item.content.slice(1, 30) + "..." : item.content}</p>
 
         <section class="board--flex">
           <p class="paragraph-s">${item.location}</p>

@@ -1,7 +1,6 @@
 import { renderTopBar, renderNavBar } from "/src/components/general/index.js";
 import { renderTogetherPosts, relocateLink } from "../../util/index.js";
 import { getNode, insertBefore } from "/src/lib/index.js";
-import pb from "/src/lib/api/pocketbase";
 
 const {localStorage} = window;
 
@@ -29,7 +28,7 @@ insertBefore(boardContainer, renderTopBar("withTitle"));
 renderTogetherPosts(postContainer);
 
 postContainer.addEventListener("click", openPost);
-const createPostButton = getNode(".board--together-create-post");
+const createPostButton = getNode(".board--create-post");
 
 createPostButton.addEventListener("click", () => {
   relocateLink("../createPost/")
