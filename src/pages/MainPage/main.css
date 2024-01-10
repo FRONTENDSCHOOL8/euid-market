@@ -101,7 +101,7 @@
         & a {
           & figure {
             & img {
-              width: 138px;
+              /* width: 138px; */
               height: 104px;
             }
           }
