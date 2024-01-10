@@ -1,5 +1,5 @@
 import { getNode } from "/src/lib/index.js";
-import { removeClass, addClass } from "../../util/index";
+import { removeClass, addClass, addData, createData } from "../../util/index";
 
 
 
@@ -16,13 +16,21 @@ function dropDown() {
   
 }
 
+function createQuestion() {
+  const title = getNode("#question-title").value;
+  const content = getNode("#question-content").value;
 
-// function pickCategory() {
+  const data = createData({
+    "title" : title,
+    "content" : content,
+    "category" : "질의응답",
+    "stack" : "JS"
+  })
 
-// }
+  addData(data);
+} 
 
 const category = getNode(".board--create-question-category-container");
 category.addEventListener('click', dropDown);
-
-
-
+const createQuestionBtn = getNode(".board--create-qna-post");
+createQuestionBtn.addEventListener('click', createQuestion);
