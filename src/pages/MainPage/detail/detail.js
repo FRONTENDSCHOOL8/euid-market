@@ -1,13 +1,13 @@
 import { getNode, attr, insertLast, insertFirst } from '/src/lib/';
-import pb from '/src/lib/api/pocketbase.js';
 import { getPbImageURL } from '/src/lib/utils/getPbImage.js';
 import {
   productDetailTemplate,
   productPriceTemplate,
 } from '/src/pages/MainPage/template.js';
 
-import gsap from 'gsap';
+import pb from '/src/lib/api/pocketbase.js';
 
+import gsap from 'gsap';
 const tl = gsap.timeline();
 
 const hash = window.location.hash.slice(1);

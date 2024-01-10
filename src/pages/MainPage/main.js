@@ -8,17 +8,25 @@ import {
   attr,
   toggleClass,
 } from '/src/lib/';
+
 import {
   storyBoardTemplate,
   exchangeTemplate,
 } from '/src/pages/MainPage/template.js';
+
+// Gsap default 설정
 import gsap from 'gsap';
-import { renderNavBar } from '/src/components/general/index.js';
 gsap.defaults({
   ease: 'power2.inOut',
 });
+
+import pb from '/src/lib/api/pocketbase.js';
+
+// build를 위한 정적이미지 변수
 import whiteURL from '/src/assets/icons/main/plus-white.png';
 import blackURL from '/src/assets/icons/main/plus-black.png';
+
+import { renderNavBar } from '/src/components/general/index.js';
 
 const seniorStory = getNode('.Main-menu-story');
 const seniorStoryBoard = getNode('.Main-story-board');
@@ -29,8 +37,6 @@ const productList = getNode('.Main-product-list');
 const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
 const banner = getNode('.Main-banner');
-
-import pb from '/src/lib/api/pocketbase.js';
 
 function dataLoad() {
   return [
@@ -172,6 +178,7 @@ function dataLoad() {
       }
     });
   }
+
   renderNavBar();
   onLoad();
   seniorStory.addEventListener('click', handleSeniorStory);

@@ -153,18 +153,14 @@
             align-self: stretch;
             border: 0;
             background-color: var(--primary);
-            padding: 10px 12px;
             border-radius: 12px;
 
             & a {
-              padding: 0px;
+              padding: 10px 20px;
               border: 0;
-
-              & button {
-                border: 0;
-                background-color: transparent;
-                color: var(--background);
-              }
+              color: var(--background);
+              font-size: 14px;
+              font-weight: 600;
             }
           }
         }

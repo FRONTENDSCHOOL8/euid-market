@@ -62,18 +62,18 @@ export function exchangeTemplate(item) {
   return template;
 }
 
-export function productDetailTemplate(item) {
+export function productDetailTemplate({ title, type, description }) {
   const template = /* html */ `
   <div>
-    <h1 class="title">${item.title}</h1>
+    <h1 class="title">${title}</h1>
       <div>
-        <span>${item.type}</span>
+        <span>${type}</span>
         <span>•</span>
         <span>17분전</span>
       </div>
   </div>
   <p>
-  ${item.description}
+  ${description}
   </p>
 `;
 
