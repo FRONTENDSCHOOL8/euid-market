@@ -30,3 +30,10 @@ export async function getData() {
   const items = response.data.items;
   return items;
 }
+
+export async function getQuestionData() {
+  const resultList = await pb.collection('posts').getList(1, 50, {
+    filter: 'category = "질의응답"',
+  });
+  return resultList;
+}
