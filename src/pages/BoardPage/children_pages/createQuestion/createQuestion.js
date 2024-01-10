@@ -1,6 +1,6 @@
 import { getNode } from "/src/lib/index.js";
 import { removeClass, addClass } from "../../util/index";
-import gsap from "gsap";
+
 
 
 
@@ -9,7 +9,7 @@ function dropDown() {
   
   if(categories.classList.contains("hidden")) {
     removeClass(categories, "hidden");
-    gsap.from(document.querySelectorAll(".board--create-question-category"), {y: -500, duration: .2, ease:"power1.in"})
+    
   } else {
     addClass(categories, "hidden");
   }
