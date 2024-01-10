@@ -2,6 +2,11 @@ import { renderTopBar } from "/src/components/general/renderTopBar.js";
 import { getNode, insertBefore, insertLast } from "/src/lib/index.js";
 import { addClass, addData, createData, relocateHREF, removeClass } from "../../util/index.js";
 import { gsap } from 'gsap';
+import minus from "/src/assets/icons/board/minusCount.svg";
+import plus from "/src/assets/icons/board/plusCount.svg";
+import fullCalendar from "/src/assets/icons/board/fullCalendar.svg";
+import people from "/src/assets/icons/board/people.svg";
+import clock from "/src/assets/icons/board/clock.svg";
 
 function renderCreateFirst(container) { 
   const template = /* html */
@@ -23,20 +28,20 @@ function renderCreateFirst(container) {
 
     <div>
       <figure>
-        <img src="/src/assets/icons/board/people.svg" alt="">
+        <img src=${people} alt="">
         <span class="paragraph-m">인원</span>
       </figure>
 
       <div>
-        <button class="board--create-minus-count"><img src="/src/assets/icons/board/minusCount.svg" alt="Minus"></button>
+        <button class="board--create-minus-count"><img src=${minus} alt="Minus"></button>
         <span id="board--people-count">4</span><span>명</span>
-        <button class="board--create-plus-count"><img src="/src/assets/icons/board/plusCount.svg" alt="Minus"></button>
+        <button class="board--create-plus-count"><img src=${plus} alt="Minus"></button>
       </div>
     </div>
 
     <div>
       <figure>
-        <img src="/src/assets/icons/board/fullCalendar.svg" alt="">
+        <img src=${fullCalendar} alt="">
         <span class="paragraph-m">날짜</span>
       </figure>
 
@@ -50,7 +55,7 @@ function renderCreateFirst(container) {
 
     <div>
       <figure>
-        <img src="/src/assets/icons/board/clock.svg" alt="">
+        <img src=${clock} alt="">
         <span class="paragraph-m">시간</span>
       </figure>
 
@@ -60,7 +65,7 @@ function renderCreateFirst(container) {
 
     <div>
       <figure>
-        <img src="/src/assets/icons/board/people.svg" alt="">
+        <img src=${people} alt="">
         <span class="paragraph-m">장소</span>
       </figure>
 
@@ -115,16 +120,18 @@ function renderCreateSecond(container) {
   insertLast(container, template);
 }
 
-function insertData() {
+async function insertData() {
+  // 모집상태
   const status = "모집중";
+  // 같이해요 페이지 내부 카테고리
   const type = getNode("#board--category").value;
+  // 위치 API 아직 도입하지 않음
   const location = "연남동";
+  // 사용자가 입력한 제목
   const title = getNode("#board--post-title").value;
-  
   // 참여 조건
   const gender = getNode("#board--post-requirement-gender").textContent;
   const age = getNode("#board--post-requirement-age").textContent;
-
   let requirements;
   if(gender === "누구나" && age === "누구나") {
     requirements = "누구나";
@@ -135,19 +142,17 @@ function insertData() {
   } else {
     requirements = `${gender}, ${age}세 이상`;
   }
-
   // 날짜 & 시간
   const date = new Date(getNode("#board--post-date").value);
   const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
   const time =  `${formattedDate}, ${getNode("#board--post-time").value} 시`;
-
   // 최대 인원수
   const max_people = Number(getNode('#board--people-count').textContent);
   const curr_people = 1;
-
   // 게시물 내용
   const content = getNode("#board--post-content").value;
-
+  // 게시물 카테고리
+  const category = "같이해요";
 
   // 데이터 객체 만들기
   const data = createData({
@@ -159,7 +164,8 @@ function insertData() {
     time,
     max_people,
     curr_people,
-    content
+    content,
+    category
   })
 
   // 만약 필요 요소 중 하나라도 비어있다면 아레 코드 미시행
@@ -171,8 +177,7 @@ function insertData() {
   }
 
   // 데이터 추가 및 페이지 이동
-  addData(data);
-  
+  await addData(data);
   relocateHREF('../boardContent/index.html');
 }
 
@@ -192,21 +197,30 @@ function handleRequirement(e) {
   gender.textContent = target.textContent;
 }
 
-function increaseMaxCount() { 
+// function increaseMaxCount() { 
+//   let count = getNode('#board--people-count');
+//   let countNum = Number(count.textContent);
+//   if(countNum === 100) return;
+//   countNum = ++countNum;
+//   count.textContent = countNum.toString();
+// }
+
+function handleCount(option) {
   let count = getNode('#board--people-count');
   let countNum = Number(count.textContent);
-  if(countNum === 100) return;
-  countNum = ++countNum;
+  
+  countNum = option === "add" ? ++countNum : --countNum;   
+  if(countNum === 100 || countNum === 0) return;
   count.textContent = countNum.toString();
 }
 
-function decreaseMaxCount() {
-  let count = getNode('#board--people-count');
-  let countNum = Number(count.textContent);
-  if(countNum === 0) return;
-  countNum = --countNum;
-  count.textContent = countNum.toString();
-}
+// function decreaseMaxCount() {
+//   let count = getNode('#board--people-count');
+//   let countNum = Number(count.textContent);
+//   if(countNum === 0) return;
+//   countNum = --countNum;
+//   count.textContent = countNum.toString();
+// }
 
 function nextPage() {
   const firstPage = getNode(".board--create-post-page.one");
@@ -248,6 +262,7 @@ function prevPage() {
   insertBefore(createPostContainer, renderTopBar("blank"));
   renderCreateFirst(createPostContainer);
   renderCreateSecond(createPostContainer);
+  // 렌더링 끝나고 나타나는 요소
   const increaseButton = getNode(".board--create-plus-count");
   const decreaseButton = getNode(".board--create-minus-count");
   const nextButton = getNode("#board--next-data");
@@ -255,14 +270,12 @@ function prevPage() {
   const submitButton = getNode("#board--submit-data");
   const buttonContainer = getNode(".board--require-button-container");
   
-  
-
   // Button Event Listeners
   buttonContainer.addEventListener("click", handleRequirement);
   nextButton.addEventListener("click", nextPage);
   prevButton.addEventListener("click", prevPage);
   submitButton.addEventListener("click", insertData);
-  increaseButton.addEventListener("click", increaseMaxCount);
-  decreaseButton.addEventListener("click", decreaseMaxCount);
+  increaseButton.addEventListener("click", () => handleCount("add"));
+  decreaseButton.addEventListener("click", () => handleCount("sub"));
 })();
 

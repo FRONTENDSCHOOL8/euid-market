@@ -1,8 +1,9 @@
+import directionIcon from "/src/assets/icons/general/direction.svg";
+import shareIcon from "/src/assets/icons/general/share.svg";
+import moreIcon from "/src/assets/icons/general/more.svg";
+import homeIcon from "/src/assets/icons/general/more.svg";
+
 export function renderTopBar(option="blank", titleText="같이해요") {
-  const directionIcon = "/src/assets/icons/general/direction.svg";
-  const shareIcon = "/src/assets/icons/general/share.svg";
-  const moreIcon = "/src/assets/icons/general/more.svg";
-  const homeIcon = "/src/assets/icons/general/more.svg";
 
   const blank = /* html */ `
     <div class="page-controller">
