@@ -28,6 +28,11 @@
         gap: 0.5rem;
         font-size: var(--font-l);
 
+        & strong {
+          color: var(--primary);
+          font-weight: 600;
+        }
+
         & a {
           color: var(--background);
           font-size: var(--font-s);
@@ -42,11 +47,26 @@
           vertical-align: middle;
         }
       }
-      & img {
+      & .banner1 {
         position: absolute;
         right: -200px;
         bottom: -160px;
         transform: scale(0.5);
+      }
+
+      & .banner2 {
+        position: absolute;
+        right: -100px;
+        bottom: -170px;
+        transform: scale(0.4);
+      }
+
+      & .banner3 {
+        position: absolute;
+        right: -80px;
+        bottom: -140px;
+        transform: scale(0.45);
+        border-radius: 50%;
       }
     }
   }
@@ -101,6 +121,7 @@
         & a {
           & figure {
             & img {
+              border-radius: 4px;
               width: 138px;
               height: 104px;
             }
