@@ -3,6 +3,8 @@ import rightDirection from '/src/assets/icons/profile/rightDirection.svg';
 import polygon from '/src/assets/icons/profile/polygon.svg';
 import people from '/src/assets/icons/profile/people.svg';
 
+import { confirmInput } from '/src/pages/UserPage/confirmInput.js';
+
 //프로필메뉴
 export function profileMenuTemplate(userobj) {
   let { id, user_photo, user_nickname, user_year } = userobj;
@@ -115,4 +117,84 @@ export function mannerTemplate(count, manner_title) {
           <img src=${people} alt="" />
           <span>${count}</span><p>${manner_title}</p> 
       </div>`;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    프로필카드                                   */
+/* -------------------------------------------------------------------------- */
+
+export function profileCardUserInfoTemplate(userInfoObj) {
+  let {
+    id,
+    user_nickname: nickname,
+    user_year: year,
+    user_photo,
+  } = userInfoObj;
+  return /*html */ `
+    <figure>
+      <figcaption>
+        <p>${nickname}</p>
+        <span>${year}기</span>
+      </figcaption>
+      
+      <img src="${
+        import.meta.env.VITE_PB_URL
+      }api/files/users/${id}/${user_photo}" alt="" />
+    </figure>
+  `;
+}
+
+export function profileCardBasicInfosTemplate(userInfoObj) {
+  let {
+    id,
+    user_photo,
+    user_job: job,
+    user_age: age,
+    user_gender: gender,
+    user_nickname: nickname,
+    user_organization: organization,
+    user_certification: centertification,
+  } = userInfoObj;
+  return /*html */ `<div>
+  <h2>기본 정보</h2>
+  <a href="/src/pages/UserPage/children_pages/profileModify/index.html">수정하기</a>
+</div>
+<ul>
+  <li>
+    <p>프로필사진</p>
+    <img
+      class="profile--card-user-img"
+      src="${import.meta.env.VITE_PB_URL}api/files/users/${id}/${user_photo}"
+      alt=""
+    />
+  </li>
+  <li>
+    <p>이름(별명)</p>
+    <span>${nickname}</span>
+  </li>
+  <li>
+    <p>하는일</p>
+    <span>${confirmInput(job)}</span>
+  </li>
+  <li>
+    <p>프로필 키워드</p>
+    <span>미입력</span>
+  </li>
+  <li>
+    <p>성별</p>
+    <span>${confirmInput(gender)}</span>
+  </li>
+  <li>
+    <p>연령</p>
+    <span>${confirmInput(age)}</span>
+  </li>
+  <li>
+    <p>회사 / 학교</p>
+    <span>${confirmInput(organization)}</span>
+  </li>
+  <li>
+    <p>자격</p>
+    <span>${confirmInput(centertification)}</span>
+  </li>
+</ul>`;
 }
