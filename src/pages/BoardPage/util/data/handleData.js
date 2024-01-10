@@ -12,7 +12,8 @@ export function createData(args) {
     "max_people": args.max_people,
     "curr_people": args.curr_people,
     "content": args.content,
-    "category": args.category
+    "category": args.category,
+    "stack": args.stack
   };
   return data;
 }

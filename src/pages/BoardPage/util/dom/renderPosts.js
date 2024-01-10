@@ -19,6 +19,7 @@ export async function renderMainPosts(container) {
           <img src="/src/assets/icons/general/calendar.svg" alt="" >
           <p>${item.time}</p>
         </div>
+      </div>
     `
 
     insertFirst(container, template);
