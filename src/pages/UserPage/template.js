@@ -1,6 +1,6 @@
 import pencil from '/src/assets/icons/profile/pencil.svg';
 import rightDirection from '/src/assets/icons/profile/rightDirection.svg';
-import polygon from '/src/assets/icons/profile/polygon.svg';
+// import polygon from '/src/assets/icons/profile/polygon.svg';
 import people from '/src/assets/icons/profile/people.svg';
 
 import { confirmInput } from '/src/pages/UserPage/confirmInput.js';
@@ -86,7 +86,7 @@ export function userTemperatureTemplate(userTemperature) {
 <div class="user--temperature-progressbar-wrapper">
   <span class="user--default-temperture"
     >첫 온도 36.5℃
-    <img src=${polygon} alt="" />
+    <img src=${polygon} alt="polygon" />
   </span>
   <span class="user--temperture">${userTemperature}℃ ${
     userTemperature < 36 ? '🙂' : '😎'
