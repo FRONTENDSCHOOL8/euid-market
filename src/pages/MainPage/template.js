@@ -8,7 +8,9 @@ export function storyBoardTemplate(item) {
       <li class="story">
         <a href="/">
           <figure>
-            <img src="${getPbImageURL(item)}" alt="안나옴" />
+            <img class="story-image" src="${getPbImageURL(
+              item
+            )}" alt="안나옴" />
           </figure>
           <figcaption>
             <div class="story-title">
@@ -35,7 +37,9 @@ export function exchangeTemplate(item) {
     <li class="product">
               <a href="${`/src/pages/MainPage/detail/index#${item.id}`}">
                 <figure>
-                  <img src="${getPbImageURL(item)}" alt="안나옴" />
+                  <img class="product-image" src="${getPbImageURL(
+                    item
+                  )}" alt="안나옴" />
                 </figure>
                 <figcaption>
                   <div class="product-title">${title}</div>

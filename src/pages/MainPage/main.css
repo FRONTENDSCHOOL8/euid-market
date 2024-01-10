@@ -4,6 +4,28 @@
 .app {
   max-width: 599px;
   margin: 0 auto;
+
+  & .loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    z-index: 500;
+
+    & img {
+      width: 300px;
+      bottom: 0;
+    }
+  }
+
+  & .loading.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .Main-contents {
