@@ -1,4 +1,4 @@
-import data from '../../temp_data/data.json';
+// import data from '../../temp_data/data.json';
 import { insertLast} from '/src/lib/index';
 import { getData } from "../index.js";
 
@@ -6,9 +6,10 @@ import { getData } from "../index.js";
 // const items = await getData();
 
 
-export function renderMainPosts(container) {
+export async function renderMainPosts(container) {
 
-  data.forEach((item) => {
+  const items = await getData();
+  items.forEach((item) => {
     const template = /* html */ `
       <div class="board--post-instance">
         <label class=" label-s board--badge">${item.badge}</label> 
