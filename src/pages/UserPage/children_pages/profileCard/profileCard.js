@@ -10,7 +10,7 @@ import { getNode, insertFirst } from '/src/lib/';
 /* -------------------------------------------------------------------------- */
 /*                                     개발용                                    */
 /* -------------------------------------------------------------------------- */
-const TEST_USER_ID = 'c24hzewie4gweri';
+const TEST_USER_ID = 'bexmuprbriobf8v';
 
 // 최상단 프로필카드
 (async () => {

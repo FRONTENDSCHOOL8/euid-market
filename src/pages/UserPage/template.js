@@ -13,7 +13,7 @@ export function profileMenuTemplate(userobj) {
 <div class="user--profile-picture-wrapper">
   <img
     class="user--profile-picture"
-    src="${import.meta.env.VITE_PB_URL}api/files/users/${id}/${user_photo}"
+    src="${import.meta.env.VITE_PB_URL}/api/files/users/${id}/${user_photo}"
     alt="${user_nickname}님의 프로필 사진"
   />
   <a href="/src/pages/Userpage/children_pages/profileCard/index.html"
@@ -139,7 +139,7 @@ export function profileCardUserInfoTemplate(userInfoObj) {
       
       <img src="${
         import.meta.env.VITE_PB_URL
-      }api/files/users/${id}/${user_photo}" alt="" />
+      }/api/files/users/${id}/${user_photo}" alt="" />
     </figure>
   `;
 }
@@ -164,7 +164,7 @@ export function profileCardBasicInfosTemplate(userInfoObj) {
     <p>프로필사진</p>
     <img
       class="profile--card-user-img"
-      src="${import.meta.env.VITE_PB_URL}api/files/users/${id}/${user_photo}"
+      src="${import.meta.env.VITE_PB_URL}/api/files/users/${id}/${user_photo}"
       alt=""
     />
   </li>
@@ -197,4 +197,27 @@ export function profileCardBasicInfosTemplate(userInfoObj) {
     <span>${confirmInput(centertification)}</span>
   </li>
 </ul>`;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  프로필 카드 수정                                 */
+/* -------------------------------------------------------------------------- */
+export function profilePublicButtonTemplate(privacyObj) {
+  let { gender_is_public, age_is_public } = privacyObj;
+  return /*html */ `  <li>
+<p>성별</p>
+<span>정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.</span>
+<div class="profile--modify-visibility profile--gender-is-public">
+  <button type="button" class="profile--modify-private" data-is_private =${gender_is_public} data-is_public = ${!gender_is_public} >비공개</button>
+  <button type="button" class="profile--modify-public " data-is_private =${!gender_is_public} data-is_public = ${gender_is_public}>전체공개</button>
+</div>
+</li>
+<li>
+<p>연령</p>
+<span>정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.</span>
+<div class="profile--modify-visibility">
+  <button type="button"  class="profile--modify-private" data-is_public =${!age_is_public}>비공개</button>
+  <button type="button"  class="profile--modify-public" data-is_public =${age_is_public}>전체공개</button>
+</div>
+</li>`;
 }
