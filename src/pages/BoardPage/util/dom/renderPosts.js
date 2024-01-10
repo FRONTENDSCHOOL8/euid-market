@@ -1,9 +1,5 @@
-// import data from '../../temp_data/data.json';
-import { insertLast} from '/src/lib/index';
+import { insertFirst } from '/src/lib/index';
 import { getData } from "../index.js";
-
-
-// const items = await getData();
 
 
 export async function renderMainPosts(container) {
@@ -63,6 +59,6 @@ export async function renderTogetherPosts(container) {
         </div>
       </div>
     `
-    insertLast(container, template)
+    insertFirst(container, template)
   })
 }
