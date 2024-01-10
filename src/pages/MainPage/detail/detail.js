@@ -3,6 +3,7 @@ import { getPbImageURL } from '/src/lib/utils/getPbImage.js';
 import {
   productDetailTemplate,
   productPriceTemplate,
+  userInfoTemplate,
 } from '/src/pages/MainPage/template.js';
 
 import pb from '/src/lib/api/pocketbase.js';
@@ -19,8 +20,17 @@ pb.collection('product_list')
   .getOne(hash)
   .then((product) => {
     attr(productImg, 'src', getPbImageURL(product));
+
     insertLast(mainContent, productDetailTemplate(product));
+
     insertFirst(price, productPriceTemplate(product));
+
+    pb.collection('users')
+      .getOne(product.seller)
+      .then((resolve) => {
+        insertLast('.user-info', userInfoTemplate(resolve));
+      });
+
     tl.from('body', {
       opacity: 0,
       x: '100%',
