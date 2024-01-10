@@ -11,7 +11,8 @@ export function createData(args) {
     "time": args.time,
     "max_people": args.max_people,
     "curr_people": args.curr_people,
-    "content": args.content
+    "content": args.content,
+    "category": args.category
   };
   return data;
 }

@@ -8,11 +8,11 @@ export async function renderMainPosts(container) {
   items.forEach((item) => {
     const template = /* html */ `
       <div class="board--post-instance">
-        <label class=" label-s board--badge">${item.badge}</label> 
+        <label class=" label-s board--badge">${item.category}</label> 
         <h2>${item.title}</h2>
         <div class="board--flex">
           <img src="/src/assets/icons/general/fullpeople.svg" alt="" >
-          <p>${item.req}</p>
+          <p>${item.requirements}</p>
         </div>
         
         <div class="board--flex">
@@ -21,7 +21,7 @@ export async function renderMainPosts(container) {
         </div>
     `
 
-    insertLast(container, template);
+    insertFirst(container, template);
   })
 }
 

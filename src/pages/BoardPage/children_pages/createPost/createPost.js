@@ -197,14 +197,6 @@ function handleRequirement(e) {
   gender.textContent = target.textContent;
 }
 
-// function increaseMaxCount() { 
-//   let count = getNode('#board--people-count');
-//   let countNum = Number(count.textContent);
-//   if(countNum === 100) return;
-//   countNum = ++countNum;
-//   count.textContent = countNum.toString();
-// }
-
 function handleCount(option) {
   let count = getNode('#board--people-count');
   let countNum = Number(count.textContent);
@@ -213,14 +205,6 @@ function handleCount(option) {
   if(countNum === 100 || countNum === 0) return;
   count.textContent = countNum.toString();
 }
-
-// function decreaseMaxCount() {
-//   let count = getNode('#board--people-count');
-//   let countNum = Number(count.textContent);
-//   if(countNum === 0) return;
-//   countNum = --countNum;
-//   count.textContent = countNum.toString();
-// }
 
 function nextPage() {
   const firstPage = getNode(".board--create-post-page.one");
