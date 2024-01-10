@@ -1,6 +1,6 @@
 import pencil from '/src/assets/icons/profile/pencil.svg';
 import rightDirection from '/src/assets/icons/profile/rightDirection.svg';
-// import polygon from '/src/assets/icons/profile/polygon.svg';
+import polygon from '/src/assets/icons/profile/Polygon.svg';
 import people from '/src/assets/icons/profile/people.svg';
 
 import { confirmInput } from '/src/pages/UserPage/confirmInput.js';
