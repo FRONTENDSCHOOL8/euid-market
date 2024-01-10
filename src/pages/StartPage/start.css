@@ -1,3 +1,7 @@
+body{
+  max-width: 599px;
+  margin: 0 auto;
+}
 .login--logo-container{
   display: flex;
   position: fixed;

@@ -37,13 +37,7 @@ const productList = getNode('.Main-product-list');
 const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
 const banner = getNode('.Main-banner');
-
-function dataLoad() {
-  return [
-    pb.collection('senior_story').getList(),
-    pb.collection('product_list').getList(),
-  ];
-}
+const loading = getNode('.loading');
 
 (async () => {
   const [senior, product] = await Promise.all(dataLoad());
@@ -52,10 +46,45 @@ function dataLoad() {
   const productData = product.items;
 
   function onLoad() {
-    seniorData.forEach((item) => {
-      insertLast('.Main-story-board', storyBoardTemplate(item));
+    insertList(seniorData, storyBoardTemplate);
+    insertList(productData, exchangeTemplate);
+
+    const storyImg = getNodes('.story-image');
+    const exchangeImg = getNodes('.product-image');
+
+    let count = 0;
+    const check = storyImg.length + exchangeImg.length;
+
+    storyImg.forEach((item) => {
+      item.onload = () => {
+        count++;
+        console.log(count);
+
+        if (count === check) {
+          removeClass(loading, 'active');
+        }
+      };
     });
+
+    exchangeImg.forEach((item) => {
+      item.onload = () => {
+        count++;
+        console.log(count);
+
+        if (count === check) {
+          removeClass(loading, 'active');
+        }
+      };
+    });
+
     animation('.story');
+  }
+
+  function dataLoad() {
+    return [
+      pb.collection('senior_story').getList(),
+      pb.collection('product_list').getList(),
+    ];
   }
 
   function classClear() {
@@ -116,16 +145,16 @@ function dataLoad() {
   function handleExchange(e) {
     const menuName = e.currentTarget.className;
     activatePage(menuName);
-    clearContents(productList);
-    insertList(productData, exchangeTemplate);
+    // clearContents(productList);
+    // insertList(productData, exchangeTemplate);
     animation('.product');
   }
 
   function handleSeniorStory(e) {
     const menuName = e.currentTarget.className;
     activatePage(menuName);
-    clearContents(seniorStoryBoard);
-    insertList(seniorData, storyBoardTemplate);
+    // clearContents(seniorStoryBoard);
+    // insertList(seniorData, storyBoardTemplate);
     animation('.story');
   }
 

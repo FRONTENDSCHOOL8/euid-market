@@ -13,7 +13,7 @@ export function profileMenuTemplate(userobj) {
 <div class="user--profile-picture-wrapper">
   <img
     class="user--profile-picture"
-    src="${import.meta.env.VITE_PB_URL}api/files/users/${id}/${user_photo}"
+    src="${import.meta.env.VITE_PB_URL}/api/files/users/${id}/${user_photo}"
     alt="${user_nickname}님의 프로필 사진"
   />
   <a href="/src/pages/Userpage/children_pages/profileCard/index.html"
@@ -139,7 +139,7 @@ export function profileCardUserInfoTemplate(userInfoObj) {
       
       <img src="${
         import.meta.env.VITE_PB_URL
-      }api/files/users/${id}/${user_photo}" alt="" />
+      }/api/files/users/${id}/${user_photo}" alt="" />
     </figure>
   `;
 }
@@ -164,7 +164,7 @@ export function profileCardBasicInfosTemplate(userInfoObj) {
     <p>프로필사진</p>
     <img
       class="profile--card-user-img"
-      src="${import.meta.env.VITE_PB_URL}api/files/users/${id}/${user_photo}"
+      src="${import.meta.env.VITE_PB_URL}/api/files/users/${id}/${user_photo}"
       alt=""
     />
   </li>
