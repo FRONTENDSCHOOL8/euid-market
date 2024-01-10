@@ -10,6 +10,7 @@ import {
   profileContentsTemplate,
   profileSubContentsTemplate,
 } from '/src/pages/UserPage/template.js';
+
 import { deleteStorage, getNode, insertFirst, insertAfter } from '/src/lib/';
 //배포전 수정 !!!!!!!!!!!!!!!1
 const TEST_USER_ID = 'c24hzewie4gweri';
@@ -23,7 +24,7 @@ const TEST_USER_ID = 'c24hzewie4gweri';
   const userInfoResult = (
     await pb
       .collection('users')
-      .getList(1, 50, { filter: `id = "${TEST_USER_ID}" ` })
+      .getList(1, 10, { filter: `id = "${TEST_USER_ID}" ` })
   ).items[0];
 
   // 배지 정보 가져오기
