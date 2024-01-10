@@ -1,14 +1,11 @@
-import data from '../../temp_data/data.json';
-import { insertLast} from '/src/lib/index';
+import { insertFirst } from '/src/lib/index';
 import { getData } from "../index.js";
 
 
-// const items = await getData();
+export async function renderMainPosts(container) {
 
-
-export function renderMainPosts(container) {
-
-  data.forEach((item) => {
+  const items = await getData();
+  items.forEach((item) => {
     const template = /* html */ `
       <div class="board--post-instance">
         <label class=" label-s board--badge">${item.badge}</label> 
@@ -62,6 +59,6 @@ export async function renderTogetherPosts(container) {
         </div>
       </div>
     `
-    insertLast(container, template)
+    insertFirst(container, template)
   })
 }

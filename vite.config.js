@@ -11,8 +11,8 @@ export default defineConfig({
 
         // 메인 페이지
         mainPage: resolve(__dirname, 'src/pages/MainPage/index.html'),
-        // detailPage: resolve(__dirname, 'src/pages/MainPage/detail/index.html'),
-        // searchPage: resolve(__dirname, 'src/pages/MainPage/detail/index.html'),
+        detailPage: resolve(__dirname, 'src/pages/MainPage/detail/index.html'),
+        searchPage: resolve(__dirname, 'src/pages/MainPage/detail/index.html'),
 
         // 유저 페이지
         userPage: resolve(__dirname, 'src/pages/UserPage/index.html'),
@@ -41,9 +41,16 @@ export default defineConfig({
         ),
 
         // 시작 페이지
-        StartPage: resolve(__dirname, 'src/pages/StartPage/index.html'),
-        category: resolve(__dirname, 'src/pages/LoginPage/category/index.html'),
-        signup: resolve(__dirname, 'src/pages/LoginPage/signup/index.html'),
+        startPage: resolve(__dirname, 'src/pages/StartPage/index.html'),
+        categoryPage: resolve(
+          __dirname,
+          'src/pages/LoginPage/category/index.html'
+        ),
+        registerPage: resolve(
+          __dirname,
+          'src/pages/LoginPage/signup/index.html'
+        ),
+
       },
     },
   },

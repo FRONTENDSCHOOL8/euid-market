@@ -8,6 +8,7 @@
 
 .Main-contents {
   position: relative;
+  padding-bottom: 100px;
 
   & .Main-banner {
     position: fixed;
@@ -58,7 +59,7 @@
       position: fixed;
       width: 100%;
       max-width: 599px;
-      top: 0;
+      top: 40px;
       z-index: 10;
     }
 
@@ -100,7 +101,7 @@
         & a {
           & figure {
             & img {
-              width: 138px;
+              /* width: 138px; */
               height: 104px;
             }
           }
@@ -140,7 +141,7 @@
         align-items: end;
         gap: 12px;
         right: 12px;
-        bottom: 70px;
+        bottom: 80px;
         z-index: 10;
         border: 0;
 
@@ -152,18 +153,14 @@
             align-self: stretch;
             border: 0;
             background-color: var(--primary);
-            padding: 10px 12px;
             border-radius: 12px;
 
             & a {
-              padding: 0px;
+              padding: 10px 20px;
               border: 0;
-
-              & button {
-                border: 0;
-                background-color: transparent;
-                color: var(--background);
-              }
+              color: var(--background);
+              font-size: 14px;
+              font-weight: 600;
             }
           }
         }
