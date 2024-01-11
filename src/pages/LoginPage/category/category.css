@@ -111,6 +111,7 @@ body{
   padding-bottom: 3px;
   color: var(--gray-100, #E9E9E9);
   }
+  
 .login--category-card:hover{
   background: var(--primary, #373F67); 
   }
