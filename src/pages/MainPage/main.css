@@ -39,6 +39,16 @@
     color: var(--background);
     background-color: var(--Contents-contentTertiary);
 
+    & .swiper-button-prev {
+      color: black;
+      transform: scale(0.8);
+    }
+
+    & .swiper-button-next {
+      color: black;
+      transform: scale(0.8);
+    }
+
     & .banner-container {
       position: relative;
       padding: 1.25rem;
@@ -94,14 +104,16 @@
   }
 
   & .Main-scroll-area {
-    position: relative;
-    padding-top: 220px;
+    position: absolute;
+    top: 220px;
+    width: 100%;
+    padding-bottom: 100px;
 
     & .Main-menu-bar.fixed {
       position: fixed;
       width: 100%;
       max-width: 599px;
-      top: 40px;
+      top: 0;
       z-index: 10;
     }
 

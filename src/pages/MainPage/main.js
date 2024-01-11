@@ -28,6 +28,7 @@ import {
   attr,
   toggleClass,
 } from '/src/lib/';
+import { swiperTemplate } from './template';
 
 const seniorStory = getNode('.Main-menu-story');
 const seniorStoryBoard = getNode('.Main-story-board');
@@ -40,6 +41,7 @@ const banner = getNode('.Main-banner');
 const loading = getNode('.loading');
 const menuList = getNodes('.Main-menu-list li');
 const pageList = getNodes('.page-list');
+const swiperBanner = getNode('.swiper-wrapper');
 
 (async () => {
   const [senior, product] = await Promise.all(
@@ -47,6 +49,8 @@ const pageList = getNodes('.page-list');
   );
 
   function onLoad() {
+    insertLast(swiperBanner, swiperTemplate());
+
     const seniorData = senior.items;
     const productData = product.items;
 
@@ -171,7 +175,7 @@ const pageList = getNodes('.page-list');
   function handleScroll() {
     const scrollNum = parseInt(window.scrollY);
 
-    if (scrollNum >= 220) {
+    if (scrollNum >= 228) {
       addClass(menuBar, 'fixed');
     } else {
       removeClass(menuBar, 'fixed');
