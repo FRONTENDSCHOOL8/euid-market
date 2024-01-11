@@ -27,7 +27,6 @@ function handleCategory(e) {
       const button = target.closest("button");
   
       if(!button) return;
-      console.log(button);
       
       // switch 대신 객체를 사용한 방법
       const targetBtn = {
@@ -55,10 +54,6 @@ function handleCategory(e) {
   const categoryBar = getNode('.board--category-bar-container');
   // popUpCloseBtn.addEventListener('click', closePopUp);
   categoryBar.addEventListener('click', handleCategory);
-
-  
-
-  
 })();
 
 

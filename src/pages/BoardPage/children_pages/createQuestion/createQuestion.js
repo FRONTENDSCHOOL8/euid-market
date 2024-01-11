@@ -1,5 +1,5 @@
 import { getNode } from "/src/lib/index.js";
-import { removeClass, addClass, addData, createData } from "../../util/index";
+import { removeClass, addClass, addData, createData, getData, relocateHREF } from "../../util/index";
 
 
 
@@ -16,7 +16,7 @@ function dropDown() {
   
 }
 
-function createQuestion() {
+async function createQuestion() {
   const title = getNode("#question-title").value;
   const content = getNode("#question-content").value;
   const category = getNode(".board--create-question-category-value").textContent;
@@ -28,19 +28,19 @@ function createQuestion() {
     "stack" : category
   })
 
-  addData(data);
+  console.log(data.title);
+
+  await addData(data);
+  console.log('test');
+  relocateHREF("/src/pages/BoardPage/children_pages/questionPage/");
 } 
 
-// function changeCategory(e) {
-
-//   const target = e.target.closest('button');
-//   const currCategory = getNode("")
-
-
-// }
-
-const categoryContainer = getNode(".board--create-question-category-container");
-categoryContainer.addEventListener('click', dropDown);
-const createQuestionBtn = getNode(".board--create-qna-post");
-createQuestionBtn.addEventListener('click', createQuestion);
+(async () => {
+  const categoryContainer = getNode(".board--create-question-category-container");
+  categoryContainer.addEventListener('click', dropDown);
+  const createQuestionBtn = getNode(".board--create-qna-post");
+  const hello = await getData();
+  console.log(hello);
+  createQuestionBtn.addEventListener('click', createQuestion);
+})();
 

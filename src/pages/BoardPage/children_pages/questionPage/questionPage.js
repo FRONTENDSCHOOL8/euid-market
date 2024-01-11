@@ -6,7 +6,6 @@ import { getQuestionData } from "../../util/index.js";
 async function renderQuestionPage(container) {
   const data = await getQuestionData();
   const items = data.items;
-  console.log(items);
   items.forEach((item) => {
     const template = /* html */
     `
@@ -24,12 +23,11 @@ async function renderQuestionPage(container) {
     ` 
     insertFirst(container, template);
   })
-
 }
 
-
-
-insertFirst("body", renderTopBar("withTitle", "질의응답"));
-renderNavBar();
-const postContainer = getNode(".board--qna-post-container");
-renderQuestionPage(postContainer);
+(() => {
+  insertFirst("body", renderTopBar("withTitle", "질의응답"));
+  renderNavBar();
+  const postContainer = getNode(".board--qna-post-container");
+  renderQuestionPage(postContainer);
+})();
