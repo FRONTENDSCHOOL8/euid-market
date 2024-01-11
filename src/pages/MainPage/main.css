@@ -144,7 +144,7 @@
           & figure {
             & img {
               border-radius: 4px;
-              width: 138p;
+              width: 138px;
               height: 104px;
             }
           }
@@ -175,6 +175,7 @@
       display: none;
       flex-flow: column nowrap;
       justify-content: center;
+      padding-bottom: 30px;
 
       & .Main-button-list {
         position: fixed;
@@ -247,6 +248,7 @@
           & figure {
             & img {
               width: 90px;
+              height: 90px;
             }
           }
 

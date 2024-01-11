@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko-KR">
   <head>
-    <title>Euid-market - 메인</title>
+    <title>홈 | 엔터이듬</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link
@@ -9,6 +9,7 @@
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
     <link rel="stylesheet" href="/src/styles/style.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module" src="/src/pages/MainPage/swiper.js"></script>
@@ -17,7 +18,7 @@
   <body>
     <div class="app">
       <div class="loading active">
-        <img src="/src/assets/loading.gif" alt="" />
+        <img src="/src/assets/loading.gif" alt="로딩중입니다" />
       </div>
       <nav class="top-bar-container">
         <select class="top-bar-location">
@@ -26,23 +27,14 @@
         <div class="top-bar-buttons">
           <a href="/src/pages/MainPage/search/index.html">
             <button>
-              <img
-                src="/src/assets/icons/general/search.png"
-                alt="검색 아이콘"
-              />
+              <img src="/src/assets/icons/general/search.png" alt="검색" />
             </button>
           </a>
           <button>
-            <img
-              src="/src/assets/icons/general/hamburger.svg"
-              alt="알람 아이콘"
-            />
+            <img src="/src/assets/icons/general/hamburger.svg" alt="메뉴" />
           </button>
           <button>
-            <img
-              src="/src/assets/icons/general/alramBell.png"
-              alt="알림 아이콘"
-            />
+            <img src="/src/assets/icons/general/alramBell.png" alt="알림확인" />
           </button>
         </div>
       </nav>
@@ -58,7 +50,11 @@
                   <h3>
                     <span>풀리지 않는 버그 속</span>
                     <span>개발자로 살아남기</span>
-                    <a href="/">자세히 보기</a>
+                    <a
+                      href="/"
+                      aria-label="풀리지 않는 버그 속에서 개발자가 살아남는 방법 확인하러가기"
+                      >자세히 보기</a
+                    >
                   </h3>
                   <div>
                     <span>01</span>
@@ -87,11 +83,7 @@
                     ></span>
                     <span>03</span>
                   </div>
-                  <img
-                    class="banner1"
-                    src="/src/assets/banner1.png"
-                    alt="배너 이미지"
-                  />
+                  <img class="banner1" src="/src/assets/banner1.png" alt="" />
                 </div>
               </div>
               <div class="swiper-slide">
@@ -99,7 +91,11 @@
                   <h3>
                     <span>HTML, CSS 정복은</span>
                     <span><strong>슬비쌤</strong>과 함께</span>
-                    <a href="/">자세히 보기</a>
+                    <a
+                      href="https://yamoo9.github.io/front-end-master/lecture/sass-intro.html"
+                      aria-label="슬비쌤의 HTML, CSS 강의 확인하러가기"
+                      >자세히 보기</a
+                    >
                   </h3>
                   <div>
                     <span>02</span>
@@ -138,9 +134,13 @@
               <div class="swiper-slide">
                 <div class="banner-container">
                   <h3>
-                    <span>Javascript 조심해</span>
+                    <span>GSAP 조심해</span>
                     <span><strong>범쌤</strong>이 너 부셔버린데 </span>
-                    <a href="/">자세히 보기</a>
+                    <a
+                      href="https://www.inflearn.com/course/%EC%9B%B9-%EC%95%A0%EB%8B%88%EB%A7%A4%EC%9D%B4%EC%85%98-gsap-1"
+                      aria-label="범쌤의 GSAP강의 확인하러가기"
+                      >자세히 보기</a
+                    >
                   </h3>
                   <div>
                     <span>03</span>
@@ -185,10 +185,34 @@
         <div class="Main-scroll-area">
           <nav class="Main-menu-bar">
             <ul class="Main-menu-list">
-              <li class="Main-menu-story isActive">선배님 스토리</li>
-              <li class="Main-menu-exchange">기기 거래</li>
-              <li class="Main-menu-QnA">질의 응답</li>
-              <li class="Main-menu-together">같이 해요</li>
+              <li
+                class="Main-menu-story isActive"
+                tabindex="0"
+                aria-label="선배님들의 스토리 확인하기"
+              >
+                선배님 스토리
+              </li>
+              <li
+                class="Main-menu-exchange"
+                tabindex="0"
+                aria-label="기기 거래하기"
+              >
+                기기 거래
+              </li>
+              <li
+                class="Main-menu-QnA"
+                tabindex="0"
+                aria-label="질의응답 페이지"
+              >
+                질의 응답
+              </li>
+              <li
+                class="Main-menu-together"
+                tabindex="0"
+                aria-label="같이해요 페이지"
+              >
+                같이 해요
+              </li>
             </ul>
           </nav>
           <div class="Main-list-container">
@@ -197,17 +221,19 @@
               <li class="Main-button-list">
                 <ul class="active-button-list">
                   <li>
-                    <a href="/">🎧헤드셋</a>
+                    <a href="/" aria-label="헤드셋 판매하기">🎧헤드셋</a>
                   </li>
                   <li>
-                    <a href="/">⌨️ 키보드</a>
+                    <a href="/" aria-label="키보드 판매하기">⌨️ 키보드</a>
                   </li>
                   <li>
-                    <a href="/">🖱️ 마우스</a>
+                    <a href="/" aria-label="마우스 판매하기">🖱️ 마우스</a>
                   </li>
-                  <li><a href="/">💻 컴퓨터</a></li>
                   <li>
-                    <a href="/">🎈 기타 등등</a>
+                    <a href="/" aria-label="컴퓨터 판매하기">💻 컴퓨터</a>
+                  </li>
+                  <li>
+                    <a href="/" aria-label="기타 제품 판매하기">🎈 기타 등등</a>
                   </li>
                 </ul>
                 <button class="Main-plus-button">

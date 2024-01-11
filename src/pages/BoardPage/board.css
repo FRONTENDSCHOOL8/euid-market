@@ -160,6 +160,7 @@
   background: var(--background);
   justify-content: space-between;
   align-items: center;
+  z-index: 1000;
   gap: 4px;
   top: 0;
 

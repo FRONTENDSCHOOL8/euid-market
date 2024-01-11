@@ -8,6 +8,14 @@ button, input{
   cursor: pointer;        
 }
 
+body{
+  margin: 0 auto;
+  max-width: 599px;
+}
+:focus{
+  border: 2px solid orange;
+}
+
 .login--top-bar{
   padding: 20px;
   display: flex;
@@ -23,42 +31,36 @@ button, input{
   background-size: 20px 20px;
   background-position:0 center;
   padding-left: 25px;
-  display: inline-block;
+  box-sizing: border-box;
   font-size: 16px;
-  width: 70vw;
-  max-width: 800px;
+  width: 75vw;
+  max-width: 545px;
   height: 35px;
 }
+
+ h1{
+  color: var(--primary, #373F67);
+  font-weight: 700;
+  line-height: 140%;
+  font-size: 20px;
+  padding: 10px 30px;
+}
+
 .login--category-wrapper{
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 90px;
+  padding-bottom: 110px;
 
-  & h1{
-    color: var(--primary, #373F67);
-    font-weight: 700;
-    line-height: 140%;
-    font-size: 20px;
-    padding: 5vw;
-    padding-bottom: 0;
-    position: relative;
-    top: -10px;
-    right:15vw ;
-}
-
-  & button {
-    width: 86vw;
-    max-width: 800px;
+  & button[type="submit"] {
+    width: 85%;
+    max-width: 570px;
     color: #fff;
     padding: 10px 100px;
     border-radius: 8px;
     white-space: nowrap;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 5px;
     background: var(--primary, #373F67);
   }
 }
@@ -67,8 +69,33 @@ button, input{
   display: grid;
   place-items: center;
   grid-template-columns: repeat(2,minmax(0,1fr));
-  margin: 1rem;
   margin-top: 10px;
+
+   & button {
+    min-width: 160px;
+    max-width: 275px;
+    width: 25vw;
+    height: 4.2rem;
+    padding: 10px;
+    margin: 10px 5px;
+    display: flex;
+    border-radius: 8px;
+    justify-content: space-between;
+    background: var(--gray-400, #A7A7A7);
+    transition: all 0.2s;
+  
+      & .login--category-name{
+      padding: 3px;
+      white-space: nowrap;
+      text-align: start;
+      }
+      & img{
+        width: 7vw;
+        max-width: 35px;
+        padding-right: 5px;
+        padding-top: 10px;
+      }
+    }
 }
 
 .login--category-submit {
@@ -78,35 +105,13 @@ button, input{
   z-index: 10;
 }
 
-.login--category-card{
-  display: inline-block;
-  width: 35vw;
-  max-width: 300px;
-  height: 3.75rem;
-  padding: 10px;
-  margin: 10px 5px;
-  display: flex;
-  border-radius: 8px;
-  justify-content: space-between;
-  background: var(--gray-400, #A7A7A7);
-  transition: all 0.2s;
-
-    & .login--category-name{
-    padding: 5px;
-    white-space: nowrap;
-    }
-    & img{
-      width: 7vw;
-      max-width: 35px;
-      padding-right: 5px;
-    }
-  }
 .login--category-card p:nth-child(1){
   font-weight: 600;
   line-height: 150%;
   padding-bottom: 3px;
   color: var(--gray-100, #E9E9E9);
   }
+  
 .login--category-card:hover{
   background: var(--primary, #373F67); 
   }
@@ -130,8 +135,5 @@ button, input{
     src: '/src/assets/icons/login/check.svg'; 
 }
 
-button[type="reset"]{
-  display: none;
-}
 
 

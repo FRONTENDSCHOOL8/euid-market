@@ -11,12 +11,14 @@ async function renderCategory() {
   const userData = response.data.items;
   userData.forEach((item) => {
     const template = /*html*/ `
-    <li type="hidden" class="login--category-card" role="button" tabindex="0">
+    <li>
+    <button type="button" class="login--category-card">
     <div class="login--category-name">
       <p class="login--category-main paragraph-s">${item.main_category}</p>
       <p class="login--category-sub heading-s">${item.sub_category}</p>
     </div>
     <img src=${plus} alt="관심분야에 추가" />
+    </button>
   </li>
     `;
     insertLast('.login--category-list', template);
