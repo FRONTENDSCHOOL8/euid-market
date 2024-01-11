@@ -70,7 +70,7 @@ export function renderNavBar() {
       "2": () => local.setItem("curr_page", "board"),
       "3": () => local.setItem("curr_page", "location"),
       "4": () => local.setItem("curr_page", "chat"),
-      "5": () => local.setItem("curr_page", "profile")
+      "5": () => local.setItem("curr_page", "user")
     };
     
     const changeCurrPage = pages[target.dataset.index];
