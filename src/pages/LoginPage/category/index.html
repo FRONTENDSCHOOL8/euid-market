@@ -5,21 +5,18 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/styles/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login--category</title>
-    <script
-      type="module"
-      src="/src/pages/LoginPage/category/category.js"
-    ></script>
+    <title>이듬엔터 카테고리 페이지</title>
+    <script type="module" src="category.js"></script>
   </head>
   <body>
     <div class="temp-bar">
       <p class="label-m">2:26</p>
       <div class="temp-bar-icon-wrapper">
-        <img src="/src/assets/icons/general/cellular.png" alt="cellular" />
-        <img class="lte" src="/src/assets/icons/general/lte.png" alt="lte" />
+        <img src="/src/assets/icons/general/cellular.svg" alt="cellular" />
+        <img class="lte" src="/src/assets/icons/general/lte.svg" alt="lte" />
         <img
           class="battery"
-          src="/src/assets/icons/general/battery.png"
+          src="/src/assets/icons/general/battery.svg"
           alt="battery"
         />
       </div>
@@ -45,13 +42,8 @@
       </div>
     </div>
 
+    <h1>관심분야를 선택해주세요!</h1>
     <div class="login--category-wrapper">
-      <h1>관심분야를 선택해주세요!</h1>
-      <button type="reset" class="paragragh-s">
-        <img src="/src/assets/icons/login/position.svg" alt="" />
-        관심분야 선택하기
-      </button>
-
       <ul role="list" class="login--category-list"></ul>
       <button type="submit" class="login--category-submit label-s">
         이대로 저장할래요
