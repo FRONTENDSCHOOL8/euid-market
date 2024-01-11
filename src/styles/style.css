@@ -116,7 +116,7 @@
   }
 }
 
-:focus {
+:focus-visible {
   outline: none;
   border: 2px solid orange;
 }

@@ -1,10 +1,12 @@
-import { getNode } from '/src/lib/';
+import { getNode, setStorage } from '/src/lib/';
 import PocketBase from 'pocketbase';
 
 const pw = 'sonson22';
 const pb = new PocketBase(import.meta.env.VITE_PB_URL); // 로컬주소 가져와서 pb 객체 생성
 const phoneInput = getNode('#phone');
 const codeButton = getNode('#codeButton');
+const codeInput = getNode('#codeInput');
+const startButton = getNode('#start-button');
 
 //11자리 숫자가 입력되면 버튼 활성화
 phoneInput.addEventListener('input', function () {
@@ -24,6 +26,40 @@ phoneInput.addEventListener('input', function () {
   }
 });
 
+// 랜덤한 문자와 숫자 조합을 생성하는 함수
+function generateRandomCode() {
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < 6; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+
+// 다이얼로그를 표시하는 함수
+function showDialog(randomCode) {
+  const codeText = getNode('#code-text');
+  codeText.textContent = randomCode;
+  const dialog = getNode('#code-dialog');
+  dialog.showModal();
+}
+
+// '복사하기' 버튼에 대한 이벤트 리스너 설정
+getNode('#copy-button').addEventListener('click', function (e) {
+  e.preventDefault(); // 폼 제출을 방지합니다.
+
+  const codeText = getNode('#code-text').textContent;
+  navigator.clipboard.writeText(codeText).then(() => {
+    getNode('#code-dialog').close(); // 다이얼로그를 닫습니다.
+  });
+});
+
+// '닫기' 버튼에 대한 이벤트 리스너 설정
+getNode('#close-button').addEventListener('click', function () {
+  getNode('#code-dialog').close();
+});
+
 async function handleCode(e) {
   e.preventDefault();
 
@@ -34,10 +70,27 @@ async function handleCode(e) {
       .collection('users2')
       .authWithPassword(phoneNum, pw);
     //포켓베이스자체에서 검증을해서 유저가 맞으면 다음 권한을 넘겨줌.
+
+    // 랜덤 코드 생성 및 다이얼로그 표시
+    const randomCode = generateRandomCode();
+    showDialog(randomCode);
   } catch {
-    alert('error!');
+    alert('회원이 아닙니다. 회원가입하시겠어요?');
   }
   // console.log(userData);
 }
 
 codeButton.addEventListener('click', handleCode);
+
+codeInput.addEventListener('input', function () {
+  if (codeInput.value.length > 0) {
+    // 입력값이 있을 경우 .login--active 클래스 추가 및 버튼 활성화
+    startButton.classList.add('login--start-active');
+    startButton.disabled = false;
+  } else {
+    // 입력값이 없을 경우 .login--active 클래스 제거 및 버튼 비활성화
+    startButton.classList.remove('login--start-active');
+    startButton.disabled = true;
+  }
+});
+console.log(codeInput);

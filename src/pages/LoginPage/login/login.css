@@ -111,8 +111,54 @@
   text-decoration: underline;
   color: var(--Contents-contentSecondary, #919191);
 }
-#codeButton.active {
+.login--active {
   border: 1px solid black;
   color: black;
 }
+.login--start-active{
+ background-color: #0056b3;
+}
+
+dialog {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px; /* 적당한 너비 설정 */
+  background: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  & p {
+   font-size: 16px;
+   color: #333;
+   margin-bottom: 20px;
+  }
+
+  & button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+}
+
+dialog button:hover {
+  background: #0056b3;
+}
+
+dialog #close-button {
+  background: #6c757d;
+}
+
+dialog #close-button:hover {
+  background: #545b62;
+}
+
 
