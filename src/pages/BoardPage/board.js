@@ -44,21 +44,16 @@ function handleCategory(e) {
 
 (() => {
   renderNavBar();
-  // NavBar 이미 설정
+
   const {localStorage} = window;
   localStorage.setItem("curr_page", "board")
 
   const postContainer = getNode(".board--post-list");
 
   renderMainPosts(postContainer);
-  // const popUpCloseBtn = getNode('.board--popup-close-btn');
+
   const categoryBar = getNode('.board--category-bar-container');
-  // popUpCloseBtn.addEventListener('click', closePopUp);
   categoryBar.addEventListener('click', handleCategory);
-
-  
-
-  
 })();
 
 
