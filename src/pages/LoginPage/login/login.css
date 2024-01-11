@@ -15,12 +15,17 @@
   & p{
     padding-top: 20px;
   }
+  & h1 {
+    white-space: nowrap;
+    padding:  0;
+  }
 }
 .login--signup-subtitle{
   font-size: 12px;
   font-weight: 400;
   line-height: 160%;
   padding: 10px 0;
+  white-space: nowrap;
 }
 
 .login--signup-form {
