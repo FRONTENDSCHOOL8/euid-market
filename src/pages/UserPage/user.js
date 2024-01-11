@@ -48,7 +48,7 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
     userProfileSubContents,
     profileSubContentsTemplate(userInfoResult.user_nickname)
   );
-  //로그아웃
+  //로그아웃 (확인 필요 !!!!!!!)
   const logoutButton = getNode('.user--logout');
   function handleLogout() {
     pb.authStore.clear();
