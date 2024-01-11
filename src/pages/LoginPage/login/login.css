@@ -106,7 +106,7 @@
   text-decoration: underline;
   color: var(--Contents-contentSecondary, #919191);
 }
-#verify-button.active {
+#codeButton.active {
   border: 1px solid black;
   color: black;
 }

@@ -1,5 +1,6 @@
 import { tiger, insertLast } from '/src/lib';
 import plus from '/src/assets/icons/login/plus.svg';
+import check from '/src/assets/icons/login/check.svg';
 //import PocketBase from 'pocketbase';
 
 // 카테고리 리스트 동적 랜더링
