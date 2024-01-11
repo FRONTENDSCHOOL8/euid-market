@@ -48,7 +48,6 @@ function handleCategory(e) {
   const {localStorage} = window;
   localStorage.setItem("curr_page", "board")
 
-
   const postContainer = getNode(".board--post-list");
 
   renderMainPosts(postContainer);
