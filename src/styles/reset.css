@@ -137,7 +137,7 @@ html {
 .app {
   position: relative;
   max-width: 599px;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 
