@@ -74,10 +74,12 @@ async function handleCode(e) {
     // 랜덤 코드 생성 및 다이얼로그 표시
     const randomCode = generateRandomCode();
     showDialog(randomCode);
-  } catch {
+    // 생성된 랜덤 코드를 로컬 스토리지에 저장
+    await setStorage(phoneNum, randomCode);
+  } catch (error) {
     alert('회원이 아닙니다. 회원가입하시겠어요?');
+    console.error(error); // 에러 로깅
   }
-  // console.log(userData);
 }
 
 codeButton.addEventListener('click', handleCode);
