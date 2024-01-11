@@ -1,5 +1,6 @@
 import { insertFirst } from '/src/lib/index';
-import { getData } from "../index.js";
+import { getData, getUserData, getUserProfilePicture } from "../index.js";
+
 
 
 export async function renderMainPosts(container) {
@@ -64,38 +65,47 @@ export async function renderMainPosts(container) {
 
 export async function renderTogetherPosts(container) {
   const items = await getData();
+  // const check = await getUserData(items[15].created_by);
+  // const imageSrc = await getUserProfilePicture(check);
   items.forEach((item) => {
-    const template = /* html */ 
-    `
-      <div class="board--together-content" data-id=${item.id}>
-        <header>
-          <section>
-            <p style=${item.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"} class="paragraph-s">${item.status}</p>
-            <p class="paragraph-s">• ${item.type}</p>
-            <p class="paragraph-s">• ${item.location}</p>
-          </section>
-          <h2 class="label-m">${item.title}</h2>
-        </header>
-
-        <figure>
-          <img src="/src/assets/icons/general/fullpeople.svg" alt="" />
-          <figcaption class="paragraph-s">${item.requirements} 참여가능</figcaption>
-        </figure>
-        <figure>
-          <img src="/src/assets/icons/general/calendar.svg" alt="" />
-          <figcaption class="paragraph-s">${item.time}</figcaption>
-        </figure>
-
-        <div>
-          <figure>
-            <img class="board--together-profile-picture" src="" alt="" />
-            <figcaption class="paragraph-s">${item.curr_people}/${item.max_people}명</figcaption>
-          </figure>
-
-          <p class="paragraph-s">35분 전</p>
-        </div>
-      </div>
-    `
-    insertFirst(container, template)
+      let userID;
+      getUserData(item.created_by).then((data) => {
+        userID = data
+        console.log(userID);
+        getUserProfilePicture(userID).then((imageURL) => {
+          const template = /* html */ 
+          `
+            <div class="board--together-content" data-id=${item.id}>
+              <header>
+                <section>
+                  <p style=${item.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"} class="paragraph-s">${item.status}</p>
+                  <p class="paragraph-s">• ${item.type}</p>
+                  <p class="paragraph-s">• ${item.location}</p>
+                </section>
+                <h2 class="label-m">${item.title}</h2>
+              </header>
+      
+              <figure>
+                <img src="/src/assets/icons/general/fullpeople.svg" alt="" />
+                <figcaption class="paragraph-s">${item.requirements} 참여가능</figcaption>
+              </figure>
+              <figure>
+                <img src="/src/assets/icons/general/calendar.svg" alt="" />
+                <figcaption class="paragraph-s">${item.time}</figcaption>
+              </figure>
+      
+              <div>
+                <figure>
+                  <img class="board--together-profile-picture" src=${imageURL} alt="" />
+                  <figcaption class="paragraph-s">${item.curr_people}/${item.max_people}명</figcaption>
+                </figure>
+      
+                <p class="paragraph-s">35분 전</p>
+              </div>
+            </div>
+          `
+          insertFirst(container, template)
+        })
+      });
   })
 }

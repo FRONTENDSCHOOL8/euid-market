@@ -37,3 +37,12 @@ export async function getQuestionData() {
   });
   return resultList;
 }
+
+export async function getUserData(userID) {
+  const record = await pb.collection('users').getOne(userID);
+  return record;
+}
+
+export async function getUserProfilePicture(item, fileName="user_photo") {
+  return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item[fileName]}`
+}
