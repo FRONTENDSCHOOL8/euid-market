@@ -19,6 +19,7 @@ function debounce(func, delay = 100) {
 }
 
 async function inputHandler(e) {
+  clearContents(searchList);
   if (e.target.value === '') {
     clearContents(searchList);
   } else {
