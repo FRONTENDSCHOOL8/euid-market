@@ -13,7 +13,6 @@ function dropDown() {
   } else {
     addClass(categories, "hidden");
   }
-  
 }
 
 async function createQuestion() {
@@ -29,7 +28,7 @@ async function createQuestion() {
   })
 
   await addData(data);
-  relocateHREF("/src/pages/BoardPage/children_pages/questionPage/");
+  relocateHREF("/src/pages/BoardPage/");
 } 
 
 (async () => {
