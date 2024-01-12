@@ -1,6 +1,6 @@
 import { insertFirst } from '/src/lib/index';
 import { getData, getUserData, getUserProfilePicture, getQuestionData, getOneData, getTogetherData } from "../index.js";
-import defaultPfp from "/src/assets/images/board/default_pfp.svg";
+// import defaultPfp from "/src/assets/images/board/default_pfp.svg";
 
 export async function renderMainPosts(container) {
   const items = await getData();

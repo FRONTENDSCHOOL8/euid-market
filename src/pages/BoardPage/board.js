@@ -2,9 +2,7 @@
 import { renderNavBar } from "../../components/general/renderNavBar.js";
 import { getNode, } from "../../lib/index.js";
 import { renderMainPosts, renderTogetherPosts, renderQuestionPosts, addClass, removeClass } from "./util/dom/index.js";
-import { relocateLink } from "./util/index.js";
-
-
+import { relocateLink, cancelRequests } from "./util/index.js";
 
 function changeLink(element, link="/src/pages/BoardPage/children_pages/createPost/") {
   element.href = link;
@@ -40,6 +38,8 @@ function openPost(e) {
 
 function handleCategory(e) {
   e.preventDefault();
+  const controller = new AbortController();
+  controller.abort();
   const target = e.target;
   const postContainer = getNode(".board--post-list");
   const button = target.closest("button");
@@ -55,14 +55,17 @@ function handleCategory(e) {
 
   const targetBtn = {
     "1": () => {
+      cancelRequests();
       changeLink(createPostBtn);
       renderPosts(button, postContainer, "main");
     },
     "2": () => {
+      cancelRequests();
       changeLink(createPostBtn);
       renderPosts(button, postContainer, "together");
     },
     "3": () => {
+      cancelRequests();
       changeLink(createPostBtn, "/src/pages/BoardPage/children_pages/createQuestion/");
       renderPosts(button, postContainer, "question");
     }

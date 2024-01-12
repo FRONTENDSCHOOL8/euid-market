@@ -58,3 +58,7 @@ export async function getOneData(id, collection) {
   const data = await pb.collection(collection).getOne(id, {requestKey: null});
   return data
 }
+
+export function cancelRequests() {
+  pb.cancelAllRequests();
+}
