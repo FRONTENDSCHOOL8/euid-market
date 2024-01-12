@@ -43,10 +43,8 @@ function handleCategory(e) {
       // switch 대신 객체를 사용한 방법
       const targetBtn = {
         "1": () => popUp(),
-        "2": () => console.log("인기글"),
-        "3": () => relocateLink("/src/pages/BoardPage/children_pages/boardContent/"),
-        "4": () => relocateLink("/src/pages/BoardPage/children_pages/questionPage/"),
-        "5": () => console.log("자유게시판")
+        "2": () => relocateLink("/src/pages/BoardPage/children_pages/boardContent/"),
+        "3": () => relocateLink("/src/pages/BoardPage/children_pages/questionPage/")
       };
       
       const pickButton = targetBtn[button.dataset.index];
