@@ -11,7 +11,7 @@ export async function renderMainPosts(container) {
       `
       <div class="board--post-instance" data-id=${item.id}>
         <label class=" label-s board--badge">${item.category}</label> 
-        <h2>${item.title}</h2>
+        <h2>${item.title.length > 30 ? item.title.slice(1, 30) + "..." : item.title}</h2>
         <figure class="board--flex">
           <img src="/src/assets/icons/general/fullpeople.svg" alt="" >
           <figcaption class="paragraph-m">${item.requirements}</figcaption>
@@ -28,8 +28,8 @@ export async function renderMainPosts(container) {
       `
       <div class="board--post-instance" data-id=${item.id}>
         <label class="label-s board--badge">${item.category}</label> 
-        <h2>${item.title.length > 20 ? item.content.slice(1, 20) + "..." : item.title}</h2>
-        <p class="paragraph-s board--qna-content">${item.content.length > 30 ? item.content.slice(1, 30) + "..." : item.content}</p>
+        <h2>${item.title.length > 20 ? item.title.slice(1, 20) + "..." : item.title}</h2>
+        <p class="paragraph-s board--qna-content">${item.content.length > 25 ? item.content.slice(1, 25) + "..." : item.content}</p>
 
         <section class="board--flex">
           <p class="paragraph-s">${item.location}</p>
@@ -77,7 +77,7 @@ export async function renderTogetherPosts(container) {
                 <p class="paragraph-s">• ${item.type}</p>
                 <p class="paragraph-s">• ${item.location}</p>
               </section>
-              <h2 class="label-m">${item.title}</h2>
+              <h2 class="label-m">${item.title.length > 25 ? item.title.slice(1, 25) + "..." : item.title}</h2>
             </header>
     
             <figure>

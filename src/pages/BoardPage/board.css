@@ -211,8 +211,6 @@
 
 .board--post-list {
   padding-bottom: 68px;
-  max-height: 70vh;
-  overflow-y: scroll;
 }
 
 .board--search-post-container {
@@ -236,8 +234,8 @@
   }
 }
 
-body { 
-  max-width: 599px;
-  overflow: hidden;
+.board--nav-container {
+  position: sticky;
+  top: 0;
 }
 
