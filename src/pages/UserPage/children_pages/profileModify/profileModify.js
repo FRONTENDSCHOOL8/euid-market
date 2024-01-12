@@ -3,10 +3,11 @@ import pb from '/src/lib/api/pocketbase';
 import {
   profilePublicButtonTemplate,
   profileSaveTemplate,
+  profileExposureDetailTermsTemplate,
 } from '/src/pages/UserPage/template';
 import { handleDivDisplayNone } from '/src/pages/UserPage/utils/displayNone.js';
 
-import { getNode, insertAfter, insertFirst } from '/src/lib/';
+import { getNode, insertAfter, insertFirst, insertLast } from '/src/lib/';
 //배포전 수정 !!!!!!!!!!!!!!!1
 const TEST_USER_ID = 'bexmuprbriobf8v';
 
@@ -134,11 +135,18 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
   }
 
   function renderTerms(e) {
-    const template = /*html*/ `<span class="profile--exposure-terms-detail">이듬엔터는 서비스 이용 과정에서 회원의 간략한 정보를 공개할 수 있는 프로필 서비스를 제공합니다.
-    프로필 서비스는 회원이 직접 입력한 정보를 기반으로 회원의 선택에 따라 다른 이용자에게 공개될 수 있으며, 회원은 프로필 공개 여부를 서비스 내에서 언제든지 설정할 수 있습니다.</span>`;
-    insertAfter(e.target.closest('li'), template);
+    if (!getNode('.profile--exposure-terms-detail')) {
+      insertLast(
+        e.target.closest('label'),
+        profileExposureDetailTermsTemplate()
+      );
+      profileExposureTermsDetail.innerText = '숨기기';
+    } else {
+      getNode('.profile--exposure-terms-detail').remove();
+      profileExposureTermsDetail.innerText = '자세히';
+    }
   }
-  console.log(profileExposureTermsDetail);
+
   submitButton.addEventListener('click', handleSubmit);
   allAgreeCheckbox.addEventListener('change', handleAllCheck);
   profileTerms.addEventListener('click', handleTermsCheck);

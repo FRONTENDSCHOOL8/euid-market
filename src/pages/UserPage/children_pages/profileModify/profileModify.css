@@ -127,8 +127,18 @@
     }
   }
   /* 프로필 공개 약관  */
-  .profile--exposure-terms-detail {
-    color: red;
+  .profile--exposure-agree {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    & div {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .profile--exposure-terms-detail {
+      color: var(--Contents-contentSecondary, #919191);
+    }
   }
 }
 
