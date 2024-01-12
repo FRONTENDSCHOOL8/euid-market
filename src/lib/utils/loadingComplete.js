@@ -6,10 +6,12 @@ export function loadingComplete(arr) {
   const temp = [];
   if (arr.length === 1) {
     temp.push(getNodes(arr[0]));
+  } else {
+    arr.forEach((className) => {
+      temp.push(getNodes(className));
+    });
   }
-  arr.forEach((className) => {
-    temp.push(getNodes(className));
-  });
+
   imageLoadingChecker(temp);
 }
 
@@ -28,9 +30,10 @@ function imageLoadingChecker(arr) {
 
   for (const item of arr) {
     item.forEach((list) => {
+      console.log(list);
       list.onload = () => {
         count++;
-
+        console.log(count);
         if (count === checkLength) {
           removeClass(loading, 'active');
         }
