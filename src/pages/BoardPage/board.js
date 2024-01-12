@@ -14,8 +14,7 @@ function clearContent(container) {
   container.innerHTML = "";
 }
 
-async function renderPosts(button, container, option) {
-  // clearContent(container);
+function renderPosts(button, container, option) {
   addClass(button, "active-category");
   const postType = {
     "main": () => renderMainPosts(container),
@@ -24,7 +23,7 @@ async function renderPosts(button, container, option) {
   };
 
   const render = postType[option];
-  await render();
+  render();
 }
 
 function openPost(e) {

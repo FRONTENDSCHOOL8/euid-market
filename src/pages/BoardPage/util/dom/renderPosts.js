@@ -1,6 +1,6 @@
 import { insertFirst } from '/src/lib/index';
 import { getData, getUserData, getUserProfilePicture, getQuestionData, getOneData, getTogetherData } from "../index.js";
-
+import defaultPfp from "/src/assets/images/board/default_pfp.svg";
 
 export async function renderMainPosts(container) {
   const items = await getData();
@@ -64,148 +64,97 @@ export async function renderMainPosts(container) {
 export async function renderTogetherPosts(container) {
   const data = await getTogetherData();
   const items = data.items;
-  items.forEach((item) => {
-    getOneData(item.created_by, 'users').then((user) => {
-      getUserProfilePicture(user)
-      .then((imageURL) => {
-        const template = /* html */ 
-        `
-          <div class="board--together-content" data-id=${item.id}>
-            <header>
-              <section>
-                <p style=${item.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"} class="paragraph-s">${item.status}</p>
-                <p class="paragraph-s">• ${item.type}</p>
-                <p class="paragraph-s">• ${item.location}</p>
-              </section>
-              <h2 class="label-m">${item.title.length > 25 ? item.title.slice(1, 25) + "..." : item.title}</h2>
-            </header>
-    
-            <figure>
-              <img src="/src/assets/icons/general/fullpeople.svg" alt="" />
-              <figcaption class="paragraph-s">${item.requirements} 참여가능</figcaption>
-            </figure>
-            <figure>
-              <img src="/src/assets/icons/general/calendar.svg" alt="" />
-              <figcaption class="paragraph-s">${item.time}</figcaption>
-            </figure>
-    
-            <div>
-              <figure>
-                <img class="board--together-profile-picture" src=${imageURL} alt="유저 사진" />
-                <figcaption class="paragraph-s">${item.curr_people}/${item.max_people}명</figcaption>
-              </figure>
-    
-              <p class="paragraph-s">35분 전</p>
-            </div>
-            
-          </div>
-        `
-        insertFirst(container, template)      
-      })
-    })
+  
+  items.forEach(async (item) => {
+    const user = await getOneData(item.created_by, 'users')
+    console.log(user.user_nickname);
+    const userPfp = await getUserProfilePicture(user)
+    const template = /* html */ 
+    `
+      <div class="board--together-content" data-id=${item.id}>
+        <header>
+          <section>
+            <p style=${item.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"} class="paragraph-s">${item.status}</p>
+            <p class="paragraph-s">• ${item.type}</p>
+            <p class="paragraph-s">• ${item.location}</p>
+          </section>
+          <h2 class="label-m">${item.title.length > 25 ? item.title.slice(1, 25) + "..." : item.title}</h2>
+        </header>
+
+        <figure>
+          <img src="/src/assets/icons/general/fullpeople.svg" alt="" />
+          <figcaption class="paragraph-s">${item.requirements} 참여가능</figcaption>
+        </figure>
+        <figure>
+          <img src="/src/assets/icons/general/calendar.svg" alt="" />
+          <figcaption class="paragraph-s">${item.time}</figcaption>
+        </figure>
+
+        <div>
+          <figure>
+            <img class="board--together-profile-picture" src=${userPfp} alt="유저 사진" />
+            <figcaption class="paragraph-s">${item.curr_people}/${item.max_people}명</figcaption>
+          </figure>
+
+          <p class="paragraph-s">35분 전</p>
+        </div>
+      </div>
+    `
+    insertFirst(container, template)      
+      
   })
 }
 
 export async function renderTogetherPostInfo(container, id) {
   const data = await getOneData(id, 'posts')
-  let user;
-  getUserData(data.created_by).then((creator) => {
-    user = creator;
-    getUserProfilePicture(user).then((imageURL) => {
-      const template = /* html */ 
-      `
-      <div class="board--post-info">
-        <figure class="board--post-info-badge">
-          <span>🧀</span>
-          <figcaption>${data.type}</figcaption>
-        </figure>
-    
-        <div role="header">
-          <span class="label-l" style=${data.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"}>${data.status}</span>
-          <h1 class="label-l">${data.title}</h1>
-          <figure class="board--post-info-requirements">
-            <img src="/src/assets/icons/board/people.svg" alt="" />
-            <figcaption class="paragraph-m">${data.requirements}</figcaption>
-          </figure>
-          <figure class="board--post-info-requirements">
-            <img src="/src/assets/icons/board/fullCalendar.svg" alt="" />
-            <figcaption class="paragraph-m">스터디</figcaption>
-          </figure>
-        </div>
-    
-        <p class="paragraph-m">${data.content}</p>
-    
-        <h3 class="label-m">참여중인 이웃 ${data.curr_people}/${data.max_people}</h3>
-    
-        <figure class="board--post-info-creator">
-          <img src=${imageURL} alt="유저 사진" />
-          
-          <div>
-            <div>
-              <span class="board--post-info-creator-username label-m">${user.user_nickname}</span>
-              <span class="board--post-info-creator-role">모임장</span>
-            </div>
-            <p class="board--post-info-creator-info">연남동 인증 4회</p>
-          </div>
-          
-        </figure>
-    
-        <button class="board--fixed-button">
-          참여하기
-        </button>
+  const user = await getUserData(data.created_by);
+  const userPfp = await getUserProfilePicture(user);
+
+  const template = /* html */ 
+  `
+  <div class="board--post-info">
+    <figure class="board--post-info-badge">
+      <span>🧀</span>
+      <figcaption>${data.type}</figcaption>
+    </figure>
+
+    <div role="header">
+      <span class="label-l" style=${data.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"}>${data.status}</span>
+      <h1 class="label-l">${data.title}</h1>
+      <figure class="board--post-info-requirements">
+        <img src="/src/assets/icons/board/people.svg" alt="" />
+        <figcaption class="paragraph-m">${data.requirements}</figcaption>
+      </figure>
+      <figure class="board--post-info-requirements">
+        <img src="/src/assets/icons/board/fullCalendar.svg" alt="" />
+        <figcaption class="paragraph-m">스터디</figcaption>
+      </figure>
+    </div>
+
+    <p class="paragraph-m">${data.content}</p>
+
+    <h3 class="label-m">참여중인 이웃 ${data.curr_people}/${data.max_people}</h3>
+
+    <figure class="board--post-info-creator">
+      <img src=${userPfp} alt="유저 사진" />
       
-      </div>
-      `
-      insertFirst(container, template);
-    })
-    .catch(() => {
-      const template = /* html */ 
-      `
-      <div class="board--post-info">
-        <figure class="board--post-info-badge">
-          <span>🧀</span>
-          <figcaption>${data.type}</figcaption>
-        </figure>
-    
-        <div role="header">
-          <span class="label-l" style=${data.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"}>${data.status}</span>
-          <h1 class="label-l">${data.title}</h1>
-          <figure class="board--post-info-requirements">
-            <img src="/src/assets/icons/board/people.svg" alt="" />
-            <figcaption class="paragraph-m">${data.requirements}</figcaption>
-          </figure>
-          <figure class="board--post-info-requirements">
-            <img src="/src/assets/icons/board/fullCalendar.svg" alt="" />
-            <figcaption class="paragraph-m">스터디</figcaption>
-          </figure>
+      <div>
+        <div>
+          <span class="board--post-info-creator-username label-m">${user.user_nickname}</span>
+          <span class="board--post-info-creator-role">모임장</span>
         </div>
-    
-        <p class="paragraph-m">${data.content}</p>
-    
-        <h3 class="label-m">참여중인 이웃 ${data.curr_people}/${data.max_people}</h3>
-    
-        <figure class="board--post-info-creator">
-          <div class="board--post-info-creator-placeholder"></div>
-          
-          <div>
-            <div>
-              <span class="board--post-info-creator-username label-m">${user.user_nickname}</span>
-              <span class="board--post-info-creator-role">모임장</span>
-            </div>
-            <p class="board--post-info-creator-info">연남동 인증 4회</p>
-          </div>
-          
-        </figure>
-    
-        <button class="board--fixed-button">
-          참여하기
-        </button>
-      
+        <p class="board--post-info-creator-info">연남동 인증 4회</p>
       </div>
-      `
-      insertFirst(container, template);
-    })
-  })
+      
+    </figure>
+
+    <button class="board--fixed-button">
+      참여하기
+    </button>
+  
+  </div>
+  `
+  insertFirst(container, template);
 }
 
 export async function renderQuestionPosts(container) {
@@ -232,94 +181,45 @@ export async function renderQuestionPosts(container) {
 
 export async function renderQuestionPostInfo(container, id) {
   const data = await getOneData(id, 'posts');
-  let user;
-  getUserData(data.created_by).then((creator) => {
-    user = creator;
-    getUserProfilePicture(user).then((imageURL) => {
-      const template = /* html */ 
-      `
-      <div class="board--post-info">
-        <figure class="board--post-info-badge">
-          <figcaption>${data.stack}</figcaption>
-        </figure>
-    
-        <div role="header">
-          <span class="label-l">Q.</span>
-          <h1 class="label-l">${data.title}</h1>
-          
-        </div>
-    
-        <p class="paragraph-l">${data.content}</p>
-    
-        
-    
-        <figure class="board--post-info-creator">
-          <img src=${imageURL} alt="유저 사진" />
-          
-          <div>
-            <div>
-              <span class="board--post-info-creator-username label-m">${user.user_nickname}</span>
-              <span class="board--post-info-creator-role">모임장</span>
-            </div>
-            <p class="board--post-info-creator-info">연남동 인증 4회</p>
-          </div>
-          
-        </figure>
-    
-        <button class="board--fixed-button">
-          생각하기
-        </button>
+  const user = await getUserData(data.created_by);
+  const userPfp = await getUserProfilePicture(user);
+
+  const template = /* html */ 
+  `
+  <div class="board--post-info">
+    <figure class="board--post-info-badge">
+      <figcaption>${data.stack}</figcaption>
+    </figure>
+
+    <div role="header">
+      <span class="label-l">Q.</span>
+      <h1 class="label-l">${data.title}</h1>
       
-      </div>
-      `
-      insertFirst(container, template);
-    })
-    .catch(() => {
-      const template = /* html */ 
-      `
-      <div class="board--post-info">
-        <figure class="board--post-info-badge">
-          <span>🧀</span>
-          <figcaption>${data.type}</figcaption>
-        </figure>
+    </div>
+
+    <p class="paragraph-l">${data.content}</p>
+
     
-        <div role="header">
-          <span class="label-l" style=${data.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"}>${data.status}</span>
-          <h1 class="label-l">${data.title}</h1>
-          <figure class="board--post-info-requirements">
-            <img src="/src/assets/icons/board/people.svg" alt="" />
-            <figcaption class="paragraph-m">${data.requirements}</figcaption>
-          </figure>
-          <figure class="board--post-info-requirements">
-            <img src="/src/assets/icons/board/fullCalendar.svg" alt="" />
-            <figcaption class="paragraph-m">스터디</figcaption>
-          </figure>
-        </div>
-    
-        <p class="paragraph-m">${data.content}</p>
-    
-        <h3 class="label-m">참여중인 이웃 ${data.curr_people}/${data.max_people}</h3>
-    
-        <figure class="board--post-info-creator">
-          <div class="board--post-info-creator-placeholder"></div>
-          
-          <div>
-            <div>
-              <span class="board--post-info-creator-username label-m">${user.user_nickname}</span>
-              <span class="board--post-info-creator-role">모임장</span>
-            </div>
-            <p class="board--post-info-creator-info">연남동 인증 4회</p>
-          </div>
-          
-        </figure>
-    
-        <button class="board--fixed-button">
-          참여하기
-        </button>
+
+    <figure class="board--post-info-creator">
+      <img src=${userPfp} alt="유저 사진" />
       
+      <div>
+        <div>
+          <span class="board--post-info-creator-username label-m">${user.user_nickname}</span>
+          <span class="board--post-info-creator-role">모임장</span>
+        </div>
+        <p class="board--post-info-creator-info">연남동 인증 4회</p>
       </div>
-      `
-      insertFirst(container, template);
-    })
-  })
+      
+    </figure>
+
+    <button class="board--fixed-button">
+      생각하기
+    </button>
+  
+  </div>
+  `
+  insertFirst(container, template);
+    
 }
