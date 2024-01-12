@@ -57,6 +57,11 @@
   gap: 5px;
   border: 0.3px solid var(--Contents-contentTertiary, #c9cbd6);
   background: var(--background, #FFF);
+
+  & figure {
+    display: flex;
+    gap: 4px;
+  }
   
   & .board--flex {
     display: flex;

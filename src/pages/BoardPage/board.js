@@ -7,7 +7,7 @@ import { relocateLink } from "./util/index.js";
 function openPost(e) {
   e.preventDefault();
   
-  const target = e.target.closest(".board--post-instance");
+  const target = e.target.closest("div");
   if(!target) return;
   
   const id = target.dataset.id;
@@ -16,13 +16,17 @@ function openPost(e) {
   relocateLink("/src/pages/BoardPage/children_pages/postInfo/");
 }
 
+function changeLink(element, link="/src/pages/BoardPage/children_pages/createPost/") {
+  element.href = link;
+}
+
 function handleCategory(e) {
   e.preventDefault();
-
   const target = e.target;
   const postContainer = getNode(".board--post-list");
   const button = target.closest("button");
   const buttonList = getNode(".board--category-bar-wrapper")
+  const createPostBtn = getNode(".board--create-post");
   if(!button) return;
 
   for(const li of buttonList.children) {
@@ -30,9 +34,18 @@ function handleCategory(e) {
   }
 
   const targetBtn = {
-    "1": () => renderPosts(button, postContainer, "main"),
-    "2": () => renderPosts(button, postContainer, "together"),
-    "3": () => renderPosts(button, postContainer, "question")
+    "1": () => {
+      changeLink(createPostBtn);
+      renderPosts(button, postContainer, "main");
+    },
+    "2": () => {
+      changeLink(createPostBtn);
+      renderPosts(button, postContainer, "together");
+    },
+    "3": () => {
+      changeLink(createPostBtn, "/src/pages/BoardPage/children_pages/createQuestion/");
+      renderPosts(button, postContainer, "question");
+    }
   };
   
   const pickButton = targetBtn[button.dataset.index];
