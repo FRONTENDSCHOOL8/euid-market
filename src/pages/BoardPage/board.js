@@ -19,6 +19,18 @@ function closePopUp() {
   addClass(popUpContainer, 'hidden');
 }
 
+function openPost(e) {
+  e.preventDefault();
+  
+  const target = e.target.closest(".board--post-instance");
+  if(!target) return;
+  
+  const id = target.dataset.id;
+  localStorage.setItem("curr_id", id);
+
+  relocateLink("/src/pages/BoardPage/children_pages/postInfo/");
+}
+
 function handleCategory(e) {
       e.preventDefault();
   
@@ -43,17 +55,17 @@ function handleCategory(e) {
 
 (() => {
   renderNavBar();
-  // NavBar 이미 설정
+  
   const {localStorage} = window;
   localStorage.setItem("curr_page", "board")
 
   const postContainer = getNode(".board--post-list");
+  const categoryBar = getNode('.board--category-bar-container');
 
   renderMainPosts(postContainer);
-  // const popUpCloseBtn = getNode('.board--popup-close-btn');
-  const categoryBar = getNode('.board--category-bar-container');
-  // popUpCloseBtn.addEventListener('click', closePopUp);
+  
   categoryBar.addEventListener('click', handleCategory);
+  postContainer.addEventListener('click', openPost);
 })();
 
 

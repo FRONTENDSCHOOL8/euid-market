@@ -28,10 +28,7 @@ async function createQuestion() {
     "stack" : category
   })
 
-  console.log(data.title);
-
   await addData(data);
-  console.log('test');
   relocateHREF("/src/pages/BoardPage/children_pages/questionPage/");
 } 
 
