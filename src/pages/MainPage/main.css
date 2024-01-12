@@ -2,30 +2,32 @@
 @import url(/src/pages/MainPage/search/search.css);
 
 .app {
-  max-width: 599px;
-  margin: 0 auto;
+  /* max-width: 599px;
+  margin: 0 auto; */
 
   & .loading {
     position: absolute;
     top: 0;
-    left: 0;
+    left: -10%;
     display: none;
     background-color: white;
-    width: 100vw;
+    width: 115%;
     height: 100vh;
     z-index: 1200;
     overflow: hidden;
 
     & img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-45%, -50%);
+      margin: 0 auto;
       width: 300px;
-      bottom: 0;
     }
   }
 
   & .loading.active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
   }
 }
 
