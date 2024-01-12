@@ -26,15 +26,15 @@ function imageLoadingChecker(arr) {
     return length;
   })();
 
-  console.log(checkLength);
+  console.log(`We have to load ${checkLength} images`);
 
   for (const item of arr) {
     item.forEach((list) => {
-      console.log(list);
       list.onload = () => {
         count++;
-        console.log(count);
+        console.log(`this is ${count} image`);
         if (count === checkLength) {
+          console.log('load complete!!');
           removeClass(loading, 'active');
         }
       };

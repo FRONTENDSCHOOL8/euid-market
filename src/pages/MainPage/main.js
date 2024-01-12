@@ -15,7 +15,8 @@ import { renderNavBar } from '/src/components/general/index.js';
 import {
   storyBoardTemplate,
   exchangeTemplate,
-} from '/src/pages/MainPage/template.js';
+  swiperTemplate,
+} from '/src/pages/MainPage/util/';
 
 import pb from '/src/lib/api/pocketbase.js';
 
@@ -29,7 +30,6 @@ import {
   toggleClass,
   loadingComplete,
 } from '/src/lib/';
-import { swiperTemplate } from './template';
 
 const seniorStory = getNode('.Main-menu-story');
 const seniorStoryBoard = getNode('.Main-story-board');

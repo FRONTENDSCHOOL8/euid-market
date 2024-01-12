@@ -1,6 +1,7 @@
 import { getNode, insertLast, clearContents } from '/src/lib/';
 import pb from '/src/lib/api/pocketbase.js';
-import { exchangeTemplate } from '/src/pages/MainPage/template.js';
+import { exchangeTemplate } from '/src/pages/MainPage/util/';
+
 const inputBox = getNode('.search-container > input');
 const searchList = getNode('.search-list');
 const back = getNode('.search-container > img');
@@ -39,5 +40,5 @@ async function inputHandler(e) {
 
 inputBox.addEventListener('input', debounce(inputHandler));
 back.addEventListener('click', () => {
-  window.history.back();
+  window.location.href = '/src/pages/MainPage/index.html';
 });

@@ -11,8 +11,14 @@ export default defineConfig({
 
         // 메인 페이지
         mainPage: resolve(__dirname, 'src/pages/MainPage/index.html'),
-        detailPage: resolve(__dirname, 'src/pages/MainPage/detail/index.html'),
-        searchPage: resolve(__dirname, 'src/pages/MainPage/detail/index.html'),
+        detailPage: resolve(
+          __dirname,
+          'src/pages/MainPage/children_pages/detail/index.html'
+        ),
+        searchPage: resolve(
+          __dirname,
+          'src/pages/MainPage/children_pages/detail/index.html'
+        ),
 
         // 유저 페이지
         userPage: resolve(__dirname, 'src/pages/UserPage/index.html'),
@@ -50,7 +56,6 @@ export default defineConfig({
           __dirname,
           'src/pages/LoginPage/signup/index.html'
         ),
-
       },
     },
   },

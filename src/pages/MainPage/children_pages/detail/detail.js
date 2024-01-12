@@ -1,11 +1,10 @@
-import { getNode, insertLast, insertBefore, loadingComplete } from '/src/lib/';
+import { getNode, insertLast, insertBefore } from '/src/lib/';
 import {
   productDetailTemplate,
   userInfoTemplate,
-} from '/src/pages/MainPage/template.js';
+} from '/src/pages/MainPage/util/';
 import { renderTopBar } from '/src/components/general/index.js';
 import pb from '/src/lib/api/pocketbase.js';
-
 import gsap from 'gsap';
 const tl = gsap.timeline();
 

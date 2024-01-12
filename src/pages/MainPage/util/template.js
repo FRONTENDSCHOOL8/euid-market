@@ -38,7 +38,7 @@ export function exchangeTemplate(item) {
 
   const template = /* html */ `
 <li class="product">
-  <a href="${`/src/pages/MainPage/detail/index#${item.id}`}">
+  <a href="${`/src/pages/MainPage/children_pages/detail/index#${item.id}`}">
     <figure>
       <img class="product-image" src="${getPbImageURL(item)}" alt="안나옴" />
     </figure>
@@ -47,7 +47,7 @@ export function exchangeTemplate(item) {
       <div class="product-info-container">
         <span class="product-location">${location}</span>
         <span>•</span>
-        <span>1일전</span>
+        <span>${getUploadTime(item.created)}</span>
       </div>
       <div class="product-state-container">
         <span class="product-state ${stateClass}">${state}</span>

@@ -1,5 +1,5 @@
-@import url(/src/pages/MainPage/detail/detail.css);
-@import url(/src/pages/MainPage/search/search.css);
+@import url(/src/pages/MainPage/children_pages/search/search.css);
+@import url(/src/pages/MainPage/children_pages/detail/detail.css);
 
 .app {
   /* max-width: 599px;
@@ -120,7 +120,7 @@
       position: fixed;
       width: 100%;
       max-width: 599px;
-      top: 0;
+      top: -2px;
       z-index: 10;
     }
 
@@ -278,6 +278,7 @@
 
             & .product-title {
               font-size: 0.875rem;
+              line-height: 1.2;
             }
 
             & .product-info-container {
