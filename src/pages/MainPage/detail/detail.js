@@ -1,15 +1,6 @@
-import {
-  getNode,
-  attr,
-  insertLast,
-  insertFirst,
-  insertBefore,
-  loadingComplete,
-} from '/src/lib/';
-import { getPbImageURL } from '/src/lib/utils/getPbImage.js';
+import { getNode, insertLast, insertBefore, loadingComplete } from '/src/lib/';
 import {
   productDetailTemplate,
-  productPriceTemplate,
   userInfoTemplate,
 } from '/src/pages/MainPage/template.js';
 import { renderTopBar } from '/src/components/general/index.js';
@@ -21,27 +12,21 @@ const tl = gsap.timeline();
 const container = getNode('.app');
 insertBefore(container, renderTopBar('withHome'));
 const hash = window.location.hash.slice(1);
-const productImg = getNode('.Main-visual > img');
-const mainContent = getNode('.main-content');
-const price = getNode('.function-bar > div > div');
+const app = getNode('.app');
 
 pb.collection('product_list')
   .getOne(hash)
   .then((product) => {
-    attr(productImg, 'src', getPbImageURL(product));
-    insertLast(mainContent, productDetailTemplate(product));
-    insertFirst(price, productPriceTemplate(product));
-
+    insertLast(app, productDetailTemplate(product));
     pb.collection('users')
       .getOne(product.seller)
       .then((resolve) => {
         insertLast('.user-info', userInfoTemplate(resolve));
-        loadingComplete(['body img']);
       });
 
-    // tl.from('body', {
-    //   opacity: 0,
-    //   x: '100%',
-    //   ease: 'power2.inOut',
-    // });
+    tl.from('body', {
+      opacity: 0,
+      x: '100%',
+      ease: 'power2.inOut',
+    });
   });
