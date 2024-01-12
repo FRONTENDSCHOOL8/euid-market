@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <title>마이페이지 | 엔터이듬</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/src/pages/UserPage/user.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="user--profile-menu">
+        <ul>
+          <li>
+            <a
+              ><img src="/src/assets/icons/profile/Q&A.svg" alt="" /><span
+                >나의 Q&A</span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="/src/pages/UserPage/children_pages/profileCard/index.html"
+              ><img src="/src/assets/icons/profile/profile.svg" alt="" /><span
+                >나의 프로필</span
+              ></a
+            >
+          </li>
+          <li>
+            <a
+              ><img src="/src/assets/icons/profile/alramBell.svg" alt="" /><span
+                >내 소식</span
+              ></a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- 열정온도 -->
+      <div class="user--profile-temperture"></div>
+      <!-- 받은 좋아요 응답률 -->
+      <div class="user--profile-percents">
+        <div class="user--profile-percent">
+          <img src="/src/assets/icons/profile/heart.svg" alt="" />
+          <div class="user--profile-evaluation">
+            <p>받은 좋아요 <span>100%</span></p>
+            <span>11개 중 11명이 만족</span>
+          </div>
+        </div>
+        <div class="user--profile-percent">
+          <img src="/src/assets/icons/profile/speech.svg" alt="" />
+          <div class="user--profile-evaluation">
+            <p>응답률 <span> - %</span></p>
+            <span>표시될 만큼 충분히 채팅하지 않았어요</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 프로필 서브 메뉴 -->
+      <ul class="user--profile-contents"></ul>
+
+      <!-- 프로필 기본 메뉴 -->
+      <ul class="user--contents"></ul>
+
+      <!-- 하단 navbar -->
+    </div>
+  </body>
+</html>

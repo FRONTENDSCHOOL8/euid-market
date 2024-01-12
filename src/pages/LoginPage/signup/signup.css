@@ -1,0 +1,109 @@
+.login--signup-container {
+  max-width: 599px;
+  margin: 0 auto;
+  padding: 0 12px;
+
+  & a:nth-child(1){
+    padding: 10px ;
+  }
+}
+.login--signup-title{
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 150%;
+
+  & p{
+    padding-top: 20px;
+  }
+}
+.login--signup-subtitle{
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 160%;
+  padding: 10px 0;
+}
+
+.login--signup-form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+
+  & form{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+  }
+  & form > input {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    padding: 12px 12px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    border: 0.5px solid black;
+  }
+  /* 인증문자 받기 버튼 */
+  & form > button {
+    width: 100%;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 150%;
+    color: var(--Contents-contentSecondary, #919191);
+    border: 0.5px solid var(--Contents-contentSecondary, #919191);
+  }
+  & .login--code-section{
+    width: 100%;
+  }
+  /* 인증번호 입력 */
+  & .login--code-section > input {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    padding: 12px 12px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    border: 0.5px solid black;
+  }
+  & .login--code-section > p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 160%;
+    padding-bottom: 20px;
+    color: var(--Contents-contentSecondary, #919191);
+  }
+}
+#start-button {
+  color: var(--background, #FFF);
+  font-size: 15px;
+  line-height: 140%;
+  border-radius: 8px;
+  padding: 12px 0px;
+  background: var(--Contents-contentSecondary, #919191);
+}
+.login--signup-email{
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 160%;
+
+  & span {
+    text-decoration: underline;
+  }
+}
+.login--code-is-active{
+  color: black;
+  border-color: black;
+}
+
+.login--nocode{
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 160%;
+  text-decoration: underline;
+  color: var(--Contents-contentSecondary, #919191);
+}
+

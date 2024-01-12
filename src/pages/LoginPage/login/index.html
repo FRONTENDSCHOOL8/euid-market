@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인 | 엔터이듬</title>
+    <script type="module" src="login.js"></script>
+  </head>
+  <body>
+    <div class="login--container">
+      <div class="temp-bar">
+        <p class="label-s">2:26</p>
+        <div class="temp-bar-icon-wrapper">
+          <img src="/src/assets/icons/general/cellular.svg" alt="cellular" />
+          <img class="lte" src="/src/assets/icons/general/lte.svg" alt="lte" />
+          <img
+            class="battery"
+            src="/src/assets/icons/general/battery.svg"
+            alt="battery"
+          />
+        </div>
+      </div>
+
+      <a href="/src/pages/Startpage/"
+        ><img src="/src/assets/icons/login/direction=left.svg" alt="뒤로가기"
+      /></a>
+
+      <div class="login--signup-title">
+        <p>안녕하세요!</p>
+        <h1>휴대폰 번호로 로그인해주세요.</h1>
+      </div>
+      <p class="login--signup-subtitle">
+        휴대폰 번호는 안전하게 보관되며 서로에게 공개되지 않아요.
+      </p>
+
+      <div class="login--signup-form">
+        <form>
+          <!-- 휴대폰 번호 입력 -->
+          <label for="phone" class="hidden">휴대폰 번호:</label>
+          <input
+            type="text"
+            inputmode="tel"
+            id="phone"
+            name="phone"
+            aria-required="true"
+            placeholder="휴대폰 번호(-없이 숫자만 입력)"
+            maxlength="11"
+            required
+          />
+          <!-- 인증문자 받기 버튼 -->
+          <button type="button" id="codeButton" disabled>인증문자 받기</button>
+          <!-- 인증문자 다이얼로그 -->
+          <dialog id="code-dialog">
+            <p id="code-text"></p>
+            <button id="copy-button">복사하기</button>
+            <button id="close-button">닫기</button>
+          </dialog>
+        </form>
+
+        <form>
+          <!-- 인증번호 입력 -->
+          <div class="login--code-section">
+            <label for="codeInput" class="hidden">인증번호 입력</label>
+            <input
+              type="text"
+              id="codeInput"
+              aria-required="true"
+              placeholder="인증번호 입력"
+            />
+            <p class="login--">어떤 경우에도 타인에게 공유하지 마세요!</p>
+            <p id="error-message" class="hidden">
+              인증문자를 다시 입력해주세요.
+            </p>
+          </div>
+          <!-- 인증번호 인증 완료 후 시작 버튼 -->
+          <button
+            type="submit"
+            id="start-button"
+            class="login--start-button"
+            disabled
+          >
+            동의하고 시작하기
+          </button>
+        </form>
+        <a href="/" class="login--signup-email"
+          >휴대폰 번호가 변경되었나요? <span>이메일로 계정찾기</span></a
+        >
+        <a href="/src/pages/MainPage/" class="login--nocode"
+          >인증번호가 오지 않아요?</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

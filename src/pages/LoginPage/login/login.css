@@ -1,0 +1,168 @@
+.login--container {
+  max-width: 599px;
+  margin: 0 auto;
+  padding: 0 12px;
+
+  & a:nth-child(1){
+    padding: 10px ;
+  }
+}
+.login--signup-title{
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 150%;
+
+  & p{
+    padding-top: 20px;
+  }
+  & h1 {
+    white-space: nowrap;
+    padding:  0;
+  }
+}
+.login--signup-subtitle{
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 160%;
+  padding: 10px 0;
+  white-space: nowrap;
+}
+
+.login--signup-form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+
+  & form{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+  }
+  & form > input {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    padding: 12px 12px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    border: 0.5px solid black;
+  }
+  /* 인증문자 받기 버튼 */
+  & form > button {
+    width: 100%;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 150%;
+    color: var(--Contents-contentSecondary, #919191);
+    border: 0.5px solid var(--Contents-contentSecondary, #919191);
+  }
+  & .login--code-section{
+    width: 100%;
+  }
+  /* 인증번호 입력 */
+  & .login--code-section > input {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    padding: 12px 12px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    border: 0.5px solid black;
+  }
+  & .login--code-section > p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 160%;
+    padding-bottom: 20px;
+    color: var(--Contents-contentSecondary, #919191);
+  }
+}
+#start-button {
+  color: var(--background, #FFF);
+  font-size: 15px;
+  line-height: 140%;
+  border-radius: 8px;
+  padding: 12px 0px;
+  background: var(--Contents-contentSecondary, #919191);
+}
+.login--signup-email{
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 160%;
+
+  & span {
+    text-decoration: underline;
+  }
+}
+.login--code-is-active{
+  color: black;
+  border-color: black;
+}
+
+.login--nocode{
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 160%;
+  text-decoration: underline;
+  color: var(--Contents-contentSecondary, #919191);
+}
+.login--active {
+  border: 1px solid black;
+  color: black;
+}
+.login--start-active{
+ background-color: #0056b3;
+ color: #0056b3;
+}
+
+dialog {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px; /* 적당한 너비 설정 */
+  background: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  & p {
+   font-size: 16px;
+   color: #333;
+   margin-bottom: 20px;
+  }
+
+  & button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+}
+
+dialog button:hover {
+  background: #0056b3;
+}
+
+dialog #close-button {
+  background: #6c757d;
+}
+
+dialog #close-button:hover {
+  background: #545b62;
+}
+
+
+#error-message {
+  color: red;
+}

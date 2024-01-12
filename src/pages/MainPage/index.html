@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <title>홈 | 엔터이듬</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="/src/styles/style.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="/src/pages/MainPage/swiper.js"></script>
+    <script type="module" src="/src/pages/MainPage/main.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="loading active">
+        <img src="/src/assets/loading.gif" alt="로딩중입니다" />
+      </div>
+      <nav class="top-bar-container">
+        <select class="top-bar-location">
+          <option value="">남가좌제2동</option>
+        </select>
+        <div class="top-bar-buttons">
+          <a href="/src/pages/MainPage/search/index.html">
+            <button>
+              <img src="/src/assets/icons/general/search.png" alt="검색" />
+            </button>
+          </a>
+          <button>
+            <img src="/src/assets/icons/general/hamburger.svg" alt="메뉴" />
+          </button>
+          <button>
+            <img src="/src/assets/icons/general/alramBell.png" alt="알림확인" />
+          </button>
+        </div>
+      </nav>
+      <main class="Main-contents">
+        <article class="Main-banner">
+          <!-- Slider main container -->
+          <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper"></div>
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </article>
+        <div class="Main-scroll-area">
+          <nav class="Main-menu-bar">
+            <ul class="Main-menu-list">
+              <li
+                class="Main-menu-story isActive"
+                aria-label="선배님들의 스토리 확인하기"
+              >
+                선배님 스토리
+              </li>
+              <li class="Main-menu-exchange" aria-label="기기 거래하기">
+                기기 거래
+              </li>
+              <li class="Main-menu-QnA" aria-label="질의응답 페이지">
+                질의 응답
+              </li>
+              <li class="Main-menu-together" aria-label="같이해요 페이지">
+                같이 해요
+              </li>
+            </ul>
+          </nav>
+          <div class="Main-list-container">
+            <ul class="page-list Main-story-board isActive"></ul>
+            <ul class="page-list Main-exchange">
+              <li class="Main-button-list">
+                <ul class="active-button-list">
+                  <li>
+                    <a href="/" aria-label="헤드셋 판매하기">🎧헤드셋</a>
+                  </li>
+                  <li>
+                    <a href="/" aria-label="키보드 판매하기">⌨️ 키보드</a>
+                  </li>
+                  <li>
+                    <a href="/" aria-label="마우스 판매하기">🖱️ 마우스</a>
+                  </li>
+                  <li>
+                    <a href="/" aria-label="컴퓨터 판매하기">💻 컴퓨터</a>
+                  </li>
+                  <li>
+                    <a href="/" aria-label="기타 제품 판매하기">🎈 기타 등등</a>
+                  </li>
+                </ul>
+                <button class="Main-plus-button">
+                  <img
+                    src="/src/assets/icons/main/plus-white.png"
+                    alt="판매할 제품 추가 버튼"
+                  />
+                </button>
+              </li>
+              <li class="Main-product-list"></li>
+            </ul>
+            <ul class="page-list Main-QnA"></ul>
+            <!-- <ul class="page-list Main-exchange"></ul> -->
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

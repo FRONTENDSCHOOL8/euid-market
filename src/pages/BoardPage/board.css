@@ -1,0 +1,243 @@
+@import url(./children_pages/boardContent/boardContent.css);
+@import url(./children_pages/postInfo/postInfo.css);
+@import url(./children_pages/createPost/createPost.css);
+@import url(./children_pages/questionPage/questionPage.css);
+@import url(./children_pages/createQuestion/createQuestion.css);
+
+.hidden {
+  display: none;
+}
+
+.board--container {
+  padding-bottom: 68px;
+  height: 100vh;
+  
+}
+
+.board--category-bar-container {
+
+  & ul {
+    display: flex;
+    align-items: center;
+    border-bottom: 0.3px solid var(--Contents-contentSecondary, #919191);
+    background: var(--primary);
+    
+    & li {
+      width: 100%;
+
+      & button {
+        display: flex;
+        padding: 10px 10px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        color: rgb(161, 161, 161);
+        background: var(--primary);
+        user-select: none;
+      }
+      & button:active {
+        background: #515b8a;
+        color: white;
+      }
+      & .active-category {
+        color: white;
+        border-top: 1px solid white;
+      }
+    }
+
+  }
+  
+}
+
+.board--post-instance {
+  padding: 12px;
+  
+  display: flex;
+  flex-flow: column;
+  gap: 5px;
+  border: 0.3px solid var(--Contents-contentTertiary, #c9cbd6);
+  background: var(--background, #FFF);
+
+  & figure {
+    display: flex;
+    gap: 4px;
+  }
+  
+  & .board--flex {
+    display: flex;
+    align-items: center;
+  }
+
+  & .board--badge {
+    padding: 0 4px;
+    border-radius: 4px;
+    background: var(--bluegray-300, #C4C7D2);
+    width: fit-content;
+    color: var(--background);
+  }
+
+}
+
+.board--popup-container {
+  position: fixed;
+  width: 100%;
+  bottom: 68px;
+
+  & .board--popup-header {
+    border-radius: 8px 8px 0px 0px;
+    background: var(--primary, #373F67);
+    display: flex;
+    padding: 16px 48px 12px 12px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+
+    & h3 {
+      color: var(--background);
+    }
+
+    & p {
+      color: var(--Contents-contentSecondary);
+    }
+  }
+
+  & .board--popup-body {
+    background: var(--primary, #373F67);
+    & ul {
+      display: flex;
+      flex-flow: column;
+      
+      & li {
+        display: flex;
+        padding: 12px 0px 12px 12px;
+        align-items: center;
+        align-self: stretch;
+        background: var(--primary, #373F67);
+        color: var(--background);
+  
+        & div {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+  
+        & img {
+          width: 34px;
+          height: 34px;
+        }
+      }
+    
+    }
+
+  }
+
+  & .board--popup-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 14px;
+    background: none;
+    border: none;
+    padding: 2px;
+    
+
+    & img {
+      height: 18px;
+      width: 18px;
+    }
+  }
+}
+
+
+.page-controller {
+  display: flex;
+  padding: 8px 12px;
+  position: sticky;
+  background: var(--background);
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  gap: 4px;
+  top: 0;
+
+  & h3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  & div {
+    display: flex;
+    gap: 8px;
+  }
+}
+
+.board--fixed-button {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 40px;
+  width: 90%;
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 10px;
+  background: var(--primary, #373F67);
+  color: white;
+  border: none; 
+  color: var(--background, #FFF);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+}
+.board--fixed-button.hidden { 
+  display: none;
+}
+.board--fixed-button.prev-page {
+  bottom: 95px;
+  background: var(--Contents-contentSecondary);
+}
+.board--fixed-button:active  {
+  background: #2b3049;
+}
+
+.board--main {
+  height: 100%;
+}
+
+.board--post-list {
+  padding-bottom: 68px;
+  max-height: 70vh;
+  overflow-y: scroll;
+}
+
+.board--search-post-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  padding: 8px 10px;
+  border-bottom: solid 1px #515b8a;
+
+  & input {
+    width: 90%;
+    height: 35px;
+    background: #515b8a;
+    border-radius: 5px;
+    padding: 0 10px;
+  }
+  & button {
+    padding: 5px;
+    width: 10%;
+  }
+}
+
+body { 
+  max-width: 599px;
+  overflow: hidden;
+}
+
