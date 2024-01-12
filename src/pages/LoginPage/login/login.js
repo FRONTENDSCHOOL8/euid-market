@@ -1,7 +1,7 @@
-import { getNode, setStorage } from '/src/lib/';
+import { getNode, setStorage, getStorage } from '/src/lib/';
 import PocketBase from 'pocketbase';
 
-const pw = 'sonson22';
+const PASSWORDKEY = 'thsxndlxn';
 const pb = new PocketBase(import.meta.env.VITE_PB_URL); // 로컬주소 가져와서 pb 객체 생성
 const phoneInput = getNode('#phone');
 const codeButton = getNode('#codeButton');
@@ -68,7 +68,7 @@ async function handleCode(e) {
 
     const userData = await pb
       .collection('users2')
-      .authWithPassword(phoneNum, pw);
+      .authWithPassword(phoneNum, PASSWORDKEY);
     //포켓베이스자체에서 검증을해서 유저가 맞으면 다음 권한을 넘겨줌.
 
     // 랜덤 코드 생성 및 다이얼로그 표시
@@ -84,15 +84,43 @@ async function handleCode(e) {
 
 codeButton.addEventListener('click', handleCode);
 
-codeInput.addEventListener('input', function () {
+// codeInput 값이 입력되면 startButton 활성화
+codeInput.addEventListener('input', function (e) {
+  e.preventDefault();
   if (codeInput.value.length > 0) {
-    // 입력값이 있을 경우 .login--active 클래스 추가 및 버튼 활성화
     startButton.classList.add('login--start-active');
     startButton.disabled = false;
   } else {
-    // 입력값이 없을 경우 .login--active 클래스 제거 및 버튼 비활성화
     startButton.classList.remove('login--start-active');
     startButton.disabled = true;
   }
+  console.log(codeInput.value);
 });
-console.log(codeInput);
+
+// startButton 클릭 이벤트 리스너
+
+startButton.addEventListener('click', async function (e) {
+  e.preventDefault();
+  const inputCode = codeInput.value;
+
+  // 사용자 입력 값 로그 출력
+  console.log('입력된 코드:', inputCode);
+
+  try {
+    const storedCode = await getStorage(phoneInput.value);
+
+    // 저장된 값 로그 출력
+    console.log('저장된 코드:', storedCode);
+
+    if (inputCode == storedCode) {
+      // 코드가 일치하면 다른 페이지로 이동
+      window.location.href = '/src/pages/Mainpage/';
+    } else {
+      // 코드가 일치하지 않으면 에러 메시지 표시
+      codeInput.style.borderColor = 'red';
+      errorMessage.classList.remove('hidden');
+    }
+  } catch (error) {
+    console.error('getStorage 함수에서 오류 발생:', error);
+  }
+});

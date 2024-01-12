@@ -1,7 +1,7 @@
 .login--signup-container {
   max-width: 599px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 12px;
 
   & a:nth-child(1){
     padding: 10px ;

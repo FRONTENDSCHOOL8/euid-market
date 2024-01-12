@@ -12,9 +12,6 @@ body{
   margin: 0 auto;
   max-width: 599px;
 }
-:focus{
-  border: 2px solid orange;
-}
 
 .login--top-bar{
   padding: 20px;

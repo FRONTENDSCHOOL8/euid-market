@@ -9,9 +9,9 @@
     <script type="module" src="login.js"></script>
   </head>
   <body>
-    <div class="login--signup-container">
+    <div class="login--container">
       <div class="temp-bar">
-        <p class="label-m">2:26</p>
+        <p class="label-s">2:26</p>
         <div class="temp-bar-icon-wrapper">
           <img src="/src/assets/icons/general/cellular.svg" alt="cellular" />
           <img class="lte" src="/src/assets/icons/general/lte.svg" alt="lte" />
@@ -50,27 +50,37 @@
             required
           />
           <!-- 인증문자 받기 버튼 -->
-          <button type="button" id="codeButton">인증문자 받기</button>
+          <button type="button" id="codeButton" disabled>인증문자 받기</button>
           <!-- 인증문자 다이얼로그 -->
           <dialog id="code-dialog">
             <p id="code-text"></p>
             <button id="copy-button">복사하기</button>
             <button id="close-button">닫기</button>
           </dialog>
+        </form>
 
+        <form>
           <!-- 인증번호 입력 -->
           <div class="login--code-section">
-            <label for="verification-code" class="hidden">인증번호 입력</label>
+            <label for="codeInput" class="hidden">인증번호 입력</label>
             <input
               type="text"
               id="codeInput"
               aria-required="true"
               placeholder="인증번호 입력"
             />
-            <p>어떤 경우에도 타인에게 공유하지 마세요!</p>
+            <p class="login--">어떤 경우에도 타인에게 공유하지 마세요!</p>
+            <p id="error-message" class="hidden">
+              인증문자를 다시 입력해주세요.
+            </p>
           </div>
           <!-- 인증번호 인증 완료 후 시작 버튼 -->
-          <button type="submit" id="start-button" class="login--start-button">
+          <button
+            type="submit"
+            id="start-button"
+            class="login--start-button"
+            disabled
+          >
             동의하고 시작하기
           </button>
         </form>
