@@ -43,6 +43,162 @@ const menuList = getNodes('.Main-menu-list li');
 const pageList = getNodes('.page-list');
 const swiperBanner = getNode('.swiper-wrapper');
 
+function dataLoad(collectionList) {
+  const arr = [];
+
+  collectionList.forEach((item) => {
+    arr.push(pb.collection(item).getList());
+  });
+
+  return arr;
+}
+
+function removeAllClass(node, className) {
+  {
+    node.forEach((item) => {
+      removeClass(item, className);
+    });
+  }
+}
+
+function classOn(node1, node2) {
+  removeAllClass(menuList, 'isActive');
+  removeAllClass(pageList, 'isActive');
+  removeClass(plusButton, 'isActive');
+  removeClass(activeButtonList, 'isActive');
+  attr(plusButton.firstElementChild, 'src', whiteURL);
+  addClass(node1, 'isActive');
+  addClass(node2, 'isActive');
+}
+
+function activatePage(menuName) {
+  if (menuName === 'main--menu-exchange') {
+    classOn(exchange, exchangeBoard);
+  } else if (menuName === 'main--menu-story') {
+    classOn(seniorStory, seniorStoryBoard);
+  }
+}
+
+function animation(node) {
+  gsap.fromTo(
+    node,
+    {
+      opacity: 0,
+      y: 10,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      stagger: 0.04,
+    }
+  );
+}
+
+function insertList(data, func) {
+  if (func === exchangeTemplate) {
+    data.forEach((item) => {
+      insertLast('.Main-product-list', func(item));
+    });
+  } else if (func === storyBoardTemplate) {
+    data.forEach((item) => {
+      insertLast('.main--story-board', func(item));
+    });
+  }
+}
+
+function handleScroll() {
+  const scrollNum = parseInt(window.scrollY);
+
+  if (scrollNum >= 228) {
+    addClass(menuBar, 'fixed');
+  } else {
+    removeClass(menuBar, 'fixed');
+
+    banner.style.transform = `translateY(${-window.scrollY / 2.5}px)`;
+  }
+}
+
+function buttonControl() {
+  plusButton.addEventListener('mouseover', () => {
+    gsap.fromTo(
+      '.Main-plus-button',
+      {
+        scale: 1,
+        y: 0,
+      },
+      {
+        duration: 0.2,
+        scale: 1.08,
+        y: -5,
+      }
+    );
+  });
+
+  plusButton.addEventListener('mouseout', () => {
+    gsap.fromTo(
+      '.Main-plus-button',
+      {
+        scale: 1.08,
+        y: -5,
+      },
+      {
+        duration: 0.2,
+        scale: 1,
+        y: 0,
+      }
+    );
+  });
+
+  plusButton.addEventListener('click', () => {
+    changeButtonColor();
+    toggleClass(plusButton, 'isActive');
+    toggleClass(activeButtonList, 'isActive');
+
+    if (Array.from(activeButtonList.classList).includes('isActive')) {
+      gsap.fromTo(
+        '.main--active-button-list > li',
+        {
+          opacity: 0,
+          x: 15,
+          y: 15,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          stagger: 0.02,
+          ease: 'power2.out',
+        }
+      );
+    }
+  });
+}
+
+function changeButtonColor() {
+  if (attr(plusButton.firstElementChild, 'src') === whiteURL) {
+    attr(plusButton.firstElementChild, 'src', blackURL);
+  } else {
+    attr(plusButton.firstElementChild, 'src', whiteURL);
+  }
+}
+
+function handleMenuBar(e) {
+  const target = e.target;
+  const menu = target.closest('li');
+
+  if (!menu) return;
+
+  const menuName = menu.className;
+
+  activatePage(menuName);
+
+  if (menuName === 'main--menu-exchange') {
+    animation('.main--product');
+  } else if (menuName === 'main--menu-story') {
+    animation('.main--story');
+  }
+}
+
 (async () => {
   const [senior, product] = await Promise.all(
     dataLoad(['senior_story', 'product_list'])
@@ -60,178 +216,8 @@ const swiperBanner = getNode('.swiper-wrapper');
     animation('.main--story');
   }
 
-  function dataLoad(collectionList) {
-    const arr = [];
-
-    collectionList.forEach((item) => {
-      arr.push(pb.collection(item).getList());
-    });
-
-    return arr;
-  }
-
-  function removeAllClass(node, className) {
-    {
-      node.forEach((item) => {
-        removeClass(item, className);
-      });
-    }
-  }
-
-  function classOn(node1, node2) {
-    removeAllClass(menuList, 'isActive');
-    removeAllClass(pageList, 'isActive');
-    removeClass(plusButton, 'isActive');
-    removeClass(activeButtonList, 'isActive');
-    attr(plusButton.firstElementChild, 'src', whiteURL);
-    addClass(node1, 'isActive');
-    addClass(node2, 'isActive');
-  }
-
-  function activatePage(menuName) {
-    if (menuName === 'main--menu-exchange') {
-      classOn(exchange, exchangeBoard);
-    } else if (menuName === 'main--menu-story') {
-      classOn(seniorStory, seniorStoryBoard);
-    }
-  }
-
-  function animation(node) {
-    gsap.fromTo(
-      node,
-      {
-        opacity: 0,
-        y: 10,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.04,
-      }
-    );
-  }
-
-  function insertList(data, func) {
-    if (func === exchangeTemplate) {
-      data.forEach((item) => {
-        insertLast('.Main-product-list', func(item));
-      });
-    } else if (func === storyBoardTemplate) {
-      data.forEach((item) => {
-        insertLast('.main--story-board', func(item));
-      });
-    }
-  }
-
-  function handleExchange(e) {
-    const menuName = e.currentTarget.className;
-    activatePage(menuName);
-    animation('.main--product');
-  }
-
-  function handleSeniorStory(e) {
-    const menuName = e.currentTarget.className;
-    activatePage(menuName);
-    animation('.main--story');
-  }
-
-  function handleScroll() {
-    const scrollNum = parseInt(window.scrollY);
-
-    if (scrollNum >= 228) {
-      addClass(menuBar, 'fixed');
-    } else {
-      removeClass(menuBar, 'fixed');
-
-      banner.style.transform = `translateY(${-window.scrollY / 2.5}px)`;
-    }
-  }
-
-  function buttonControl() {
-    plusButton.addEventListener('mouseover', () => {
-      gsap.fromTo(
-        '.Main-plus-button',
-        {
-          scale: 1,
-          y: 0,
-        },
-        {
-          duration: 0.2,
-          scale: 1.08,
-          y: -5,
-        }
-      );
-    });
-
-    plusButton.addEventListener('mouseout', () => {
-      gsap.fromTo(
-        '.Main-plus-button',
-        {
-          scale: 1.08,
-          y: -5,
-        },
-        {
-          duration: 0.2,
-          scale: 1,
-          y: 0,
-        }
-      );
-    });
-
-    plusButton.addEventListener('click', () => {
-      changeButtonColor();
-      toggleClass(plusButton, 'isActive');
-      toggleClass(activeButtonList, 'isActive');
-
-      if (Array.from(activeButtonList.classList).includes('isActive')) {
-        gsap.fromTo(
-          '.main--active-button-list > li',
-          {
-            opacity: 0,
-            x: 15,
-            y: 15,
-          },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            stagger: 0.02,
-            ease: 'power2.out',
-          }
-        );
-      }
-    });
-  }
-
-  function changeButtonColor() {
-    if (attr(plusButton.firstElementChild, 'src') === whiteURL) {
-      attr(plusButton.firstElementChild, 'src', blackURL);
-    } else {
-      attr(plusButton.firstElementChild, 'src', whiteURL);
-    }
-  }
-
-  function handleMenuBar(e) {
-    const target = e.target;
-    const menu = target.closest('li');
-
-    if (!menu) return;
-    console.log(menu);
-    const menuName = menu.className;
-
-    activatePage(menuName);
-
-    if (menuName === 'main--menu-exchange') {
-      animation('.main--product');
-    } else if (menuName === 'main--menu-story') {
-      animation('.main--story');
-    }
-  }
-
   renderNavBar();
   onLoad();
-  // seniorStory.addEventListener('click', handleSeniorStory);
-  // exchange.addEventListener('click', handleExchange);
   menuBar.addEventListener('click', handleMenuBar);
   window.addEventListener('scroll', handleScroll);
   buttonControl();
