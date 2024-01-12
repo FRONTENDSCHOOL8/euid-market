@@ -67,28 +67,72 @@ export function exchangeTemplate(item) {
   return template;
 }
 
-export function productDetailTemplate({ title, type, description, created }) {
+export function productDetailTemplate(item) {
   const template = /* html */ `
-  <div>
-    <h1 class="title">${title}</h1>
+  <div class="Main-visual">
+        <img class="main-product" src="${getPbImageURL(item)}" alt="안보임" />
+      </div>
+      <main class="Main-main">
+        <div class="user-info"></div>
+        <div class="main-content"><div>
+    <h1 class="title">${item.title}</h1>
       <div>
-        <span>${type}</span>
+        <span>${item.type}</span>
         <span>•</span>
-        <span>${getUploadTime(created)}</span>
+        <span>${getUploadTime(item.created)}</span>
       </div>
   </div>
   <p>
-  ${description}
-  </p>
+  ${item.description}
+  </p></div>
+        <div class="function-bar">
+          <div>
+            <img src="/src/assets/icons/main/heart.svg" alt="안보임" />
+            <div>
+              <span class="price">${comma(item.price)}원</span>
+              <span>가격 제안하기</span>
+            </div>
+          </div>
+          <button>채팅하기</button>
+        </div>
+      </main>
+      <footer>
+        <h2>이 글과 함께 봤어요</h2>
+        <ul>
+          <li>
+            <a href="/">
+              <img src="/src/assets/relation.png" alt="안 보임" />
+              <span>스타벅스 아메리카노</span>
+              <span>10,000원</span>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/relation.png" alt="안 보임" />
+              <span>스타벅스 아메리카노</span>
+              <span>10,000원</span>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/relation.png" alt="안 보임" />
+              <span>스타벅스 아메리카노</span>
+              <span>10,000원</span>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="/src/assets/relation.png" alt="안 보임" />
+              <span>스타벅스 아메리카노</span>
+              <span>10,000원</span>
+            </a>
+          </li>
+        </ul>
+      </footer>
+    </div>
+  
 `;
 
-  return template;
-}
-
-export function productPriceTemplate({ price }) {
-  const template = /* html */ `
-<span class="price">${comma(price)}원</span>
-`;
   return template;
 }
 
