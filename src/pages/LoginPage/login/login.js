@@ -7,7 +7,7 @@ const phoneInput = getNode('#phone');
 const codeButton = getNode('#codeButton');
 const codeInput = getNode('#codeInput');
 const startButton = getNode('#start-button');
-
+const errorMessage = getNode('#error-message');
 //11자리 숫자가 입력되면 버튼 활성화
 phoneInput.addEventListener('input', function () {
   const phoneNumber = phoneInput.value;
@@ -75,7 +75,9 @@ async function handleCode(e) {
     const randomCode = generateRandomCode();
     showDialog(randomCode);
     // 생성된 랜덤 코드를 로컬 스토리지에 저장
-    await setStorage(phoneNum, randomCode);
+    const state = await setStorage(phoneNum, randomCode);
+
+    console.log(userData);
   } catch (error) {
     alert('회원이 아닙니다. 회원가입하시겠어요?');
     console.error(error); // 에러 로깅
@@ -113,6 +115,13 @@ startButton.addEventListener('click', async function (e) {
     console.log('저장된 코드:', storedCode);
 
     if (inputCode == storedCode) {
+      const { model, token } = await getStorage('pocketbase_auth');
+
+      setStorage('auth', {
+        isAuth: !!model,
+        user: model,
+        token: token,
+      });
       // 코드가 일치하면 다른 페이지로 이동
       window.location.href = '/src/pages/Mainpage/';
     } else {
