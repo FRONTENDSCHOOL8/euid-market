@@ -1,6 +1,6 @@
 import pencil from '/src/assets/icons/profile/pencil.svg';
 import rightDirection from '/src/assets/icons/profile/rightDirection.svg';
-// import polygon from '/src/assets/icons/profile/Polygon.svg';
+import polygon from '/src/assets/icons/profile/Polygon.svg';
 import people from '/src/assets/icons/profile/people.svg';
 
 import { confirmInput } from '/src/pages/UserPage/confirmInput.js';
@@ -86,7 +86,7 @@ export function userTemperatureTemplate(userTemperature) {
 <div class="user--temperature-progressbar-wrapper">
   <span class="user--default-temperture"
     >첫 온도 36.5℃
-    <img src="" alt="polygon" />
+    <img src=${polygon} alt="polygon" />
   </span>
   <span class="user--temperture">${userTemperature}℃ ${
     userTemperature < 36 ? '🙂' : '😎'
@@ -204,20 +204,28 @@ export function profileCardBasicInfosTemplate(userInfoObj) {
 /* -------------------------------------------------------------------------- */
 export function profilePublicButtonTemplate(privacyObj) {
   let { gender_is_public, age_is_public } = privacyObj;
-  return /*html */ `  <li>
+  return /*html */ ` <li>
 <p>성별</p>
 <span>정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.</span>
-<div class="profile--modify-visibility profile--gender-is-public">
-  <button type="button" class="profile--modify-private" data-is_private =${gender_is_public} data-is_public = ${!gender_is_public} >비공개</button>
-  <button type="button" class="profile--modify-public " data-is_private =${!gender_is_public} data-is_public = ${gender_is_public}>전체공개</button>
+<div class="profile--modify-visibility profile--gender-is-public" data-type="gender">
+  <button type="button" data-is_public = false class="profile--modify-private ${
+    !gender_is_public ? 'is-active' : ''
+  }" >비공개</button>
+  <button type="button" data-is_public = true class="profile--modify-public  ${
+    gender_is_public ? 'is-active' : ''
+  } ">전체공개</button>
 </div>
 </li>
 <li>
 <p>연령</p>
 <span>정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.</span>
-<div class="profile--modify-visibility">
-  <button type="button"  class="profile--modify-private" data-is_public =${!age_is_public}>비공개</button>
-  <button type="button"  class="profile--modify-public" data-is_public =${age_is_public}>전체공개</button>
+<div class="profile--modify-visibility profile--age-is-public" data-type="age">
+  <button type="button"  class="profile--modify-private ${
+    !age_is_public ? 'is-active' : ''
+  }" data-is_public =false>비공개</button>
+  <button type="button"  class="profile--modify-public  ${
+    age_is_public ? 'is-active' : ''
+  }" data-is_public =true>전체공개</button>
 </div>
 </li>`;
 }

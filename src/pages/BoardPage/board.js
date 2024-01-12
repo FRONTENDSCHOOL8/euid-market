@@ -53,7 +53,7 @@ function handleCategory(e) {
 
 (() => {
   renderNavBar();
-  
+
   const {localStorage} = window;
   localStorage.setItem("curr_page", "board")
 
@@ -61,9 +61,11 @@ function handleCategory(e) {
   const categoryBar = getNode('.board--category-bar-container');
 
   renderMainPosts(postContainer);
+
   
   categoryBar.addEventListener('click', handleCategory);
   postContainer.addEventListener('click', openPost);
+
 })();
 
 

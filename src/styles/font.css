@@ -19,12 +19,12 @@
 
 :root {
   /* 폰트 크기 변수 */
-  --font-3xl: 44.202px;
-  --font-2xl: 33.16px;
-  --font-xl: 24.876px;
-  --font-l: 18.662px;
-  --font-m: 14px;
-  --font-s: 10.503px;
+  --font-3xl: 2.763rem;
+  --font-2xl: 2.073rem;
+  --font-xl: 1.555rem;
+  --font-l: 1.166rem;
+  --font-m: 0.875rem;
+  --font-s: 0.656rem;
 }
 
 /* --------------- Heading 사전 설정 --------------- */
