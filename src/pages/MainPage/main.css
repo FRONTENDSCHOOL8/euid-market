@@ -35,11 +35,11 @@
   }
 }
 
-.Main-contents {
+.main--contents {
   position: relative;
   padding-bottom: 100px;
 
-  & .Main-banner {
+  & .main--banner {
     position: fixed;
     max-width: 599px;
     width: 100%;
@@ -56,7 +56,7 @@
       transform: scale(0.8);
     }
 
-    & .banner-container {
+    & .main--banner-container {
       position: relative;
       padding: 1.25rem;
       margin-bottom: 2.8125rem;
@@ -142,7 +142,7 @@
       }
     }
 
-    & .Main-story-board {
+    & .main--story-board {
       display: none;
       grid-template-columns: repeat(2, 1fr);
       place-items: center;
@@ -186,7 +186,7 @@
       }
     }
 
-    & .Main-story-board.isActive {
+    & .main--story-board.isActive {
       display: grid;
     }
 
@@ -208,7 +208,7 @@
         z-index: 10;
         border: 0;
 
-        & .active-button-list {
+        & .main--active-button-list {
           display: none;
 
           & li {
@@ -228,7 +228,7 @@
           }
         }
 
-        & .active-button-list.isActive {
+        & .main--active-button-list.isActive {
           display: flex;
           flex-flow: column nowrap;
           align-items: start;
@@ -276,27 +276,27 @@
             flex-flow: column nowrap;
             justify-content: space-evenly;
 
-            & .product-title {
+            & > div:nth-child(1) {
               font-size: 0.875rem;
               line-height: 1.2;
             }
 
-            & .product-info-container {
+            & > div:nth-child(2) {
               color: var(--Contents-contentTertiary, #9da1b4);
               font-size: 0.6564375rem;
             }
 
-            & .product-state-container {
+            & div:nth-child(3) {
               display: flex;
               justify-content: start;
               align-items: center;
               gap: 0.5rem;
 
-              & .product-state {
+              & > span:nth-child(1) {
                 display: none;
               }
 
-              & .product-state.book {
+              & > span:nth-child(1).book {
                 display: inline;
                 padding: 0.35rem 0.3rem;
                 border-radius: 0.25rem;
@@ -305,7 +305,7 @@
                 font-size: 0.6564375rem;
               }
 
-              & .product-state.done {
+              & span:nth-child(1).done {
                 display: inline;
                 padding: 0.35rem 0.3rem;
                 border-radius: 0.25rem;
@@ -317,7 +317,7 @@
           }
         }
 
-        & .Main-like-container {
+        & > div {
           position: absolute;
           display: flex;
           justify-content: center;

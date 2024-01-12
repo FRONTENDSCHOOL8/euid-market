@@ -31,14 +31,14 @@ import {
   loadingComplete,
 } from '/src/lib/';
 
-const seniorStory = getNode('.Main-menu-story');
-const seniorStoryBoard = getNode('.Main-story-board');
-const activeButtonList = getNode('.active-button-list');
-const exchange = getNode('.Main-menu-exchange');
+const seniorStory = getNode('.main--menu-story');
+const seniorStoryBoard = getNode('.main--story-board');
+const activeButtonList = getNode('.main--active-button-list');
+const exchange = getNode('.main--menu-exchange');
 const exchangeBoard = getNode('.Main-exchange');
 const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
-const banner = getNode('.Main-banner');
+const banner = getNode('.main--banner');
 const menuList = getNodes('.Main-menu-list li');
 const pageList = getNodes('.page-list');
 const swiperBanner = getNode('.swiper-wrapper');
@@ -56,8 +56,8 @@ const swiperBanner = getNode('.swiper-wrapper');
 
     insertList(seniorData, storyBoardTemplate);
     insertList(productData, exchangeTemplate);
-    loadingComplete(['.story-image', '.product-image']);
-    animation('.story');
+    loadingComplete(['.main--story-image', '.main--product-image']);
+    animation('.main--story');
   }
 
   function dataLoad(collectionList) {
@@ -89,9 +89,9 @@ const swiperBanner = getNode('.swiper-wrapper');
   }
 
   function activatePage(menuName) {
-    if (menuName === 'Main-menu-exchange') {
+    if (menuName === 'main--menu-exchange') {
       classOn(exchange, exchangeBoard);
-    } else if (menuName === 'Main-menu-story') {
+    } else if (menuName === 'main--menu-story') {
       classOn(seniorStory, seniorStoryBoard);
     }
   }
@@ -118,7 +118,7 @@ const swiperBanner = getNode('.swiper-wrapper');
       });
     } else if (func === storyBoardTemplate) {
       data.forEach((item) => {
-        insertLast('.Main-story-board', func(item));
+        insertLast('.main--story-board', func(item));
       });
     }
   }
@@ -126,13 +126,13 @@ const swiperBanner = getNode('.swiper-wrapper');
   function handleExchange(e) {
     const menuName = e.currentTarget.className;
     activatePage(menuName);
-    animation('.product');
+    animation('.main--product');
   }
 
   function handleSeniorStory(e) {
     const menuName = e.currentTarget.className;
     activatePage(menuName);
-    animation('.story');
+    animation('.main--story');
   }
 
   function handleScroll() {
@@ -185,7 +185,7 @@ const swiperBanner = getNode('.swiper-wrapper');
 
       if (Array.from(activeButtonList.classList).includes('isActive')) {
         gsap.fromTo(
-          '.active-button-list > li',
+          '.main--active-button-list > li',
           {
             opacity: 0,
             x: 15,
