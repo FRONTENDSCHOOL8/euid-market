@@ -3,6 +3,7 @@ import pb from '/src/lib/api/pocketbase';
 import {
   profilePublicButtonTemplate,
   profileSaveTemplate,
+  profileModifySubmitErrorTemplate,
   profileExposureDetailTermsTemplate,
 } from '/src/pages/UserPage/template';
 import { handleDivDisplayNone } from '/src/pages/UserPage/utils/displayNone.js';
@@ -52,6 +53,7 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
   const responsibilityCheckbox = getNode('#profile--responsibility-agree');
   const submitButton = getNode('.profile--submit-save-button');
   const profileExposureTermsDetail = getNode('.profile--term-profileTerms');
+  const profileSubmitErrorMessage = getNode('.profile--submit-error-message');
   let tempData = { userPrivacyUpdataedData: {}, usersUpdatedData: {} };
   /**
    * 성별.나이 공개 토글 버튼 클릭했을때 발생하는 이벤트 함수
@@ -86,6 +88,7 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
     responsibilityCheckbox.checked = isChecked;
     if (isChecked) {
       submitButton.classList.add('is-active');
+      getNode('.profile--submit-error-message').remove();
     } else {
       submitButton.classList.remove('is-active');
     }
@@ -105,9 +108,27 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
     ) {
       allAgreeCheckbox.checked = true;
       submitButton.classList.add('is-active');
+      getNode('.profile--submit-error-message').remove();
     } else {
       allAgreeCheckbox.checked = false;
       submitButton.classList.remove('is-active');
+    }
+  }
+
+  /**
+   * 프로필 정보 노출영역 확인 탹관 클릭시 발생하는 이벤트
+   * @param {*} e
+   */
+  function renderTerms(e) {
+    if (!getNode('.profile--exposure-terms-detail')) {
+      insertLast(
+        e.target.closest('label'),
+        profileExposureDetailTermsTemplate()
+      );
+      profileExposureTermsDetail.innerText = '숨기기';
+    } else {
+      profileSubmitErrorMessage.remove();
+      profileExposureTermsDetail.innerText = '자세히';
     }
   }
 
@@ -126,24 +147,17 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
         .collection('user_privacy')
         .update(`${privacyRecordID}`, userPrivacyUpdataedData);
       await pb.collection('users').update(`${usersRecordID}`, usersUpdatedData);
-    }
-
-    getNode('.profile--modify-confirm').addEventListener(
-      'click',
-      handleDivDisplayNone
-    );
-  }
-
-  function renderTerms(e) {
-    if (!getNode('.profile--exposure-terms-detail')) {
-      insertLast(
-        e.target.closest('label'),
-        profileExposureDetailTermsTemplate()
+      getNode('.profile--modify-confirm').addEventListener(
+        'click',
+        handleDivDisplayNone
       );
-      profileExposureTermsDetail.innerText = '숨기기';
-    } else {
-      getNode('.profile--exposure-terms-detail').remove();
-      profileExposureTermsDetail.innerText = '자세히';
+      profileSubmitErrorMessage.remove();
+    }
+    if (!profileSubmitErrorMessage) {
+      insertAfter(
+        getNode('.profile--terms-lists'),
+        profileModifySubmitErrorTemplate()
+      );
     }
   }
 

@@ -274,3 +274,7 @@
     color: #ffffff;
   }
 }
+.profile--submit-error-message {
+  text-align: center;
+  color: #e11900;
+}
