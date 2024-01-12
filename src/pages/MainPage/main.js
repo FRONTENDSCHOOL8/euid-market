@@ -27,6 +27,7 @@ import {
   removeClass,
   attr,
   toggleClass,
+  loadingComplete,
 } from '/src/lib/';
 import { swiperTemplate } from './template';
 
@@ -38,7 +39,6 @@ const exchangeBoard = getNode('.Main-exchange');
 const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
 const banner = getNode('.Main-banner');
-const loading = getNode('.loading');
 const menuList = getNodes('.Main-menu-list li');
 const pageList = getNodes('.page-list');
 const swiperBanner = getNode('.swiper-wrapper');
@@ -58,43 +58,6 @@ const swiperBanner = getNode('.swiper-wrapper');
     insertList(productData, exchangeTemplate);
     loadingComplete(['.story-image', '.product-image']);
     animation('.story');
-  }
-
-  function loadingComplete(arr) {
-    const temp = [];
-    if (arr.length === 1) {
-      temp.push(getNodes(arr[0]));
-    }
-    arr.forEach((className) => {
-      temp.push(getNodes(className));
-    });
-    imageLoadingChecker(temp);
-  }
-
-  function imageLoadingChecker(arr) {
-    let count = 0;
-
-    const checkLength = (() => {
-      let length = 0;
-      arr.forEach((item) => {
-        length += item.length;
-      });
-      return length;
-    })();
-    console.log(checkLength);
-
-    for (const item of arr) {
-      item.forEach((list) => {
-        list.onload = () => {
-          count++;
-          console.log(count);
-
-          if (count === checkLength) {
-            removeClass(loading, 'active');
-          }
-        };
-      });
-    }
   }
 
   function dataLoad(collectionList) {

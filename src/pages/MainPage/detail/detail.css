@@ -2,6 +2,31 @@
   max-width: 599px;
   margin: 0 auto;
 
+  & .loading {
+    position: absolute;
+    top: 0;
+    left: -10%;
+    display: none;
+    background-color: white;
+    width: 115%;
+    height: 100vh;
+    z-index: 1200;
+    overflow: hidden;
+
+    & img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-45%, -50%);
+      margin: 0 auto;
+      width: 300px;
+    }
+  }
+
+  & .loading.active {
+    display: block;
+  }
+
   & .Main-visual > img {
     width: 100%;
   }
