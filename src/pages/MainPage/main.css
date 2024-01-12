@@ -26,6 +26,10 @@
     }
   }
 
+  & .top-bar-container {
+    z-index: 1000;
+  }
+
   & .loading.active {
     display: block;
   }
