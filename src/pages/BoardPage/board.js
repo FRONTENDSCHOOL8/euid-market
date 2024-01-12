@@ -1,23 +1,8 @@
 // import PocketBase from 'pocketbase';
 import { renderNavBar } from "../../components/general/renderNavBar.js";
 import { getNode, } from "../../lib/index.js";
-import { renderMainPosts, addClass, removeClass } from "./util/dom/index.js";
+import { renderMainPosts, renderTogetherPosts, renderQuestionPage, addClass, removeClass } from "./util/dom/index.js";
 import { relocateLink } from "./util/index.js";
-import { gsap } from "gsap";
-
-
-function popUp() {
-  const popUpContainer = getNode(".board--popup-container");
-  removeClass(popUpContainer, 'hidden');
-  gsap.from(popUpContainer, {y:1000, duration:.2});
-  const popUpCloseBtn = getNode('.board--popup-close-btn');
-  popUpCloseBtn.addEventListener('click', closePopUp);
-}
-
-function closePopUp() {
-  const popUpContainer = getNode(".board--popup-container");
-  addClass(popUpContainer, 'hidden');
-}
 
 function openPost(e) {
   e.preventDefault();
@@ -32,24 +17,45 @@ function openPost(e) {
 }
 
 function handleCategory(e) {
-      e.preventDefault();
+  e.preventDefault();
+
+  const target = e.target;
+  const postContainer = getNode(".board--post-list");
+  const button = target.closest("button");
+  const buttonList = getNode(".board--category-bar-wrapper")
+  if(!button) return;
+
+  for(const li of buttonList.children) {
+    removeClass(li.children[0], "active-category");
+  }
+
+  const targetBtn = {
+    "1": () => renderPosts(button, postContainer, "main"),
+    "2": () => renderPosts(button, postContainer, "together"),
+    "3": () => renderPosts(button, postContainer, "question")
+  };
   
-      const target = e.target;
-  
-      const button = target.closest("button");
-  
-      if(!button) return;
-      
-      // switch 대신 객체를 사용한 방법
-      const targetBtn = {
-        "1": () => popUp(),
-        "2": () => relocateLink("/src/pages/BoardPage/children_pages/boardContent/"),
-        "3": () => relocateLink("/src/pages/BoardPage/children_pages/questionPage/")
-      };
-      
-      const pickButton = targetBtn[button.dataset.index];
-      pickButton();
+  const pickButton = targetBtn[button.dataset.index];
+  pickButton();
 }
+
+function clearContent(container) {
+  container.innerHTML = "";
+}
+
+function renderPosts(button, container, option) {
+  clearContent(container);
+  addClass(button, "active-category");
+  const postType = {
+    "main": () => renderMainPosts(container),
+    "together": () => renderTogetherPosts(container),
+    "question": () => renderQuestionPage(container)
+  };
+
+  const render = postType[option];
+  render();
+}
+
 
 (() => {
   renderNavBar();

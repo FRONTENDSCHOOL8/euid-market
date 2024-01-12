@@ -4,20 +4,6 @@
 @import url(./children_pages/questionPage/questionPage.css);
 @import url(./children_pages/createQuestion/createQuestion.css);
 
-.sr-only {
-	border: 0 !important;
-	clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
-	-webkit-clip-path: inset(50%) !important;
-		clip-path: inset(50%) !important;  /* 2 */
-	height: 1px !important;
-	margin: -1px !important;
-	overflow: hidden !important;
-	padding: 0 !important;
-	position: absolute !important;
-	width: 1px !important;
-	white-space: nowrap !important;            /* 3 */
-}
-
 .hidden {
   display: none;
 }
@@ -25,35 +11,40 @@
 .board--container {
   padding-bottom: 68px;
   height: 100vh;
-  width: 100vw;
+  
 }
 
 .board--category-bar-container {
 
   & ul {
     display: flex;
-    overflow-x: scroll;
-    padding: 8px 0 8px 12px;
     align-items: center;
-    gap: 4px;
     border-bottom: 0.3px solid var(--Contents-contentSecondary, #919191);
-    background: var(--background, #FFF);
+    background: var(--primary);
+    
+    & li {
+      width: 100%;
 
-    & button {
-      display: flex;
-      padding: 6px 10px;
-      justify-content: center;
-      align-items: center;
-      border-radius: 20px;
-      border: 1px solid var(--contentTertiary, #9DA1B4);
-      background: var(--background, #FFF);
-      white-space: nowrap;
-      user-select: none;
+      & button {
+        display: flex;
+        padding: 10px 10px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        color: rgb(161, 161, 161);
+        background: var(--primary);
+        user-select: none;
+      }
+      & button:active {
+        background: #515b8a;
+        color: white;
+      }
+      & .active-category {
+        color: white;
+        border-top: 1px solid white;
+      }
     }
 
-    & button:active {
-      background: var(--Contents-contentTertiary);
-    }
   }
   
 }
@@ -197,8 +188,6 @@
   font-style: normal;
   font-weight: 600;
   line-height: 150%;
-
-  
 }
 .board--fixed-button.hidden { 
   display: none;
@@ -213,4 +202,30 @@
 
 .board--post-list {
   padding-bottom: 68px;
+}
+
+.board--search-post-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  padding: 8px 10px;
+  border-bottom: solid 1px #515b8a;
+
+  & input {
+    width: 90%;
+    height: 35px;
+    background: #515b8a;
+    border-radius: 5px;
+    padding: 0 10px;
+  }
+  & button {
+    padding: 5px;
+    width: 10%;
+  }
+}
+
+body { 
+  max-width: 599px;
+  overflow: hidden;
 }
