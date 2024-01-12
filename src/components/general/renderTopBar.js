@@ -40,7 +40,7 @@ export function renderTopBar(option = 'blank', titleText = '같이해요') {
         <a href="javascript:history.back()">
           <img src=${directionIcon} alt="뒤로가기" />
         </a>
-        <a href="javascript:history.back()">
+        <a href="/src/pages/MainPage/index.html">
           <img src=${homeIcon} alt="홈페이지" />
         </a>
       </div>
