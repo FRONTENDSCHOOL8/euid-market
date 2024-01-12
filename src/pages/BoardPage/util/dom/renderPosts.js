@@ -208,7 +208,7 @@ export async function renderTogetherPostInfo(container, id) {
   })
 }
 
-export async function renderQuestionPage(container) {
+export async function renderQuestionPosts(container) {
   const data = await getQuestionData();
   const items = data.items;
   items.forEach((item) => {

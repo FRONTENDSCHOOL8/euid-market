@@ -1,8 +1,31 @@
 // import PocketBase from 'pocketbase';
 import { renderNavBar } from "../../components/general/renderNavBar.js";
 import { getNode, } from "../../lib/index.js";
-import { renderMainPosts, renderTogetherPosts, renderQuestionPage, addClass, removeClass } from "./util/dom/index.js";
+import { renderMainPosts, renderTogetherPosts, renderQuestionPosts, addClass, removeClass } from "./util/dom/index.js";
 import { relocateLink } from "./util/index.js";
+
+
+
+function changeLink(element, link="/src/pages/BoardPage/children_pages/createPost/") {
+  element.href = link;
+}
+
+function clearContent(container) {
+  container.innerHTML = "";
+}
+
+async function renderPosts(button, container, option) {
+  clearContent(container);
+  addClass(button, "active-category");
+  const postType = {
+    "main": () => renderMainPosts(container),
+    "together": () => renderTogetherPosts(container),
+    "question": () => renderQuestionPosts(container)
+  };
+
+  const render = postType[option];
+  await render();
+}
 
 function openPost(e) {
   e.preventDefault();
@@ -16,10 +39,6 @@ function openPost(e) {
   relocateLink("/src/pages/BoardPage/children_pages/postInfo/");
 }
 
-function changeLink(element, link="/src/pages/BoardPage/children_pages/createPost/") {
-  element.href = link;
-}
-
 function handleCategory(e) {
   e.preventDefault();
   const target = e.target;
@@ -27,6 +46,7 @@ function handleCategory(e) {
   const button = target.closest("button");
   const buttonList = getNode(".board--category-bar-wrapper")
   const createPostBtn = getNode(".board--create-post");
+
   if(!button) return;
 
   for(const li of buttonList.children) {
@@ -52,24 +72,6 @@ function handleCategory(e) {
   pickButton();
 }
 
-function clearContent(container) {
-  container.innerHTML = "";
-}
-
-function renderPosts(button, container, option) {
-  clearContent(container);
-  addClass(button, "active-category");
-  const postType = {
-    "main": () => renderMainPosts(container),
-    "together": () => renderTogetherPosts(container),
-    "question": () => renderQuestionPage(container)
-  };
-
-  const render = postType[option];
-  render();
-}
-
-
 (() => {
   renderNavBar();
 
@@ -80,11 +82,9 @@ function renderPosts(button, container, option) {
   const categoryBar = getNode('.board--category-bar-container');
 
   renderMainPosts(postContainer);
-
   
   categoryBar.addEventListener('click', handleCategory);
   postContainer.addEventListener('click', openPost);
-
 })();
 
 

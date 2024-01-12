@@ -205,8 +205,14 @@
   background: #2b3049;
 }
 
+.board--main {
+  height: 100%;
+}
+
 .board--post-list {
   padding-bottom: 68px;
+  max-height: 70vh;
+  overflow-y: scroll;
 }
 
 .board--search-post-container {
@@ -234,3 +240,4 @@ body {
   max-width: 599px;
   overflow: hidden;
 }
+
