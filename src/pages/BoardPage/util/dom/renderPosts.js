@@ -12,15 +12,15 @@ export async function renderMainPosts(container) {
       <div class="board--post-instance" data-id=${item.id}>
         <label class=" label-s board--badge">${item.category}</label> 
         <h2>${item.title}</h2>
-        <div class="board--flex">
+        <figure class="board--flex">
           <img src="/src/assets/icons/general/fullpeople.svg" alt="" >
-          <p>${item.requirements}</p>
-        </div>
+          <figcaption class="paragraph-m">${item.requirements}</figcaption>
+        </figure>
         
-        <div class="board--flex">
+        <figure class="board--flex">
           <img src="/src/assets/icons/general/calendar.svg" alt="" >
-          <p>${item.time}</p>
-        </div>
+          <figcaption class="paragraph-m">${item.time}</figcaption>
+        </figure>
       </div>
       `
     } else if(item.category === "질의응답") {
@@ -97,6 +97,7 @@ export async function renderTogetherPosts(container) {
     
               <p class="paragraph-s">35분 전</p>
             </div>
+            
           </div>
         `
         insertFirst(container, template)      
@@ -207,7 +208,7 @@ export async function renderTogetherPostInfo(container, id) {
   })
 }
 
-export async function renderQuestionPage(container) {
+export async function renderQuestionPosts(container) {
   const data = await getQuestionData();
   const items = data.items;
   items.forEach((item) => {

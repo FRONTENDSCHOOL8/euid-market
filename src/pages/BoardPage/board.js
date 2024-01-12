@@ -1,28 +1,36 @@
 // import PocketBase from 'pocketbase';
 import { renderNavBar } from "../../components/general/renderNavBar.js";
 import { getNode, } from "../../lib/index.js";
-import { renderMainPosts, addClass, removeClass } from "./util/dom/index.js";
+import { renderMainPosts, renderTogetherPosts, renderQuestionPosts, addClass, removeClass } from "./util/dom/index.js";
 import { relocateLink } from "./util/index.js";
-import { gsap } from "gsap";
 
 
-function popUp() {
-  const popUpContainer = getNode(".board--popup-container");
-  removeClass(popUpContainer, 'hidden');
-  gsap.from(popUpContainer, {y:1000, duration:.2});
-  const popUpCloseBtn = getNode('.board--popup-close-btn');
-  popUpCloseBtn.addEventListener('click', closePopUp);
+
+function changeLink(element, link="/src/pages/BoardPage/children_pages/createPost/") {
+  element.href = link;
 }
 
-function closePopUp() {
-  const popUpContainer = getNode(".board--popup-container");
-  addClass(popUpContainer, 'hidden');
+function clearContent(container) {
+  container.innerHTML = "";
+}
+
+async function renderPosts(button, container, option) {
+  // clearContent(container);
+  addClass(button, "active-category");
+  const postType = {
+    "main": () => renderMainPosts(container),
+    "together": () => renderTogetherPosts(container),
+    "question": () => renderQuestionPosts(container)
+  };
+
+  const render = postType[option];
+  await render();
 }
 
 function openPost(e) {
   e.preventDefault();
   
-  const target = e.target.closest(".board--post-instance");
+  const target = e.target.closest("div");
   if(!target) return;
   
   const id = target.dataset.id;
@@ -32,23 +40,37 @@ function openPost(e) {
 }
 
 function handleCategory(e) {
-      e.preventDefault();
+  e.preventDefault();
+  const target = e.target;
+  const postContainer = getNode(".board--post-list");
+  const button = target.closest("button");
+  const buttonList = getNode(".board--category-bar-wrapper")
+  const createPostBtn = getNode(".board--create-post");
   
-      const target = e.target;
+  clearContent(postContainer);
+  if(!button) return;
+
+  for(const li of buttonList.children) {
+    removeClass(li.children[0], "active-category");
+  }
+
+  const targetBtn = {
+    "1": () => {
+      changeLink(createPostBtn);
+      renderPosts(button, postContainer, "main");
+    },
+    "2": () => {
+      changeLink(createPostBtn);
+      renderPosts(button, postContainer, "together");
+    },
+    "3": () => {
+      changeLink(createPostBtn, "/src/pages/BoardPage/children_pages/createQuestion/");
+      renderPosts(button, postContainer, "question");
+    }
+  };
   
-      const button = target.closest("button");
-  
-      if(!button) return;
-      
-      // switch 대신 객체를 사용한 방법
-      const targetBtn = {
-        "1": () => popUp(),
-        "2": () => relocateLink("/src/pages/BoardPage/children_pages/boardContent/"),
-        "3": () => relocateLink("/src/pages/BoardPage/children_pages/questionPage/")
-      };
-      
-      const pickButton = targetBtn[button.dataset.index];
-      pickButton();
+  const pickButton = targetBtn[button.dataset.index];
+  pickButton();
 }
 
 (() => {
@@ -61,11 +83,9 @@ function handleCategory(e) {
   const categoryBar = getNode('.board--category-bar-container');
 
   renderMainPosts(postContainer);
-
   
   categoryBar.addEventListener('click', handleCategory);
   postContainer.addEventListener('click', openPost);
-
 })();
 
 

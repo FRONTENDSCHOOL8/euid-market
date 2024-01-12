@@ -89,7 +89,6 @@
   & figure {
     display: flex;
     align-content: center;
-
     gap: 3px;
 
     & figcaption {
