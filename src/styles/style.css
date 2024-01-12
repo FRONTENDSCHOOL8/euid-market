@@ -74,6 +74,11 @@
   top: 0;
   z-index: 100;
 
+  & select {
+    border: none;
+  }
+
+
   & .top-bar-buttons {
     display: flex;
     gap: 7px;
