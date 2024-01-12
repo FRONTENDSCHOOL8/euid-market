@@ -27,7 +27,9 @@ import {
   removeClass,
   attr,
   toggleClass,
+  loadingComplete,
 } from '/src/lib/';
+import { swiperTemplate } from './template';
 
 const seniorStory = getNode('.Main-menu-story');
 const seniorStoryBoard = getNode('.Main-story-board');
@@ -37,9 +39,9 @@ const exchangeBoard = getNode('.Main-exchange');
 const plusButton = getNode('.Main-plus-button');
 const menuBar = getNode('.Main-menu-bar');
 const banner = getNode('.Main-banner');
-const loading = getNode('.loading');
 const menuList = getNodes('.Main-menu-list li');
 const pageList = getNodes('.page-list');
+const swiperBanner = getNode('.swiper-wrapper');
 
 (async () => {
   const [senior, product] = await Promise.all(
@@ -47,6 +49,8 @@ const pageList = getNodes('.page-list');
   );
 
   function onLoad() {
+    insertLast(swiperBanner, swiperTemplate());
+
     const seniorData = senior.items;
     const productData = product.items;
 
@@ -54,43 +58,6 @@ const pageList = getNodes('.page-list');
     insertList(productData, exchangeTemplate);
     loadingComplete(['.story-image', '.product-image']);
     animation('.story');
-  }
-
-  function loadingComplete(arr) {
-    const temp = [];
-    if (arr.length === 1) {
-      temp.push(getNodes(arr[0]));
-    }
-    arr.forEach((className) => {
-      temp.push(getNodes(className));
-    });
-    imageLoadingChecker(temp);
-  }
-
-  function imageLoadingChecker(arr) {
-    let count = 0;
-
-    const checkLength = (() => {
-      let length = 0;
-      arr.forEach((item) => {
-        length += item.length;
-      });
-      return length;
-    })();
-    console.log(checkLength);
-
-    for (const item of arr) {
-      item.forEach((list) => {
-        list.onload = () => {
-          count++;
-          console.log(count);
-
-          if (count === checkLength) {
-            removeClass(loading, 'active');
-          }
-        };
-      });
-    }
   }
 
   function dataLoad(collectionList) {
@@ -171,7 +138,7 @@ const pageList = getNodes('.page-list');
   function handleScroll() {
     const scrollNum = parseInt(window.scrollY);
 
-    if (scrollNum >= 220) {
+    if (scrollNum >= 228) {
       addClass(menuBar, 'fixed');
     } else {
       removeClass(menuBar, 'fixed');

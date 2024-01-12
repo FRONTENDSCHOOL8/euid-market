@@ -6,6 +6,9 @@ const swiper = new Swiper('.swiper', {
     delay: 5000,
   },
   speed: 1000,
+  keyboard: {
+    enabled: true,
+  },
 
   // If we need pagination
   pagination: {
@@ -13,7 +16,10 @@ const swiper = new Swiper('.swiper', {
   },
 
   // Navigation arrows
-  navigation: {},
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
 
   // And if we need scrollbar
   scrollbar: {
