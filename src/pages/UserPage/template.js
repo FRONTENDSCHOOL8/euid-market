@@ -202,8 +202,7 @@ export function profileCardBasicInfosTemplate(userInfoObj) {
 /* -------------------------------------------------------------------------- */
 /*                                  프로필 카드 수정                                 */
 /* -------------------------------------------------------------------------- */
-export function profilePublicButtonTemplate(privacyObj) {
-  let { gender_is_public, age_is_public } = privacyObj;
+export function profilePublicButtonTemplate(gender_is_public, age_is_public) {
   return /*html */ ` <li>
 <p>성별</p>
 <span>정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.</span>
@@ -220,12 +219,33 @@ export function profilePublicButtonTemplate(privacyObj) {
 <p>연령</p>
 <span>정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.</span>
 <div class="profile--modify-visibility profile--age-is-public" data-type="age">
-  <button type="button"  class="profile--modify-private ${
+  <button type="button"   class="profile--modify-private ${
     !age_is_public ? 'is-active' : ''
   }" data-is_public =false>비공개</button>
-  <button type="button"  class="profile--modify-public  ${
+  <button type="button" class="profile--modify-public  ${
     age_is_public ? 'is-active' : ''
   }" data-is_public =true>전체공개</button>
 </div>
 </li>`;
+}
+
+export function profileSaveTemplate() {
+  return /*html*/ `
+  <div class="profile--modify-save-alert">
+    <h2>저장완료!</h2>
+    <p>
+      내 질문&답변의 프로필 카드, 프로필 홈에서 변경된 프로필 정보를 확인 할
+      수 있어요.
+    </p>
+    <button type="button" class="profile--modify-confirm">확인</button>
+</div>`;
+}
+
+export function profileExposureDetailTermsTemplate() {
+  return /*html*/ `<span class="profile--exposure-terms-detail">이듬엔터는 서비스 이용 과정에서 회원의 간략한 정보를 공개할 수 있는 프로필 서비스를 제공합니다.
+  프로필 서비스는 회원이 직접 입력한 정보를 기반으로 회원의 선택에 따라 다른 이용자에게 공개될 수 있으며, 회원은 프로필 공개 여부를 서비스 내에서 언제든지 설정할 수 있습니다.</span>`;
+}
+
+export function profileModifySubmitErrorTemplate() {
+  return /*html */ `<p class="profile--submit-error-message">모든 약관을 동의해주셔야 수정이 가능합니다. </p>`;
 }

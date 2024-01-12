@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./certificate.js" type="module"></script>
+    <link rel="stylesheet" href="/src/styles/style.css" />
+    <link rel="stylesheet" href="/src/styles/reset.css" />
+    <style>
+      .profile--modify-select-form {
+        box-sizing: border-box;
+        width: 284px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        .profile--modify-select-form-title {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 13px;
+          border-bottom: 0.3px solid var(--Contents-contentSecondary, #919191);
+        }
+
+        .profile--modify-select-contents-wrapper {
+          padding: 13px;
+          display: flex;
+          flex-direction: column;
+          gap: 13px;
+        }
+
+        .profile--modify-certification-consonants {
+          display: flex;
+          gap: 5px;
+          & button {
+            border-radius: 50%;
+            background-color: var(--Contents-contentTertiary, #9da1b4);
+            color: white;
+            padding: 5px;
+            font-weight: 600;
+            border: 1px solid white;
+          }
+          & button.is-active {
+            background-color: var(--secondary);
+          }
+        }
+        .profile--modify-certification-list {
+          height: 130px;
+          /* background-color: yellow; */
+          overflow-y: scroll;
+          box-shadow: 0px 1.5px 1.5px 1.5px black;
+          & li {
+            padding: 5px;
+          }
+        }
+
+        & p {
+          text-align: center;
+        }
+        & button {
+          border-radius: 8px;
+          background-color: var(--primary);
+          padding: 8px 0;
+          color: #ffffff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile--modify-select-form">
+      <div class="profile--modify-select-form-title">
+        <h2>기사자격증 등록하기</h2>
+        <a href="/src/pages/UserPage/children_pages/profileCard/index.html">
+          <img src="/src/assets/icons/profile/close.svg" alt="" />
+        </a>
+      </div>
+      <div class="profile--modify-select-contents-wrapper">
+        <ul class="profile--modify-certification-consonants">
+          <li><button class="is-active">ㄱ</button></li>
+          <li><button>ㄴ</button></li>
+          <li><button>ㄷ</button></li>
+        </ul>
+        <ul class="profile--modify-certification-list">
+          <li>
+            <input id="profile--modify-certification" type="checkbox" />
+            <label for="profile--modify-certification">정보처리기사</label>
+          </li>
+          <li>
+            <input id="profile--modify-certification" type="checkbox" />
+            <label for="profile--modify-certification">정보처리기사</label>
+          </li>
+        </ul>
+        <p>정보처리기사,정보처리기사,정보처리기사,정보처리기사,정보처리기사</p>
+        <button>저장</button>
+      </div>
+    </div>
+  </body>
+</html>
