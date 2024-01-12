@@ -42,15 +42,9 @@ export default defineConfig({
 
         // 시작 페이지
         startPage: resolve(__dirname, 'src/pages/StartPage/index.html'),
-        categoryPage: resolve(
-          __dirname,
-          'src/pages/LoginPage/category/index.html'
-        ),
-        registerPage: resolve(
-          __dirname,
-          'src/pages/LoginPage/signup/index.html'
-        ),
-
+        category: resolve(__dirname, 'src/pages/LoginPage/category/index.html'),
+        signup: resolve(__dirname, 'src/pages/LoginPage/signup/index.html'),
+        login: resolve(__dirname, 'src/pages/LoginPage/login/index.html'),
       },
     },
   },

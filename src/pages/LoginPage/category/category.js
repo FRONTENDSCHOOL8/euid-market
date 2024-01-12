@@ -1,5 +1,6 @@
-import { tiger, insertLast } from '/src/lib';
+import { tiger, insertLast, getNode, getNodes } from '/src/lib';
 import plus from '/src/assets/icons/login/plus.svg';
+import check from '/src/assets/icons/login/check.svg';
 //import PocketBase from 'pocketbase';
 
 // 카테고리 리스트 동적 랜더링
@@ -30,7 +31,7 @@ async function renderCategory() {
 let selectedCategories = [];
 
 function addEventListenersToCards() {
-  document.querySelectorAll('.login--category-card').forEach((card) => {
+  getNodes('.login--category-card').forEach((card) => {
     card.addEventListener('click', function () {
       const mainCategory = this.querySelector(
         '.login--category-main'
@@ -61,9 +62,7 @@ function addEventListenersToCards() {
 
       // 조건에 따라 이미지 변경
       const img = this.querySelector('img');
-      img.src = this.classList.contains('active-card')
-        ? '/src/assets/icons/login/check.svg'
-        : '/src/assets/icons/login/plus.svg';
+      img.src = this.classList.contains('active-card') ? check : plus;
     });
     //
   });
@@ -71,19 +70,15 @@ function addEventListenersToCards() {
 
 renderCategory();
 //저장 버튼에 클릭 이벤트 리스너를 추가
-document
-  .querySelector('.login--category-submit')
-  .addEventListener('click', function () {
-    // 로컬 스토리지에 selectedCategories 배열을 JSON 문자열로 저장
-    localStorage.setItem(
-      'selectedCategories',
-      JSON.stringify(selectedCategories)
-    );
-    console.log('저장된 데이터:', localStorage.getItem('selectedCategories'));
-  });
+getNode('.login--category-submit').addEventListener('click', function () {
+  // 로컬 스토리지에 selectedCategories 배열을 JSON 문자열로 저장
+  localStorage.setItem(
+    'selectedCategories',
+    JSON.stringify(selectedCategories)
+  );
+  console.log('저장된 데이터:', localStorage.getItem('selectedCategories'));
+});
 //페이지 이동
-document
-  .querySelector('.login--category-submit')
-  .addEventListener('click', function () {
-    window.location.href = '/src/pages/LoginPage/signup/';
-  });
+getNode('.login--category-submit').addEventListener('click', function () {
+  window.location.href = '/src/pages/LoginPage/signup/';
+});

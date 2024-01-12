@@ -12,9 +12,6 @@ body{
   margin: 0 auto;
   max-width: 599px;
 }
-:focus{
-  border: 2px solid orange;
-}
 
 .login--top-bar{
   padding: 20px;
@@ -67,7 +64,7 @@ body{
 
 .login--category-list {
   display: grid;
-  place-items: center;
+  /* place-items: center; */
   grid-template-columns: repeat(2,minmax(0,1fr));
   margin-top: 10px;
 
@@ -91,7 +88,7 @@ body{
       }
       & img{
         width: 7vw;
-        max-width: 35px;
+        max-width: 30px;
         padding-right: 5px;
         padding-top: 10px;
       }
@@ -123,7 +120,6 @@ body{
 
 .active-card {
   background-color: #373F67; 
-  color: white; 
 }
 
 .active-card .paragraph-s,
