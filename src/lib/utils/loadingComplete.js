@@ -1,6 +1,8 @@
 import { getNodes, removeClass, getNode } from '/src/lib/';
 
 const loading = getNode('.loading');
+const loadingBar = getNode('.loading-bar > div');
+const percentage = getNode('.loading-percentage');
 
 export function loadingComplete(arr) {
   const temp = [];
@@ -32,6 +34,9 @@ function imageLoadingChecker(arr) {
     item.forEach((list) => {
       list.onload = () => {
         count++;
+        const percent = Math.floor((count / checkLength) * 100);
+        percentage.innerText = `${percent}%`;
+        loadingBar.style.width = `${percent}%`;
         console.log(`this is ${count} image`);
         if (count === checkLength) {
           console.log('load complete!!');
