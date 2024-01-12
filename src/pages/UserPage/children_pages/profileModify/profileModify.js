@@ -120,7 +120,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
       );
       profileExposureTermsDetail.innerText = '숨기기';
     } else {
-      getNode('.profile--exposure-terms-detail').style = 'display:none';
+      getNode('.profile--exposure-terms-detail').remove();
       profileExposureTermsDetail.innerText = '자세히';
     }
   }
