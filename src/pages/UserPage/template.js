@@ -3,7 +3,7 @@ import rightDirection from '/src/assets/icons/profile/rightDirection.svg';
 import polygon from '/src/assets/icons/profile/Polygon.svg';
 import people from '/src/assets/icons/profile/people.svg';
 
-import { confirmInput } from '/src/pages/UserPage/confirmInput.js';
+import { confirmInput } from '/src/pages/UserPage/utils/confirmInput.js';
 
 //프로필메뉴
 export function profileMenuTemplate(userobj) {
