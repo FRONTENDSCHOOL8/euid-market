@@ -211,10 +211,28 @@ const swiperBanner = getNode('.swiper-wrapper');
     }
   }
 
+  function handleMenuBar(e) {
+    const target = e.target;
+    const menu = target.closest('li');
+
+    if (!menu) return;
+    console.log(menu);
+    const menuName = menu.className;
+
+    activatePage(menuName);
+
+    if (menuName === 'main--menu-exchange') {
+      animation('.main--product');
+    } else if (menuName === 'main--menu-story') {
+      animation('.main--story');
+    }
+  }
+
   renderNavBar();
   onLoad();
-  seniorStory.addEventListener('click', handleSeniorStory);
-  exchange.addEventListener('click', handleExchange);
+  // seniorStory.addEventListener('click', handleSeniorStory);
+  // exchange.addEventListener('click', handleExchange);
+  menuBar.addEventListener('click', handleMenuBar);
   window.addEventListener('scroll', handleScroll);
   buttonControl();
 })();
