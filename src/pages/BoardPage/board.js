@@ -15,7 +15,7 @@ function clearContent(container) {
 }
 
 async function renderPosts(button, container, option) {
-  clearContent(container);
+  // clearContent(container);
   addClass(button, "active-category");
   const postType = {
     "main": () => renderMainPosts(container),
@@ -46,7 +46,8 @@ function handleCategory(e) {
   const button = target.closest("button");
   const buttonList = getNode(".board--category-bar-wrapper")
   const createPostBtn = getNode(".board--create-post");
-
+  
+  clearContent(postContainer);
   if(!button) return;
 
   for(const li of buttonList.children) {
