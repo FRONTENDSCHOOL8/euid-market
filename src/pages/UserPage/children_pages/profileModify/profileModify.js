@@ -10,7 +10,7 @@ import { handleDivDisplayNone } from '/src/pages/UserPage/utils/displayNone.js';
 
 import { getNode, insertAfter, insertFirst, insertLast } from '/src/lib/';
 //배포전 수정 !!!!!!!!!!!!!!!1
-const TEST_USER_ID = 'bexmuprbriobf8v';
+const TEST_USER_ID = 'c2zrq8ifbpivaop';
 
 //바로 랜더링
 (async () => {
@@ -22,11 +22,7 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
       .getList(1, 10, { filter: `user_id = "${TEST_USER_ID}" ` })
   ).items[0];
 
-  const userInfoResult = (
-    await pb
-      .collection('users')
-      .getList(1, 10, { filter: `id = "${TEST_USER_ID}" ` })
-  ).items[0];
+  const userInfoResult = await pb.collection('users').getOne(TEST_USER_ID);
 
   let {
     id: privacyRecordID,
@@ -53,7 +49,6 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
   const responsibilityCheckbox = getNode('#profile--responsibility-agree');
   const submitButton = getNode('.profile--submit-save-button');
   const profileExposureTermsDetail = getNode('.profile--term-profileTerms');
-  const profileSubmitErrorMessage = getNode('.profile--submit-error-message');
   let tempData = { userPrivacyUpdataedData: {}, usersUpdatedData: {} };
   /**
    * 성별.나이 공개 토글 버튼 클릭했을때 발생하는 이벤트 함수
@@ -74,7 +69,6 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
       });
     }
     e.target.classList.add('is-active');
-    console.log(tempData);
   }
 
   /**
@@ -88,7 +82,6 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
     responsibilityCheckbox.checked = isChecked;
     if (isChecked) {
       submitButton.classList.add('is-active');
-      getNode('.profile--submit-error-message').remove();
     } else {
       submitButton.classList.remove('is-active');
     }
@@ -127,7 +120,7 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
       );
       profileExposureTermsDetail.innerText = '숨기기';
     } else {
-      profileSubmitErrorMessage.remove();
+      getNode('.profile--exposure-terms-detail').style = 'display:none';
       profileExposureTermsDetail.innerText = '자세히';
     }
   }
@@ -142,18 +135,26 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
       allAgreeCheckbox.checked
     ) {
       insertFirst('body', profileSaveTemplate());
+      var scrollTop = window.scrollY || document.documentElement.scrollTop;
+      getNode('.profile--modify-save-alert').style = `top:${
+        scrollTop + window.innerHeight / 2
+      }px`;
       let { userPrivacyUpdataedData, usersUpdatedData } = tempData;
+      console.log(userPrivacyUpdataedData);
+
       await pb
         .collection('user_privacy')
         .update(`${privacyRecordID}`, userPrivacyUpdataedData);
+
       await pb.collection('users').update(`${usersRecordID}`, usersUpdatedData);
+
       getNode('.profile--modify-confirm').addEventListener(
         'click',
         handleDivDisplayNone
       );
-      profileSubmitErrorMessage.remove();
+      return;
     }
-    if (!profileSubmitErrorMessage) {
+    if (!getNode('.profile--submit-error-message')) {
       insertAfter(
         getNode('.profile--terms-lists'),
         profileModifySubmitErrorTemplate()

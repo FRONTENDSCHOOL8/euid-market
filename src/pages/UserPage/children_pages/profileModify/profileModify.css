@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: auto;
+  position: relative;
+}
+
 /* 프로필 수정 네비게이션 바*/
 .profile--modify-nav {
   background: var(--background, #fff);
@@ -252,13 +260,12 @@
   align-items: center;
   border-radius: 20px;
   background: var(--background, #fff);
-  width: 225px;
+  width: 260px;
   gap: 20px;
-  position: fixed;
-  top: 25%;
-  left: 25%;
+  position: absolute;
   height: 171px;
   z-index: 100;
+  left: calc(50% - 130px);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   & p {
     font-size: var(--font-s);
