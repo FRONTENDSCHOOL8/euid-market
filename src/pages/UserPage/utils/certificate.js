@@ -15,7 +15,6 @@ export function getCertifications() {
     })
     .then((jsonizeResult) => {
       const categorizedObj = {};
-
       let certificationList = [];
       Array.from(jsonizeResult.data).forEach((item) => {
         let { 종목명 } = item;
@@ -24,7 +23,6 @@ export function getCertifications() {
         }
       });
       certificationList.sort();
-
       certificationList.forEach((certification) => {
         let initialLetter = certification.charAt(0);
         let consonant = findConsonant(initialLetter);
@@ -34,8 +32,6 @@ export function getCertifications() {
           categorizedObj[`${consonant}`].push(certification);
         }
       });
-
-      console.log(categorizedObj);
       return categorizedObj;
     });
 }

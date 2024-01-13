@@ -251,7 +251,7 @@ body {
   }
 }
 
-/* 저장시 나오는 알림창 (저장완료) */
+/* 저장시 나오는 팝업창 (저장완료) */
 .profile--modify-save-alert {
   display: flex;
   padding: 20px 18px 18px 18px;
@@ -284,4 +284,77 @@ body {
 .profile--submit-error-message {
   text-align: center;
   color: #e11900;
+}
+
+/* 기사자격증 선택 팝업창 */
+.profile--modify-select-form {
+  z-index: 100;
+  background: var(--background);
+  box-sizing: border-box;
+  width: 60%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: calc(50% - calc(60% / 2));
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  & p {
+    text-align: center;
+  }
+  & button:last-child {
+    border-radius: 8px;
+    background-color: var(--primary);
+    padding: 8px 0;
+    color: #ffffff;
+  }
+  .profile--modify-select-form-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 13px 0px 13px;
+    align-items: center;
+    border-bottom: 0.3px solid var(--Contents-contentSecondary, #919191);
+    & button {
+      background-color: transparent;
+    }
+  }
+
+  .profile--modify-select-contents-wrapper {
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+  /* 자음 버튼  */
+  .profile--modify-certification-consonants {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    & button {
+      border-radius: 50%;
+      background-color: var(--Contents-contentTertiary, #9da1b4);
+      color: white;
+      padding: 5px;
+      font-weight: 600;
+    }
+    & button.is-active {
+      background-color: var(--secondary);
+    }
+  }
+  .profile--modify-certification-list {
+    height: 130px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 1.5px 1.5px var(--Contents-contentTertiary, #9da1b4);
+    & li {
+      padding: 5px;
+      font-size: var(--font-m);
+      display: inline-block;
+    }
+  }
+  .profile--modify-certification-save.is-active {
+    background: var(--secondary);
+  }
 }

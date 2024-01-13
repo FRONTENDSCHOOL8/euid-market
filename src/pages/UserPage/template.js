@@ -252,13 +252,13 @@ export function profileSaveTemplate() {
 </div>`;
 }
 
-//기사자격증 템플릿
+//기사자격증 팝업 템플릿
 export function profileCertificationSelectTemplate() {
   return /*html */ `
   <div class="profile--modify-select-form">
   <div class="profile--modify-select-form-title">
     <h2>기사자격증 등록하기</h2>
-    <button type="button">
+    <button class="profile--certification-close" type="button">
       <img src=${close} alt="" />
     </button>
   </div>
@@ -272,7 +272,7 @@ export function profileCertificationSelectTemplate() {
     
     </ul>
     <p class="profile--modify-selected-certifiaction"></p>
-    <button>저장</button>
+    <button class="profile--modify-certification-save">저장</button>
   </div>
 </div>`;
 }
