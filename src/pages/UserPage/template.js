@@ -157,6 +157,7 @@ export function profileCardBasicInfosTemplate(userInfoObj) {
     user_organization: organization,
     user_certification: centertification,
   } = userInfoObj;
+  console.log(userInfoObj);
   return /*html */ `<div>
   <h2>기본 정보</h2>
   <a href="/src/pages/UserPage/children_pages/profileModify/index.html">수정하기</a>

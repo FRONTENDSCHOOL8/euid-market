@@ -129,8 +129,9 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     console.log(e.target);
     e.target.innerText = '저장완료!';
     e.target.classList.add('is-active');
-    tempData['usersUpdatedData']['user_certification'] = tempCertificationData;
-    console.log(tempData);
+
+    tempData['usersUpdatedData']['user_certification'] =
+      tempCertificationData.join(', ');
     setTimeout(handleCertificationForm, 2000);
   }
 
@@ -265,7 +266,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
       await pb
         .collection('user_privacy')
         .update(`${privacyRecordID}`, userPrivacyUpdataedData);
-
+      console.log(usersUpdatedData);
       await pb.collection('users').update(`${usersRecordID}`, usersUpdatedData);
 
       getNode('.profile--modify-confirm').addEventListener(
