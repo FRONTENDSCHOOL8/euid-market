@@ -62,15 +62,6 @@ function renderCreateFirst(container) {
       <input type="time" id="board--post-time"/>
     
     </div>
-
-    <div>
-      <figure>
-        <img src=${people} alt="">
-        <span class="paragraph-m">장소</span>
-      </figure>
-
-      <span>입력해주세요</span>
-    </div>
     
     
   </main>
@@ -102,16 +93,6 @@ function renderCreateSecond(container) {
       </div>
     </section>
 
-    <div class="board--create-option-requirements">
-      <figure>
-        <img src="/src/assets/icons/board/people.svg" alt="">
-        <span class="paragraph-m">나이</span>
-      </figure>
-
-      <div>
-        <p id="board--post-requirement-age">누구나</p>
-      </div>
-    </div>
 
   </div>
   `

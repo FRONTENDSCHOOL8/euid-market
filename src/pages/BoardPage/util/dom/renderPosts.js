@@ -127,9 +127,9 @@ export async function renderTogetherPostInfo(container, id) {
       <figcaption>${data.type}</figcaption>
     </figure>
 
-    <div role="header">
-      <span class="label-l" style=${data.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"}>${data.status}</span>
-      <h1 class="label-l">${data.title}</h1>
+    <header>
+      <p class="label-l" style=${data.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"}>${data.status}</p>
+      <h1 class="label-l" class="board--together-info-title">${data.title}</h1>
       <figure class="board--post-info-requirements">
         <img src=${people} alt="" />
         <figcaption class="paragraph-m">${data.requirements}</figcaption>
@@ -138,7 +138,7 @@ export async function renderTogetherPostInfo(container, id) {
         <img src=${fullCalendar} alt="" />
         <figcaption class="paragraph-m">스터디</figcaption>
       </figure>
-    </div>
+    </header>
 
     <p class="paragraph-m">${data.content}</p>
 
@@ -157,7 +157,7 @@ export async function renderTogetherPostInfo(container, id) {
       
     </figure>
 
-    <button class="board--fixed-button">
+    <button type="button" class="board--fixed-button">
       참여하기
     </button>
   
@@ -223,7 +223,7 @@ export async function renderQuestionPostInfo(container, id) {
       
     </figure>
 
-    <button class="board--fixed-button">
+    <button type="button" class="board--fixed-button">
       생각하기
     </button>
   

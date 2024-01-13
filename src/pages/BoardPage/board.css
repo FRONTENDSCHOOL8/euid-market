@@ -240,3 +240,14 @@
   top: 0;
 }
 
+.board--together-content, .board--post-instance {
+  user-select: none;
+}
+
+.board--together-content:active, .board--post-instance:active {
+  background: 	rgb(211, 211, 211, 0.5);
+}
+
+.board--container {
+  user-select: none; 
+}
