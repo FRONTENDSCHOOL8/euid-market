@@ -2,9 +2,12 @@ import pencil from '/src/assets/icons/profile/pencil.svg';
 import rightDirection from '/src/assets/icons/profile/rightDirection.svg';
 import polygon from '/src/assets/icons/profile/Polygon.svg';
 import people from '/src/assets/icons/profile/people.svg';
-
+import close from '/src/assets/icons/profile/close.svg';
 import { confirmInput } from '/src/pages/UserPage/utils/confirmInput.js';
 
+/* -------------------------------------------------------------------------- */
+/*                                    유저페이지                                   */
+/* -------------------------------------------------------------------------- */
 //프로필메뉴
 export function profileMenuTemplate(userobj) {
   let { id, user_photo, user_nickname, user_year } = userobj;
@@ -79,8 +82,7 @@ export function profileSubContentsTemplate(nickname) {
 export function userTemperatureTemplate(userTemperature) {
   return /* html */ ` <label for="temperature"
   >열정온도
-  <a href=""
-    ><img src="/src/assets/icons/profile/information.svg" alt=""
+  <a><img src="/src/assets/icons/profile/information.svg" alt=""
   /></a>
 </label>
 <div class="user--temperature-progressbar-wrapper">
@@ -229,6 +231,15 @@ export function profilePublicButtonTemplate(gender_is_public, age_is_public) {
 </li>`;
 }
 
+export function profileExposureDetailTermsTemplate() {
+  return /*html*/ `<span class="profile--exposure-terms-detail">이듬엔터는 서비스 이용 과정에서 회원의 간략한 정보를 공개할 수 있는 프로필 서비스를 제공합니다.
+  프로필 서비스는 회원이 직접 입력한 정보를 기반으로 회원의 선택에 따라 다른 이용자에게 공개될 수 있으며, 회원은 프로필 공개 여부를 서비스 내에서 언제든지 설정할 수 있습니다.</span>`;
+}
+
+export function profileModifySubmitErrorTemplate() {
+  return /*html */ `<p class="profile--submit-error-message">모든 약관을 동의해주셔야 수정이 가능합니다. </p>`;
+}
+//팝업템플릿
 export function profileSaveTemplate() {
   return /*html*/ `
   <div class="profile--modify-save-alert">
@@ -241,11 +252,39 @@ export function profileSaveTemplate() {
 </div>`;
 }
 
-export function profileExposureDetailTermsTemplate() {
-  return /*html*/ `<span class="profile--exposure-terms-detail">이듬엔터는 서비스 이용 과정에서 회원의 간략한 정보를 공개할 수 있는 프로필 서비스를 제공합니다.
-  프로필 서비스는 회원이 직접 입력한 정보를 기반으로 회원의 선택에 따라 다른 이용자에게 공개될 수 있으며, 회원은 프로필 공개 여부를 서비스 내에서 언제든지 설정할 수 있습니다.</span>`;
+//기사자격증 템플릿
+export function profileCertificationSelectTemplate() {
+  return /*html */ `
+  <div class="profile--modify-select-form">
+  <div class="profile--modify-select-form-title">
+    <h2>기사자격증 등록하기</h2>
+    <button type="button">
+      <img src=${close} alt="" />
+    </button>
+  </div>
+  <div class="profile--modify-select-contents-wrapper">
+    <!--한글 자음 버튼들를 담는 ul -->
+  <ul class="profile--modify-certification-consonants">
+    
+    </ul>
+    <!--자격증요소를 담는 ul -->
+    <ul class="profile--modify-certification-list">
+    
+    </ul>
+    <p class="profile--modify-selected-certifiaction"></p>
+    <button>저장</button>
+  </div>
+</div>`;
 }
-
-export function profileModifySubmitErrorTemplate() {
-  return /*html */ `<p class="profile--submit-error-message">모든 약관을 동의해주셔야 수정이 가능합니다. </p>`;
+//기사자격증 자읍 버튼 템플릿
+export function profileConsonantTemplate(item) {
+  return /*html */ `<li class="profile--consonant-element" data-certiciation-consonant="${item}"><button class="profile--consonant-element">${item}</button></li>`;
+}
+//기사자격증 리스트 템플릿
+export function profileCertificationTemplate(item) {
+  return /*html */ `
+  <li class="profile--certification-element" data-certification-Name="${item}" >
+    <input id="${item}" type="checkbox"  />
+    <label for="${item}">${item}</label>
+</li>`;
 }
