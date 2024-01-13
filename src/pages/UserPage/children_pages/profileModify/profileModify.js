@@ -95,7 +95,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
       insertFirst('body', profileCertificationSelectTemplate());
       let scrollTop = window.scrollY || document.documentElement.scrollTop;
       getNode('.profile--modify-select-form').style = `top:${
-        scrollTop + window.innerHeight / 2
+        scrollTop + window.innerHeight / 3.5
       }px`;
       try {
         const close = getNode('.profile--certification-close');
