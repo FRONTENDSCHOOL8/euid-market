@@ -1,6 +1,13 @@
 import { insertFirst } from '/src/lib/index';
 import { getData, getUserData, getUserProfilePicture, getQuestionData, getOneData, getTogetherData } from "../index.js";
 // import defaultPfp from "/src/assets/images/board/default_pfp.svg";
+import pb from '/src/lib/api/pocketbase';
+
+import fullPeople from "/src/assets/icons/general/fullpeople.svg";
+import calendar from "/src/assets/icons/general/calendar.svg";
+import people from "/src/assets/icons/board/people.svg";
+import fullCalendar from "/src/assets/icons/board/fullCalendar.svg";
+
 
 export async function renderMainPosts(container) {
   const items = await getData();
@@ -11,7 +18,7 @@ export async function renderMainPosts(container) {
       `
       <div class="board--post-instance" data-id=${item.id}>
         <label class=" label-s board--badge">${item.category}</label> 
-        <h2>${item.title.length > 30 ? item.title.slice(1, 30) + "..." : item.title}</h2>
+        <h2>${item.title.length > 30 ? item.title.slice(0, 30) + "..." : item.title}</h2>
         <figure class="board--flex">
           <img src="/src/assets/icons/general/fullpeople.svg" alt="" >
           <figcaption class="paragraph-m">${item.requirements}</figcaption>
@@ -28,8 +35,8 @@ export async function renderMainPosts(container) {
       `
       <div class="board--post-instance" data-id=${item.id}>
         <label class="label-s board--badge">${item.category}</label> 
-        <h2>${item.title.length > 20 ? item.title.slice(1, 20) + "..." : item.title}</h2>
-        <p class="paragraph-s board--qna-content">${item.content.length > 25 ? item.content.slice(1, 25) + "..." : item.content}</p>
+        <h2>${item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title}</h2>
+        <p class="paragraph-s board--qna-content">${item.content.length > 25 ? item.content.slice(0, 25) + "..." : item.content}</p>
 
         <section class="board--flex">
           <p class="paragraph-s">${item.location}</p>
@@ -63,12 +70,13 @@ export async function renderMainPosts(container) {
 
 export async function renderTogetherPosts(container) {
   const data = await getTogetherData();
-  const items = data.items;
+  // const items = data.items;
   
-  items.forEach(async (item) => {
+  data.forEach(async (item) => {
     const user = await getOneData(item.created_by, 'users')
     console.log(user.user_nickname);
     const userPfp = await getUserProfilePicture(user)
+    pb.cancelAllRequests();
     const template = /* html */ 
     `
       <div class="board--together-content" data-id=${item.id}>
@@ -78,15 +86,15 @@ export async function renderTogetherPosts(container) {
             <p class="paragraph-s">• ${item.type}</p>
             <p class="paragraph-s">• ${item.location}</p>
           </section>
-          <h2 class="label-m">${item.title.length > 25 ? item.title.slice(1, 25) + "..." : item.title}</h2>
+          <h2 class="label-m">${item.title.length > 25 ? item.title.slice(0, 25) + "..." : item.title}</h2>
         </header>
 
         <figure>
-          <img src="/src/assets/icons/general/fullpeople.svg" alt="" />
+          <img src=${fullPeople} alt="" />
           <figcaption class="paragraph-s">${item.requirements} 참여가능</figcaption>
         </figure>
         <figure>
-          <img src="/src/assets/icons/general/calendar.svg" alt="" />
+          <img src=${calendar} alt="" />
           <figcaption class="paragraph-s">${item.time}</figcaption>
         </figure>
 
@@ -103,6 +111,7 @@ export async function renderTogetherPosts(container) {
     insertFirst(container, template)      
       
   })
+  
 }
 
 export async function renderTogetherPostInfo(container, id) {
@@ -122,11 +131,11 @@ export async function renderTogetherPostInfo(container, id) {
       <span class="label-l" style=${data.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"}>${data.status}</span>
       <h1 class="label-l">${data.title}</h1>
       <figure class="board--post-info-requirements">
-        <img src="/src/assets/icons/board/people.svg" alt="" />
+        <img src=${people} alt="" />
         <figcaption class="paragraph-m">${data.requirements}</figcaption>
       </figure>
       <figure class="board--post-info-requirements">
-        <img src="/src/assets/icons/board/fullCalendar.svg" alt="" />
+        <img src=${fullCalendar} alt="" />
         <figcaption class="paragraph-m">스터디</figcaption>
       </figure>
     </div>
@@ -155,12 +164,12 @@ export async function renderTogetherPostInfo(container, id) {
   </div>
   `
   insertFirst(container, template);
+  
 }
 
 export async function renderQuestionPosts(container) {
   const data = await getQuestionData();
-  const items = data.items;
-  items.forEach((item) => {
+  data.forEach((item) => {
     const template = /* html */
     `
       <div class="board--post-instance"  data-id=${item.id}>

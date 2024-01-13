@@ -211,6 +211,7 @@
 
 .board--post-list {
   padding-bottom: 68px;
+  /* position: relative; */
 }
 
 .board--search-post-container {
