@@ -1,6 +1,7 @@
 import { tiger, insertLast, getNode, getNodes } from '/src/lib';
 import plus from '/src/assets/icons/login/plus.svg';
 import check from '/src/assets/icons/login/check.svg';
+const card = getNodes('.login--category-card');
 //import PocketBase from 'pocketbase';
 
 // 카테고리 리스트 동적 랜더링
@@ -12,7 +13,7 @@ async function renderCategory() {
   const userData = response.data.items;
   userData.forEach((item) => {
     const template = /*html*/ `
-    <li>
+    <li >
     <button type="button" class="login--category-card">
     <div class="login--category-name">
       <p class="login--category-main paragraph-s">${item.main_category}</p>
@@ -62,7 +63,9 @@ function addEventListenersToCards() {
 
       // 조건에 따라 이미지 변경
       const img = this.querySelector('img');
+      console.log(this);
       img.src = this.classList.contains('active-card') ? check : plus;
+      card;
     });
     //
   });

@@ -61,7 +61,7 @@ body{
     background: var(--primary, #373F67);
   }
 }
-
+/* 카테고리 리스트 */
 .login--category-list {
   display: grid;
   /* place-items: center; */
@@ -108,28 +108,35 @@ body{
   padding-bottom: 3px;
   color: var(--gray-100, #E9E9E9);
   }
-  
+.login--category-card:focus-visible{
+  background: var(--primary, #373F67);
+  & p{
+    color: white;
+  }
+}
 .login--category-card:hover{
   background: var(--primary, #373F67); 
   }
-
+/* .login--category-card:active{
+  background: var(--primary, #373F67);
+} */
 .login--category-card:hover .paragraph-s,
 .login--category-card:hover .heading-s {
     color: white;
 }
 
-.active-card {
+.login--category-card.active-card {
   background-color: #373F67; 
 }
 
-.active-card .paragraph-s,
-.active-card .heading-s {
+.active-card .login--category-main,
+.active-card .login--category-sub {
     color: white; 
 }
 
-.active-card img {
+/* .active-card img {
     src: '/src/assets/icons/login/check.svg'; 
-}
+} */
 
 
 
