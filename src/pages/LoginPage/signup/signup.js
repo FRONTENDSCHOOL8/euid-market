@@ -2,7 +2,6 @@ import { getNode, setStorage, getStorage } from '/src/lib/';
 import { validation, doRandomCode } from '/src/pages/LoginPage/util/';
 import PocketBase from 'pocketbase';
 
-// const PASSWORDKEY = 'thsxndlxn';
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 const phoneInput = getNode('#phone');
 const codeButton = getNode('#codeButton');
@@ -104,48 +103,37 @@ async function handleSignup(e) {
     const storedCode = await getStorage(phoneNum);
     const selectedCategory = localStorage.getItem('selectedCategories');
     if (inputCode === storedCode) {
-      // 사용자 생성
       await pb.collection('users').create({
-        username: 'test',
-        email: 'N/A',
-        emailVisibility: true,
-        password: '1231233',
-        passwordConfirm: '1231233',
-        user_nickname: 'N/A',
-        user_year: 123,
+        username: phoneNum,
+        password: inputCode,
+        passwordConfirm: inputCode,
         user_temperature: '36.5',
-        user_job: 'N/A',
-        user_gender: 'N/A',
-        user_age: 123,
-        user_organization: 'N/A',
-        user_certification: 'N/A',
         user_photo: '/src/assets/icons/login/son2.png',
         selected_category: selectedCategory,
+        user_age: 123,
+        user_year: 8,
       });
-
-      // 사용자 인증
-      const authResponse = await pb
-        .collection('users')
-        .authWithPassword(phoneInput.value, storedCode);
-
-      // 로컬 스토리지에 인증 정보 저장
-      if (authResponse) {
-        await setStorage('auth', {
-          isAuth: true,
-          user: authResponse.user,
-          token: authResponse.token,
-        });
-
-        alert('회원 가입이 완료됐습니다!');
-      }
-    } else {
-      // 코드가 일치하지 않으면 에러 메시지 표시
-      codeInput.style.borderColor = 'red';
-      errorMessage.classList.remove('hidden');
     }
-  } catch (error) {
-    alert(error);
-    // console.error('회원 가입 처리 중 오류 발생:', error);
+
+    // 사용자 인증
+    const authResponse = await pb
+      .collection('users')
+      .authWithPassword(phoneInput.value, storedCode);
+
+    // 로컬 스토리지에 인증 정보 저장
+    if (authResponse) {
+      await setStorage('auth', {
+        isAuth: true,
+        user: authResponse.user,
+        token: authResponse.token,
+      });
+      alert('회원 가입이 완료됐습니다!');
+      window.location.href = '/src/pages/Mainpage/';
+    }
+  } catch {
+    // 코드가 일치하지 않으면 에러 메시지 표시
+    codeInput.style.borderColor = 'red';
+    errorMessage.classList.remove('hidden');
   }
 }
 
