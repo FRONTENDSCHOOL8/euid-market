@@ -1,4 +1,3 @@
-// import PocketBase from 'pocketbase';
 import { renderNavBar } from "../../components/general/renderNavBar.js";
 import { getNode, } from "../../lib/index.js";
 import { 

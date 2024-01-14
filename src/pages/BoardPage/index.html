@@ -12,7 +12,7 @@
   <div class="board--container">
     <nav class="board--nav-container">
         <form class="board--search-post-container">
-          <label for="board--search-post sr-only"></label>
+          <label for="board--search-post" class="sr-only">검색</label>
           <input type="text" id="board--search-post" placeholder="검색">
           <button><img src="/search.svg" alt="검색 아이콘"></button>
         </form>
@@ -32,6 +32,7 @@
         </div>
     </nav>
     
+    
     <div class="board--post-list">
       <!-- 로딩 화면 -->
       
@@ -39,7 +40,6 @@
       
       <!-- JS로 렌더링 -->
     </div>
-    <!-- <div id="board--loading" class="board--loading"></div> -->
     <a href="/src/pages/BoardPage/children_pages/createPost/" class="board--create-post question" type="button">
       <img src="/src/assets/icons/board/plus.svg" alt="게시물 생성">
     </a>
