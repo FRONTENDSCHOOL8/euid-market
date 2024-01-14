@@ -1,5 +1,9 @@
 import { getNode, setStorage, getStorage } from '/src/lib/';
-import { validation, doRandomCode } from '/src/pages/LoginPage/util/';
+import {
+  validation,
+  doRandomCode,
+  showDialog,
+} from '/src/pages/LoginPage/util/';
 import PocketBase from 'pocketbase';
 
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
@@ -12,17 +16,9 @@ const copyButton = getNode('#copy-button');
 const closeButton = getNode('#close-button');
 const randomCode = doRandomCode();
 
-// 다이얼로그 표시
-function showDialog(randomCode) {
-  const codeText = getNode('#code-text');
-  codeText.textContent = randomCode;
-  const dialog = getNode('#code-dialog');
-  dialog.showModal();
-}
 // 다이얼로그 코드 복사
 function handleCopy(e) {
   e.preventDefault();
-
   const codeText = getNode('#code-text').textContent;
   navigator.clipboard.writeText(codeText).then(() => {
     getNode('#code-dialog').close();
@@ -32,29 +28,7 @@ function handleCopy(e) {
 function handleClose() {
   getNode('#code-dialog').close();
 }
-/* -------------------------------------------------------------------------- */
-// 인증문자 받기
-async function handleCode(e) {
-  e.preventDefault();
-
-  try {
-    const phoneNum = phoneInput.value;
-    const usernames = await fetchUsernames();
-
-    // usernames 배열에 phoneNum이 있는지 확인
-    if (usernames.includes(phoneNum)) {
-      alert('이미 가입하셨습니다. 로그인하시겠습니까?');
-    } else {
-      showDialog(randomCode);
-      // 생성된 랜덤 코드를 로컬 스토리지에 저장
-      await setStorage(phoneNum, randomCode);
-    }
-  } catch (error) {
-    console.error(error); // 에러 로깅
-  }
-}
-
-// users 컬렉션의 username 필드 데이터 가져오기
+/----------------------------------------------------------------------- */;
 async function fetchUsernames() {
   try {
     const records = await pb.collection('users').getFullList();
@@ -64,23 +38,24 @@ async function fetchUsernames() {
     console.error(error);
   }
 }
+// 중복유저 체크 -> 인증문자 받기
+async function handleCode(e) {
+  e.preventDefault();
 
-// 중복유저 체크
-async function checkUser(phoneNum) {
   try {
+    const phoneNum = phoneInput.value;
     const usernames = await fetchUsernames();
-    const phoneNumStr = String(phoneNum);
-    // usernames 배열에서 중복유저 확인
-    if (usernames.includes(phoneNumStr)) {
-      alert('이미 가입하셨습니다');
+
+    if (usernames.includes(phoneNum)) {
+      alert('이미 가입하셨습니다. 로그인하시겠습니까?');
     } else {
-      alert('인증번호 받기');
+      showDialog(randomCode);
+      await setStorage(phoneNum, randomCode);
     }
   } catch (error) {
-    console.error('사용자 이름을 확인하는데 실패했습니다:', error);
+    console.error(error); // 에러 로깅
   }
 }
-
 // codeInput 값이 입력되면 startButton 활성화
 function handleBtnActive(e) {
   e.preventDefault();
@@ -91,9 +66,9 @@ function handleBtnActive(e) {
     startButton.classList.remove('login--start-active');
     startButton.disabled = true;
   }
-  console.log(codeInput.value);
+  // console.log(codeInput.value);
 }
-//체크 필요
+//유저 생성 및 로그인 진행
 async function handleSignup(e) {
   e.preventDefault();
   const phoneNum = phoneInput.value;
@@ -115,12 +90,12 @@ async function handleSignup(e) {
       });
     }
 
-    // 사용자 인증
+    //사용자 인증
     const authResponse = await pb
       .collection('users')
       .authWithPassword(phoneInput.value, storedCode);
 
-    // 로컬 스토리지에 인증 정보 저장
+    // 로컬 스토리지에 //fdf인증 정보 저장
     if (authResponse) {
       await setStorage('auth', {
         isAuth: true,
