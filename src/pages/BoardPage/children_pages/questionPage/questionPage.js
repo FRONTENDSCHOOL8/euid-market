@@ -16,10 +16,10 @@ function openPost(e) {
 }
  
 
-(() => {
+(async () => {
   insertFirst("body", renderTopBar("withTitle", "질의응답"));
   renderNavBar();
   const postContainer = getNode(".board--qna-post-container");
-  renderQuestionPage(postContainer);
+  await renderQuestionPage(postContainer);
   postContainer.addEventListener('click', openPost);
 })();

@@ -28,10 +28,10 @@
         </li>
         <li>
           <p>닉네임</p>
-          <a href="" class="profile--modify-add"
-            ><img src="/src/assets/icons/profile/plus.svg" alt="" />프로필
-            사진을 추가해보세요
-          </a>
+          <a href="" class="profile--choice-button"
+          ><img src="/src/assets/icons/profile/pencil.svg" alt="" />직접
+          입력</a
+        >
         </li>
         <li>
           <p>하는 일</p>
@@ -81,17 +81,16 @@
       </ul>
       <form class="profile--modify-terms" action="">
         <div class="profile--terms-all-agree">
-          <input type="checkbox" />
-          <label for="">
+          <input type="checkbox" id="profile--all-agree" />
+          <label for="profile--all-agree">
             <span>아래 내용에 전체 동의합니다 .</span>
             <span>필수동의</span>
           </label>
         </div>
-        <ul>
+        <ul class="profile--terms-lists">
           <li>
-            <input type="checkbox" id="profile--terms-privacy" />
-
-            <label class="profile--terms-privacy" for="profile--terms-privacy">
+            <input type="checkbox" id="profile--privacy-agree" />
+            <label class="profile--terms-privacy" for="profile--privacy-agree">
               <span>[ 필수 ] 개인 정보 수집 및 이용 동의</span>
               <span>
                 입력한 별명, 프로필 사진, 하는 일, 프로필 키워드, 성별, 연령, 회
@@ -105,15 +104,20 @@
             </label>
           </li>
           <li>
-            <input type="checkbox" />
-            <label for=""
-              ><span>[ 필수 ] 프로필 정보 노출 영역 확인</span>
-              <a href="">자세히 > </a>
+            <input type="checkbox" id="profile--exposure-agree" />
+            <label class="profile--exposure-agree" for="profile--exposure-agree"
+              >
+              <div>
+                <span>[ 필수 ] 프로필 정보 노출 영역 확인</span>
+                <button type="button" class="profile--term-profileTerms">
+                 자세히 >
+              </button>
+              </div>
             </label>
           </li>
           <li>
-            <input type="checkbox" />
-            <label for="">
+            <input type="checkbox" id="profile--responsibility-agree" />
+            <label for="profile--responsibility-agree">
               [ 필수 ] 사실과 다른 정보를 기재하여 발생한 문제에 대해서는
               <br />본인이 일체의 책임을 부담하겠습니다.</label
             >
@@ -124,14 +128,15 @@
         <div class="profile--choice-button-wrapper">
           <a class="profile--choice-button" href="">취소</a>
           <button
-            class="profile--choice-button profile--submit-save-button is-active"
+            type="button"
+            class="profile--choice-button profile--submit-save-button"
           >
             저장
           </button>
         </div>
-        <a class="profile--reset-terms" href=""
-          >정보 초기화 및 이용 동의 철회..를 탈퇴로하자 ...
-        </a>
+        <button class="profile--reset-terms" href=""></button>
+          회원탈퇴...
+        </button>
       </div>
 
       <!-- 하단 네비게이션  -->

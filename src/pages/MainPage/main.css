@@ -2,29 +2,36 @@
 @import url(/src/pages/MainPage/search/search.css);
 
 .app {
-  max-width: 599px;
-  margin: 0 auto;
+  /* max-width: 599px;
+  margin: 0 auto; */
 
   & .loading {
     position: absolute;
     top: 0;
-    left: 0;
+    left: -10%;
     display: none;
     background-color: white;
-    width: 100vw;
+    width: 115%;
     height: 100vh;
-    z-index: 500;
+    z-index: 1200;
+    overflow: hidden;
 
     & img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-45%, -50%);
+      margin: 0 auto;
       width: 300px;
-      bottom: 0;
     }
   }
 
+  & .top-bar-container {
+    z-index: 1000;
+  }
+
   & .loading.active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
   }
 }
 
@@ -38,6 +45,16 @@
     width: 100%;
     color: var(--background);
     background-color: var(--Contents-contentTertiary);
+
+    & .swiper-button-prev {
+      color: black;
+      transform: scale(0.8);
+    }
+
+    & .swiper-button-next {
+      color: black;
+      transform: scale(0.8);
+    }
 
     & .banner-container {
       position: relative;
@@ -94,14 +111,16 @@
   }
 
   & .Main-scroll-area {
-    position: relative;
-    padding-top: 220px;
+    position: absolute;
+    top: 220px;
+    width: 100%;
+    padding-bottom: 100px;
 
     & .Main-menu-bar.fixed {
       position: fixed;
       width: 100%;
       max-width: 599px;
-      top: 40px;
+      top: 0;
       z-index: 10;
     }
 
