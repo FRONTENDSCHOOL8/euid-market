@@ -11,6 +11,7 @@
 .board--container {
   padding-bottom: 68px;
   height: 100vh;
+
 }
 
 .board--category-bar-container {
@@ -242,3 +243,11 @@
   user-select: none; 
 }
 
+
+.board--empty-post {
+  height: 50vh;
+  width: 100vw;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
