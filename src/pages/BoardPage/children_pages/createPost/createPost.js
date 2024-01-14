@@ -1,6 +1,6 @@
 import { renderTopBar } from "/src/components/general/renderTopBar.js";
 import { getNode, insertBefore, insertLast } from "/src/lib/index.js";
-import { addClass, addData, createData, relocateHREF, removeClass } from "../../util/index.js";
+import { addClass, addData, createData, relocateHREF, removeClass, dropDown, pickCategory } from "../../util/index.js";
 import { gsap } from 'gsap';
 import minus from "/src/assets/icons/board/minusCount.svg";
 import plus from "/src/assets/icons/board/plusCount.svg";
@@ -15,13 +15,26 @@ function renderCreateFirst(container) {
     <form action="/" method="post" name="title-category">
       <input type="text" placeholder="제목을 입력해주세요" id="board--post-title">
 
-      <select name="board--category" id="board--category">
-        <option value="">카테고리를 선택해주세요</option>
-        <option value="스터디">스터디</option>
-        <option value="프로젝트">프로젝트</option>
-        <option value="오프라인">오프라인</option>
-        <option value="공모전">공모전</option>
-      </select>
+      <div class="board--create-category-container">
+    <button type="button" class="board--create-category-wrapper">
+      <p class="label-m board--create-category-value">프로젝트</p>
+      <img src="/rightArrow.svg" alt="">
+    </button>
+    <ul class="board--create-category hidden">
+      <li>
+        <button type="button" class="label-m" data-label="project">프로젝트</button>
+      </li>
+      <li>
+        <button type="button" class="label-m" data-label="offline">오프라인</button>
+      </li>
+      <li>
+        <button type="button" class="label-m" data-label="study">스터디</button>
+      </li>
+      <li>
+        <button type="button" class="label-m" data-label="contest">공모전</button>
+      </li>
+    </ul>
+  </div>
 
       <textarea name="post" id="board--post-content" placeholder="활동 내용을 입력해주세요"></textarea>
     </form>
@@ -101,7 +114,7 @@ function renderCreateSecond(container) {
 
 async function insertData() {
   const status = "모집중";
-  const type = getNode("#board--category").value;
+  const type = getNode(".board--create-question-category-value").textContent;
   const location = "연남동";
   const title = getNode("#board--post-title").value;
   const gender = getNode("#board--post-requirement-gender").textContent;
@@ -207,21 +220,25 @@ function prevPage() {
   gsap.to(".board--create-post-page.two", {x: 0, duration: .5});
 }
 
-// Run Code nested by IIFE
+
+
 (function () {
   const createPostContainer = getNode(".board--create-post-container");
   insertBefore(createPostContainer, renderTopBar("blank"));
   renderCreateFirst(createPostContainer);
   renderCreateSecond(createPostContainer);
-  // 렌더링 끝나고 나타나는 요소
+
   const increaseButton = getNode(".board--create-plus-count");
   const decreaseButton = getNode(".board--create-minus-count");
   const nextButton = getNode("#board--next-data");
   const prevButton = getNode("#board--prev-data");
   const submitButton = getNode("#board--submit-data");
   const buttonContainer = getNode(".board--require-button-container");
+  const categoryContainer = getNode(".board--create-category-container");
+  const categoryList = getNode(".board--create-category"); 
   
-  // Button Event Listeners
+  categoryContainer.addEventListener('click', dropDown);
+  categoryList.addEventListener('click', pickCategory);
   buttonContainer.addEventListener("click", handleRequirement);
   nextButton.addEventListener("click", nextPage);
   prevButton.addEventListener("click", prevPage);

@@ -232,3 +232,4 @@ export async function renderQuestionPostInfo(container, id) {
   insertFirst(container, template);
     
 }
+
