@@ -79,8 +79,6 @@ function renderCreateFirst(container) {
 }
 
 function renderCreateSecond(container) {
-
-
   const template = /* html */ 
   `
   <div class="board--create-post-page two hidden">
@@ -121,15 +119,10 @@ function renderCreateSecond(container) {
 }
 
 async function insertData() {
-  // 모집상태
   const status = "모집중";
-  // 같이해요 페이지 내부 카테고리
   const type = getNode("#board--category").value;
-  // 위치 API 아직 도입하지 않음
   const location = "연남동";
-  // 사용자가 입력한 제목
   const title = getNode("#board--post-title").value;
-  // 참여 조건
   const gender = getNode("#board--post-requirement-gender").textContent;
   const age = getNode("#board--post-requirement-age").textContent;
   let requirements;
@@ -142,19 +135,14 @@ async function insertData() {
   } else {
     requirements = `${gender}, ${age}세 이상`;
   }
-  // 날짜 & 시간
   const date = new Date(getNode("#board--post-date").value);
   const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
   const time =  `${formattedDate}, ${getNode("#board--post-time").value} 시`;
-  // 최대 인원수
   const max_people = Number(getNode('#board--people-count').textContent);
   const curr_people = 1;
-  // 게시물 내용
   const content = getNode("#board--post-content").value;
-  // 게시물 카테고리
   const category = "같이해요";
 
-  // 데이터 객체 만들기
   const data = createData({
     status,
     type,
@@ -168,7 +156,6 @@ async function insertData() {
     category
   })
 
-  // 만약 필요 요소 중 하나라도 비어있다면 아레 코드 미시행
   for(const item in data) {
     if(data[item] === "") {
       alert("모두 채워주세요")
@@ -176,7 +163,6 @@ async function insertData() {
     }
   }
 
-  // 데이터 추가 및 페이지 이동
   await addData(data);
   relocateHREF('../boardContent/index.html');
 }

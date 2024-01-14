@@ -1,7 +1,7 @@
-.login--signup-container {
+.login--container {
   max-width: 599px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 12px;
 
   & a:nth-child(1){
     padding: 10px ;
@@ -15,12 +15,17 @@
   & p{
     padding-top: 20px;
   }
+  & h1 {
+    white-space: nowrap;
+    padding:  0;
+  }
 }
 .login--signup-subtitle{
   font-size: 12px;
   font-weight: 400;
   line-height: 160%;
   padding: 10px 0;
+  white-space: nowrap;
 }
 
 .login--signup-form {
@@ -56,6 +61,9 @@
     color: var(--Contents-contentSecondary, #919191);
     border: 0.5px solid var(--Contents-contentSecondary, #919191);
   }
+  & form > button:disabled {
+    cursor: not-allowed;
+  }
   & .login--code-section{
     width: 100%;
   }
@@ -83,7 +91,12 @@
   line-height: 140%;
   border-radius: 8px;
   padding: 12px 0px;
+  background: var(--primary, #373F67);
+  cursor: pointer;
+}
+#start-button:disabled{
   background: var(--Contents-contentSecondary, #919191);
+  cursor: not-allowed;
 }
 .login--signup-email{
   font-size: 12px;
@@ -106,8 +119,58 @@
   text-decoration: underline;
   color: var(--Contents-contentSecondary, #919191);
 }
-#verify-button.active {
+.login--active {
   border: 1px solid black;
   color: black;
 }
+.login--start-active{
+ background-color: #0056b3;
+ color: #0056b3;
+}
 
+dialog {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px; /* 적당한 너비 설정 */
+  background: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  & p {
+   font-size: 16px;
+   color: #333;
+   margin-bottom: 20px;
+  }
+
+  & button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+}
+
+dialog button:hover {
+  background: #0056b3;
+}
+
+dialog #close-button {
+  background: #6c757d;
+}
+
+dialog #close-button:hover {
+  background: #545b62;
+}
+
+
+#error-message {
+  color: red;
+}

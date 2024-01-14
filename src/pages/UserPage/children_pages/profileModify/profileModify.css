@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: auto;
+  position: relative;
+}
+
 /* 프로필 수정 네비게이션 바*/
 .profile--modify-nav {
   background: var(--background, #fff);
@@ -126,6 +134,20 @@
       }
     }
   }
+  /* 프로필 공개 약관  */
+  .profile--exposure-agree {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    & div {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .profile--exposure-terms-detail {
+      color: var(--Contents-contentSecondary, #919191);
+    }
+  }
 }
 
 /* 맨 하단 취소 | 저장 버튼 , 정보초기화 및 이용동의 철회  */
@@ -137,11 +159,11 @@
     background-color: var(--secondary, #5a85ee);
     color: #fff;
   }
-  .profile--reset-terms {
+  .profile--user-secession {
+    text-align: center;
+    font-size: var(--font-m);
     margin-top: 18px;
-    font-size: var(--font-s);
     color: var(--Contents-contentSecondary);
-    display: block;
   }
 }
 
@@ -226,5 +248,160 @@
   font-weight: 600;
   & img {
     width: 24px;
+  }
+}
+
+/* 저장시 나오는 팝업창 (저장완료) */
+.profile--modify-save-alert {
+  display: flex;
+  padding: 20px 18px 18px 18px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: var(--background, #fff);
+  width: 260px;
+  gap: 20px;
+  position: absolute;
+  height: 171px;
+  z-index: 100;
+  left: calc(50% - 130px);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  & p {
+    font-size: var(--font-s);
+    text-align: center;
+    line-height: 160%;
+    color: var(--Contents-contentSecondary);
+  }
+  & button {
+    width: 100%;
+    border-radius: 8px;
+    background-color: var(--primary);
+    padding: 8px 0;
+    color: #ffffff;
+  }
+}
+.profile--submit-error-message {
+  text-align: center;
+  color: #e11900;
+}
+
+/* 기사자격증 선택 팝업창 */
+.profile--modify-select-form {
+  z-index: 100;
+  background: var(--background);
+  box-sizing: border-box;
+  width: 65%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: calc(50% - calc(65% / 2));
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  & p {
+    text-align: center;
+  }
+  & button:last-child {
+    border-radius: 8px;
+    background-color: var(--primary);
+    padding: 8px 0;
+    color: #ffffff;
+  }
+  .profile--modify-select-form-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 13px 0px 13px;
+    align-items: center;
+    border-bottom: 0.3px solid var(--Contents-contentSecondary, #919191);
+    & button {
+      background-color: transparent;
+    }
+  }
+
+  .profile--modify-select-contents-wrapper {
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+  /* 자음 버튼  */
+  .profile--modify-certification-consonants {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    & button {
+      border-radius: 50%;
+      background-color: var(--Contents-contentTertiary, #9da1b4);
+      color: white;
+      padding: 5px;
+      font-weight: 600;
+    }
+    & button.is-active {
+      background-color: var(--secondary);
+    }
+  }
+  .profile--modify-certification-list {
+    height: 130px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 1.5px 1.5px var(--Contents-contentTertiary, #9da1b4);
+    & li {
+      padding: 5px;
+      font-size: var(--font-m);
+      display: inline-block;
+    }
+  }
+  .profile--modify-certification-save.is-active {
+    background: var(--secondary);
+  }
+}
+.profile--secession-select-form {
+  z-index: 100;
+  display: flex;
+  padding: 20px 18px 18px 18px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  border-radius: 20px;
+  background: var(--background, #fff);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  height: 140px;
+  box-sizing: border-box;
+  width: 50%;
+  left: calc(50% - calc(50% / 2));
+  .profile--seccession-wrapper {
+    text-align: center;
+
+    & p {
+      margin: 0;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    & p:last-child {
+      color: #e11900;
+      font-size: var(--font-s);
+      font-weight: normal;
+    }
+  }
+  .proifle--seccession-choice {
+    display: flex;
+    width: 100%;
+    gap: 3px;
+    width: 100%;
+    & button {
+      width: 100%;
+      height: 35px;
+      border-radius: 8px;
+      border: 1px solid #d3d3d3;
+      background: var(--bluegray-200);
+    }
+    & button:first-child {
+      background: var(--secondary);
+      color: white;
+    }
   }
 }

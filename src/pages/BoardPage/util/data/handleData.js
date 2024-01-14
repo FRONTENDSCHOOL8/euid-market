@@ -33,7 +33,28 @@ export async function getData() {
 
 export async function getQuestionData() {
   const resultList = await pb.collection('posts').getList(1, 50, {
-    filter: 'category = "질의응답"',
+    filter: 'category = "질의응답"'
   });
   return resultList;
+}
+
+export async function getTogetherData() {
+  const resultList = await pb.collection('posts').getList(1, 50, {
+    filter: 'category = "같이해요"'
+  });
+  return resultList;
+}
+
+export async function getUserData(userID) {
+  const record = await pb.collection('users').getOne(userID);
+  return record;
+}
+
+export async function getUserProfilePicture(item, fileName="user_photo") {
+  return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item[fileName]}`
+}
+
+export async function getOneData(id, collection) {
+  const data = await pb.collection(collection).getOne(id, {requestKey: null});
+  return data
 }

@@ -1,63 +1,20 @@
-// import PocketBase from 'pocketbase';
+import gsap from 'gsap';
+import { getNode } from '/src/lib/';
 
+// GSAP 애니메이션 인스턴스 생성
+const signUpAnimation = gsap.to('.go-sign-up', {
+  scale: 1.05,
+  duration: 0.2,
+  paused: true, // 애니메이션 자동 시작 비활성화
+  ease: 'power1.inOut', // 부드러운 이징 효과
+});
 
-import { getNode, insertLast } from "../../lib/index.js";
+// 마우스가 요소 위에 있을 때 애니메이션 재생
+getNode('.go-sign-up').addEventListener('mouseenter', () => {
+  signUpAnimation.play();
+});
 
-// const pb = new PocketBase('http://127.0.0.1:8090');
-
-
-
-// const records = await pb.collection('users').getFullList({
-//   sort: '-created',
-// });
-
-// const response = await fetch(
-//   `http://127.0.0.1:8090/api/collections/products/records`
-// );
-
-// const hello = $('.hello');
-
-
-
-// response.data = await response.json();
-// const items = response.data.items;
-
-// items.forEach((item) => {
-//   const template =  /* html */ `
-//     <p>${item.description}</p>
-//   `;
-
-//   insertLast(hello, template);
-
-
-// })
-// const descData = response.data.items[1].description;
-// insertLast(hello, descData);
-
-// console.log(response.data.items[0].description);
-
-
-
-function createPost() {
-  const template = /* html */ `
-    <div class="board--post-instance">
-      <label class=" label-s board--badge">같이해요</label> 
-      <h2>youtube 클론 프젝 같이 하실분~!</h2>
-      <div class="board--flex">
-        <img src="/src/assets/icons/fullpeople.svg" alt="" >
-        <p>누구나 참여 가능</p>
-      </div>
-      
-      <div class="board--flex">
-        <img src="/src/assets/icons/calendar.svg" alt="" >
-        <p>내일, 오후 7:00</p>
-      </div>
-  `
-
-  for(let i=0; i<10; i++) {
-    insertLast(getNode('.board--post-list'), template);
-  }
-  
-}
-
-createPost();
+// 마우스가 요소를 벗어날 때 애니메이션 반전
+getNode('.go-sign-up').addEventListener('mouseleave', () => {
+  signUpAnimation.reverse();
+});

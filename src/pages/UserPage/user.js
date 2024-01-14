@@ -13,7 +13,7 @@ import {
 
 import { deleteStorage, getNode, insertFirst, insertAfter } from '/src/lib/';
 //배포전 수정 !!!!!!!!!!!!!!!1
-const TEST_USER_ID = 'bexmuprbriobf8v';
+const TEST_USER_ID = 'c2zrq8ifbpivaop';
 
 /* -------------------------------------------------------------------------- */
 /*                             랜더링 후 즉시 실행                                */
@@ -21,12 +21,10 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
 
 (async () => {
   //유저 정보 가져오기
-  const userInfoResult = (
-    await pb
-      .collection('users')
-      .getList(1, 10, { filter: `id = "${TEST_USER_ID}" ` })
-  ).items[0];
-
+  const userInfoResult = await pb.collection('users').getOne(TEST_USER_ID, {
+    expand: 'user_nickname',
+  });
+  console.log(userInfoResult);
   // 배지 정보 가져오기
   const userBadgeResult = await pb.collection('user_badge').getList(1, 50, {
     filter: `user_id= "${TEST_USER_ID}"`,

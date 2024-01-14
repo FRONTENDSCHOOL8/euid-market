@@ -1,5 +1,7 @@
+body {
+  margin: auto;
+}
 /* 프로필 수정 네비게이션 바*/
-
 .profile--card-nav {
   height: 49px;
   display: flex;

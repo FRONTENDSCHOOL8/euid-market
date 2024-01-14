@@ -1,7 +1,11 @@
-body{
+.login--container{
   max-width: 599px;
   margin: 0 auto;
+  /* padding-bottom: 68px; */
+  height: 100vh;
+  /* background-color: pink; */
 }
+
 .login--logo-container{
   display: flex;
   position: fixed;
@@ -9,23 +13,24 @@ body{
   flex-direction: column;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, calc(-50% - 20px));
+  transform: translate(-50%, calc(-50% - 4px));
   
   & img {
-    width: 125px;
-    padding-bottom: 10px;
+    width: 5.5rem;
+    max-width: 125px;
+    padding-bottom: 5px;
   }
 
   & h2 {
     color: var(--primary, #373F67);
     font-weight: 700;
     white-space: nowrap;
-    padding-bottom: 10px;
+    padding-bottom: 0.625rem;
   }
 
   & p {
     margin: 0;
-    line-height: 120%;
+    line-height: 160%;
     color: var(--primary, #373F67);
     white-space: nowrap; 
   }
@@ -37,22 +42,23 @@ body{
   gap: 1.5rem;
   bottom: 1rem; 
   display: flex;
-  position: fixed;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
 
-
+/* 시작하기 */
   & a:nth-child(1) {
-    width: 5rem;
+    width: 90%;
     color: #FFF;
     text-align: center;
     border-radius: 8px;
     text-decoration: none;
-    padding: 9px 126px;
+    padding: 0.563rem 7.875rem;
     background: var(--primary, #373F67);
+    margin-top: 80vh;
   }
-
+/* 로그인으로 이동 */
   & a:nth-child(2) { 
     line-height: 160%;
     text-decoration: none;
@@ -65,5 +71,8 @@ body{
     color: var(--primary, #373F67);
   }
 }
+
+
+
 
 
