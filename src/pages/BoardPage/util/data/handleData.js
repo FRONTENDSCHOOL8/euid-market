@@ -65,8 +65,8 @@ export async function getOneData(id, collection) {
 }
 
 export function cancelRequests() {
-  const controller = new AbortController();
-  controller.abort();
+  // const controller = new AbortController();
+  // AbortController.abort();
   pb.cancelAllRequests();
 }
 

@@ -1,23 +1,21 @@
 // import PocketBase from 'pocketbase';
 import { renderNavBar } from "../../components/general/renderNavBar.js";
 import { getNode, } from "../../lib/index.js";
-import { renderMainPosts, renderTogetherPosts, renderQuestionPosts, addClass, removeClass } from "./util/dom/index.js";
-import { relocateLink, cancelRequests } from "./util/index.js";
-// import pb from '/src/lib/api/pocketbase';
+import { 
+  renderMainPosts, 
+  renderTogetherPosts, 
+  renderQuestionPosts, 
+  addClass, 
+  removeClass, 
+  clearContent,
+  changeLink,
+  relocateLink, 
+  cancelRequests } from "./util/index.js";
 
-function changeLink(element, link="/src/pages/BoardPage/children_pages/createPost/") {
-  element.href = link;
-}
-
-function clearContent(container) {
-  container.innerHTML = "";
-}
-
+// 선택 카테고리 게시물 렌더링
 function renderPosts(button, container, option) {
   addClass(button, "active-category");
-
-  const loadingScreen = getNode("#board--loading");
-  console.log(loadingScreen);
+ 
   const postType = {
     "main": () => renderMainPosts(container),
     "together": () => renderTogetherPosts(container),
@@ -28,6 +26,7 @@ function renderPosts(button, container, option) {
   render();
 }
 
+// 게시물 상세 페이지 이동
 function openPost(e) {
   e.preventDefault();
   
@@ -40,8 +39,7 @@ function openPost(e) {
   relocateLink("/src/pages/BoardPage/children_pages/postInfo/");
 }
 
-
-
+// 카테고리 버튼 이벤트 리스너
 function handleCategory(e) {
   e.preventDefault();
   const target = e.target;
