@@ -126,13 +126,12 @@ export function mannerTemplate(count, manner_title) {
 /*                                    프로필카드                                   */
 /* -------------------------------------------------------------------------- */
 
-export function profileCardUserInfoTemplate(userInfoObj) {
-  let {
-    id,
-    user_nickname: nickname,
-    user_year: year,
-    user_photo,
-  } = userInfoObj;
+export function profileCardUserInfoTemplate({
+  id,
+  user_nickname: nickname,
+  user_year: year,
+  user_photo,
+}) {
   return /*html */ `
     <figure>
       <figcaption>
