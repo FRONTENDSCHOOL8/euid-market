@@ -1,69 +1,40 @@
 import { getNode, setStorage, getStorage } from '/src/lib/';
+import { validation, doRandomCode } from '/src/pages/LoginPage/util/';
 import PocketBase from 'pocketbase';
 
 // const PASSWORDKEY = 'thsxndlxn';
-const pb = new PocketBase(import.meta.env.VITE_PB_URL); // 로컬주소 가져와서 pb 객체 생성
+const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 const phoneInput = getNode('#phone');
 const codeButton = getNode('#codeButton');
 const codeInput = getNode('#codeInput');
 const startButton = getNode('#start-button');
 const errorMessage = getNode('#error-message');
-// const randomCode = generateRandomCode();
+const copyButton = getNode('#copy-button');
+const closeButton = getNode('#close-button');
+const randomCode = doRandomCode();
 
-//11자리 숫자가 입력되면 버튼 활성화
-phoneInput.addEventListener('input', function () {
-  const phoneNumber = phoneInput.value;
-
-  // 입력된 값이 11자리 숫자인지 확인
-  if (phoneNumber.length === 11 && /^\d+$/.test(phoneNumber)) {
-    // 버튼 활성화 및 스타일 변경
-    codeButton.disabled = false;
-    codeButton.style.borderColor = 'black';
-    codeButton.style.color = 'black';
-  } else {
-    // 버튼 비활성화 및 기본 스타일 적용
-    codeButton.disabled = true;
-    codeButton.style.borderColor = '';
-    codeButton.style.color = '';
-  }
-});
-
-// 랜덤한 문자와 숫자 조합을 생성하는 함수
-function generateRandomCode() {
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for (let i = 0; i < 6; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return result;
-}
-
-// 다이얼로그를 표시하는 함수
+// 다이얼로그 표시
 function showDialog(randomCode) {
   const codeText = getNode('#code-text');
   codeText.textContent = randomCode;
   const dialog = getNode('#code-dialog');
   dialog.showModal();
 }
-
-// '복사하기' 버튼에 대한 이벤트 리스너 설정
-getNode('#copy-button').addEventListener('click', function (e) {
-  e.preventDefault(); // 폼 제출을 방지합니다.
+// 다이얼로그 코드 복사
+function handleCopy(e) {
+  e.preventDefault();
 
   const codeText = getNode('#code-text').textContent;
   navigator.clipboard.writeText(codeText).then(() => {
-    getNode('#code-dialog').close(); // 다이얼로그를 닫습니다.
+    getNode('#code-dialog').close();
   });
-});
-
-// '닫기' 버튼에 대한 이벤트 리스너 설정
-getNode('#close-button').addEventListener('click', function () {
+}
+// 다이얼로그 닫기
+function handleClose() {
   getNode('#code-dialog').close();
-});
+}
 /* -------------------------------------------------------------------------- */
-/*                         인증문자 받기 버튼 이벤트 처리                            */
-/* -------------------------------------------------------------------------- */
+// 인증문자 받기
 async function handleCode(e) {
   e.preventDefault();
 
@@ -75,10 +46,7 @@ async function handleCode(e) {
     if (usernames.includes(phoneNum)) {
       alert('이미 가입하셨습니다. 로그인하시겠습니까?');
     } else {
-      // 랜덤 코드 생성 및 다이얼로그 표시
-      const randomCode = generateRandomCode();
       showDialog(randomCode);
-
       // 생성된 랜덤 코드를 로컬 스토리지에 저장
       await setStorage(phoneNum, randomCode);
     }
@@ -87,40 +55,23 @@ async function handleCode(e) {
   }
 }
 
-/* -------------------------------------------------------------------------- */
-/*    users 컬렉션의 username 필드 데이터만 가져오기. -> 배열                          */
-/* -------------------------------------------------------------------------- */
+// users 컬렉션의 username 필드 데이터 가져오기
 async function fetchUsernames() {
   try {
-    // users 컬렉션에서 모든 레코드 가져오기
     const records = await pb.collection('users').getFullList();
-
-    // 각 레코드에서 username 필드만 추출
     const usernames = records.map((record) => record.username);
-
-    // usernames 반환
     return usernames;
   } catch (error) {
-    console.error('데이터를 가져오는데 실패했습니다:', error);
-    return [];
+    console.error(error);
   }
 }
 
-// usernames을 가져와서 처리하는 예
-fetchUsernames().then((usernames) => {
-  console.log('Username 목록:', usernames);
-});
-/* -------------------------------------------------------------------------- */
-/*         중복유저 체크 :가져온 데이터와 폰번호 일치여부 확인                   */
-/* -------------------------------------------------------------------------- */
-async function checkUserExists(phoneNum) {
+// 중복유저 체크
+async function checkUser(phoneNum) {
   try {
     const usernames = await fetchUsernames();
-
-    // phoneNum을 문자열로 변환
     const phoneNumStr = String(phoneNum);
-
-    // usernames 배열에 phoneNumStr이 있는지 확인
+    // usernames 배열에서 중복유저 확인
     if (usernames.includes(phoneNumStr)) {
       alert('이미 가입하셨습니다');
     } else {
@@ -131,11 +82,8 @@ async function checkUserExists(phoneNum) {
   }
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                      -                                     */
-/* -------------------------------------------------------------------------- */
 // codeInput 값이 입력되면 startButton 활성화
-codeInput.addEventListener('input', function (e) {
+function handleBtnActive(e) {
   e.preventDefault();
   if (codeInput.value.length > 0) {
     startButton.classList.add('login--start-active');
@@ -145,14 +93,8 @@ codeInput.addEventListener('input', function (e) {
     startButton.disabled = true;
   }
   console.log(codeInput.value);
-});
-
-codeButton.addEventListener('click', handleCode);
-
-/* -------------------------------------------------------------------------- */
-/*         지금 작업중이 핸들사인업 이벤트리스너 함수                                    */
-/* -------------------------------------------------------------------------- */
-
+}
+//체크 필요
 async function handleSignup(e) {
   e.preventDefault();
   const phoneNum = phoneInput.value;
@@ -207,4 +149,10 @@ async function handleSignup(e) {
   }
 }
 
+// 이벤트리스너
+phoneInput.addEventListener('input', () => validation(phoneInput, codeButton));
+copyButton.addEventListener('click', handleCopy);
+closeButton.addEventListener('click', handleClose);
+codeButton.addEventListener('click', handleCode);
+codeInput.addEventListener('input', handleBtnActive);
 startButton.addEventListener('click', handleSignup);

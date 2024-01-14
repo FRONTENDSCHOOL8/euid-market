@@ -17,14 +17,21 @@
   <body>
     <div class="login--container">
       <div class="temp-bar">
-        <p class="label-s">2:26</p>
+        <p class="label-s">9:14</p>
         <div class="temp-bar-icon-wrapper">
-          <img src="/src/assets/icons/general/cellular.svg" alt="cellular" />
-          <img class="lte" src="/src/assets/icons/general/lte.svg" alt="lte" />
+          <img
+            src="/src/assets/icons/general/cellular.svg"
+            alt="무선 네트워크 신호 아이콘"
+          />
+          <img
+            class="lte"
+            src="/src/assets/icons/general/lte.svg"
+            alt="LTE 네트워크 아이콘"
+          />
           <img
             class="battery"
             src="/src/assets/icons/general/battery.svg"
-            alt="battery"
+            alt="배터리 충전 상태 아이콘"
           />
         </div>
       </div>
@@ -33,7 +40,7 @@
         ><img src="/src/assets/icons/login/direction=left.svg" alt="뒤로가기"
       /></a>
 
-      <div class="login--signup-title">
+      <div aria-label="회원가입 페이지" class="login--signup-title">
         <p>안녕하세요!</p>
         <h1>휴대폰 번호로 가입해주세요.</h1>
       </div>
@@ -44,13 +51,12 @@
       <div class="login--signup-form">
         <form>
           <!-- 휴대폰 번호 입력 -->
-          <label for="phone" class="hidden">휴대폰 번호:</label>
+          <label for="phone" class="sr-only">휴대폰 번호 입력란:</label>
           <input
             type="text"
             inputmode="tel"
             id="phone"
             name="phone"
-            aria-required="true"
             placeholder="휴대폰 번호(-없이 숫자만 입력)"
             maxlength="11"
             required
@@ -58,22 +64,22 @@
           <!-- 인증문자 받기 버튼 -->
           <button type="button" id="codeButton" disabled>인증문자 받기</button>
           <!-- 인증문자 다이얼로그 -->
-          <dialog id="code-dialog">
+          <dialog id="code-dialog" aria-describedby="code-text">
             <p id="code-text"></p>
-            <button id="copy-button">복사하기</button>
-            <button id="close-button">닫기</button>
+            <button id="copy-button" aria-label="복사하기">복사하기</button>
+            <button id="close-button" aria-label="닫기">닫기</button>
           </dialog>
         </form>
 
         <form>
           <!-- 인증번호 입력 -->
           <div class="login--code-section">
-            <label for="codeInput" class="hidden">인증번호 입력</label>
+            <label for="codeInput" class="sr-only">인증번호 입력란</label>
             <input
               type="text"
               id="codeInput"
-              aria-required="true"
               placeholder="인증번호 입력"
+              required
             />
             <p class="login--">어떤 경우에도 타인에게 공유하지 마세요!</p>
             <p id="error-message" class="hidden">
