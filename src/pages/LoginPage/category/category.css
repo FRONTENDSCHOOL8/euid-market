@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 button, input{
   background: none;      
   border: none;          
@@ -7,21 +10,41 @@ button, input{
   text-decoration: none; 
   cursor: pointer;        
 }
-
 body{
   margin: 0 auto;
-  max-width: 599px;
+  height: 100vh;
+  overflow: scroll;
 }
 
+.login--container{
+  max-width: 599px;
+
+  & h1{
+    color: var(--primary, #373F67);
+    font-weight: 700;
+    line-height: 140%;
+    font-size: 1.25rem;
+    padding-left: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+}
+ 
 .login--top-bar{
-  padding: 20px;
+  padding: 18px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+
+ & img{
+  background-color: white;
+ } 
 }
 
-#categorySearch {
+.login--category-search{
+  overflow: hidden;
+
+& input {
   border-bottom: 1px solid black;
   background-image: url('/src/assets/icons/login/search.svg');
   background-repeat: no-repeat;
@@ -29,78 +52,78 @@ body{
   background-position:0 center;
   padding-left: 25px;
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 0.875rem;
   width: 75vw;
   max-width: 545px;
   height: 35px;
+ }
 }
 
- h1{
-  color: var(--primary, #373F67);
-  font-weight: 700;
-  line-height: 140%;
-  font-size: 20px;
-  padding: 10px 30px;
-}
+.login--category-list {
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  margin-top: 10px;
+  grid-column-gap: 0.5rem;
+  width: 100%;
+  
+  & li {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    }
+  }
 
+.login--category-card {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  margin: 10px 5px;
+  display: flex;
+  border-radius: 8px;
+  justify-content: space-between;
+  background: var(--gray-400, #A7A7A7);
+  transition: all 0.2s;
+    
+  & .login--category-name{
+    padding: 3px;
+    white-space: nowrap;
+    text-align: start;
+     }
+  & img{
+    width: 7vw;
+    max-width: 30px;
+    padding-right: 5px;
+    padding-top: 10px;
+    }
+  }
+  
 .login--category-wrapper{
+  width: 100%;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
   padding-bottom: 110px;
 
-  & button[type="submit"] {
-    width: 85%;
-    max-width: 570px;
+  /* 이대로 저장 버튼 */
+ & .login--category-submit {
+    width: 100%;
     color: #fff;
     padding: 10px 100px;
     border-radius: 8px;
     white-space: nowrap;
+    text-align: center;
     justify-content: center;
+    position: fixed;
+    bottom: 30px;
+    font-size: 16px;
+    z-index: 10;
     background: var(--primary, #373F67);
   }
 }
-/* 카테고리 리스트 */
-.login--category-list {
-  display: grid;
-  /* place-items: center; */
-  grid-template-columns: repeat(2,minmax(0,1fr));
-  margin-top: 10px;
 
-   & button {
-    min-width: 160px;
-    max-width: 275px;
-    width: 25vw;
-    height: 4.2rem;
-    padding: 10px;
-    margin: 10px 5px;
-    display: flex;
-    border-radius: 8px;
-    justify-content: space-between;
-    background: var(--gray-400, #A7A7A7);
-    transition: all 0.2s;
-  
-      & .login--category-name{
-      padding: 3px;
-      white-space: nowrap;
-      text-align: start;
-      }
-      & img{
-        width: 7vw;
-        max-width: 30px;
-        padding-right: 5px;
-        padding-top: 10px;
-      }
-    }
-}
-
-.login--category-submit {
-  position: fixed;
-  bottom: 50px;
-  font-size: 16px;
-  z-index: 10;
-}
 
 .login--category-card p:nth-child(1){
   font-weight: 600;
@@ -108,23 +131,23 @@ body{
   padding-bottom: 3px;
   color: var(--gray-100, #E9E9E9);
   }
+
 .login--category-card:focus-visible{
   background: var(--primary, #373F67);
   & p{
     color: white;
   }
 }
+/* 호버 상태 스타일 */
 .login--category-card:hover{
   background: var(--primary, #373F67); 
   }
-/* .login--category-card:active{
-  background: var(--primary, #373F67);
-} */
+
 .login--category-card:hover .paragraph-s,
 .login--category-card:hover .heading-s {
     color: white;
 }
-
+/* active 클래스 추가되었을 때 스타일 */
 .login--category-card.active-card {
   background-color: #373F67; 
 }
@@ -134,9 +157,7 @@ body{
     color: white; 
 }
 
-/* .active-card img {
-    src: '/src/assets/icons/login/check.svg'; 
-} */
+
 
 
 

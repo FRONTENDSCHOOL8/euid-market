@@ -14,14 +14,14 @@ async function renderCategory() {
   userData.forEach((item) => {
     const template = /*html*/ `
     <li >
-    <button type="button" class="login--category-card">
-    <div class="login--category-name">
-      <p class="login--category-main paragraph-s">${item.main_category}</p>
-      <p class="login--category-sub heading-s">${item.sub_category}</p>
-    </div>
-    <img src=${plus} alt="관심분야에 추가" />
-    </button>
-  </li>
+     <button type="button" class="login--category-card">
+      <div class="login--category-name">
+       <p class="login--category-main paragraph-s">${item.main_category}</p>
+       <p class="login--category-sub heading-s">${item.sub_category}</p>
+      </div>
+     <img src=${plus} alt="관심분야에 추가" />
+     </button>
+    </li>
     `;
     insertLast('.login--category-list', template);
   });
@@ -85,3 +85,21 @@ getNode('.login--category-submit').addEventListener('click', function () {
 getNode('.login--category-submit').addEventListener('click', function () {
   window.location.href = '/src/pages/LoginPage/signup/';
 });
+
+// submit 버튼 너비 조정 함수
+const buttonWidth = () => {
+  // 부모 요소 선택
+  const parent = getNode('.login--category-wrapper');
+  // 부모 요소의 너비 계산
+  const parentWidth = parent.offsetWidth;
+  // 버튼 요소 선택
+  const button = getNode('.login--category-submit');
+  // 버튼의 너비를 부모 요소의 너비로 설정
+  button.style.width = `${parentWidth}px`;
+};
+
+// 창 크기가 변경될 때마다 버튼 너비 조정
+window.addEventListener('resize', buttonWidth);
+
+// 초기 로드 시 버튼 너비 조정
+buttonWidth();

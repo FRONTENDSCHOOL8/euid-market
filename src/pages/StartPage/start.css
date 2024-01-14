@@ -1,13 +1,12 @@
 .login--container{
-  /* max-width: 599px;
-  margin: 0 auto; */
+  max-width: 599px;
+  margin: 0 auto;
   /* padding-bottom: 68px; */
   height: 100vh;
-  /* background-color: gray; */
+  /* background-color: pink; */
 }
 
 .login--logo-container{
-  /* background-color: pink; */
   display: flex;
   position: fixed;
   text-align: center;
@@ -15,13 +14,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, calc(-50% - 4px));
-  /* background-color: pink; */
   
   & img {
     width: 5.5rem;
     max-width: 125px;
     padding-bottom: 5px;
-    /* background-color: pink; */
   }
 
   & h2 {
@@ -32,7 +29,6 @@
   }
 
   & p {
-    /* background-color: yellow; */
     margin: 0;
     line-height: 160%;
     color: var(--primary, #373F67);
@@ -46,20 +42,22 @@
   gap: 1.5rem;
   bottom: 1rem; 
   display: flex;
-  position: fixed;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
 
 /* 시작하기 */
   & a:nth-child(1) {
-    width: 18.75rem;
+    width: 100%;
     color: #FFF;
     text-align: center;
     border-radius: 8px;
     text-decoration: none;
     padding: 0.563rem 7.875rem;
     background: var(--primary, #373F67);
+    margin-top: 80vh;
+    transition: box-shadow 0.3s;
   }
 /* 로그인으로 이동 */
   & a:nth-child(2) { 
@@ -74,5 +72,10 @@
     color: var(--primary, #373F67);
   }
 }
+
+.go-sign-up:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 
 

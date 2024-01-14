@@ -53,10 +53,10 @@
     & .lte,
     .battery {
       position: absolute;
-      left: 20px;
+      left: 22px;
     }
     & .battery {
-      left: 50px;
+      left: 53px;
     }
   }
 }
