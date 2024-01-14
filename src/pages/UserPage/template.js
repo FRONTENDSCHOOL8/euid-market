@@ -319,7 +319,7 @@ export function profileJobPopupTemplate() {
     <div class="profile--select-jobs-lists"></div>
     <button class="profile--select-jobs-add-button">제 직업은 없어요 😞</button>
     <button class="profile--select-jobs-save">저장</button>
-  </div>;`;
+  </div>`;
 }
 
 //하는일 팝업창의 직접 입력해서 추가하는 템플릿
