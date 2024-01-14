@@ -3,7 +3,7 @@ import { renderNavBar } from "../../components/general/renderNavBar.js";
 import { getNode, } from "../../lib/index.js";
 import { renderMainPosts, renderTogetherPosts, renderQuestionPosts, addClass, removeClass } from "./util/dom/index.js";
 import { relocateLink, cancelRequests } from "./util/index.js";
-import pb from '/src/lib/api/pocketbase';
+// import pb from '/src/lib/api/pocketbase';
 
 function changeLink(element, link="/src/pages/BoardPage/children_pages/createPost/") {
   element.href = link;
