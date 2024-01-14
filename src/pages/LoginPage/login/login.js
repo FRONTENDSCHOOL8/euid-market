@@ -4,6 +4,7 @@ import PocketBase from 'pocketbase';
 const PASSWORDKEY = 'thsxndlxn';
 const pb = new PocketBase(import.meta.env.VITE_PB_URL); // 로컬주소 가져와서 pb 객체 생성
 const phoneInput = getNode('#phone');
+
 const codeButton = getNode('#codeButton');
 const codeInput = getNode('#codeInput');
 const startButton = getNode('#start-button');
@@ -104,13 +105,13 @@ codeInput.addEventListener('input', function (e) {
 startButton.addEventListener('click', async function (e) {
   e.preventDefault();
   const inputCode = codeInput.value;
-
+  const phoneNum = phoneInput.value;
   // 사용자 입력 값 로그 출력
   console.log('입력된 코드:', inputCode);
 
   try {
-    const storedCode = await getStorage(phoneInput.value);
-
+    const storedCode = await getStorage(phoneNum);
+    console.log(phoneNum);
     // 저장된 값 로그 출력
     console.log('저장된 코드:', storedCode);
 

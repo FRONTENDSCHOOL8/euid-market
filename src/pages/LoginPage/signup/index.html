@@ -4,12 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/styles/style.css" />
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
+    <meta
+      id="_csrf_header"
+      name="_csrf_header"
+      th:content="${_csrf.headerName}"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입 | 엔터이듬</title>
     <script type="module" src="signup.js"></script>
   </head>
   <body>
-    <div class="login--signup-container">
+    <div class="login--container">
       <div class="temp-bar">
         <p class="label-s">2:26</p>
         <div class="temp-bar-icon-wrapper">
@@ -23,7 +29,7 @@
         </div>
       </div>
 
-      <a href="/src/pages/LoginPage/category/"
+      <a href="/src/pages/Startpage/"
         ><img src="/src/assets/icons/login/direction=left.svg" alt="뒤로가기"
       /></a>
 
@@ -34,36 +40,53 @@
       <p class="login--signup-subtitle">
         휴대폰 번호는 안전하게 보관되며 서로에게 공개되지 않아요.
       </p>
+
       <div class="login--signup-form">
         <form>
           <!-- 휴대폰 번호 입력 -->
           <label for="phone" class="hidden">휴대폰 번호:</label>
           <input
-            type="tel"
+            type="text"
+            inputmode="tel"
             id="phone"
             name="phone"
             aria-required="true"
             placeholder="휴대폰 번호(-없이 숫자만 입력)"
-            maxlength="13"
+            maxlength="11"
             required
           />
           <!-- 인증문자 받기 버튼 -->
-          <button type="button" id="verify-button" aria-disabled="true">
-            인증문자 받기
-          </button>
-          <!-- 인증번호 입력 (초기에는 숨겨져 있음) -->
+          <button type="button" id="codeButton" disabled>인증문자 받기</button>
+          <!-- 인증문자 다이얼로그 -->
+          <dialog id="code-dialog">
+            <p id="code-text"></p>
+            <button id="copy-button">복사하기</button>
+            <button id="close-button">닫기</button>
+          </dialog>
+        </form>
+
+        <form>
+          <!-- 인증번호 입력 -->
           <div class="login--code-section">
-            <label for="verification-code" class="hidden">인증번호 입력</label>
+            <label for="codeInput" class="hidden">인증번호 입력</label>
             <input
               type="text"
-              id="verification-code"
+              id="codeInput"
               aria-required="true"
               placeholder="인증번호 입력"
             />
-            <p>어떤 경우에도 타인에게 공유하지 마세요!</p>
+            <p class="login--">어떤 경우에도 타인에게 공유하지 마세요!</p>
+            <p id="error-message" class="hidden">
+              인증문자를 다시 입력해주세요.
+            </p>
           </div>
           <!-- 인증번호 인증 완료 후 시작 버튼 -->
-          <button type="submit" id="start-button" aria-disabled="true">
+          <button
+            type="submit"
+            id="start-button"
+            class="login--start-button"
+            disabled
+          >
             동의하고 시작하기
           </button>
         </form>
