@@ -312,7 +312,7 @@ export function profileJobPopupTemplate() {
     <div class="profile--select-jobs-form-title">
       <h2>하는 일 추가하기</h2>
       <button class="profile--select-jobs-close" type="button">
-        <img src="/src/assets/icons/profile/close.svg" alt="" />
+        <img src="${close}" alt="" />
       </button>
     </div>
     <div class="profile--select-jobs-add-form"></div>
