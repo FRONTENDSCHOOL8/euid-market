@@ -1,17 +1,20 @@
-// submit 버튼 너비 조정 함수
-const buttonWidth = () => {
-  // 부모 요소 선택
-  const parent = getNode('.login--container');
-  // 부모 요소의 너비 계산
-  const parentWidth = parent.offsetWidth;
-  // 버튼 요소 선택
-  const button = getNode('.login--step-next-container');
-  // 버튼의 너비를 부모 요소의 너비로 설정
-  button.style.width = `${parentWidth}px`;
-};
+import gsap from 'gsap';
+import { getNode } from '/src/lib/';
 
-// 창 크기가 변경될 때마다 버튼 너비 조정
-window.addEventListener('resize', buttonWidth);
+// GSAP 애니메이션 인스턴스 생성
+const signUpAnimation = gsap.to('.go-sign-up', {
+  scale: 1.1, // 버튼 확대
+  duration: 0.2, // 애니메이션 지속 시간
+  paused: true, // 애니메이션 자동 시작 비활성화
+  ease: 'power1.inOut', // 부드러운 이징 효과
+});
 
-// 초기 로드 시 버튼 너비 조정
-buttonWidth();
+// 마우스가 요소 위에 있을 때 애니메이션 재생
+getNode('.go-sign-up').addEventListener('mouseenter', () => {
+  signUpAnimation.play();
+});
+
+// 마우스가 요소를 벗어날 때 애니메이션 반전
+getNode('.go-sign-up').addEventListener('mouseleave', () => {
+  signUpAnimation.reverse();
+});
