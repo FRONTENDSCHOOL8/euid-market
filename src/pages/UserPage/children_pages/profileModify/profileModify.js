@@ -83,6 +83,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   async function handleJobModify() {
     if (!getNode('.profile--select-jobs-form')) {
       insertFirst('body', profileJobPopupTemplate());
+      getNode('.profile--select-jobs-form').focus();
       const resultList = (await pb.collection('jobs').getList(1, 50))['items'];
       jobLists = getNode('.profile--select-jobs-lists');
       resultList.forEach((item) => {
@@ -133,6 +134,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
       profileJobSelfAddTemplate()
     );
     getNode('.profile--select-jobs-add-button').remove();
+    getNode('.profile--select-jobs-add-form').focus();
     let job_title;
     function handleJobInput(e) {
       job_title = e.target.value;
@@ -157,12 +159,12 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
    */
   function handleJobSave(e) {
     console.log(tempJobData);
-
     if (!tempJobData == '') {
       e.target.innerText = '저장완료!';
       e.target.classList.add('is-active');
       tempData['usersUpdatedData']['user_job'] = tempJobData;
       console.log(tempData['usersUpdatedData']);
+      tempJobData = '';
       setTimeout(() => {
         handleJobForm();
       }, 2000);
@@ -199,17 +201,15 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     if (!getNode('.profile--modify-select-form')) {
       insertFirst('body', profileCertificationSelectTemplate());
       let scrollTop = window.scrollY || document.documentElement.scrollTop;
-      getNode('.profile--modify-select-form').style = `top:${
-        scrollTop + window.innerHeight / 3.5
-      }px`;
+      const form = getNode('.profile--modify-select-form');
+      form.style = `top:${scrollTop + window.innerHeight / 3.5}px`;
+      form.focus();
       try {
         const close = getNode('.profile--certification-close');
         const save = getNode('.profile--modify-certification-save');
         consonantList = getNode('.profile--modify-certification-consonants');
         certificationList = getNode('.profile--modify-certification-list');
-
         certifications = await getCertifications();
-
         Object.keys(certifications).forEach((item) => {
           insertLast(consonantList, profileConsonantTemplate(item));
           certifications[item].forEach((item) => {
@@ -395,10 +395,10 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     if (!getNode('.profile--secession-select-form')) {
       insertFirst('body', profileConfirmSecessionTemplate());
       const choiceList = getNode('.proifle--seccession-choice');
+      const form = getNode('.profile--secession-select-form');
       let scrollTop = window.scrollY || document.documentElement.scrollTop;
-      getNode('.profile--secession-select-form').style = `top:${
-        scrollTop + window.innerHeight / 3
-      }px`;
+      form.style = `top:${scrollTop + window.innerHeight / 3}px`;
+      form.focus();
       choiceList.addEventListener('click', handleSeccessionButton);
     }
     /**
@@ -422,6 +422,24 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     }
   }
 
+  /**
+   * 팝업창 키보드 esc 버튼으로 빠져나오게 하는 함수
+   * @param {*} e
+   */
+  function handleKeyEscape(e) {
+    if (e.key === 'Escape') {
+      if (getNode('.profile--secession-select-form')) {
+        getNode('.profile--secession-select-form').remove();
+      }
+      if (getNode('.profile--modify-select-form')) {
+        handleCertificationForm();
+      }
+      if (getNode('.profile--select-jobs-form')) {
+        handleJobForm();
+      }
+    }
+  }
+
   usersJobAdd.addEventListener('click', handleJobModify);
   userSecession.addEventListener('click', handleSeccession);
   submitButton.addEventListener('click', handleSubmit);
@@ -434,4 +452,5 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     'click',
     handleCertificationModify
   );
+  document.addEventListener('keydown', handleKeyEscape);
 });
