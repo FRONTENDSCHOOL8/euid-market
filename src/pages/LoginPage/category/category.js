@@ -1,6 +1,7 @@
 import { tiger, insertLast, getNode, getNodes } from '/src/lib';
 import plus from '/src/assets/icons/login/plus.svg';
 import check from '/src/assets/icons/login/check.svg';
+import gsap from 'gsap';
 const card = getNodes('.login--category-card');
 //import PocketBase from 'pocketbase';
 
@@ -103,3 +104,21 @@ window.addEventListener('resize', buttonWidth);
 
 // 초기 로드 시 버튼 너비 조정
 buttonWidth();
+
+// GSAP 애니메이션 인스턴스 생성
+const signUpAnimation = gsap.to('.login--category-submit', {
+  scale: 1.05, // 버튼 확대
+  duration: 0.2, // 애니메이션 지속 시간
+  paused: true, // 애니메이션 자동 시작 비활성화
+  ease: 'power1.inOut', // 부드러운 이징 효과
+});
+
+// 마우스가 요소 위에 있을 때 애니메이션 재생
+getNode('.login--category-submit').addEventListener('mouseenter', () => {
+  signUpAnimation.play();
+});
+
+// 마우스가 요소를 벗어날 때 애니메이션 반전
+getNode('.login--category-submit').addEventListener('mouseleave', () => {
+  signUpAnimation.reverse();
+});

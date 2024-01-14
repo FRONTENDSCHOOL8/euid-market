@@ -124,5 +124,5 @@
 :focus-visible {
   outline: none;
   border: 4px solid orange;
-  border-radius: 0.25em;
+  border-radius: 0.6em;
 }

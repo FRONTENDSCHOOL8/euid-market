@@ -3,8 +3,8 @@ import { getNode } from '/src/lib/';
 
 // GSAP 애니메이션 인스턴스 생성
 const signUpAnimation = gsap.to('.go-sign-up', {
-  scale: 1.1, // 버튼 확대
-  duration: 0.2, // 애니메이션 지속 시간
+  scale: 1.06,
+  duration: 0.2,
   paused: true, // 애니메이션 자동 시작 비활성화
   ease: 'power1.inOut', // 부드러운 이징 효과
 });
