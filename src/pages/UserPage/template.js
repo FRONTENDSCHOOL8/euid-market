@@ -6,7 +6,7 @@ import close from '/src/assets/icons/profile/close.svg';
 import { confirmInput } from '/src/pages/UserPage/utils/confirmInput.js';
 
 /* -------------------------------------------------------------------------- */
-/*                                    유저페이지                                   */
+/*                                    유저페이지                                  */
 /* -------------------------------------------------------------------------- */
 //프로필메뉴
 export function profileMenuTemplate(userobj) {
@@ -303,4 +303,37 @@ export function profileConfirmSecessionTemplate() {
   </div>
 </div>
   `;
+}
+
+//하는일 팝업창 템플릿
+export function profileJobPopupTemplate() {
+  return /*html */ `
+  <div class="profile--select-jobs-form">
+    <div class="profile--select-jobs-form-title">
+      <h2>하는 일 추가하기</h2>
+      <button class="profile--select-jobs-close" type="button">
+        <img src="/src/assets/icons/profile/close.svg" alt="" />
+      </button>
+    </div>
+    <div class="profile--select-jobs-add-form"></div>
+    <div class="profile--select-jobs-lists"></div>
+    <button class="profile--select-jobs-add-button">제 직업은 없어요 😞</button>
+    <button class="profile--select-jobs-save">저장</button>
+  </div>;`;
+}
+
+//하는일 팝업창의 직접 입력해서 추가하는 템플릿
+export function profileJobSelfAddTemplate() {
+  return /*html */ `
+  <form class="profile--select-jobs-add-form">
+    <input class="profile--jobs-input"type="text" placeholder="하는 일 직접 추가하기" />
+    <button class="profile--jobs-input-save">추가하기</button>
+  </form>
+  <p class="profile--jobs-reaction"></p>
+`;
+}
+
+//하는일 팝업창의 직업 버튼요소 템플릿
+export function profileJobElementTemplate(job_title) {
+  return /*html */ `<button data-user-job="${job_title}">${job_title}</button>`;
 }
