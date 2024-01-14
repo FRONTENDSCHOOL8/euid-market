@@ -23,13 +23,13 @@ function imageLoadingChecker(arr) {
     });
     return length;
   })();
+
   console.log(checkLength);
 
   for (const item of arr) {
     item.forEach((list) => {
       list.onload = () => {
         count++;
-        console.log(count);
 
         if (count === checkLength) {
           removeClass(loading, 'active');
