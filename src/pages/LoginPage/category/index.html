@@ -9,45 +9,55 @@
     <script type="module" src="category.js"></script>
   </head>
   <body>
-    <div class="temp-bar">
-      <p class="label-s">2:26</p>
-      <div class="temp-bar-icon-wrapper">
-        <img src="/src/assets/icons/general/cellular.svg" alt="cellular" />
-        <img class="lte" src="/src/assets/icons/general/lte.svg" alt="lte" />
-        <img
-          class="battery"
-          src="/src/assets/icons/general/battery.svg"
-          alt="battery"
-        />
+    <div class="login--container">
+      <div class="temp-bar">
+        <p class="label-s">9:14</p>
+        <div class="temp-bar-icon-wrapper">
+          <img
+            src="/src/assets/icons/general/cellular.svg"
+            alt="무선 네트워크 신호 아이콘"
+          />
+          <img
+            class="lte"
+            src="/src/assets/icons/general/lte.svg"
+            alt="LTE 네트워크 아이콘"
+          />
+          <img
+            class="battery"
+            src="/src/assets/icons/general/battery.svg"
+            alt="배터리 충전 상태 아이콘"
+          />
+        </div>
       </div>
-    </div>
 
-    <div class="login--top-bar">
-      <a href="/src/pages/StartPage/">
-        <img
-          src="/src/assets/icons/login/direction=left.svg"
-          alt="뒤로 가기 버튼"
-        />
-      </a>
+      <div class="login--top-bar">
+        <a href="/src/pages/StartPage/">
+          <img
+            src="/src/assets/icons/login/direction=left.svg"
+            alt="뒤로 가기 버튼"
+          />
+        </a>
 
-      <div role="search" class="login--category-search">
-        <label for="categorySearch" class="hidden">관심분야 검색</label>
-        <input
-          type="search"
-          id="categorySearch"
-          name="categorySearch"
-          placeholder="분야(이름)로 검색 (ex.프론트)"
-          aria-label="관심분야 검색"
-        />
+        <div role="search" class="login--category-search">
+          <label for="categorySearch" class="hidden">관심분야 검색</label>
+          <input
+            type="search"
+            id="categorySearch"
+            class="category-search"
+            name="categorySearch"
+            placeholder="분야(이름)로 검색 (ex.프론트)"
+            aria-label="관심분야 검색"
+          />
+        </div>
       </div>
-    </div>
 
-    <h1>관심분야를 선택해주세요!</h1>
-    <div class="login--category-wrapper">
-      <ul role="list" class="login--category-list"></ul>
-      <button type="submit" class="login--category-submit label-s">
-        이대로 저장할래요
-      </button>
+      <h1>관심분야를 선택해주세요!</h1>
+      <div class="login--category-wrapper">
+        <ul role="list" class="login--category-list"></ul>
+        <button type="submit" class="login--category-submit label-s">
+          이대로 저장할래요
+        </button>
+      </div>
     </div>
   </body>
 </html>
