@@ -277,9 +277,12 @@ export function profileCertificationSelectTemplate() {
   </div>
 </div>`;
 }
-//기사자격증 자읍 버튼 템플릿
+//기사자격증 자음 버튼 템플릿
 export function profileConsonantTemplate(item) {
-  return /*html */ `<li class="profile--consonant-element" data-certiciation-consonant="${item}"><button class="profile--consonant-element">${item}</button></li>`;
+  return /*html */ `
+  <li class="profile--consonant-element" data-certiciation-consonant="${item}">
+    <button class="profile--consonant-element">${item}</button>
+  </li>`;
 }
 //기사자격증 리스트 템플릿
 export function profileCertificationTemplate(item) {
@@ -287,5 +290,21 @@ export function profileCertificationTemplate(item) {
   <li class="profile--certification-element" data-certification-Name="${item}" >
     <input id="${item}" type="checkbox"  />
     <label for="${item}">${item}</label>
-</li>`;
+  </li>`;
+}
+
+// 탈퇴 확인 팝업창 템플릿
+export function profileConfirmSecessionTemplate() {
+  return /*html */ `
+  <div class="profile--secession-select-form">
+  <div class="profile--seccession-wrapper">
+    <p>정말 탈퇴하실건가요?</p>
+    <p>탈퇴하면 모든 정보가 사라집니다.</p>
+  </div>
+  <div class="proifle--seccession-choice">
+    <button type="button" class="profile--user-cancel">취소</button>
+    <button type="button" class="profile--user--seccession">탈퇴하기</button>
+  </div>
+</div>
+  `;
 }

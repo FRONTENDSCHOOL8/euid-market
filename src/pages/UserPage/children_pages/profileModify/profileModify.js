@@ -8,6 +8,7 @@ import {
   profileCertificationSelectTemplate,
   profileCertificationTemplate,
   profileConsonantTemplate,
+  profileConfirmSecessionTemplate,
 } from '/src/pages/UserPage/template';
 import {
   getCertifications,
@@ -66,6 +67,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   const submitButton = getNode('.profile--submit-save-button');
   const profileExposureTermsDetail = getNode('.profile--term-profileTerms');
   const modifyCertificationButton = getNode('.profile--modify-certification');
+  const userSecession = getNode('.profile--user-secession');
   let tempData = { userPrivacyUpdataedData: {}, usersUpdatedData: {} };
   /**
    * 성별.나이 공개 토글 버튼 클릭했을때 발생하는 이벤트 함수
@@ -168,7 +170,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   }
 
   /**
-   *자격증 종목 하나하나를 클릭했르때 발생하는 이벤트함수
+   *자격증 종목 하나하나를 클릭했을때 발생하는 이벤트함수
    * @param {*} e
    * @returns
    */
@@ -253,7 +255,8 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   async function handleSubmit(e) {
     if (
       Array.from(e.target.classList).includes('profile--submit-save-button') &&
-      allAgreeCheckbox.checked
+      allAgreeCheckbox.checked &&
+      !getNode('.profile--modify-save-alert')
     ) {
       insertFirst('body', profileSaveTemplate());
       let scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -261,12 +264,10 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
         scrollTop + window.innerHeight / 2
       }px`;
       let { userPrivacyUpdataedData, usersUpdatedData } = tempData;
-      console.log(userPrivacyUpdataedData);
 
       await pb
         .collection('user_privacy')
         .update(`${privacyRecordID}`, userPrivacyUpdataedData);
-      console.log(usersUpdatedData);
       await pb.collection('users').update(`${usersRecordID}`, usersUpdatedData);
 
       getNode('.profile--modify-confirm').addEventListener(
@@ -283,6 +284,38 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     }
   }
 
+  async function handleSeccessionButton(e) {
+    const buttonList = Array.from(e.target.classList);
+    if (buttonList.includes('profile--user-cancel')) {
+      getNode('.profile--secession-select-form').remove();
+      return;
+    }
+    if (buttonList.includes('profile--user--seccession')) {
+      // await pb.collection('users').delete(`${usersRecordID}`);
+      getNode('.profile--user--seccession').innerText = '탈퇴완료! ';
+      setTimeout(() => {
+        window.location.href = 'src/pages/StartPage/index.html';
+      }, 2000);
+    }
+  }
+
+  /**
+   * 탈퇴하기 버튼을 클릭했을때 발생하는 이벤트 함수
+   * @param {*} e
+   */
+  function handleSeccession() {
+    if (!getNode('.profile--secession-select-form')) {
+      insertFirst('body', profileConfirmSecessionTemplate());
+      const choiceList = getNode('.proifle--seccession-choice');
+      let scrollTop = window.scrollY || document.documentElement.scrollTop;
+      getNode('.profile--secession-select-form').style = `top:${
+        scrollTop + window.innerHeight / 3
+      }px`;
+      choiceList.addEventListener('click', handleSeccessionButton);
+    }
+  }
+
+  userSecession.addEventListener('click', handleSeccession);
   submitButton.addEventListener('click', handleSubmit);
   allAgreeCheckbox.addEventListener('change', handleAllCheck);
   profileTerms.addEventListener('click', handleTermsCheck);
