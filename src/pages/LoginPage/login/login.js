@@ -2,59 +2,90 @@ import { getNode, setStorage, getStorage } from '/src/lib/';
 import { validation, doRandomCode } from '/src/pages/LoginPage/util/';
 import PocketBase from 'pocketbase';
 
-// const PASSWORDKEY = 'thsxndlxn';
-const pb = new PocketBase(import.meta.env.VITE_PB_URL);
+const PASSWORDKEY = 'thsxndlxn';
+const pb = new PocketBase(import.meta.env.VITE_PB_URL); // 로컬주소 가져와서 pb 객체 생성
 const phoneInput = getNode('#phone');
 const codeButton = getNode('#codeButton');
 const codeInput = getNode('#codeInput');
 const startButton = getNode('#start-button');
 const errorMessage = getNode('#error-message');
+//11자리 숫자가 입력되면 버튼 활성화
+phoneInput.addEventListener('input', function () {
+  const phoneNumber = phoneInput.value;
 
-// 다이얼로그 표시
+  // 입력된 값이 11자리 숫자인지 확인
+  if (phoneNumber.length === 11 && /^\d+$/.test(phoneNumber)) {
+    // 버튼 활성화 및 스타일 변경
+    codeButton.disabled = false;
+    codeButton.style.borderColor = 'black';
+    codeButton.style.color = 'black';
+  } else {
+    // 버튼 비활성화 및 기본 스타일 적용
+    codeButton.disabled = true;
+    codeButton.style.borderColor = '';
+    codeButton.style.color = '';
+  }
+});
+
+// 랜덤한 문자와 숫자 조합을 생성하는 함수
+function generateRandomCode() {
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < 6; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+
+// 다이얼로그를 표시하는 함수
 function showDialog(randomCode) {
   const codeText = getNode('#code-text');
   codeText.textContent = randomCode;
   const dialog = getNode('#code-dialog');
   dialog.showModal();
 }
-// 다이얼로그 코드 복사
-function handleCopy(e) {
-  e.preventDefault();
+
+// '복사하기' 버튼에 대한 이벤트 리스너 설정
+getNode('#copy-button').addEventListener('click', function (e) {
+  e.preventDefault(); // 폼 제출을 방지합니다.
+
   const codeText = getNode('#code-text').textContent;
   navigator.clipboard.writeText(codeText).then(() => {
-    getNode('#code-dialog').close();
+    getNode('#code-dialog').close(); // 다이얼로그를 닫습니다.
   });
-}
-// 다이얼로그 닫기
-function handleClose() {
-  getNode('#code-dialog').close();
-}
-/* -------------------------------------------------------------------------- */
+});
 
-// users 컬렉션의 username 필드 데이터 가져오기
-async function fetchUsernames() {
+// '닫기' 버튼에 대한 이벤트 리스너 설정
+getNode('#close-button').addEventListener('click', function () {
+  getNode('#code-dialog').close();
+});
+
+async function handleCode(e) {
+  e.preventDefault();
+
   try {
-    const records = await pb.collection('users').getFullList();
-    const usernames = records.map((record) => record.username);
-    return usernames;
+    const phoneNum = phoneInput.value;
+
+    const userData = await pb
+      .collection('users')
+      .authWithPassword(phoneNum, PASSWORDKEY);
+    //포켓베이스자체에서 검증을해서 유저가 맞으면 다음 권한을 넘겨줌.
+
+    // 랜덤 코드 생성 및 다이얼로그 표시
+    const randomCode = generateRandomCode();
+    showDialog(randomCode);
+    // 생성된 랜덤 코드를 로컬 스토리지에 저장
+    const state = await setStorage(phoneNum, randomCode);
+
+    console.log(userData);
   } catch (error) {
-    console.error(error);
+    alert('회원이 아닙니다. 회원가입하시겠어요?');
+    console.error(error); // 에러 로깅
   }
 }
-// 중복유저 체크
-// async function checkUser(phoneNum) {
-//   try {
-//     const usernames = await fetchUsernames();
-//     const phoneNumStr = String(phoneNum);
-//     if (usernames.includes(phoneNumStr)) {
-//     로그인시작->인증번호받기
-//     } else {
-//       alert('회원가입할래?');
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+
+codeButton.addEventListener('click', handleCode);
 
 // codeInput 값이 입력되면 startButton 활성화
 codeInput.addEventListener('input', function (e) {
@@ -68,42 +99,19 @@ codeInput.addEventListener('input', function (e) {
   }
   console.log(codeInput.value);
 });
-// 인증문자 받기
-async function handleCode(e) {
-  e.preventDefault();
 
-  try {
-    const phoneNum = phoneInput.value;
-
-    const userData = await pb
-      .collection('users')
-      .authWithPassword(phoneNum, PASSWORDKEY);
-    //포켓베이스자체에서 검증을해서 유저가 맞으면 다음 권한을 넘겨줌.
-
-    // 랜덤 코드 생성 및 다이얼로그 표시
-    const randomCode = doRandomCode();
-    showDialog(randomCode);
-    // 생성된 랜덤 코드를 로컬 스토리지에 저장
-    const state = await setStorage(phoneNum, randomCode);
-
-    console.log(userData);
-  } catch (error) {
-    alert('회원이 아닙니다. 회원가입하시겠어요?');
-    console.error(error); // 에러 로깅
-  }
-}
 // startButton 클릭 이벤트 리스너
 
 startButton.addEventListener('click', async function (e) {
   e.preventDefault();
   const inputCode = codeInput.value;
-  const phoneNum = phoneInput.value;
+
   // 사용자 입력 값 로그 출력
   console.log('입력된 코드:', inputCode);
 
   try {
-    const storedCode = await getStorage(phoneNum);
-    console.log(phoneNum);
+    const storedCode = await getStorage(phoneInput.value);
+
     // 저장된 값 로그 출력
     console.log('저장된 코드:', storedCode);
 
@@ -126,7 +134,3 @@ startButton.addEventListener('click', async function (e) {
     console.error('getStorage 함수에서 오류 발생:', error);
   }
 });
-
-// 이벤트리스너
-phoneInput.addEventListener('input', () => validation(phoneInput, codeButton));
-codeButton.addEventListener('click', handleCode);

@@ -1,9 +1,5 @@
 import { getNode, setStorage, getStorage } from '/src/lib/';
-import {
-  validation,
-  doRandomCode,
-  showDialog,
-} from '/src/pages/LoginPage/util/';
+import { validation, doRandomCode } from '/src/pages/LoginPage/util/';
 import PocketBase from 'pocketbase';
 
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
@@ -16,6 +12,13 @@ const copyButton = getNode('#copy-button');
 const closeButton = getNode('#close-button');
 const randomCode = doRandomCode();
 
+// 다이얼로그 표시
+function showDialog(randomCode) {
+  const codeText = getNode('#code-text');
+  codeText.textContent = randomCode;
+  const dialog = getNode('#code-dialog');
+  dialog.showModal();
+}
 // 다이얼로그 코드 복사
 function handleCopy(e) {
   e.preventDefault();
@@ -28,7 +31,7 @@ function handleCopy(e) {
 function handleClose() {
   getNode('#code-dialog').close();
 }
-/----------------------------------------------------------------------- */;
+/*----------------------------------------------------------------------- */
 async function fetchUsernames() {
   try {
     const records = await pb.collection('users').getFullList();
@@ -66,7 +69,6 @@ function handleBtnActive(e) {
     startButton.classList.remove('login--start-active');
     startButton.disabled = true;
   }
-  // console.log(codeInput.value);
 }
 //유저 생성 및 로그인 진행
 async function handleSignup(e) {
@@ -95,7 +97,7 @@ async function handleSignup(e) {
       .collection('users')
       .authWithPassword(phoneInput.value, storedCode);
 
-    // 로컬 스토리지에 //fdf인증 정보 저장
+    // 로컬 스토리지에 인증 정보 저장
     if (authResponse) {
       await setStorage('auth', {
         isAuth: true,
@@ -119,3 +121,6 @@ closeButton.addEventListener('click', handleClose);
 codeButton.addEventListener('click', handleCode);
 codeInput.addEventListener('input', handleBtnActive);
 startButton.addEventListener('click', handleSignup);
+
+const temp = await pb.collection('users').getOne('ytlrkv05folf24o');
+console.dir(temp);
