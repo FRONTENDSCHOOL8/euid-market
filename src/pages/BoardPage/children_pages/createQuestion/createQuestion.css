@@ -17,7 +17,7 @@
 }
 
 
-.board--create-question-category-container {
+.board--create-category-container {
   display: flex;
   height: 50px;
   position: relative;
@@ -32,14 +32,14 @@
   }
 }
 
-.board--create-question-category-wrapper {
+.board--create-category-wrapper {
   z-index: 10;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-.board--create-question-category {
+.board--create-category {
   position: absolute;
   top: 50px;
   display: flex;

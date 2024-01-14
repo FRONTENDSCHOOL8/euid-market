@@ -5,12 +5,26 @@ import {
   profileSaveTemplate,
   profileModifySubmitErrorTemplate,
   profileExposureDetailTermsTemplate,
+  profileCertificationSelectTemplate,
+  profileCertificationTemplate,
+  profileConsonantTemplate,
+  profileConfirmSecessionTemplate,
 } from '/src/pages/UserPage/template';
-import { handleDivDisplayNone } from '/src/pages/UserPage/utils/displayNone.js';
+import {
+  getCertifications,
+  handleDivDisplayNone,
+} from '/src/pages/UserPage/utils/index.js';
 
-import { getNode, insertAfter, insertFirst, insertLast } from '/src/lib/';
+import {
+  getNode,
+  getNodes,
+  insertAfter,
+  insertFirst,
+  insertLast,
+} from '/src/lib/';
+
 //배포전 수정 !!!!!!!!!!!!!!!1
-const TEST_USER_ID = 'bexmuprbriobf8v';
+const TEST_USER_ID = 'c2zrq8ifbpivaop';
 
 //바로 랜더링
 (async () => {
@@ -22,11 +36,7 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
       .getList(1, 10, { filter: `user_id = "${TEST_USER_ID}" ` })
   ).items[0];
 
-  const userInfoResult = (
-    await pb
-      .collection('users')
-      .getList(1, 10, { filter: `id = "${TEST_USER_ID}" ` })
-  ).items[0];
+  const userInfoResult = await pb.collection('users').getOne(TEST_USER_ID);
 
   let {
     id: privacyRecordID,
@@ -42,7 +52,10 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
   );
   return { privacyRecordID, usersRecordID };
 })().then((obj) => {
-  console.log(obj);
+  let consonantList;
+  let certifications;
+  let certificationList;
+  let tempCertificationData = [];
   const { privacyRecordID, usersRecordID } = obj;
   const ageIsPublic = getNode('.profile--age-is-public');
   const profileTerms = getNode('.profile--terms-lists');
@@ -53,7 +66,8 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
   const responsibilityCheckbox = getNode('#profile--responsibility-agree');
   const submitButton = getNode('.profile--submit-save-button');
   const profileExposureTermsDetail = getNode('.profile--term-profileTerms');
-  const profileSubmitErrorMessage = getNode('.profile--submit-error-message');
+  const modifyCertificationButton = getNode('.profile--modify-certification');
+  const userSecession = getNode('.profile--user-secession');
   let tempData = { userPrivacyUpdataedData: {}, usersUpdatedData: {} };
   /**
    * 성별.나이 공개 토글 버튼 클릭했을때 발생하는 이벤트 함수
@@ -74,7 +88,110 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
       });
     }
     e.target.classList.add('is-active');
-    console.log(tempData);
+  }
+  /**
+   * 자격증 간편 등록 버튼 클릭시 자격증 API 호출 + 보여주는 함수
+   */
+  async function handleCertificationModify() {
+    if (!getNode('.profile--modify-select-form')) {
+      insertFirst('body', profileCertificationSelectTemplate());
+      let scrollTop = window.scrollY || document.documentElement.scrollTop;
+      getNode('.profile--modify-select-form').style = `top:${
+        scrollTop + window.innerHeight / 3.5
+      }px`;
+      try {
+        const close = getNode('.profile--certification-close');
+        const save = getNode('.profile--modify-certification-save');
+        consonantList = getNode('.profile--modify-certification-consonants');
+        certificationList = getNode('.profile--modify-certification-list');
+
+        certifications = await getCertifications();
+
+        Object.keys(certifications).forEach((item) => {
+          insertLast(consonantList, profileConsonantTemplate(item));
+          certifications[item].forEach((item) => {
+            insertLast(certificationList, profileCertificationTemplate(item));
+          });
+        });
+        save.addEventListener('click', handleCertificationSave);
+        consonantList.addEventListener('click', handleConsonant);
+        close.addEventListener('click', handleCertificationForm);
+        certificationList.addEventListener('click', handleCertfication);
+      } catch (error) {
+        console.error('자격증을 불러오는 도중 오류 발생');
+      }
+    }
+  }
+
+  /**
+   * 자격증 팝업창의 저장완료 버튼 클릭시 발생하는 이벤트 함수
+   * @param {*} e
+   */
+  function handleCertificationSave(e) {
+    console.log(e.target);
+    e.target.innerText = '저장완료!';
+    e.target.classList.add('is-active');
+
+    tempData['usersUpdatedData']['user_certification'] =
+      tempCertificationData.join(', ');
+    setTimeout(handleCertificationForm, 2000);
+  }
+
+  /**
+   * 자격증 팝업창 닫기
+   */
+  function handleCertificationForm() {
+    getNode('.profile--modify-select-form').remove();
+    tempCertificationData = [];
+  }
+
+  /**
+   * 자격증 팝업 내 자음 버튼 클릭시 발생하는 이벤트 함수
+   * @param {*} e
+   * @returns
+   */
+  function handleConsonant(e) {
+    const consonant = e.target.closest('li');
+    if (!consonant) return;
+    getNodes('.profile--consonant-element').forEach((item) => {
+      item.classList.remove('is-active');
+    });
+    if (!Array.from(e.target.classList).includes('is-active')) {
+      e.target.classList.add('is-active');
+      getNodes('.profile--certification-element').forEach((item) => {
+        item.remove();
+      });
+      certifications[consonant.dataset.certiciationConsonant].forEach(
+        (item) => {
+          insertLast(certificationList, profileCertificationTemplate(item));
+        }
+      );
+    }
+  }
+
+  /**
+   *자격증 종목 하나하나를 클릭했을때 발생하는 이벤트함수
+   * @param {*} e
+   * @returns
+   */
+  function handleCertfication(e) {
+    let certification = e.target.closest('li');
+    if (!certification) return;
+    let certificationName = certification.dataset.certificationName;
+    if (tempCertificationData.includes(certificationName)) {
+      tempCertificationData.splice(
+        tempCertificationData.indexOf(certificationName),
+        1
+      );
+    }
+    if (
+      getNode(`#${certificationName}`).checked &&
+      !tempCertificationData.includes(certificationName)
+    ) {
+      tempCertificationData.push(certificationName);
+    }
+    const selectedLists = getNode('.profile--modify-selected-certifiaction');
+    selectedLists.innerText = tempCertificationData;
   }
 
   /**
@@ -88,7 +205,6 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
     responsibilityCheckbox.checked = isChecked;
     if (isChecked) {
       submitButton.classList.add('is-active');
-      getNode('.profile--submit-error-message').remove();
     } else {
       submitButton.classList.remove('is-active');
     }
@@ -116,7 +232,7 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
   }
 
   /**
-   * 프로필 정보 노출영역 확인 탹관 클릭시 발생하는 이벤트
+   * 프로필 정보 노출영역 확인 약관 자세히 클릭시 발생하는 이벤트
    * @param {*} e
    */
   function renderTerms(e) {
@@ -127,7 +243,7 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
       );
       profileExposureTermsDetail.innerText = '숨기기';
     } else {
-      profileSubmitErrorMessage.remove();
+      getNode('.profile--exposure-terms-detail').remove();
       profileExposureTermsDetail.innerText = '자세히';
     }
   }
@@ -139,21 +255,28 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
   async function handleSubmit(e) {
     if (
       Array.from(e.target.classList).includes('profile--submit-save-button') &&
-      allAgreeCheckbox.checked
+      allAgreeCheckbox.checked &&
+      !getNode('.profile--modify-save-alert')
     ) {
       insertFirst('body', profileSaveTemplate());
+      let scrollTop = window.scrollY || document.documentElement.scrollTop;
+      getNode('.profile--modify-save-alert').style = `top:${
+        scrollTop + window.innerHeight / 2
+      }px`;
       let { userPrivacyUpdataedData, usersUpdatedData } = tempData;
+
       await pb
         .collection('user_privacy')
         .update(`${privacyRecordID}`, userPrivacyUpdataedData);
       await pb.collection('users').update(`${usersRecordID}`, usersUpdatedData);
+
       getNode('.profile--modify-confirm').addEventListener(
         'click',
         handleDivDisplayNone
       );
-      profileSubmitErrorMessage.remove();
+      return;
     }
-    if (!profileSubmitErrorMessage) {
+    if (!getNode('.profile--submit-error-message')) {
       insertAfter(
         getNode('.profile--terms-lists'),
         profileModifySubmitErrorTemplate()
@@ -161,11 +284,46 @@ const TEST_USER_ID = 'bexmuprbriobf8v';
     }
   }
 
+  async function handleSeccessionButton(e) {
+    const buttonList = Array.from(e.target.classList);
+    if (buttonList.includes('profile--user-cancel')) {
+      getNode('.profile--secession-select-form').remove();
+      return;
+    }
+    if (buttonList.includes('profile--user--seccession')) {
+      // await pb.collection('users').delete(`${usersRecordID}`);
+      getNode('.profile--user--seccession').innerText = '탈퇴완료! ';
+      setTimeout(() => {
+        window.location.href = 'src/pages/StartPage/index.html';
+      }, 2000);
+    }
+  }
+
+  /**
+   * 탈퇴하기 버튼을 클릭했을때 발생하는 이벤트 함수
+   * @param {*} e
+   */
+  function handleSeccession() {
+    if (!getNode('.profile--secession-select-form')) {
+      insertFirst('body', profileConfirmSecessionTemplate());
+      const choiceList = getNode('.proifle--seccession-choice');
+      let scrollTop = window.scrollY || document.documentElement.scrollTop;
+      getNode('.profile--secession-select-form').style = `top:${
+        scrollTop + window.innerHeight / 3
+      }px`;
+      choiceList.addEventListener('click', handleSeccessionButton);
+    }
+  }
+
+  userSecession.addEventListener('click', handleSeccession);
   submitButton.addEventListener('click', handleSubmit);
   allAgreeCheckbox.addEventListener('change', handleAllCheck);
   profileTerms.addEventListener('click', handleTermsCheck);
   genderIsPublic.addEventListener('click', handlePublicToggle);
   ageIsPublic.addEventListener('click', handlePublicToggle);
   profileExposureTermsDetail.addEventListener('click', renderTerms);
-  // 자격증
+  modifyCertificationButton.addEventListener(
+    'click',
+    handleCertificationModify
+  );
 });
