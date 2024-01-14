@@ -74,6 +74,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   const modifyCertificationButton = getNode('.profile--modify-certification');
   const userSecession = getNode('.profile--user-secession');
   const usersJobAdd = getNode('.profile--users-job-add');
+  const modifyCancel = getNode('.profile--submit-cancel-button');
   let tempData = { userPrivacyUpdataedData: {}, usersUpdatedData: {} };
 
   /**
@@ -452,5 +453,8 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     'click',
     handleCertificationModify
   );
+  modifyCancel.addEventListener('click', () => {
+    history.back();
+  });
   document.addEventListener('keydown', handleKeyEscape);
 });
