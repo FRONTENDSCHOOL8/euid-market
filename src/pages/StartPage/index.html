@@ -8,36 +8,53 @@
     <title>엔터이듬</title>
   </head>
   <body>
-    <div class="temp-bar">
-      <p class="label-s">2:26</p>
-      <div class="temp-bar-icon-wrapper">
-        <img src="/src/assets/icons/general/cellular.svg" alt="cellular" />
-        <img class="lte" src="/src/assets/icons/general/lte.svg" alt="lte" />
-        <img
-          class="battery"
-          src="/src/assets/icons/general/battery.svg"
-          alt="battery"
-        />
+    <div class="login--container">
+      <div class="temp-bar">
+        <p class="label-s">2:26</p>
+        <div class="temp-bar-icon-wrapper">
+          <img
+            src="/src/assets/icons/general/cellular.svg"
+            alt="무선 네트워크 신호 아이콘"
+          />
+          <img
+            class="lte"
+            src="/src/assets/icons/general/lte.svg"
+            alt="LTE 네트워크 아이콘"
+          />
+          <img
+            class="battery"
+            src="/src/assets/icons/general/battery.svg"
+            alt="배터리 충전 상태 아이콘"
+          />
+        </div>
       </div>
-    </div>
 
-    <div class="login--logo-container">
-      <h1 class="login--logo">
-        <img src="/euid.png" alt="이듬 로고" />
-      </h1>
-      <h2 class="heading-s">당신 곁에 엔터이듬</h2>
-      <p class="paragraph-m">
-        <span lang="en">With EUID's</span>
-        <span lang="ko">함께 성장하기</span>
-      </p>
-      <p class="paragraph-m">함께 배우고 적용하며 성장해보세요!</p>
-    </div>
+      <div class="login--logo-container">
+        <h1 class="login--logo">
+          <img src="/euid.png" alt="이듬 로고" />
+        </h1>
+        <h2 class="heading-s">당신 곁에 엔터이듬</h2>
+        <p class="paragraph-m">
+          <span lang="en">With EUID's</span>
+          <span lang="ko">함께 성장하기</span>
+        </p>
+        <p class="paragraph-m">함께 배우고 적용하며 성장해보세요!</p>
+      </div>
 
-    <div class="login--step-next-container">
-      <a class="label-s" href="/src/pages/LoginPage/category/">시작하기</a>
-      <a class="paragraph-m" href="/src/pages/LoginPage/login/"
-        >이미 계정이 있나요? <span class="paragraph-m">로그인</span></a
-      >
+      <div class="login--step-next-container">
+        <a
+          class="label-s"
+          aria-label="회원가입 페이지로 이동"
+          href="/src/pages/LoginPage/category/"
+          >시작하기</a
+        >
+        <a
+          class="paragraph-m"
+          aria-label="로그인 페이지로 이동"
+          href="/src/pages/LoginPage/login/"
+          >이미 계정이 있나요? <span class="paragraph-m">로그인</span></a
+        >
+      </div>
     </div>
   </body>
 </html>
