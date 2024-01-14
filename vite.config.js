@@ -45,6 +45,14 @@ export default defineConfig({
           __dirname,
           'src/pages/BoardPage/children_pages/postInfo/index.html'
         ),
+        questionPage: resolve(
+          __dirname,
+          'src/pages/BoardPage/children_pages/questionPage/index.html'
+        ),
+        createQuestion: resolve(
+          __dirname,
+          'src/pages/BoardPage/children_pages/createQuestion/index.html'
+        ),
 
         // 시작 페이지
         startPage: resolve(__dirname, 'src/pages/StartPage/index.html'),

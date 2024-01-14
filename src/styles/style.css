@@ -124,3 +124,20 @@
   border: 4px solid orange;
   border-radius: 0.6em;
 }
+
+.start-page-logo {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+
+  & img {
+    width: 10rem;
+  }
+  
+}
+
+.hidden {
+  display: none;
+}

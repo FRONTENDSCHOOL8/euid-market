@@ -2,9 +2,8 @@
 import { renderNavBar } from "../../components/general/renderNavBar.js";
 import { getNode, } from "../../lib/index.js";
 import { renderMainPosts, renderTogetherPosts, renderQuestionPosts, addClass, removeClass } from "./util/dom/index.js";
-import { relocateLink } from "./util/index.js";
-
-
+import { relocateLink, cancelRequests } from "./util/index.js";
+// import pb from '/src/lib/api/pocketbase';
 
 function changeLink(element, link="/src/pages/BoardPage/children_pages/createPost/") {
   element.href = link;
@@ -14,9 +13,11 @@ function clearContent(container) {
   container.innerHTML = "";
 }
 
-async function renderPosts(button, container, option) {
-  // clearContent(container);
+function renderPosts(button, container, option) {
   addClass(button, "active-category");
+
+  const loadingScreen = getNode("#board--loading");
+  console.log(loadingScreen);
   const postType = {
     "main": () => renderMainPosts(container),
     "together": () => renderTogetherPosts(container),
@@ -24,7 +25,7 @@ async function renderPosts(button, container, option) {
   };
 
   const render = postType[option];
-  await render();
+  render();
 }
 
 function openPost(e) {
@@ -39,6 +40,8 @@ function openPost(e) {
   relocateLink("/src/pages/BoardPage/children_pages/postInfo/");
 }
 
+
+
 function handleCategory(e) {
   e.preventDefault();
   const target = e.target;
@@ -46,8 +49,11 @@ function handleCategory(e) {
   const button = target.closest("button");
   const buttonList = getNode(".board--category-bar-wrapper")
   const createPostBtn = getNode(".board--create-post");
-  
+  const controller = new AbortController();
+  controller.abort();
+  cancelRequests();
   clearContent(postContainer);
+
   if(!button) return;
 
   for(const li of buttonList.children) {
@@ -83,7 +89,6 @@ function handleCategory(e) {
   const categoryBar = getNode('.board--category-bar-container');
 
   renderMainPosts(postContainer);
-  
   categoryBar.addEventListener('click', handleCategory);
   postContainer.addEventListener('click', openPost);
 })();
