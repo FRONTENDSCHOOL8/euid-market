@@ -13,11 +13,8 @@ import my from '/src/assets/icons/general/my.svg';
 const {localStorage:local} = window;
 
 
-
+// 바텀 네비게이션 바 렌더링 함수
 export function renderNavBar() {
-
-  
-
   const template = /* html */ 
   `
   <nav class="bottom-bar-container">

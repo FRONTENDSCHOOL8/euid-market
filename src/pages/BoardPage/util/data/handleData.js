@@ -1,6 +1,9 @@
 
 import pb from '/src/lib/api/pocketbase';
 
+
+
+// 데이터 생서
 export function createData(args) {
   const data = {
     "status": args.status,
@@ -22,19 +25,11 @@ export async function addData(data) {
   const record = await pb.collection('posts').create(data);
 }
 
+// 데이터 불러오기
 export async function getData() {
   const result = await pb.collection('posts').getFullList();
   return result;
 }
-
-// export async function getData() {
-//   const response = await fetch(
-//     `${import.meta.env.VITE_PB_API}/collections/posts/records`
-//   );
-//   response.data = await response.json();
-//   const items = response.data.items;
-//   return items;
-// }
 
 export async function getQuestionData() {
   const resultList = await pb.collection('posts').getFullList({
@@ -64,9 +59,8 @@ export async function getOneData(id, collection) {
   return data
 }
 
+// pocketbase 데이터 요청 취소
 export function cancelRequests() {
-  const controller = new AbortController();
-  controller.abort();
   pb.cancelAllRequests();
 }
 
