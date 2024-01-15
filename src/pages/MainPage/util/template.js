@@ -300,7 +300,7 @@ export function userInfoTemplate(item) {
   <div class="user-name-container">
             <img
               class="user-profile"
-              src="${getPbImageURL(item, 'user_photo')}"
+              src="${getPbImageURL(item, 'photo')}"
               alt="안보임"
             />
             <div class="user-info-detail">
