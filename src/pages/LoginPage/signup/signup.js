@@ -75,7 +75,6 @@ async function handleSignup(e) {
   e.preventDefault();
   const phoneNum = phoneInput.value;
   const inputCode = codeInput.value;
-
   try {
     const storedCode = await getStorage(phoneNum);
     const selectedCategory = localStorage.getItem('selectedCategories');
