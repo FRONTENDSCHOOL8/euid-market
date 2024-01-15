@@ -36,6 +36,7 @@ function handleClose() {
   getNode('#code-dialog').close();
 }
 /*----------------------------------------------------------------------- */
+// username 가져오기
 async function fetchUsernames() {
   try {
     const records = await pb.collection('users').getFullList();
