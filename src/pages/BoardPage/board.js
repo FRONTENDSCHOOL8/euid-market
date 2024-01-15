@@ -1,5 +1,5 @@
 import { renderNavBar } from "../../components/general/renderNavBar.js";
-import { getNode, } from "../../lib/index.js";
+import { getNode, sessionHandler } from "../../lib/index.js";
 import { 
   renderMainPosts, 
   renderTogetherPosts, 
@@ -10,6 +10,8 @@ import {
   changeLink,
   relocateLink, 
   cancelRequests } from "./util/index.js";
+
+
 
 // 선택 카테고리 게시물 렌더링
 function renderPosts(button, container, option) {
@@ -78,6 +80,7 @@ function handleCategory(e) {
 
 (() => {
   renderNavBar();
+  sessionHandler();
 
   const {localStorage} = window;
   localStorage.setItem("curr_page", "board")

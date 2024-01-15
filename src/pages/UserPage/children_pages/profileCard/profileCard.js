@@ -5,7 +5,9 @@ import {
   profileCardBasicInfosTemplate,
 } from '/src/pages/UserPage/template';
 
-import { getNode, insertFirst } from '/src/lib/';
+import { renderNavBar } from "/src/components/general/index.js";
+
+import { getNode, insertFirst, sessionHandler } from '/src/lib/';
 
 /* -------------------------------------------------------------------------- */
 /*                                     개발용                                    */
@@ -14,6 +16,8 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
 
 // 최상단 프로필카드
 (async () => {
+  sessionHandler();
+  renderNavBar();
   const userInfoResult = (
     await pb
       .collection('users')

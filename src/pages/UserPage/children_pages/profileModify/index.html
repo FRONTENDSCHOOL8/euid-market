@@ -21,17 +21,20 @@
       <ul class="profile--modify-details">
         <li>
           <p>하는 일</p>
-          <a href="" class="profile--modify-add"
-            ><img src="/src/assets/icons/profile/plus.svg" alt="" />본인이 하는
-            일을 추가해보세요</a
+          <button
+            type="button"
+            class="profile--users-job-add profile--modify-add"
           >
+            <img src="/src/assets/icons/profile/plus.svg" alt="" />본인이 하는
+            일을 추가해보세요
+          </button>
         </li>
         <li class="profile--modify-profile-keyword">
           <p>프로필 키워드</p>
-          <a href="" class="profile--modify-add"
-            ><img src="/src/assets/icons/profile/plus.svg" alt="" />프로필
-            키워드를 추가해보세요</a
-          >
+          <button type="button" class="profile--modify-add">
+            <img src="/src/assets/icons/profile/plus.svg" alt="" />프로필
+            키워드를 추가해보세요
+          </button>
         </li>
         <!-- 성별/ 연령 -->
         <li>
@@ -60,7 +63,7 @@
           <p>취득자격 <img src="" alt="" /></p>
           <button type="button" class="profile--modify-certification">
             <img src="/src/assets/icons/profile/detailCard.svg" alt="" />
-            <p>기사 자격증을 간편하게 등록해보세요!</p>
+            <span>기사 자격증을 간편하게 등록해보세요!</span>
             <span
               >한국 산업인력공단에서 실시하는 기사 자격증은 손쉽게 등록
               가능합니다.
@@ -68,10 +71,10 @@
           </button>
         </li>
       </ul>
-      <form class="profile--modify-terms" action="">
+      <form class="profile--modify-terms" action="subtmit">
         <div class="profile--terms-all-agree">
           <input type="checkbox" id="profile--all-agree" />
-          <label for="profile--all-agree">
+          <label tabindex="0" for="profile--all-agree">
             <span>아래 내용에 전체 동의합니다 .</span>
             <span>필수동의</span>
           </label>
@@ -79,7 +82,11 @@
         <ul class="profile--terms-lists">
           <li>
             <input type="checkbox" id="profile--privacy-agree" />
-            <label class="profile--terms-privacy" for="profile--privacy-agree">
+            <label
+              tabindex="0"
+              class="profile--terms-privacy"
+              for="profile--privacy-agree"
+            >
               <span>[ 필수 ] 개인 정보 수집 및 이용 동의</span>
               <span>
                 입력한 별명, 프로필 사진, 하는 일, 프로필 키워드, 성별, 연령, 회
@@ -95,6 +102,7 @@
           <li>
             <input type="checkbox" id="profile--exposure-agree" />
             <label
+              tabindex="0"
               class="profile--exposure-agree"
               for="profile--exposure-agree"
             >
@@ -108,7 +116,7 @@
           </li>
           <li>
             <input type="checkbox" id="profile--responsibility-agree" />
-            <label for="profile--responsibility-agree">
+            <label tabindex="0" for="profile--responsibility-agree">
               [ 필수 ] 사실과 다른 정보를 기재하여 발생한 문제에 대해서는
               <br />본인이 일체의 책임을 부담하겠습니다.</label
             >
@@ -117,7 +125,9 @@
       </form>
       <div class="proifle--submit-choice">
         <div class="profile--choice-button-wrapper">
-          <a class="profile--choice-button" href="">취소</a>
+          <button class="profile--choice-button profile--submit-cancel-button">
+            취소
+          </button>
           <button
             type="button"
             class="profile--choice-button profile--submit-save-button"
@@ -125,44 +135,8 @@
             저장
           </button>
         </div>
-        <button class="profile--user-secession">회원탈퇴</button>
+        <button type="button" class="profile--user-secession">회원탈퇴</button>
       </div>
-
-      <!-- 하단 네비게이션  -->
-      <nav class="bottom-bar-container">
-        <ul>
-          <li>
-            <a href="/">
-              <img src="/src/assets/icons/general/home.svg" alt="홈" />
-              <p class="paragraph-s">홈</p>
-            </a>
-          </li>
-          <li>
-            <a href="/">
-              <img src="/src/assets/icons/general/fullFile.svg" alt="게시판" />
-              <p class="paragraph-s">게시판</p>
-            </a>
-          </li>
-          <li>
-            <a href="/">
-              <img src="/src/assets/icons/general/map.svg" alt="내 근처" />
-              <p class="paragraph-s">내 근처</p>
-            </a>
-          </li>
-          <li>
-            <a href="/">
-              <img src="/src/assets/icons/general/chat.svg" alt="채팅" />
-              <p class="paragraph-s">채팅</p>
-            </a>
-          </li>
-          <li>
-            <a href="/">
-              <img src="/src/assets/icons/general/my.svg" alt="나의 이듬" />
-              <p class="paragraph-s">나의 이듬</p>
-            </a>
-          </li>
-        </ul>
-      </nav>
     </div>
   </body>
 </html>

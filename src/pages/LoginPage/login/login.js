@@ -133,3 +133,7 @@ startButton.addEventListener('click', async function (e) {
     console.error(error);
   }
 });
+
+
+const {localStorage} = window;
+localStorage.setItem("session", "logged_in");

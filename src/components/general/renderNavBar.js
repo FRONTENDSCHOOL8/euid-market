@@ -53,7 +53,7 @@ export function renderNavBar() {
   </nav>
   `
 
-  insertLast("body", template);
+  insertLast(".app", template);
 
   function handleNavBar(e) {
     

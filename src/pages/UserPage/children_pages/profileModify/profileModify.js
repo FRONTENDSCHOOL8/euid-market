@@ -9,11 +9,15 @@ import {
   profileCertificationTemplate,
   profileConsonantTemplate,
   profileConfirmSecessionTemplate,
+  profileJobPopupTemplate,
+  profileJobSelfAddTemplate,
+  profileJobElementTemplate,
 } from '/src/pages/UserPage/template';
 import {
   getCertifications,
   handleDivDisplayNone,
 } from '/src/pages/UserPage/utils/index.js';
+import { renderNavBar } from "/src/components/general/index.js";
 
 import {
   getNode,
@@ -21,6 +25,7 @@ import {
   insertAfter,
   insertFirst,
   insertLast,
+  sessionHandler,
 } from '/src/lib/';
 
 //배포전 수정 !!!!!!!!!!!!!!!1
@@ -28,6 +33,8 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
 
 //바로 랜더링
 (async () => {
+  sessionHandler();
+  renderNavBar();
   const profileKeyword = getNode('.profile--modify-profile-keyword');
   // 버튼 기본 렌더링 !
   const userPrivacyResult = (
@@ -52,8 +59,10 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   );
   return { privacyRecordID, usersRecordID };
 })().then((obj) => {
+  let jobLists;
   let consonantList;
   let certifications;
+  let tempJobData;
   let certificationList;
   let tempCertificationData = [];
   const { privacyRecordID, usersRecordID } = obj;
@@ -68,7 +77,108 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   const profileExposureTermsDetail = getNode('.profile--term-profileTerms');
   const modifyCertificationButton = getNode('.profile--modify-certification');
   const userSecession = getNode('.profile--user-secession');
+  const usersJobAdd = getNode('.profile--users-job-add');
+  const modifyCancel = getNode('.profile--submit-cancel-button');
   let tempData = { userPrivacyUpdataedData: {}, usersUpdatedData: {} };
+
+  /**
+   * 본인이 하는 일을 추가해보세요 버튼을 클릭시 발생하는 함수
+   */
+
+  async function handleJobModify() {
+    if (!getNode('.profile--select-jobs-form')) {
+      insertFirst('body', profileJobPopupTemplate());
+      getNode('.profile--select-jobs-form').focus();
+      const resultList = (await pb.collection('jobs').getList(1, 50))['items'];
+      jobLists = getNode('.profile--select-jobs-lists');
+      resultList.forEach((item) => {
+        let { job_title } = item;
+        insertFirst(jobLists, profileJobElementTemplate(job_title));
+      });
+      jobLists.addEventListener('click', handleJob);
+    }
+    getNode('.profile--select-jobs-close').addEventListener(
+      'click',
+      handleJobForm
+    );
+    getNode('.profile--select-jobs-add-button').addEventListener(
+      'click',
+      handleShowAddForm
+    );
+    getNode('.profile--select-jobs-save').addEventListener(
+      'click',
+      handleJobSave
+    );
+  }
+  /**
+   * 하는 일 추가하기 팝업창의 직업 버튼을 클릭시 발생하는 함수
+   * @param {*} e
+   */
+  function handleJob(e) {
+    console.log(e.target);
+    Array.from(jobLists.children).forEach((item) => {
+      item.classList.remove('is-active');
+    });
+    e.target.classList.add('is-active');
+    tempJobData = e.target.dataset.userJob;
+    getNode('.profile--select-jobs-save').classList.add('is-active');
+  }
+  /**
+   * 하는일 추가하기 팝업창을 닫는 함수
+   */
+  function handleJobForm() {
+    getNode('.profile--select-jobs-form').remove();
+  }
+
+  /**
+   * db에 해당하는 직업이 없을때 직접 추가
+   */
+  function handleShowAddForm() {
+    insertAfter(
+      getNode('.profile--select-jobs-form-title'),
+      profileJobSelfAddTemplate()
+    );
+    getNode('.profile--select-jobs-add-button').remove();
+    getNode('.profile--select-jobs-add-form').focus();
+    let job_title;
+    function handleJobInput(e) {
+      job_title = e.target.value;
+      getNode('.profile--jobs-reaction').innerText =
+        '정말 멋진 직업을 갖고 계시는 군요 ! ';
+    }
+    function handleJobInputSave(e) {
+      e.preventDefault();
+      getNode('.profile--jobs-reaction').remove();
+      getNode('.profile--select-jobs-add-form').remove();
+      insertFirst(jobLists, profileJobElementTemplate(job_title));
+    }
+    getNode('.profile--jobs-input').addEventListener('input', handleJobInput);
+    getNode('.profile--jobs-input-save').addEventListener(
+      'click',
+      handleJobInputSave
+    );
+  }
+  /**
+   * 하는일 추가하기 팝업의 저장하기 버튼을 클릭했을때 발생하는 이벤트 함수
+   * @param {*} e
+   */
+  function handleJobSave(e) {
+    console.log(tempJobData);
+    if (!tempJobData == '') {
+      e.target.innerText = '저장완료!';
+      e.target.classList.add('is-active');
+      tempData['usersUpdatedData']['user_job'] = tempJobData;
+      console.log(tempData['usersUpdatedData']);
+      tempJobData = '';
+      setTimeout(() => {
+        handleJobForm();
+      }, 2000);
+    } else {
+      e.target.classList.remove('is-active');
+      e.target.innerText = '직업을 선택해주세요!';
+    }
+  }
+
   /**
    * 성별.나이 공개 토글 버튼 클릭했을때 발생하는 이벤트 함수
    * @param {*} e
@@ -96,17 +206,15 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     if (!getNode('.profile--modify-select-form')) {
       insertFirst('body', profileCertificationSelectTemplate());
       let scrollTop = window.scrollY || document.documentElement.scrollTop;
-      getNode('.profile--modify-select-form').style = `top:${
-        scrollTop + window.innerHeight / 3.5
-      }px`;
+      const form = getNode('.profile--modify-select-form');
+      form.style = `top:${scrollTop + window.innerHeight / 3.5}px`;
+      form.focus();
       try {
         const close = getNode('.profile--certification-close');
         const save = getNode('.profile--modify-certification-save');
         consonantList = getNode('.profile--modify-certification-consonants');
         certificationList = getNode('.profile--modify-certification-list');
-
         certifications = await getCertifications();
-
         Object.keys(certifications).forEach((item) => {
           insertLast(consonantList, profileConsonantTemplate(item));
           certifications[item].forEach((item) => {
@@ -284,21 +392,6 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     }
   }
 
-  async function handleSeccessionButton(e) {
-    const buttonList = Array.from(e.target.classList);
-    if (buttonList.includes('profile--user-cancel')) {
-      getNode('.profile--secession-select-form').remove();
-      return;
-    }
-    if (buttonList.includes('profile--user--seccession')) {
-      // await pb.collection('users').delete(`${usersRecordID}`);
-      getNode('.profile--user--seccession').innerText = '탈퇴완료! ';
-      setTimeout(() => {
-        window.location.href = 'src/pages/StartPage/index.html';
-      }, 2000);
-    }
-  }
-
   /**
    * 탈퇴하기 버튼을 클릭했을때 발생하는 이벤트 함수
    * @param {*} e
@@ -307,14 +400,52 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     if (!getNode('.profile--secession-select-form')) {
       insertFirst('body', profileConfirmSecessionTemplate());
       const choiceList = getNode('.proifle--seccession-choice');
+      const form = getNode('.profile--secession-select-form');
       let scrollTop = window.scrollY || document.documentElement.scrollTop;
-      getNode('.profile--secession-select-form').style = `top:${
-        scrollTop + window.innerHeight / 3
-      }px`;
+      form.style = `top:${scrollTop + window.innerHeight / 3}px`;
+      form.focus();
       choiceList.addEventListener('click', handleSeccessionButton);
+    }
+    /**
+     * 탈퇴하기 팝업창에서의 탈퇴하기 버튼 클릭시 발생하는 함수
+     * @param {*} e
+     * @returns
+     */
+    async function handleSeccessionButton(e) {
+      const buttonList = Array.from(e.target.classList);
+      if (buttonList.includes('profile--user-cancel')) {
+        getNode('.profile--secession-select-form').remove();
+        return;
+      }
+      if (buttonList.includes('profile--user--seccession')) {
+        // await pb.collection('users').delete(`${usersRecordID}`);
+        getNode('.profile--user--seccession').innerText = '탈퇴완료! ';
+        setTimeout(() => {
+          window.location.href = 'src/pages/StartPage/index.html';
+        }, 2000);
+      }
     }
   }
 
+  /**
+   * 팝업창 키보드 esc 버튼으로 빠져나오게 하는 함수
+   * @param {*} e
+   */
+  function handleKeyEscape(e) {
+    if (e.key === 'Escape') {
+      if (getNode('.profile--secession-select-form')) {
+        getNode('.profile--secession-select-form').remove();
+      }
+      if (getNode('.profile--modify-select-form')) {
+        handleCertificationForm();
+      }
+      if (getNode('.profile--select-jobs-form')) {
+        handleJobForm();
+      }
+    }
+  }
+
+  usersJobAdd.addEventListener('click', handleJobModify);
   userSecession.addEventListener('click', handleSeccession);
   submitButton.addEventListener('click', handleSubmit);
   allAgreeCheckbox.addEventListener('change', handleAllCheck);
@@ -326,4 +457,8 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     'click',
     handleCertificationModify
   );
+  modifyCancel.addEventListener('click', () => {
+    history.back();
+  });
+  document.addEventListener('keydown', handleKeyEscape);
 });

@@ -1,4 +1,4 @@
-import { getNode, insertLast, insertBefore } from '/src/lib/';
+import { getNode, insertLast, insertBefore, sessionHandler } from '/src/lib/';
 import {
   productDetailTemplate,
   userInfoTemplate,
@@ -8,6 +8,7 @@ import pb from '/src/lib/api/pocketbase.js';
 import gsap from 'gsap';
 const tl = gsap.timeline();
 
+sessionHandler();
 const container = getNode('.app');
 insertBefore(container, renderTopBar('withHome'));
 const hash = window.location.hash.slice(1);
