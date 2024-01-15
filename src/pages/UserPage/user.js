@@ -14,6 +14,7 @@ import {
 import { renderNavBar } from '/src/components/general/index.js';
 
 import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
+import { relocateHREF } from '../BoardPage/util';
 //배포전 수정 !!!!!!!!!!!!!!!1
 
 /* -------------------------------------------------------------------------- */
@@ -21,9 +22,10 @@ import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
 /* -------------------------------------------------------------------------- */
 
 (async () => {
-  const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
+  localStorage.setItem("curr_page", "user");
   sessionHandler();
   renderNavBar();
+  const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
   const userInfoResult = await pb.collection('users').getOne(user_id, {
     expand: 'user_nickname',
   });
@@ -47,6 +49,7 @@ import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
   function handleLogout() {
     localStorage.removeItem('session');
     localStorage.removeItem('auth');
+    relocateHREF("/index.html");
   }
   logoutButton.addEventListener('click', handleLogout);
 
