@@ -133,12 +133,10 @@
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px; 
+  width: 60%; 
   background: #fff;
   position: fixed; 
-  top: 50%;
-  left: 50%;
-  transform: translate(calc(-50% - 100px), -50%);
+  text-align: center;
 
   & p {
    font-size: 16px;
@@ -169,7 +167,6 @@ dialog #close-button {
 dialog #close-button:hover {
   background: #545b62;
 }
-
 
 #error-message {
   color: red;
