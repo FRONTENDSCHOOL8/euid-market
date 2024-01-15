@@ -268,3 +268,50 @@ export async function renderQuestionPostInfo(container, id) {
     
 }
 
+export async function renderFilteredPosts(container, searchValue) {
+  const data = await getData();
+  // console.log(typeof(data[0].title));
+  data.forEach((item) => {
+    if(item.title.includes(searchValue)) {
+      let template;
+      if(item.category === "같이해요") {
+        template = /* html */ 
+        `
+        <div class="board--post-instance" data-id=${item.id}>
+          <label class=" label-s board--badge">${item.category}</label> 
+          <h2>${item.title.length > 30 ? item.title.slice(0, 30) + "..." : item.title}</h2>
+          <figure class="board--flex">
+            <img src="/src/assets/icons/general/fullpeople.svg" alt="" >
+            <figcaption class="paragraph-m">${item.requirements}</figcaption>
+          </figure>
+          
+          <figure class="board--flex">
+            <img src="/src/assets/icons/general/calendar.svg" alt="" >
+            <figcaption class="paragraph-m">${item.time}</figcaption>
+          </figure>
+        </div>
+        `
+      } else if(item.category === "질의응답") {
+        template = /* html */
+        `
+        <div class="board--post-instance" data-id=${item.id}>
+          <label class="label-s board--badge">${item.category}</label> 
+          <h2>${item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title}</h2>
+          <p class="paragraph-s board--qna-content">${item.content.length > 25 ? item.content.slice(0, 25) + "..." : item.content}</p>
+
+          <section class="board--flex">
+            <p class="paragraph-s">${item.location}</p>
+            <p class="paragraph-s">• 몇일 전</p>
+            <p class="paragraph-s">• 조회 123</p>
+          </section>
+        </div>
+        `  
+      }
+      insertFirst(container, template);
+      // alert('reached here');
+    } else {
+      return;
+    }
+  })
+
+}

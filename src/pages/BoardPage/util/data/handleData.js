@@ -59,6 +59,7 @@ export async function getOneData(id, collection) {
   return data
 }
 
+
 // pocketbase 데이터 요청 취소
 export function cancelRequests() {
   pb.cancelAllRequests();
