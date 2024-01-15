@@ -31,6 +31,7 @@ import {
   loadingComplete,
   sessionHandler,
 } from '/src/lib/';
+import { relocateHREF } from '../BoardPage/util';
 
 // local storage에 사용자가 등록이 안되어있다면 초기 페이지로 이동
 sessionHandler();
@@ -236,9 +237,9 @@ function handleMenuBar(e) {
   const menuName = menu.className;
 
   if (menuName === 'main--menu-QnA') {
-    console.log('1');
+    relocateHREF("/src/pages/BoardPage/");
   } else if (menuName === 'main--menu-together') {
-    console.log('2');
+    relocateHREF("/src/pages/BoardPage/");
   } else {
     activatePage(menuName);
 
