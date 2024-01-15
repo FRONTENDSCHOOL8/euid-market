@@ -112,12 +112,12 @@
   border-color: black;
 }
 
-.login--nocode{
+.login--goLogin{
   font-size: 12px;
   font-weight: 400;
   line-height: 160%;
   text-decoration: underline;
-  color: var(--Contents-contentSecondary, #919191);
+  color: var(--Contents-contentSecondary, #494747);
 }
 .login--active {
   border: 1px solid black;

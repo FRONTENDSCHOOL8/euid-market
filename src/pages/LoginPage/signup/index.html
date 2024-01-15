@@ -4,19 +4,12 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/styles/style.css" />
-    <!-- <meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
-    <meta
-      id="_csrf_header"
-      name="_csrf_header"
-      th:content="${_csrf.headerName}"
-    /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입 | 엔터이듬</title>
     <script type="module" src="signup.js"></script>
   </head>
   <body>
     <div class="login--container">
-
       <a href="/src/pages/Startpage/"
         ><img src="/src/assets/icons/login/direction=left.svg" alt="뒤로가기"
       /></a>
@@ -80,9 +73,9 @@
         <a href="/" class="login--signup-email"
           >휴대폰 번호가 변경되었나요? <span>이메일로 계정찾기</span></a
         >
-        <a href="/src/pages/MainPage/" class="login--nocode"
-          >인증번호가 오지 않아요?</a
-        >
+        <a href="/src/pages/LoginPage/login/" class="login--goLogin">
+          로그인하러가기
+        </a>
       </div>
     </div>
   </body>

@@ -3,6 +3,9 @@
   margin: 0 auto;
   padding: 0 12px;
 
+  & img{
+  padding-top: 10px;
+}
   & a:nth-child(1){
     padding: 10px ;
   }
@@ -58,6 +61,7 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 150%;
+    background-color: #f1f1f1;
     color: var(--Contents-contentSecondary, #919191);
     border: 0.5px solid var(--Contents-contentSecondary, #919191);
   }
@@ -102,6 +106,7 @@
   font-size: 12px;
   font-weight: 400;
   line-height: 160%;
+  padding-top: 10px;
 
   & span {
     text-decoration: underline;
@@ -112,12 +117,13 @@
   border-color: black;
 }
 
-.login--nocode{
+.login--goLogin{
+  padding-top: 10px;
   font-size: 12px;
   font-weight: 400;
   line-height: 160%;
   text-decoration: underline;
-  color: var(--Contents-contentSecondary, #919191);
+  color: var(--Contents-contentSecondary, #494747);
 }
 .login--active {
   border: 1px solid black;
@@ -135,6 +141,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 60%; 
   background: #fff;
+  text-align: center;
   position: fixed; 
   text-align: center;
 
@@ -171,3 +178,4 @@ dialog #close-button:hover {
 #error-message {
   color: red;
 }
+
