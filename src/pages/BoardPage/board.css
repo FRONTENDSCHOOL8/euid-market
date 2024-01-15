@@ -218,6 +218,7 @@
     background: #515b8a;
     border-radius: 5px;
     padding: 0 10px;
+    color: white;
   }
   & button {
     padding: 5px;
