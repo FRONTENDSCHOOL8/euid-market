@@ -1,7 +1,6 @@
 @import url(./children_pages/boardContent/boardContent.css);
 @import url(./children_pages/postInfo/postInfo.css);
 @import url(./children_pages/createPost/createPost.css);
-@import url(./children_pages/questionPage/questionPage.css);
 @import url(./children_pages/createQuestion/createQuestion.css);
 
 .hidden {
@@ -11,6 +10,7 @@
 .board--container {
   padding-bottom: 68px;
   height: 100vh;
+
 }
 
 .board--category-bar-container {
@@ -242,3 +242,11 @@
   user-select: none; 
 }
 
+
+.board--empty-post {
+  height: 50vh;
+  width: 100vw;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}

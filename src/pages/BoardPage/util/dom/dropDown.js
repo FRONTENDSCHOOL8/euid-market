@@ -2,6 +2,7 @@ import { removeClass, addClass} from "../index";
 import { getNode } from "/src/lib/index.js";
 
 
+// 드롭다운 조작 함수
 export function dropDown() {
   const categories = getNode(".board--create-category");
 

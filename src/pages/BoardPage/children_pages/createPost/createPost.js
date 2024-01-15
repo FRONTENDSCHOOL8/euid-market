@@ -8,6 +8,7 @@ import fullCalendar from "/src/assets/icons/board/fullCalendar.svg";
 import people from "/src/assets/icons/board/people.svg";
 import clock from "/src/assets/icons/board/clock.svg";
 
+// 게시물 생성 페이지 요소 렌더링
 function renderCreateFirst(container) { 
   const template = /* html */
   `
@@ -112,6 +113,7 @@ function renderCreateSecond(container) {
   insertLast(container, template);
 }
 
+// DOM 요소 값으로 데이더 생성
 async function insertData() {
   const status = "모집중";
   const type = getNode(".board--create-question-category-value").textContent;
@@ -161,6 +163,7 @@ async function insertData() {
   relocateHREF('../boardContent/index.html');
 }
 
+// 자격 버튼 이벤트 리스너
 function handleRequirement(e) {
   e.preventDefault();
   const target = e.target.closest("button");
@@ -177,6 +180,7 @@ function handleRequirement(e) {
   gender.textContent = target.textContent;
 }
 
+// 인원수 지정 버튼 이벤트 리스너
 function handleCount(option) {
   let count = getNode('#board--people-count');
   let countNum = Number(count.textContent);
@@ -186,6 +190,7 @@ function handleCount(option) {
   count.textContent = countNum.toString();
 }
 
+// 페이지 이동 및 에니메이션
 function nextPage() {
   const firstPage = getNode(".board--create-post-page.one");
   const secondPage = getNode(".board--create-post-page.two");
@@ -219,7 +224,6 @@ function prevPage() {
   gsap.to(".board--create-post-page.one", {x: 0, duration: .5});
   gsap.to(".board--create-post-page.two", {x: 0, duration: .5});
 }
-
 
 
 (function () {
