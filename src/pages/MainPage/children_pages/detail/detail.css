@@ -27,11 +27,11 @@
     display: block;
   }
 
-  & .Main-visual > img {
+  & .main--visual > img {
     width: 100%;
   }
 
-  & .Main-main {
+  & .main--main {
     & .user-info {
       display: flex;
       justify-content: space-between;

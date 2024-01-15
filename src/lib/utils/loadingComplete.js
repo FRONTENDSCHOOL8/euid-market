@@ -40,7 +40,9 @@ function imageLoadingChecker(arr) {
         console.log(`this is ${count} image`);
         if (count === checkLength) {
           console.log('load complete!!');
-          removeClass(loading, 'active');
+          setTimeout(() => {
+            removeClass(loading, 'active');
+          }, 500);
         }
       };
     });
