@@ -55,6 +55,7 @@ export function swiperTemplate() {
 				src="${banner1}"
 				alt="" />
 		</div>
+
 </div>
 <div class="swiper-slide">
 	<div class="main--banner-container">
@@ -311,7 +312,9 @@ export function userInfoTemplate(item) {
           <div class="user-temper-container">
             <div class="flex-container">
               <span class="user-temp">${item.user_temperature}℃</span>
-              <span class="user-temp-emoji">😀</span>
+              <span class="user-temp-emoji">${
+                item.user_Temperature < 36 ? '🙂' : '😎'
+              }</span>
             </div>
             <span>매너온도</span>
           </div>
