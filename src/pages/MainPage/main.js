@@ -233,15 +233,20 @@ function handleMenuBar(e) {
   const menu = target.closest('button');
 
   if (!menu) return;
-
   const menuName = menu.className;
 
-  activatePage(menuName);
+  if (menuName === 'main--menu-QnA') {
+    console.log('1');
+  } else if (menuName === 'main--menu-together') {
+    console.log('2');
+  } else {
+    activatePage(menuName);
 
-  if (menuName === 'main--menu-exchange') {
-    animation('.main--product');
-  } else if (menuName === 'main--menu-story') {
-    animation('.main--story');
+    if (menuName === 'main--menu-exchange') {
+      animation('.main--product');
+    } else if (menuName === 'main--menu-story') {
+      animation('.main--story');
+    }
   }
 }
 
