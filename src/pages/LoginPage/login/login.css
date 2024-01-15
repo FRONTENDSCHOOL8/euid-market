@@ -138,7 +138,7 @@ dialog {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(calc(-50% - 300px), -50%);
+  transform: translate(calc(-50% - 100px), -50%);
 
   & p {
    font-size: 16px;
