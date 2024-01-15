@@ -3,35 +3,52 @@ import rightDirection from '/src/assets/icons/profile/rightDirection.svg';
 import polygon from '/src/assets/icons/profile/Polygon.svg';
 import people from '/src/assets/icons/profile/people.svg';
 import close from '/src/assets/icons/profile/close.svg';
-import { confirmInput } from '/src/pages/UserPage/utils/confirmInput.js';
+import {
+  confirmInput,
+  randomProfile,
+} from '/src/pages/UserPage/utils/index.js';
 
 /* -------------------------------------------------------------------------- */
 /*                                    유저페이지                                  */
 /* -------------------------------------------------------------------------- */
 //프로필메뉴
-export function profileMenuTemplate(userobj) {
+export async function profileMenuTemplate(userobj) {
   let { id, user_photo, user_nickname, user_year } = userobj;
+  let random;
+  if (!user_photo) {
+    try {
+      random = await randomProfile();
+    } catch (error) {
+      console.error('랜덤 프로필 사진 오류', error);
+    }
+  }
   return /*html */ `
-  <figure>
-    <div class="user--profile-picture-wrapper">
-      <img
-        class="user--profile-picture"
-        src="${import.meta.env.VITE_PB_URL}/api/files/users/${id}/${user_photo}"
-        alt="${user_nickname}님의 프로필 사진"
-      />
-      <a href="/src/pages/Userpage/children_pages/profileCard/index.html"
-        ><img tabindex="0"
-          class="user--profile-modify"
-          src=${pencil}
-          alt="수정하기"
-      /></a>
-    </div>
-    <figcaption>
-      <p>${user_nickname}<span>${user_year}기</span></p>
-      <span class="user--answer">답변 35 </span>
-    </figcaption>
-  </figure>
-`;
+    <figure>
+      <div class="user--profile-picture-wrapper">
+        <img
+          class="user--profile-picture"
+          src= ${
+            user_photo
+              ? `${
+                  import.meta.env.VITE_PB_URL
+                }/api/files/users/${id}/${user_photo}`
+              : `${random}`
+          }
+          alt="${user_nickname}님의 프로필 사진"
+        />
+        <a href="/src/pages/Userpage/children_pages/profileCard/index.html"
+          ><img tabindex="0"
+            class="user--profile-modify"
+            src=${pencil}
+            alt="수정하기"
+        /></a>
+      </div>
+      <figcaption>
+        <p>${user_nickname}<span>${user_year}기</span></p>
+        <span class="user--answer">답변 35 </span>
+      </figcaption>
+    </figure>
+  `;
 }
 // 프로필 컨텐츠 템플릿
 export function profileContentsTemplate(userBadgeResult) {
@@ -129,12 +146,20 @@ export function mannerTemplate(count, manner_title) {
 /*                                    프로필카드                                   */
 /* -------------------------------------------------------------------------- */
 
-export function profileCardUserInfoTemplate({
+export async function profileCardUserInfoTemplate({
   id,
   user_nickname: nickname,
   user_year: year,
   user_photo,
 }) {
+  let random;
+  if (!user_photo) {
+    try {
+      random = await randomProfile();
+    } catch (error) {
+      console.error('랜덤 프로필 사진 오류', error);
+    }
+  }
   return /*html */ `
     <figure>
       <figcaption>
@@ -142,14 +167,16 @@ export function profileCardUserInfoTemplate({
         <span>${year}기</span>
       </figcaption>
       
-      <img src="${
-        import.meta.env.VITE_PB_URL
-      }/api/files/users/${id}/${user_photo}" alt="${nickname}님의 프로필 사진" />
+      <img src= ${
+        user_photo
+          ? `${import.meta.env.VITE_PB_URL}/api/files/users/${id}/${user_photo}`
+          : `${random}`
+      } alt="${nickname}님의 프로필 사진" />
     </figure>
   `;
 }
 
-export function profileCardBasicInfosTemplate({
+export async function profileCardBasicInfosTemplate({
   id,
   user_photo,
   user_job: job,
@@ -159,6 +186,14 @@ export function profileCardBasicInfosTemplate({
   user_organization: organization,
   user_certification: centertification,
 }) {
+  let random;
+  if (!user_photo) {
+    try {
+      random = await randomProfile();
+    } catch (error) {
+      console.error('랜덤 프로필 사진 오류', error);
+    }
+  }
   return /*html */ `
   <div>
     <h2>기본 정보</h2>
@@ -169,7 +204,11 @@ export function profileCardBasicInfosTemplate({
       <p>프로필사진</p>
       <img
       class="profile--card-user-img"
-      src="${import.meta.env.VITE_PB_URL}/api/files/users/${id}/${user_photo}"
+      src= ${
+        user_photo
+          ? `${import.meta.env.VITE_PB_URL}/api/files/users/${id}/${user_photo}`
+          : `${random}`
+      }
       alt="${nickname}님의 프로필 사진"
     />
     </li>

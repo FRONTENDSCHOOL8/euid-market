@@ -2,7 +2,6 @@ import { tiger, insertLast, getNode, getNodes } from '/src/lib';
 import plus from '/src/assets/icons/login/plus.svg';
 import check from '/src/assets/icons/login/check.svg';
 import gsap from 'gsap';
-const card = getNodes('.login--category-card');
 //import PocketBase from 'pocketbase';
 
 // 카테고리 리스트 동적 랜더링
@@ -26,19 +25,20 @@ async function renderCategory() {
     `;
     insertLast('.login--category-list', template);
   });
-  addEventListenersToCards();
+  handleCards();
 }
 
-// 선택된 카테고리 데이터를 저장하는 배열
 let selectedCategories = [];
 
-function addEventListenersToCards() {
+function handleCards() {
   getNodes('.login--category-card').forEach((card) => {
-    card.addEventListener('click', function () {
-      const mainCategory = this.querySelector(
+    card.addEventListener('click', function (e) {
+      const clickedCard = e.currentTarget;
+
+      const mainCategory = clickedCard.querySelector(
         '.login--category-main'
       ).textContent;
-      const subCategory = this.querySelector(
+      const subCategory = clickedCard.querySelector(
         '.login--category-sub'
       ).textContent;
       const categoryData = {
@@ -47,10 +47,10 @@ function addEventListenersToCards() {
       };
 
       // 카드 활성화/비활성화 상태 토글
-      this.classList.toggle('active-card');
+      clickedCard.classList.toggle('active-card');
 
       // 카드가 활성화 상태인지 확인
-      if (this.classList.contains('active-card')) {
+      if (clickedCard.classList.contains('active-card')) {
         selectedCategories.push(categoryData); // 데이터 추가
       } else {
         selectedCategories = selectedCategories.filter(
@@ -63,44 +63,34 @@ function addEventListenersToCards() {
       console.log(selectedCategories);
 
       // 조건에 따라 이미지 변경
-      const img = this.querySelector('img');
-      console.log(this);
-      img.src = this.classList.contains('active-card') ? check : plus;
-      card;
+      const img = clickedCard.querySelector('img');
+      console.log(clickedCard);
+      img.src = clickedCard.classList.contains('active-card') ? check : plus;
     });
-    //
   });
 }
 
 renderCategory();
-//저장 버튼에 클릭 이벤트 리스너를 추가
-getNode('.login--category-submit').addEventListener('click', function () {
-  // 로컬 스토리지에 selectedCategories 배열을 JSON 문자열로 저장
+
+function handleSubmit() {
   localStorage.setItem(
     'selectedCategories',
     JSON.stringify(selectedCategories)
   );
-  console.log('저장된 데이터:', localStorage.getItem('selectedCategories'));
-});
-//페이지 이동
-getNode('.login--category-submit').addEventListener('click', function () {
   window.location.href = '/src/pages/LoginPage/signup/';
-});
+}
 
 // submit 버튼 너비 조정 함수
 const buttonWidth = () => {
-  // 부모 요소 선택
   const parent = getNode('.login--category-wrapper');
-  // 부모 요소의 너비 계산
   const parentWidth = parent.offsetWidth;
-  // 버튼 요소 선택
   const button = getNode('.login--category-submit');
-  // 버튼의 너비를 부모 요소의 너비로 설정
   button.style.width = `${parentWidth}px`;
 };
 
 // 창 크기가 변경될 때마다 버튼 너비 조정
 window.addEventListener('resize', buttonWidth);
+getNode('.login--category-submit').addEventListener('click', handleSubmit);
 
 // 초기 로드 시 버튼 너비 조정
 buttonWidth();
@@ -109,16 +99,14 @@ buttonWidth();
 const signUpAnimation = gsap.to('.login--category-submit', {
   scale: 1.05,
   duration: 0.2,
-  paused: true, // 애니메이션 자동 시작 비활성화
-  ease: 'power1.inOut', // 부드러운 이징 효과
+  paused: true,
+  ease: 'power1.inOut',
 });
 
-// 마우스가 요소 위에 있을 때 애니메이션 재생
 getNode('.login--category-submit').addEventListener('mouseenter', () => {
   signUpAnimation.play();
 });
 
-// 마우스가 요소를 벗어날 때 애니메이션 반전
 getNode('.login--category-submit').addEventListener('mouseleave', () => {
   signUpAnimation.reverse();
 });

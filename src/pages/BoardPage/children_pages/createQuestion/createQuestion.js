@@ -12,7 +12,8 @@ async function createQuestion() {
     "title" : title,
     "content" : content,
     "category" : "질의응답",
-    "stack" : category
+    "stack" : category,
+    "location" : "방배동"
   })
 
   await addData(data);
