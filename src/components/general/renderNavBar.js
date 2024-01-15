@@ -32,13 +32,13 @@ export function renderNavBar() {
         </a>
       </li>
       <li>
-        <a href="/src/pages/MainPage/" data-index=3>
+        <a href="/src/pages/ServicePage/" data-index=3>
           <img src=${local.getItem("curr_page") === "location" ? fullMap : map} alt="">
           <p class="paragraph-s">내 근처</p>
         </a>
       </li>
       <li>
-        <a href="/src/pages/BoardPage/children_pages/boardContent/" data-index=4>
+        <a href="/src/pages/ServicePage/" data-index=4>
           <img src=${local.getItem("curr_page") === "chat" ? fullChat : chat} alt="">
           <p class="paragraph-s">채팅</p>
         </a>

@@ -1,0 +1,17 @@
+
+
+
+.service--container {
+  height: 80vh;
+  width: 100%;
+  /* background: black; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  text-align: center;
+
+  & img {
+    width: 30%;
+  }
+}
