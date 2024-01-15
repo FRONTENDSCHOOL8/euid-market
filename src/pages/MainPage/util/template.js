@@ -162,11 +162,11 @@ export function swiperTemplate() {
 }
 
 export function storyBoardTemplate(item) {
-  const { title, major, year, name } = item;
+  const { title, major, year, name, id } = item;
 
   const template = /* html */ `
       <li class="main--story">
-        <a href="/">
+        <a href="${`/src/pages/MainPage/children_pages/senior/index#${id}`}">
           <figure>
             <img class="main--story-image" src="${getPbImageURL(
               item
@@ -218,7 +218,7 @@ export function exchangeTemplate(item) {
       <button>
         <img src="${heart}"></img>
       </button>
-      <span>${save}</span>
+      <span>${comma(save)}</span>
     </div>
 </li>
   `;
