@@ -46,6 +46,7 @@ const banner = getNode('.main--banner');
 const menuList = getNodes('.main--menu-bar button');
 const pageList = getNodes('.page-list');
 const swiperBanner = getNode('.swiper-wrapper');
+const modal = getNode('.modal');
 
 /**
  * 로드하고자하는 데이터의 collection을 배열의 형태로 입력받아 데이터를 프라미스 형태로 반환
@@ -202,6 +203,37 @@ function buttonControl() {
     changeButtonColor();
     toggleClass(plusButton, 'isActive');
     toggleClass(activeButtonList, 'isActive');
+    toggleClass(modal, 'isActive');
+
+    gsap.fromTo(
+      '.modal',
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      }
+    );
+    gsap.fromTo(
+      '.main--active-button-list > li',
+      {
+        background: 'var(--primary)',
+      },
+      {
+        background: 'var(--background)',
+      },
+      '<'
+    );
+    gsap.fromTo(
+      '.main--active-button-list > li > a',
+      {
+        color: 'var(--background)',
+      },
+      {
+        color: 'var(--primary)',
+      },
+      '<'
+    );
 
     if (Array.from(activeButtonList.classList).includes('isActive')) {
       gsap.fromTo(
