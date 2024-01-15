@@ -1,5 +1,9 @@
 import { getNode, setStorage, getStorage } from '/src/lib/';
-import { validation, doRandomCode } from '/src/pages/LoginPage/util/';
+import {
+  validation,
+  doRandomCode,
+  getNickname,
+} from '/src/pages/LoginPage/util/';
 import PocketBase from 'pocketbase';
 
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
@@ -84,6 +88,7 @@ async function handleSignup(e) {
         password: inputCode,
         passwordConfirm: inputCode,
         user_temperature: '36.5',
+        user_nickname: getNickname(),
         selected_category: selectedCategory,
         user_age: 123,
         user_year: 8,
