@@ -17,7 +17,7 @@ export function createData(args) {
     "content": args.content,
     "category": args.category,
     "stack": args.stack,
-    "created_by" : "01012341234"
+    "created_by" : "4lmqgsmlq9y2uvl" // 이은원의 계정
   };
   return data;
 }

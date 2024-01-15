@@ -119,11 +119,10 @@ async function insertData() {
   const type = getNode(".board--create-category-value").textContent;
   const location = "연남동";
   const title = getNode("#board--post-title").value;
-  const gender = getNode("#board--post-requirement-gender").textContent;
-  // let requirements;
+  const requirements = getNode("#board--post-requirement-gender").textContent;
   const date = new Date(getNode("#board--post-date").value);
   const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
-  const time =  `${formattedDate}, ${getNode("#board--post-time").value} 시`;
+  const time =  `${formattedDate}, ${getNode("#board--post-time").value}`;
   const max_people = Number(getNode('#board--people-count').textContent);
   const curr_people = 1;
   const content = getNode("#board--post-content").value;
@@ -134,7 +133,7 @@ async function insertData() {
     type,
     location,
     title,
-    gender,
+    requirements,
     time,
     max_people,
     curr_people,
@@ -150,7 +149,7 @@ async function insertData() {
   }
 
   await addData(data);
-  relocateHREF('../boardContent/index.html');
+  relocateHREF('/src/pages/BoardPage/');
 }
 
 // 자격 버튼 이벤트 리스너
