@@ -427,7 +427,7 @@ const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
         return;
       }
       if (buttonList.includes('profile--user--seccession')) {
-        // await pb.collection('users').delete(`${usersRecordID}`);
+        await pb.collection('users').delete(`${usersRecordID}`);
         getNode('.profile--user--seccession').innerText = '탈퇴완료! ';
         setTimeout(() => {
           window.location.href = 'src/pages/StartPage/index.html';

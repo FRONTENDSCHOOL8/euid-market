@@ -1,16 +1,16 @@
 /// <reference path="../pb_data/types.d.ts" />
 migrate((db) => {
   const collection = new Collection({
-    "id": "imu40vqs2c6jj0u",
-    "created": "2024-01-07 11:42:34.658Z",
-    "updated": "2024-01-07 11:42:34.658Z",
-    "name": "posts_together",
+    "id": "y1ljkukkbqvl8bm",
+    "created": "2024-01-15 00:23:45.641Z",
+    "updated": "2024-01-15 00:23:45.641Z",
+    "name": "posts",
     "type": "base",
     "system": false,
     "schema": [
       {
         "system": false,
-        "id": "sks8gfbm",
+        "id": "lznxyuov",
         "name": "status",
         "type": "text",
         "required": false,
@@ -24,7 +24,7 @@ migrate((db) => {
       },
       {
         "system": false,
-        "id": "gv45jtwl",
+        "id": "1ixt8277",
         "name": "type",
         "type": "text",
         "required": false,
@@ -38,7 +38,7 @@ migrate((db) => {
       },
       {
         "system": false,
-        "id": "ogmnqmeb",
+        "id": "4rzp8urj",
         "name": "location",
         "type": "text",
         "required": false,
@@ -52,7 +52,7 @@ migrate((db) => {
       },
       {
         "system": false,
-        "id": "o1jtw2fz",
+        "id": "5ng1y1vy",
         "name": "title",
         "type": "text",
         "required": false,
@@ -66,7 +66,7 @@ migrate((db) => {
       },
       {
         "system": false,
-        "id": "atgv4hgv",
+        "id": "zmv3y2g8",
         "name": "requirements",
         "type": "text",
         "required": false,
@@ -80,7 +80,7 @@ migrate((db) => {
       },
       {
         "system": false,
-        "id": "tpbrkg0t",
+        "id": "3n5ncf3q",
         "name": "time",
         "type": "text",
         "required": false,
@@ -94,36 +94,64 @@ migrate((db) => {
       },
       {
         "system": false,
-        "id": "dqzvhjai",
+        "id": "rma1azu1",
         "name": "max_people",
-        "type": "number",
+        "type": "text",
         "required": false,
         "presentable": false,
         "unique": false,
         "options": {
           "min": null,
           "max": null,
-          "noDecimal": false
+          "pattern": ""
         }
       },
       {
         "system": false,
-        "id": "odcmpr3b",
+        "id": "yb7gtxay",
         "name": "curr_people",
-        "type": "number",
+        "type": "text",
         "required": false,
         "presentable": false,
         "unique": false,
         "options": {
           "min": null,
           "max": null,
-          "noDecimal": false
+          "pattern": ""
         }
       },
       {
         "system": false,
-        "id": "96ngoeqx",
+        "id": "9decafwv",
         "name": "content",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "6ufz2qka",
+        "name": "category",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "wckfexbj",
+        "name": "stack",
         "type": "text",
         "required": false,
         "presentable": false,
@@ -147,7 +175,7 @@ migrate((db) => {
   return Dao(db).saveCollection(collection);
 }, (db) => {
   const dao = new Dao(db);
-  const collection = dao.findCollectionByNameOrId("imu40vqs2c6jj0u");
+  const collection = dao.findCollectionByNameOrId("y1ljkukkbqvl8bm");
 
   return dao.deleteCollection(collection);
 })

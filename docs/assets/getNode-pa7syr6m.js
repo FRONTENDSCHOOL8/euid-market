@@ -1,0 +1,1 @@
+function o(e,r=document){if(typeof e!="string")throw new Error("getNode 함수의 인수는 문자 타입 이어야 합니다.");return r.nodeType!==document.DOCUMENT_NODE&&(r=document.querySelector(r)),r.querySelector(e)}function t(e){if(typeof e!="string")throw new Error("getNodes 함수의 인수는 문자 타입 이어야 합니다.");return document.querySelectorAll(e)}export{t as a,o as g};
