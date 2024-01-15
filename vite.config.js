@@ -57,6 +57,8 @@ export default defineConfig({
         signup: resolve(__dirname, 'src/pages/LoginPage/signup/index.html'),
         login: resolve(__dirname, 'src/pages/LoginPage/login/index.html'),
 
+        servicePage: resolve(__dirname, 'src/pages/ServicePage/index.html'),
+
       },
     },
   },
