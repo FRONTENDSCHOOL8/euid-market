@@ -128,49 +128,6 @@
  color: #0056b3;
 }
 
-#code-dialog {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 200px; 
-  background: #fff;
-  text-align: center;
-  position: fixed; 
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  & p {
-   font-size: 16px;
-   color: #333;
-   margin-bottom: 20px;
-  }
-
-  & button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-right: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-}
-
-dialog button:hover {
-  background: #0056b3;
-}
-
-dialog #close-button {
-  background: #6c757d;
-}
-
-dialog #close-button:hover {
-  background: #545b62;
-}
-
 #error-message {
   color: red;
 }
