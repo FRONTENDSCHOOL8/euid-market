@@ -29,20 +29,29 @@ import {
   attr,
   toggleClass,
   loadingComplete,
+  sessionHandler,
 } from '/src/lib/';
+
+// local storage에 사용자가 등록이 안되어있다면 초기 페이지로 이동
+sessionHandler();
 
 const seniorStory = getNode('.main--menu-story');
 const seniorStoryBoard = getNode('.main--story-board');
 const activeButtonList = getNode('.main--active-button-list');
 const exchange = getNode('.main--menu-exchange');
-const exchangeBoard = getNode('.Main-exchange');
-const plusButton = getNode('.Main-plus-button');
-const menuBar = getNode('.Main-menu-bar');
+const exchangeBoard = getNode('.main--exchange');
+const plusButton = getNode('.main--plus-button');
+const menuBar = getNode('.main--menu-bar');
 const banner = getNode('.main--banner');
-const menuList = getNodes('.Main-menu-list li');
+const menuList = getNodes('.main--menu-bar button');
 const pageList = getNodes('.page-list');
 const swiperBanner = getNode('.swiper-wrapper');
 
+/**
+ * 로드하고자하는 데이터의 collection을 배열의 형태로 입력받아 데이터를 프라미스 형태로 반환
+ * @param {array} collectionList
+ * @returns {array} Promise 객체가 배열안에 포함된 상태로 리턴
+ */
 function dataLoad(collectionList) {
   const arr = [];
 
@@ -53,6 +62,11 @@ function dataLoad(collectionList) {
   return arr;
 }
 
+/**
+ * 노드와 클래스 이름을 입력받아 해당 노드리스트에 ClassName이 있다면 제거하는 함수
+ * @param {nodeList} node
+ * @param {string} className
+ */
 function removeAllClass(node, className) {
   {
     node.forEach((item) => {
@@ -61,6 +75,11 @@ function removeAllClass(node, className) {
   }
 }
 
+/**
+ * node 두개를 입력 받아 두 노드를 제외한 모든 노드들의 클래스는 제거하고 두 노드에 클래스를 부여하는 함수
+ * @param {node} node1
+ * @param {node} node2
+ */
 function classOn(node1, node2) {
   removeAllClass(menuList, 'isActive');
   removeAllClass(pageList, 'isActive');
@@ -71,6 +90,10 @@ function classOn(node1, node2) {
   addClass(node2, 'isActive');
 }
 
+/**
+ * 클래스 명을 입력받아 그것에 따라 페이지를 활성화해주는 함수
+ * @param {string} menuName
+ */
 function activatePage(menuName) {
   if (menuName === 'main--menu-exchange') {
     classOn(exchange, exchangeBoard);
@@ -79,6 +102,10 @@ function activatePage(menuName) {
   }
 }
 
+/**
+ * 노드를 입력받아 해당 노드에 애니메이션을 부여하는 함수
+ * @param {node} node
+ */
 function animation(node) {
   gsap.fromTo(
     node,
@@ -94,10 +121,15 @@ function animation(node) {
   );
 }
 
+/**
+ * 데이터 구조체와 함수를 입력받아 함수에 따라 node 맨 끝 단에 template을 생성하는 함수
+ * @param {Object} data
+ * @param {Function} func
+ */
 function insertList(data, func) {
   if (func === exchangeTemplate) {
     data.forEach((item) => {
-      insertLast('.Main-product-list', func(item));
+      insertLast('.main--product-list', func(item));
     });
   } else if (func === storyBoardTemplate) {
     data.forEach((item) => {
@@ -106,6 +138,9 @@ function insertList(data, func) {
   }
 }
 
+/**
+ * 스크롤에 따라 네비게이션바와 배경에 움직임을 주는 함수
+ */
 function handleScroll() {
   const scrollNum = parseInt(window.scrollY);
 
@@ -118,10 +153,24 @@ function handleScroll() {
   }
 }
 
+/**
+ * 버튼이 호버되고 클릭되었을 때의 움직임을 컨트롤하는 함수
+ */
 function buttonControl() {
+  /**
+   * 버튼을 클릭하면 이미지의 URL을 교체해주는 함수
+   */
+  function changeButtonColor() {
+    if (attr(plusButton.firstElementChild, 'src') === whiteURL) {
+      attr(plusButton.firstElementChild, 'src', blackURL);
+    } else {
+      attr(plusButton.firstElementChild, 'src', whiteURL);
+    }
+  }
+
   plusButton.addEventListener('mouseover', () => {
     gsap.fromTo(
-      '.Main-plus-button',
+      '.main--plus-button',
       {
         scale: 1,
         y: 0,
@@ -136,7 +185,7 @@ function buttonControl() {
 
   plusButton.addEventListener('mouseout', () => {
     gsap.fromTo(
-      '.Main-plus-button',
+      '.main--plus-button',
       {
         scale: 1.08,
         y: -5,
@@ -174,17 +223,14 @@ function buttonControl() {
   });
 }
 
-function changeButtonColor() {
-  if (attr(plusButton.firstElementChild, 'src') === whiteURL) {
-    attr(plusButton.firstElementChild, 'src', blackURL);
-  } else {
-    attr(plusButton.firstElementChild, 'src', whiteURL);
-  }
-}
-
+/**
+ * 이벤트 위임 방식으로 menu바가 클릭되었을 때 페이지를 바꿔주는 함수
+ * @param {Object} e
+ * @returns
+ */
 function handleMenuBar(e) {
   const target = e.target;
-  const menu = target.closest('li');
+  const menu = target.closest('button');
 
   if (!menu) return;
 
@@ -204,6 +250,9 @@ function handleMenuBar(e) {
     dataLoad(['senior_story', 'product_list'])
   );
 
+  /**
+   * 페이지가 로딩되었을 때 데이터베이스에서 정보들을 불러와 화면에 출력하는 함수
+   */
   function onLoad() {
     insertLast(swiperBanner, swiperTemplate());
 

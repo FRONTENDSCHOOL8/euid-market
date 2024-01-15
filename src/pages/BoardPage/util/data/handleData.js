@@ -16,7 +16,8 @@ export function createData(args) {
     "curr_people": args.curr_people,
     "content": args.content,
     "category": args.category,
-    "stack": args.stack
+    "stack": args.stack,
+    "created_by" : "4lmqgsmlq9y2uvl" // 이은원의 계정
   };
   return data;
 }
@@ -58,6 +59,7 @@ export async function getOneData(id, collection) {
   const data = await pb.collection(collection).getOne(id, { requestKey:null });
   return data
 }
+
 
 // pocketbase 데이터 요청 취소
 export function cancelRequests() {

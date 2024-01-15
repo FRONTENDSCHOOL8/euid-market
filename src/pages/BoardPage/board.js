@@ -1,15 +1,17 @@
 import { renderNavBar } from "../../components/general/renderNavBar.js";
-import { getNode, } from "../../lib/index.js";
+import { getNode, sessionHandler } from "../../lib/index.js";
 import { 
   renderMainPosts, 
   renderTogetherPosts, 
   renderQuestionPosts, 
+  renderFilteredPosts,
   addClass, 
   removeClass, 
   clearContent,
   changeLink,
   relocateLink, 
   cancelRequests } from "./util/index.js";
+
 
 // 선택 카테고리 게시물 렌더링
 function renderPosts(button, container, option) {
@@ -38,6 +40,13 @@ function openPost(e) {
   relocateLink("/src/pages/BoardPage/children_pages/postInfo/");
 }
 
+//모든 자식 요소에서 active클래스 삭제
+function removeActive(list) {
+  for(const li of list.children) {
+    removeClass(li.children[0], "active-category");
+  }
+}
+
 // 카테고리 버튼 이벤트 리스너
 function handleCategory(e) {
   e.preventDefault();
@@ -53,9 +62,7 @@ function handleCategory(e) {
 
   if(!button) return;
 
-  for(const li of buttonList.children) {
-    removeClass(li.children[0], "active-category");
-  }
+  removeActive(buttonList);
 
   const targetBtn = {
     "1": () => {
@@ -76,16 +83,39 @@ function handleCategory(e) {
   pickButton();
 }
 
+
+
+function search(e) {
+  e.preventDefault();
+  const search = getNode("#board--search-post");
+  const buttonList = getNode(".board--category-bar-wrapper");
+  const postContainer = getNode(".board--post-list");
+  const totalBtn = getNode(".board--category-first-button");
+  removeActive(buttonList);
+  clearContent(postContainer);
+  addClass(totalBtn, "active-category");
+  
+  if(search.value !== "") {
+    renderFilteredPosts(postContainer, search.value);
+  } else {
+    renderMainPosts(postContainer);
+  }
+}
+
 (() => {
   renderNavBar();
+  sessionHandler();
 
   const {localStorage} = window;
   localStorage.setItem("curr_page", "board")
 
+  const searchForm = getNode(".board--search-post-container");
   const postContainer = getNode(".board--post-list");
   const categoryBar = getNode('.board--category-bar-container');
 
   renderMainPosts(postContainer);
+
+  searchForm.addEventListener('submit', search);
   categoryBar.addEventListener('click', handleCategory);
   postContainer.addEventListener('click', openPost);
 })();

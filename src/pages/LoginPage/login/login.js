@@ -1,5 +1,5 @@
 import { getNode, setStorage, getStorage } from '/src/lib/';
-import { validation, doRandomCode } from '/src/pages/LoginPage/util/';
+// import { validation, doRandomCode } from '/src/pages/LoginPage/util/';
 import PocketBase from 'pocketbase';
 
 const PASSWORDKEY = 'thsxndlxn';
@@ -77,7 +77,6 @@ async function handleCode(e) {
     showDialog(randomCode);
     // 생성된 랜덤 코드를 로컬 스토리지에 저장
     const state = await setStorage(phoneNum, randomCode);
-
     console.log(userData);
   } catch (error) {
     alert('회원이 아닙니다. 회원가입하시겠어요?');
@@ -123,7 +122,8 @@ startButton.addEventListener('click', async function (e) {
         user: model,
         token: token,
       });
-      // 코드가 일치하면 다른 페이지로 이동
+      const { localStorage } = window;
+      localStorage.setItem('session', 'logged_in');
       window.location.href = '/src/pages/Mainpage/';
     } else {
       // 코드가 일치하지 않으면 에러 메시지 표시
@@ -131,6 +131,9 @@ startButton.addEventListener('click', async function (e) {
       errorMessage.classList.remove('hidden');
     }
   } catch (error) {
-    console.error('getStorage 함수에서 오류 발생:', error);
+    console.error(error);
   }
 });
+
+// const { localStorage } = window;
+// localStorage.setItem('session', 'logged_in');

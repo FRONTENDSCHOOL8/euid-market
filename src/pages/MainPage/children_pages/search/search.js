@@ -1,9 +1,10 @@
-import { getNode, insertLast, clearContents } from '/src/lib/';
+import { getNode, insertLast, clearContents, sessionHandler } from '/src/lib/';
 
 import { exchangeTemplate } from '/src/pages/MainPage/util/';
 
 import pb from '/src/lib/api/pocketbase.js';
 
+sessionHandler();
 const inputBox = getNode('.search-container > input');
 const searchList = getNode('.search-list');
 const back = getNode('.search-container > img');

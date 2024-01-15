@@ -9,3 +9,4 @@ export * from './storage.js';
 export * from './getTime.js';
 export * from './getPbImage.js';
 export * from './loadingComplete.js';
+export * from './sessionHandler.js';

@@ -56,7 +56,7 @@ async function handleCode(e) {
       await setStorage(phoneNum, randomCode);
     }
   } catch (error) {
-    console.error(error); // 에러 로깅
+    console.error(error);
   }
 }
 // codeInput 값이 입력되면 startButton 활성화
@@ -75,7 +75,6 @@ async function handleSignup(e) {
   e.preventDefault();
   const phoneNum = phoneInput.value;
   const inputCode = codeInput.value;
-
   try {
     const storedCode = await getStorage(phoneNum);
     const selectedCategory = localStorage.getItem('selectedCategories');
@@ -85,7 +84,6 @@ async function handleSignup(e) {
         password: inputCode,
         passwordConfirm: inputCode,
         user_temperature: '36.5',
-        user_photo: '/src/assets/icons/login/son2.png',
         selected_category: selectedCategory,
         user_age: 123,
         user_year: 8,
@@ -99,12 +97,16 @@ async function handleSignup(e) {
 
     // 로컬 스토리지에 인증 정보 저장
     if (authResponse) {
-      await setStorage('auth', {
-        isAuth: true,
-        user: authResponse.user,
-        token: authResponse.token,
+      const { model, token } = await getStorage('pocketbase_auth');
+      setStorage('auth', {
+        isAuth: !!model,
+        user: model,
+        token: token,
       });
+      const { localStorage } = window;
+      localStorage.setItem('session', 'logged_in');
       alert('회원 가입이 완료됐습니다!');
+
       window.location.href = '/src/pages/Mainpage/';
     }
   } catch {

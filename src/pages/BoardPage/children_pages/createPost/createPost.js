@@ -1,5 +1,5 @@
 import { renderTopBar } from "/src/components/general/renderTopBar.js";
-import { getNode, insertBefore, insertLast } from "/src/lib/index.js";
+import { getNode, insertBefore, insertLast, sessionHandler } from "/src/lib/index.js";
 import { addClass, addData, createData, relocateHREF, removeClass, dropDown, pickCategory } from "../../util/index.js";
 import { gsap } from 'gsap';
 import minus from "/src/assets/icons/board/minusCount.svg";
@@ -116,24 +116,13 @@ function renderCreateSecond(container) {
 // DOM 요소 값으로 데이더 생성
 async function insertData() {
   const status = "모집중";
-  const type = getNode(".board--create-question-category-value").textContent;
+  const type = getNode(".board--create-category-value").textContent;
   const location = "연남동";
   const title = getNode("#board--post-title").value;
-  const gender = getNode("#board--post-requirement-gender").textContent;
-  const age = getNode("#board--post-requirement-age").textContent;
-  let requirements;
-  if(gender === "누구나" && age === "누구나") {
-    requirements = "누구나";
-  } else if(gender === "누구나") {
-    requirements = age;
-  } else if(age === "누구나") {
-    requirements = gender;
-  } else {
-    requirements = `${gender}, ${age}세 이상`;
-  }
+  const requirements = getNode("#board--post-requirement-gender").textContent;
   const date = new Date(getNode("#board--post-date").value);
   const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
-  const time =  `${formattedDate}, ${getNode("#board--post-time").value} 시`;
+  const time =  `${formattedDate}, ${getNode("#board--post-time").value}`;
   const max_people = Number(getNode('#board--people-count').textContent);
   const curr_people = 1;
   const content = getNode("#board--post-content").value;
@@ -160,7 +149,7 @@ async function insertData() {
   }
 
   await addData(data);
-  relocateHREF('../boardContent/index.html');
+  relocateHREF('/src/pages/BoardPage/');
 }
 
 // 자격 버튼 이벤트 리스너
@@ -226,7 +215,8 @@ function prevPage() {
 }
 
 
-(function () {
+(() => {
+  sessionHandler();
   const createPostContainer = getNode(".board--create-post-container");
   insertBefore(createPostContainer, renderTopBar("blank"));
   renderCreateFirst(createPostContainer);

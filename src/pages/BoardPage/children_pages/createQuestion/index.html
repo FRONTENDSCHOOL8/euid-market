@@ -8,60 +8,58 @@
   <script type="module" src="./createQuestion.js"></script>
 </head>
 <body>
-  <header class="board--create-question-header">
+  <div class="app">
+    <header class="board--create-question-header">
     
-    <a href="javascript:history.back()"><img src="/closeBlack.svg" alt="뒤로가기"></a>
-    <p class="label-m">Q&A 글쓰기</p>
-    <button type="button"  class="label-m board--create-qna-post">완료</button>
-  </header>
-
-  
-  <div class="board--create-category-container">
-    <button type="button" class="board--create-category-wrapper">
-      <p class="label-m board--create-category-value">FRONTEND</p>
-      <img src="/rightArrow.svg" alt="">
-    </button>
-    <ul class="board--create-category hidden">
-      <li>
-        <button type="button" class="label-m" data-label="programming">프로그래밍</button>
-      </li>
-      <li>
-        <button type="button" class="label-m" data-label="design">디자인</button>
-      </li>
-      <li>
-        <button type="button" class="label-m" data-label="uiux">UI•UX</button>
-      </li>
-      <li>
-        <button type="button" class="label-m" data-label="frontend">FrontEnd</button>
-      </li>
-      <li>
-        <button type="button" class="label-m" data-label="backend">BackEnd</button>
-      </li>
-      <li>
-        <button type="button" class="label-m" data-label="js">JS</button>
-      </li>
-      <li>
-        <button type="button" class="label-m" data-label="css">CSS</button>
-      </li>
-      <li>
-        <button type="button" class="label-m" data-label="html">HTML</button>
-      </li>
-    </ul>
-  </div>
-
-  <section class="board--create-question-rule-container">
-    <div class="board--create-question-rule">
-      <span style="color: white" class="label-s">안내</span>
-      <span style="color: white" class="paragraph-m">중고거래 관련, 명예훼손, 광고/홍보 목적의 글은 올리실 수 없어요.</span>
+      <a href="javascript:history.back()"><img src="/closeBlack.svg" alt="뒤로가기"></a>
+      <p class="label-m">Q&A 글쓰기</p>
+      <button type="button"  class="label-m board--create-qna-post">완료</button>
+    </header>
+    
+    <div class="board--create-category-container">
+      <button type="button" class="board--create-category-wrapper">
+        <p class="label-m board--create-category-value">FRONTEND</p>
+        <img src="/rightArrow.svg" alt="">
+      </button>
+      <ul class="board--create-category hidden">
+        <li>
+          <button type="button" class="label-m" data-label="programming">프로그래밍</button>
+        </li>
+        <li>
+          <button type="button" class="label-m" data-label="design">디자인</button>
+        </li>
+        <li>
+          <button type="button" class="label-m" data-label="uiux">UI•UX</button>
+        </li>
+        <li>
+          <button type="button" class="label-m" data-label="frontend">FrontEnd</button>
+        </li>
+        <li>
+          <button type="button" class="label-m" data-label="backend">BackEnd</button>
+        </li>
+        <li>
+          <button type="button" class="label-m" data-label="js">JS</button>
+        </li>
+        <li>
+          <button type="button" class="label-m" data-label="css">CSS</button>
+        </li>
+        <li>
+          <button type="button" class="label-m" data-label="html">HTML</button>
+        </li>
+      </ul>
     </div>
-  </section>
-
-  <div class="board--create-question-input-container">
-    <label for="question-title" class="sr-only">질문 제목</label>
-    <input type="text" name="question-title" id="question-title" placeholder="제목" class="label-l">
-
-    <label for="question-content" class="sr-only">질문 내용</label>
-    <textarea name="question-content" id="question-content" cols="30" rows="10" class="paragraph-m" placeholder="관심있는 분야에 대한 질문을 올려주세요. 장소 정보와 사진을 함께 올리면 친구들에게 더 도움이 돼요"></textarea>
+    <section class="board--create-question-rule-container">
+      <div class="board--create-question-rule">
+        <span style="color: white" class="label-s">안내</span>
+        <span style="color: white" class="paragraph-m">중고거래 관련, 명예훼손, 광고/홍보 목적의 글은 올리실 수 없어요.</span>
+      </div>
+    </section>
+    <div class="board--create-question-input-container">
+      <label for="question-title" class="sr-only">질문 제목</label>
+      <input type="text" name="question-title" id="question-title" placeholder="제목" class="label-l">
+      <label for="question-content" class="sr-only">질문 내용</label>
+      <textarea name="question-content" id="question-content" cols="30" rows="10" class="paragraph-m" placeholder="관심있는 분야에 대한 질문을 올려주세요. 장소 정보와 사진을 함께 올리면 친구들에게 더 도움이 돼요"></textarea>
+    </div>
   </div>
 
   
