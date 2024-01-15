@@ -121,6 +121,3 @@ closeButton.addEventListener('click', handleClose);
 codeButton.addEventListener('click', handleCode);
 codeInput.addEventListener('input', handleBtnActive);
 startButton.addEventListener('click', handleSignup);
-
-const temp = await pb.collection('users').getOne('ytlrkv05folf24o');
-console.dir(temp);
