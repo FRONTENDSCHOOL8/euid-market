@@ -1,0 +1,9 @@
+import{t as r}from"./tiger-5hZ-PmLe.js";import{i as n}from"./insert-BLqnNt-Q.js";import"./getNode-pa7syr6m.js";const l="data:image/svg+xml,%3csvg%20width='18'%20height='19'%20viewBox='0%200%2018%2019'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3crect%20y='0.5'%20width='18'%20height='18'%20rx='9'%20fill='%23919191'/%3e%3cpath%20d='M14.25%2010.2485H9.75V14.7485H8.25V10.2485H3.75V8.74854H8.25V4.24854H9.75V8.74854H14.25V10.2485Z'%20fill='%23D3D3D3'/%3e%3c/svg%3e";async function g(){(await r.get("https://euid-marke.pockethost.io/api/collections/interest_category/records")).data.items.forEach(e=>{const o=`
+    <li type="hidden" class="login--category-card" role="button" tabindex="0">
+    <div class="login--category-name">
+      <p class="login--category-main paragraph-s">${e.main_category}</p>
+      <p class="login--category-sub heading-s">${e.sub_category}</p>
+    </div>
+    <img src=${l} alt="관심분야에 추가" />
+  </li>
+    `;n(".login--category-list",o)}),d()}let t=[];function d(){document.querySelectorAll(".login--category-card").forEach(i=>{i.addEventListener("click",function(){const s=this.querySelector(".login--category-main").textContent,e=this.querySelector(".login--category-sub").textContent,o={mainCategory:s,subCategory:e};this.classList.toggle("active-card"),this.classList.contains("active-card")?t.push(o):t=t.filter(a=>a.mainCategory!==s||a.subCategory!==e),console.log(t);const c=this.querySelector("img");c.src=this.classList.contains("active-card")?"/src/assets/icons/login/check.svg":"/src/assets/icons/login/plus.svg"})})}g();document.querySelector(".login--category-submit").addEventListener("click",function(){localStorage.setItem("selectedCategories",JSON.stringify(t)),console.log("저장된 데이터:",localStorage.getItem("selectedCategories"))});document.querySelector(".login--category-submit").addEventListener("click",function(){window.location.href="/src/pages/LoginPage/signup/"});
