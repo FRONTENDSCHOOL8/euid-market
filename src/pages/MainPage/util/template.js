@@ -3,6 +3,7 @@ import heart from '/src/assets/icons/main/heart.svg';
 import banner1 from '/src/assets/banner1.png';
 import banner2 from '/src/assets/banner2.png';
 import banner3 from '/src/assets/banner3.png';
+import relation from '/src/assets/relation.png';
 
 /**
  * main.js banner영역 랜더링 Template
@@ -266,7 +267,7 @@ export function productDetailTemplate(item) {
   </p></div>
         <div class="function-bar">
           <div>
-            <img src="/src/assets/icons/main/heart.svg" alt="안보임" />
+            <img src=${heart} alt="안보임" />
             <div>
               <span class="price">${comma(item.price)}원</span>
               <span>가격 제안하기</span>
@@ -280,28 +281,28 @@ export function productDetailTemplate(item) {
         <ul>
           <li>
             <a href="/">
-              <img src="/src/assets/relation.png" alt="안 보임" />
+              <img src=${relation} alt="안 보임" />
               <span>스타벅스 아메리카노</span>
               <span>10,000원</span>
             </a>
           </li>
           <li>
             <a href="/">
-              <img src="/src/assets/relation.png" alt="안 보임" />
+              <img src=${relation} alt="안 보임" />
               <span>스타벅스 아메리카노</span>
               <span>10,000원</span>
             </a>
           </li>
           <li>
             <a href="/">
-              <img src="/src/assets/relation.png" alt="안 보임" />
+              <img src=${relation} alt="안 보임" />
               <span>스타벅스 아메리카노</span>
               <span>10,000원</span>
             </a>
           </li>
           <li>
             <a href="/">
-              <img src="/src/assets/relation.png" alt="안 보임" />
+              <img src=${relation} alt="안 보임" />
               <span>스타벅스 아메리카노</span>
               <span>10,000원</span>
             </a>
