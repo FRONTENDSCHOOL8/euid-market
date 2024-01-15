@@ -29,7 +29,7 @@ import {
   attr,
   toggleClass,
   loadingComplete,
-  sessionHandler
+  sessionHandler,
 } from '/src/lib/';
 
 sessionHandler();
@@ -38,11 +38,11 @@ const seniorStory = getNode('.main--menu-story');
 const seniorStoryBoard = getNode('.main--story-board');
 const activeButtonList = getNode('.main--active-button-list');
 const exchange = getNode('.main--menu-exchange');
-const exchangeBoard = getNode('.Main-exchange');
-const plusButton = getNode('.Main-plus-button');
-const menuBar = getNode('.Main-menu-bar');
+const exchangeBoard = getNode('.main--exchange');
+const plusButton = getNode('.main--plus-button');
+const menuBar = getNode('.main--menu-bar');
 const banner = getNode('.main--banner');
-const menuList = getNodes('.Main-menu-list li');
+const menuList = getNodes('.main--menu-list li');
 const pageList = getNodes('.page-list');
 const swiperBanner = getNode('.swiper-wrapper');
 
@@ -100,7 +100,7 @@ function animation(node) {
 function insertList(data, func) {
   if (func === exchangeTemplate) {
     data.forEach((item) => {
-      insertLast('.Main-product-list', func(item));
+      insertLast('.main--product-list', func(item));
     });
   } else if (func === storyBoardTemplate) {
     data.forEach((item) => {
@@ -124,7 +124,7 @@ function handleScroll() {
 function buttonControl() {
   plusButton.addEventListener('mouseover', () => {
     gsap.fromTo(
-      '.Main-plus-button',
+      '.main--plus-button',
       {
         scale: 1,
         y: 0,
@@ -139,7 +139,7 @@ function buttonControl() {
 
   plusButton.addEventListener('mouseout', () => {
     gsap.fromTo(
-      '.Main-plus-button',
+      '.main--plus-button',
       {
         scale: 1.08,
         y: -5,

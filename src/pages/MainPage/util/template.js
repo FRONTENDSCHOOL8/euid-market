@@ -228,10 +228,10 @@ export function exchangeTemplate(item) {
 
 export function productDetailTemplate(item) {
   const template = /* html */ `
-  <div class="Main-visual">
+  <div class="main--visual">
         <img class="main-product" src="${getPbImageURL(item)}" alt="안보임" />
       </div>
-      <main class="Main-main">
+      <main class="main--main">
         <div class="user-info"></div>
         <div class="main-content"><div>
     <h1 class="title">${item.title}</h1>
