@@ -38,6 +38,7 @@
       & > div {
         height: 100%;
         background-color: var(--secondary);
+        width: 0;
       }
     }
 

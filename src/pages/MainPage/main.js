@@ -145,7 +145,7 @@ function insertList(data, func) {
 function handleScroll() {
   const scrollNum = parseInt(window.scrollY);
 
-  if (scrollNum >= 228) {
+  if (scrollNum >= 255) {
     addClass(menuBar, 'fixed');
   } else {
     removeClass(menuBar, 'fixed');
