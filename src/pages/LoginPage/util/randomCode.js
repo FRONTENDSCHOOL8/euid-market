@@ -1,4 +1,6 @@
-function generateRandomCode() {
+// import { getNode } from '/src/lib/';
+
+export function doRandomCode() {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';

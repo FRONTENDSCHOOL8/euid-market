@@ -4,66 +4,95 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/styles/style.css" />
+    <!-- <meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
+    <meta
+      id="_csrf_header"
+      name="_csrf_header"
+      th:content="${_csrf.headerName}"
+    /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입 | 엔터이듬</title>
     <script type="module" src="signup.js"></script>
   </head>
   <body>
-    <div class="login--signup-container">
+    <div class="login--container">
       <div class="temp-bar">
-        <p class="label-s">2:26</p>
+        <p class="label-s">9:14</p>
         <div class="temp-bar-icon-wrapper">
-          <img src="/src/assets/icons/general/cellular.svg" alt="cellular" />
-          <img class="lte" src="/src/assets/icons/general/lte.svg" alt="lte" />
+          <img
+            src="/src/assets/icons/general/cellular.svg"
+            alt="무선 네트워크 신호 아이콘"
+          />
+          <img
+            class="lte"
+            src="/src/assets/icons/general/lte.svg"
+            alt="LTE 네트워크 아이콘"
+          />
           <img
             class="battery"
             src="/src/assets/icons/general/battery.svg"
-            alt="battery"
+            alt="배터리 충전 상태 아이콘"
           />
         </div>
       </div>
 
-      <a href="/src/pages/LoginPage/category/"
+      <a href="/src/pages/Startpage/"
         ><img src="/src/assets/icons/login/direction=left.svg" alt="뒤로가기"
       /></a>
 
-      <div class="login--signup-title">
+      <div aria-label="회원가입 페이지" class="login--signup-title">
         <p>안녕하세요!</p>
         <h1>휴대폰 번호로 가입해주세요.</h1>
       </div>
       <p class="login--signup-subtitle">
         휴대폰 번호는 안전하게 보관되며 서로에게 공개되지 않아요.
       </p>
+
       <div class="login--signup-form">
         <form>
           <!-- 휴대폰 번호 입력 -->
-          <label for="phone" class="hidden">휴대폰 번호:</label>
+          <label for="phone" class="sr-only">휴대폰 번호 입력란:</label>
           <input
-            type="tel"
+            type="text"
+            inputmode="tel"
             id="phone"
             name="phone"
-            aria-required="true"
             placeholder="휴대폰 번호(-없이 숫자만 입력)"
-            maxlength="13"
+            maxlength="11"
             required
           />
           <!-- 인증문자 받기 버튼 -->
-          <button type="button" id="verify-button" aria-disabled="true">
-            인증문자 받기
-          </button>
-          <!-- 인증번호 입력 (초기에는 숨겨져 있음) -->
+          <button type="button" id="codeButton" disabled>인증문자 받기</button>
+          <!-- 인증문자 다이얼로그 -->
+          <dialog id="code-dialog" aria-describedby="code-text">
+            <p id="code-text"></p>
+            <button id="copy-button" aria-label="복사하기">복사하기</button>
+            <button id="close-button" aria-label="닫기">닫기</button>
+          </dialog>
+        </form>
+
+        <form>
+          <!-- 인증번호 입력 -->
           <div class="login--code-section">
-            <label for="verification-code" class="hidden">인증번호 입력</label>
+            <label for="codeInput" class="sr-only">인증번호 입력란</label>
             <input
               type="text"
-              id="verification-code"
-              aria-required="true"
+              id="codeInput"
               placeholder="인증번호 입력"
+              required
             />
-            <p>어떤 경우에도 타인에게 공유하지 마세요!</p>
+            <p class="login--">어떤 경우에도 타인에게 공유하지 마세요!</p>
+            <p id="error-message" class="hidden">
+              인증문자를 다시 입력해주세요.
+            </p>
           </div>
           <!-- 인증번호 인증 완료 후 시작 버튼 -->
-          <button type="submit" id="start-button" aria-disabled="true">
+          <button
+            type="submit"
+            id="start-button"
+            class="login--start-button"
+            disabled
+          >
             동의하고 시작하기
           </button>
         </form>

@@ -1,4 +1,5 @@
 import { getNode, setStorage, getStorage } from '/src/lib/';
+import { validation, doRandomCode } from '/src/pages/LoginPage/util/';
 import PocketBase from 'pocketbase';
 
 const PASSWORDKEY = 'thsxndlxn';
@@ -67,7 +68,7 @@ async function handleCode(e) {
     const phoneNum = phoneInput.value;
 
     const userData = await pb
-      .collection('users2')
+      .collection('users')
       .authWithPassword(phoneNum, PASSWORDKEY);
     //포켓베이스자체에서 검증을해서 유저가 맞으면 다음 권한을 넘겨줌.
 

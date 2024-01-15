@@ -12,12 +12,16 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script type="module" src="/src/pages/MainPage/swiper.js"></script>
+    <script type="module" src="/src/pages/MainPage/util/swiper.js"></script>
     <script type="module" src="/src/pages/MainPage/main.js"></script>
   </head>
   <body>
     <div class="app">
       <div class="loading active">
+        <div class="loading-percentage">0%</div>
+        <div class="loading-bar">
+          <div></div>
+        </div>
         <img src="/src/assets/loading.gif" alt="로딩중입니다" />
       </div>
       <nav class="top-bar-container">
@@ -25,7 +29,7 @@
           <option value="">남가좌제2동</option>
         </select>
         <div class="top-bar-buttons">
-          <a href="/src/pages/MainPage/search/index.html">
+          <a href="/src/pages/MainPage/children_pages/search/index.html">
             <button>
               <img src="/src/assets/icons/general/search.png" alt="검색" />
             </button>
@@ -38,8 +42,8 @@
           </button>
         </div>
       </nav>
-      <main class="Main-contents">
-        <article class="Main-banner">
+      <main class="main--contents">
+        <article class="main--banner">
           <!-- Slider main container -->
           <div class="swiper">
             <!-- Additional required wrapper -->
@@ -53,12 +57,12 @@
           <nav class="Main-menu-bar">
             <ul class="Main-menu-list">
               <li
-                class="Main-menu-story isActive"
+                class="main--menu-story isActive"
                 aria-label="선배님들의 스토리 확인하기"
               >
                 선배님 스토리
               </li>
-              <li class="Main-menu-exchange" aria-label="기기 거래하기">
+              <li class="main--menu-exchange" aria-label="기기 거래하기">
                 기기 거래
               </li>
               <li class="Main-menu-QnA" aria-label="질의응답 페이지">
@@ -70,10 +74,10 @@
             </ul>
           </nav>
           <div class="Main-list-container">
-            <ul class="page-list Main-story-board isActive"></ul>
+            <ul class="page-list main--story-board isActive"></ul>
             <ul class="page-list Main-exchange">
               <li class="Main-button-list">
-                <ul class="active-button-list">
+                <ul class="main--active-button-list">
                   <li>
                     <a href="/" aria-label="헤드셋 판매하기">🎧헤드셋</a>
                   </li>

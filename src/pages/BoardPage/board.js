@@ -1,22 +1,20 @@
-// import PocketBase from 'pocketbase';
 import { renderNavBar } from "../../components/general/renderNavBar.js";
 import { getNode, } from "../../lib/index.js";
-import { renderMainPosts, renderTogetherPosts, renderQuestionPosts, addClass, removeClass } from "./util/dom/index.js";
-import { relocateLink } from "./util/index.js";
+import { 
+  renderMainPosts, 
+  renderTogetherPosts, 
+  renderQuestionPosts, 
+  addClass, 
+  removeClass, 
+  clearContent,
+  changeLink,
+  relocateLink, 
+  cancelRequests } from "./util/index.js";
 
-
-
-function changeLink(element, link="/src/pages/BoardPage/children_pages/createPost/") {
-  element.href = link;
-}
-
-function clearContent(container) {
-  container.innerHTML = "";
-}
-
-async function renderPosts(button, container, option) {
-  // clearContent(container);
+// 선택 카테고리 게시물 렌더링
+function renderPosts(button, container, option) {
   addClass(button, "active-category");
+ 
   const postType = {
     "main": () => renderMainPosts(container),
     "together": () => renderTogetherPosts(container),
@@ -24,9 +22,10 @@ async function renderPosts(button, container, option) {
   };
 
   const render = postType[option];
-  await render();
+  render();
 }
 
+// 게시물 상세 페이지 이동
 function openPost(e) {
   e.preventDefault();
   
@@ -39,6 +38,7 @@ function openPost(e) {
   relocateLink("/src/pages/BoardPage/children_pages/postInfo/");
 }
 
+// 카테고리 버튼 이벤트 리스너
 function handleCategory(e) {
   e.preventDefault();
   const target = e.target;
@@ -46,8 +46,11 @@ function handleCategory(e) {
   const button = target.closest("button");
   const buttonList = getNode(".board--category-bar-wrapper")
   const createPostBtn = getNode(".board--create-post");
-  
+  const controller = new AbortController();
+  controller.abort();
+  cancelRequests();
   clearContent(postContainer);
+
   if(!button) return;
 
   for(const li of buttonList.children) {
@@ -83,7 +86,6 @@ function handleCategory(e) {
   const categoryBar = getNode('.board--category-bar-container');
 
   renderMainPosts(postContainer);
-  
   categoryBar.addEventListener('click', handleCategory);
   postContainer.addEventListener('click', openPost);
 })();

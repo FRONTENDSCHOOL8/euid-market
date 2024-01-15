@@ -3,6 +3,8 @@ import shareIcon from '/src/assets/icons/general/share.svg';
 import moreIcon from '/src/assets/icons/general/more.svg';
 import homeIcon from '/src/assets/icons/general/home.svg';
 
+
+// 상단 네비게이션바 렌더링 함수
 export function renderTopBar(option = 'blank', titleText = '같이해요') {
   const blank = /* html */ `
     <div class="page-controller">

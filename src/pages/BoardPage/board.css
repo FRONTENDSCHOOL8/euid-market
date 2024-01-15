@@ -1,7 +1,6 @@
 @import url(./children_pages/boardContent/boardContent.css);
 @import url(./children_pages/postInfo/postInfo.css);
 @import url(./children_pages/createPost/createPost.css);
-@import url(./children_pages/questionPage/questionPage.css);
 @import url(./children_pages/createQuestion/createQuestion.css);
 
 .hidden {
@@ -11,17 +10,15 @@
 .board--container {
   padding-bottom: 68px;
   height: 100vh;
-  
+
 }
 
 .board--category-bar-container {
-
   & ul {
     display: flex;
     align-items: center;
     border-bottom: 0.3px solid var(--Contents-contentSecondary, #919191);
     background: var(--primary);
-    
     & li {
       width: 100%;
 
@@ -44,25 +41,23 @@
         border-top: 1px solid white;
       }
     }
-
   }
-  
 }
 
 .board--post-instance {
   padding: 12px;
-  
+
   display: flex;
   flex-flow: column;
   gap: 5px;
   border: 0.3px solid var(--Contents-contentTertiary, #c9cbd6);
-  background: var(--background, #FFF);
+  background: var(--background, #fff);
 
   & figure {
     display: flex;
     gap: 4px;
   }
-  
+
   & .board--flex {
     display: flex;
     align-items: center;
@@ -71,11 +66,10 @@
   & .board--badge {
     padding: 0 4px;
     border-radius: 4px;
-    background: var(--bluegray-300, #C4C7D2);
+    background: var(--bluegray-300, #c4c7d2);
     width: fit-content;
     color: var(--background);
   }
-
 }
 
 .board--popup-container {
@@ -85,7 +79,7 @@
 
   & .board--popup-header {
     border-radius: 8px 8px 0px 0px;
-    background: var(--primary, #373F67);
+    background: var(--primary, #373f67);
     display: flex;
     padding: 16px 48px 12px 12px;
     flex-direction: column;
@@ -103,33 +97,31 @@
   }
 
   & .board--popup-body {
-    background: var(--primary, #373F67);
+    background: var(--primary, #373f67);
     & ul {
       display: flex;
       flex-flow: column;
-      
+
       & li {
         display: flex;
         padding: 12px 0px 12px 12px;
         align-items: center;
         align-self: stretch;
-        background: var(--primary, #373F67);
+        background: var(--primary, #373f67);
         color: var(--background);
-  
+
         & div {
           display: flex;
           align-items: center;
           gap: 8px;
         }
-  
+
         & img {
           width: 34px;
           height: 34px;
         }
       }
-    
     }
-
   }
 
   & .board--popup-close-btn {
@@ -139,7 +131,6 @@
     background: none;
     border: none;
     padding: 2px;
-    
 
     & img {
       height: 18px;
@@ -147,7 +138,6 @@
     }
   }
 }
-
 
 .page-controller {
   display: flex;
@@ -184,24 +174,24 @@
   align-items: center;
   align-self: stretch;
   border-radius: 10px;
-  background: var(--primary, #373F67);
+  background: var(--primary, #373f67);
   color: white;
-  border: none; 
-  color: var(--background, #FFF);
+  border: none;
+  color: var(--background, #fff);
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 150%;
 }
-.board--fixed-button.hidden { 
+.board--fixed-button.hidden {
   display: none;
 }
 .board--fixed-button.prev-page {
   bottom: 95px;
   background: var(--Contents-contentSecondary);
 }
-.board--fixed-button:active  {
+.board--fixed-button:active {
   background: #2b3049;
 }
 
@@ -211,8 +201,7 @@
 
 .board--post-list {
   padding-bottom: 68px;
-  max-height: 70vh;
-  overflow-y: scroll;
+  /* position: relative; */
 }
 
 .board--search-post-container {
@@ -236,8 +225,28 @@
   }
 }
 
-body { 
-  max-width: 599px;
-  overflow: hidden;
+.board--nav-container {
+  position: sticky;
+  top: 0;
 }
 
+.board--together-content, .board--post-instance {
+  user-select: none;
+}
+
+.board--together-content:active, .board--post-instance:active {
+  background: 	rgb(211, 211, 211, 0.5);
+}
+
+.board--container {
+  user-select: none; 
+}
+
+
+.board--empty-post {
+  height: 50vh;
+  width: 100vw;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
