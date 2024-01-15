@@ -1,9 +1,9 @@
 @import url('./children_pages/profileModify/profileModify.css');
 @import url('./children_pages/profileCard/profileCard.css');
 
-.app {
+/* .app {
   height: 100%;
-}
+} */
 .user--profile-menu {
   width: 100%;
   display: flex;

@@ -15,13 +15,14 @@ import { renderNavBar } from '/src/components/general/index.js';
 
 import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
 //배포전 수정 !!!!!!!!!!!!!!!1
-const TEST_USER_ID = 'c2zrq8ifbpivaop';
 
 /* -------------------------------------------------------------------------- */
 /*                             랜더링 후 즉시 실행                                */
 /* -------------------------------------------------------------------------- */
 
 (async () => {
+  const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
+  console.log(user_id);
   const userProfile = getNode('.user--profile-menu');
   const userProfileContents = getNode('.user--profile-contents');
   const userProfileSubContents = getNode('.user--contents');
@@ -34,11 +35,9 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   sessionHandler();
   renderNavBar();
 
-  const userInfoResult = await pb.collection('users').getOne(TEST_USER_ID, {
-    expand: 'user_nickname',
-  });
+  const userInfoResult = await pb.collection('users').getOne(user_id);
   const userBadgeResult = await pb.collection('user_badge').getList(1, 50, {
-    filter: `user_id= "${TEST_USER_ID}"`,
+    filter: `user_id= "${user_id}"`,
   });
   //최상단 프로필
   insertFirst(userProfile, profileMenuTemplate(userInfoResult));
@@ -61,7 +60,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     if (!Array.from(userProfileBadgeButton.classList).includes('is-active')) {
       const badge_view = (
         await pb.collection('user_badge_join_view').getList(1, 50, {
-          filter: `user_id= "${TEST_USER_ID}" `,
+          filter: `user_id= "${user_id}" `,
         })
       ).items;
       userProfileBadgeButton.classList.add('is-active');
@@ -92,7 +91,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
       // pocektbase 데이터 리스트 불러오기
       const manner_view = (
         await pb.collection('user_manner_join_view').getList(1, 50, {
-          filter: `user_id= "${TEST_USER_ID}" `,
+          filter: `user_id= "${user_id}" `,
         })
       ).items;
       insertAfter(userProfileMannerList, mannerListTemplate);
@@ -117,6 +116,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
    * 로그아웃 버튼 클릭시 발생하는 함수
    */
   function handleLogout() {
+    console.log('d');
     localStorage.removeItem('session');
     localStorage.removeItem('auth');
   }

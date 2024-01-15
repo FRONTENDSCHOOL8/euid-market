@@ -3,58 +3,64 @@ import heart from '/src/assets/icons/main/heart.svg';
 import banner1 from '/src/assets/banner1.png';
 import banner2 from '/src/assets/banner2.png';
 import banner3 from '/src/assets/banner3.png';
+import relation from '/src/assets/relation.png';
 
+/**
+ * main.js banner영역 랜더링 Template
+ * @returns
+ */
 export function swiperTemplate() {
   const template = /* html */ `
 <div class="swiper-slide">
-	<div class="main--banner-container">
-		<h3>
-			<span>풀리지 않는 버그 속</span>
-			<span>개발자로 살아남기</span>
-			<a
-				href="/"
-				aria-label="풀리지 않는 버그 속에서 개발자가 살아남는 방법 확인하러가기"
-				>자세히 보기</a
-			>
-		</h3>
-		<div>
-			<span>01</span>
-			<span>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="41"
-					height="2"
-					viewBox="0 0 41 2"
-					fill="none">
-					<g clip-path="url(#clip0_238_3875)">
-						<rect
-							y="0.5"
-							width="41"
-							height="1"
-							fill="white" />
-						<rect
-							y="0.5"
-							width="9"
-							height="1"
-							fill="white" />
-					</g>
-					<defs>
-						<clipPath id="clip0_238_3875">
+		<div class="main--banner-container">
+			<h3>
+				<span>풀리지 않는 버그 속</span>
+				<span>개발자로 살아남기</span>
+				<a
+					href="/"
+					aria-label="풀리지 않는 버그 속에서 개발자가 살아남는 방법 확인하러가기"
+					>자세히 보기</a
+				>
+			</h3>
+			<div>
+				<span>01</span>
+				<span>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="41"
+						height="2"
+						viewBox="0 0 41 2"
+						fill="none">
+						<g clip-path="url(#clip0_238_3875)">
 							<rect
+								y="0.5"
 								width="41"
 								height="1"
-								fill="white"
-								transform="translate(0 0.5)" />
-						</clipPath>
-					</defs></svg
-			></span>
-			<span>03</span>
+								fill="white" />
+							<rect
+								y="0.5"
+								width="9"
+								height="1"
+								fill="white" />
+						</g>
+						<defs>
+							<clipPath id="clip0_238_3875">
+								<rect
+									width="41"
+									height="1"
+									fill="white"
+									transform="translate(0 0.5)" />
+							</clipPath>
+						</defs></svg
+				></span>
+				<span>03</span>
+			</div>
+			<img
+				class="banner1"
+				src="${banner1}"
+				alt="" />
 		</div>
-		<img
-			class="banner1"
-			src="${banner1}"
-			alt="" />
-	</div>
+
 </div>
 <div class="swiper-slide">
 	<div class="main--banner-container">
@@ -161,12 +167,17 @@ export function swiperTemplate() {
   return template;
 }
 
+/**
+ * 스토리보드 랜더링 템플릿
+ * @param {Object} item
+ * @returns
+ */
 export function storyBoardTemplate(item) {
   const { title, major, year, name } = item;
 
   const template = /* html */ `
       <li class="main--story">
-        <a href="/">
+        <a href="/src/pages/ServicePage/index.html">
           <figure>
             <img class="main--story-image" src="${getPbImageURL(
               item
@@ -185,6 +196,11 @@ export function storyBoardTemplate(item) {
   return template;
 }
 
+/**
+ * 기기 거래 랜더링 템플릿
+ * @param {Object} item
+ * @returns
+ */
 export function exchangeTemplate(item) {
   const { title, location, price, state, save } = item;
 
@@ -218,7 +234,7 @@ export function exchangeTemplate(item) {
       <button>
         <img src="${heart}"></img>
       </button>
-      <span>${save}</span>
+      <span>${comma(save)}</span>
     </div>
 </li>
   `;
@@ -226,12 +242,17 @@ export function exchangeTemplate(item) {
   return template;
 }
 
+/**
+ * 상품 디테일 페이지 랜더링 템플릿
+ * @param {Object} item
+ * @returns
+ */
 export function productDetailTemplate(item) {
   const template = /* html */ `
-  <div class="Main-visual">
+  <div class="main--visual">
         <img class="main-product" src="${getPbImageURL(item)}" alt="안보임" />
       </div>
-      <main class="Main-main">
+      <main class="main--main">
         <div class="user-info"></div>
         <div class="main-content"><div>
     <h1 class="title">${item.title}</h1>
@@ -246,7 +267,7 @@ export function productDetailTemplate(item) {
   </p></div>
         <div class="function-bar">
           <div>
-            <img src="/src/assets/icons/main/heart.svg" alt="안보임" />
+            <img src=${heart} alt="안보임" />
             <div>
               <span class="price">${comma(item.price)}원</span>
               <span>가격 제안하기</span>
@@ -260,28 +281,28 @@ export function productDetailTemplate(item) {
         <ul>
           <li>
             <a href="/">
-              <img src="/src/assets/relation.png" alt="안 보임" />
+              <img src=${relation} alt="안 보임" />
               <span>스타벅스 아메리카노</span>
               <span>10,000원</span>
             </a>
           </li>
           <li>
             <a href="/">
-              <img src="/src/assets/relation.png" alt="안 보임" />
+              <img src=${relation} alt="안 보임" />
               <span>스타벅스 아메리카노</span>
               <span>10,000원</span>
             </a>
           </li>
           <li>
             <a href="/">
-              <img src="/src/assets/relation.png" alt="안 보임" />
+              <img src=${relation} alt="안 보임" />
               <span>스타벅스 아메리카노</span>
               <span>10,000원</span>
             </a>
           </li>
           <li>
             <a href="/">
-              <img src="/src/assets/relation.png" alt="안 보임" />
+              <img src=${relation} alt="안 보임" />
               <span>스타벅스 아메리카노</span>
               <span>10,000원</span>
             </a>
@@ -295,6 +316,11 @@ export function productDetailTemplate(item) {
   return template;
 }
 
+/**
+ * 상품 디테일 페이지 유저 랜더링 템플릿
+ * @param {Object} item
+ * @returns
+ */
 export function userInfoTemplate(item) {
   const template = /* html */ `
   <div class="user-name-container">
@@ -311,7 +337,9 @@ export function userInfoTemplate(item) {
           <div class="user-temper-container">
             <div class="flex-container">
               <span class="user-temp">${item.user_temperature}℃</span>
-              <span class="user-temp-emoji">😀</span>
+              <span class="user-temp-emoji">${
+                item.user_Temperature < 36 ? '🙂' : '😎'
+              }</span>
             </div>
             <span>매너온도</span>
           </div>

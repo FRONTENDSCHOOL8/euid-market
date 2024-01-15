@@ -144,7 +144,7 @@ export function profileCardUserInfoTemplate({
       
       <img src="${
         import.meta.env.VITE_PB_URL
-      }/api/files/users/${id}/${user_photo}" alt="" />
+      }/api/files/users/${id}/${user_photo}" alt="${nickname}님의 프로필 사진" />
     </figure>
   `;
 }
@@ -170,7 +170,7 @@ export function profileCardBasicInfosTemplate({
       <img
       class="profile--card-user-img"
       src="${import.meta.env.VITE_PB_URL}/api/files/users/${id}/${user_photo}"
-      alt=""
+      alt="${nickname}님의 프로필 사진"
     />
     </li>
     <li>

@@ -137,13 +137,13 @@
     }
   }
 
-  & .Main-scroll-area {
+  & .main--scroll-area {
     position: absolute;
     top: 220px;
     width: 100%;
     padding-bottom: 100px;
 
-    & .Main-menu-bar.fixed {
+    & .main--menu-bar.fixed {
       position: fixed;
       width: 100%;
       max-width: 599px;
@@ -151,21 +151,24 @@
       z-index: 10;
     }
 
-    & .Main-menu-bar {
+    & .main--menu-bar {
       position: relative;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
       background: var(--primary);
       padding: 0.5rem;
       font-size: var(--font-m);
 
-      & .Main-menu-list {
+      & > button {
         display: flex;
         justify-content: space-around;
         color: var(--Contents-contentTertiary);
         cursor: pointer;
+      }
 
-        & .isActive {
-          color: var(--background);
-        }
+      & .isActive {
+        color: var(--background);
       }
     }
 
@@ -217,13 +220,13 @@
       display: grid;
     }
 
-    & .Main-exchange {
+    & .main--exchange {
       display: none;
       flex-flow: column nowrap;
       justify-content: center;
       padding-bottom: 30px;
 
-      & .Main-button-list {
+      & .main--button-list {
         position: fixed;
         display: flex;
         flex-flow: column nowrap;
@@ -263,7 +266,7 @@
           opacity: 100;
         }
 
-        & .Main-plus-button {
+        & .main--plus-button {
           display: flex;
           padding: 12px;
           justify-content: center;
@@ -278,7 +281,7 @@
           z-index: 10;
         }
 
-        & .Main-plus-button.isActive {
+        & .main--plus-button.isActive {
           background-color: white;
         }
       }
@@ -363,11 +366,11 @@
       }
     }
 
-    & .Main-exchange.isActive {
+    & .main--exchange.isActive {
       display: flex;
     }
 
-    & .Main-list-container {
+    & .main--list-container {
       background: var(--background);
     }
   }

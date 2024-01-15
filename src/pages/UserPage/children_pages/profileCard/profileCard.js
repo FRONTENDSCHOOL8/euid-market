@@ -12,7 +12,7 @@ import { getNode, insertFirst, sessionHandler } from '/src/lib/';
 /* -------------------------------------------------------------------------- */
 /*                                     개발용                                    */
 /* -------------------------------------------------------------------------- */
-const TEST_USER_ID = 'c2zrq8ifbpivaop';
+const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
 
 // 최상단 프로필카드
 (async () => {
@@ -21,7 +21,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   const userInfoResult = (
     await pb
       .collection('users')
-      .getList(1, 10, { filter: `id = "${TEST_USER_ID}" ` })
+      .getList(1, 10, { filter: `id = "${user_id}" ` })
   ).items[0];
   const profileUserInfos = getNode('.profile--user-info');
   const profileUserBasicInfos = getNode('.profile--card-basic-infos');
