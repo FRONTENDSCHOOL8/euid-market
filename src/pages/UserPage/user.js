@@ -116,6 +116,7 @@ import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
    * 로그아웃 버튼 클릭시 발생하는 함수
    */
   function handleLogout() {
+    console.log('d');
     localStorage.removeItem('session');
     localStorage.removeItem('auth');
   }
