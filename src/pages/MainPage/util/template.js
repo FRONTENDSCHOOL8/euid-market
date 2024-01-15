@@ -4,6 +4,10 @@ import banner1 from '/src/assets/banner1.png';
 import banner2 from '/src/assets/banner2.png';
 import banner3 from '/src/assets/banner3.png';
 
+/**
+ * main.js banner영역 랜더링 Template
+ * @returns
+ */
 export function swiperTemplate() {
   const template = /* html */ `
 <div class="swiper-slide">
@@ -162,6 +166,11 @@ export function swiperTemplate() {
   return template;
 }
 
+/**
+ * 스토리보드 랜더링 템플릿
+ * @param {Object} item
+ * @returns
+ */
 export function storyBoardTemplate(item) {
   const { title, major, year, name } = item;
 
@@ -186,6 +195,11 @@ export function storyBoardTemplate(item) {
   return template;
 }
 
+/**
+ * 기기 거래 랜더링 템플릿
+ * @param {Object} item
+ * @returns
+ */
 export function exchangeTemplate(item) {
   const { title, location, price, state, save } = item;
 
@@ -227,6 +241,11 @@ export function exchangeTemplate(item) {
   return template;
 }
 
+/**
+ * 상품 디테일 페이지 랜더링 템플릿
+ * @param {Object} item
+ * @returns
+ */
 export function productDetailTemplate(item) {
   const template = /* html */ `
   <div class="main--visual">
@@ -296,6 +315,11 @@ export function productDetailTemplate(item) {
   return template;
 }
 
+/**
+ * 상품 디테일 페이지 유저 랜더링 템플릿
+ * @param {Object} item
+ * @returns
+ */
 export function userInfoTemplate(item) {
   const template = /* html */ `
   <div class="user-name-container">
