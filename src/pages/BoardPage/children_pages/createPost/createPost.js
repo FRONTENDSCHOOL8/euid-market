@@ -116,21 +116,11 @@ function renderCreateSecond(container) {
 // DOM 요소 값으로 데이더 생성
 async function insertData() {
   const status = "모집중";
-  const type = getNode(".board--create-question-category-value").textContent;
+  const type = getNode(".board--create-category-value").textContent;
   const location = "연남동";
   const title = getNode("#board--post-title").value;
   const gender = getNode("#board--post-requirement-gender").textContent;
-  const age = getNode("#board--post-requirement-age").textContent;
-  let requirements;
-  if(gender === "누구나" && age === "누구나") {
-    requirements = "누구나";
-  } else if(gender === "누구나") {
-    requirements = age;
-  } else if(age === "누구나") {
-    requirements = gender;
-  } else {
-    requirements = `${gender}, ${age}세 이상`;
-  }
+  // let requirements;
   const date = new Date(getNode("#board--post-date").value);
   const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
   const time =  `${formattedDate}, ${getNode("#board--post-time").value} 시`;
@@ -144,7 +134,7 @@ async function insertData() {
     type,
     location,
     title,
-    requirements,
+    gender,
     time,
     max_people,
     curr_people,

@@ -100,7 +100,6 @@ function search(e) {
   } else {
     renderMainPosts(postContainer);
   }
-  // renderFilteredPosts(postContainer, search.value);
 }
 
 (() => {

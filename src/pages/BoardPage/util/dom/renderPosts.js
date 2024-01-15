@@ -86,7 +86,6 @@ export async function renderTogetherPosts(container) {
       
     data.forEach(async (item) => {
       const user = await getOneData(item.created_by, 'users')
-      console.log(user.user_nickname);
       const userPfp = await getUserProfilePicture(user)
       pb.cancelAllRequests();
       const template = /* html */ 
@@ -270,7 +269,6 @@ export async function renderQuestionPostInfo(container, id) {
 
 export async function renderFilteredPosts(container, searchValue) {
   const data = await getData();
-  // console.log(typeof(data[0].title));
   data.forEach((item) => {
     if(item.title.includes(searchValue)) {
       let template;

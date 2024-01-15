@@ -16,7 +16,8 @@ export function createData(args) {
     "curr_people": args.curr_people,
     "content": args.content,
     "category": args.category,
-    "stack": args.stack
+    "stack": args.stack,
+    "created_by" : "01012341234"
   };
   return data;
 }
