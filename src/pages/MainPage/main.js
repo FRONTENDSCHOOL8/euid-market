@@ -29,7 +29,10 @@ import {
   attr,
   toggleClass,
   loadingComplete,
+  sessionHandler
 } from '/src/lib/';
+
+sessionHandler();
 
 const seniorStory = getNode('.main--menu-story');
 const seniorStoryBoard = getNode('.main--story-board');

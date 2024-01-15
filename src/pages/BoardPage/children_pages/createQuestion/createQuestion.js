@@ -1,4 +1,4 @@
-import { getNode } from "/src/lib/index.js";
+import { getNode, sessionHandler } from "/src/lib/index.js";
 import { addData, createData, relocateHREF, dropDown, pickCategory } from "../../util/index";
 
 
@@ -20,6 +20,7 @@ async function createQuestion() {
 } 
 
 (() => {
+  sessionHandler();
   const categoryContainer = getNode(".board--create-category-container");
   const categoryList = getNode(".board--create-category"); 
   const createQuestionBtn = getNode(".board--create-qna-post");

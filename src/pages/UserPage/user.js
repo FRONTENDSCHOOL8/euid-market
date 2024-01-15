@@ -11,7 +11,9 @@ import {
   profileSubContentsTemplate,
 } from '/src/pages/UserPage/template.js';
 
-import { deleteStorage, getNode, insertFirst, insertAfter } from '/src/lib/';
+import { renderNavBar } from "/src/components/general/index.js";
+
+import { deleteStorage, getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
 //배포전 수정 !!!!!!!!!!!!!!!1
 const TEST_USER_ID = 'c2zrq8ifbpivaop';
 
@@ -20,6 +22,8 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
 /* -------------------------------------------------------------------------- */
 
 (async () => {
+  sessionHandler();
+  renderNavBar();
   //유저 정보 가져오기
   const userInfoResult = await pb.collection('users').getOne(TEST_USER_ID, {
     expand: 'user_nickname',
