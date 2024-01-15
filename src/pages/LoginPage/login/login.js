@@ -134,3 +134,7 @@ startButton.addEventListener('click', async function (e) {
     console.error('getStorage 함수에서 오류 발생:', error);
   }
 });
+
+
+const {localStorage} = window;
+localStorage.setItem("session", "logged_in");

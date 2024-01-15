@@ -17,6 +17,7 @@ import {
   getCertifications,
   handleDivDisplayNone,
 } from '/src/pages/UserPage/utils/index.js';
+import { renderNavBar } from "/src/components/general/index.js";
 
 import {
   getNode,
@@ -24,6 +25,7 @@ import {
   insertAfter,
   insertFirst,
   insertLast,
+  sessionHandler,
 } from '/src/lib/';
 
 //배포전 수정 !!!!!!!!!!!!!!!1
@@ -31,6 +33,8 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
 
 //바로 랜더링
 (async () => {
+  sessionHandler();
+  renderNavBar();
   const profileKeyword = getNode('.profile--modify-profile-keyword');
   // 버튼 기본 렌더링 !
   const userPrivacyResult = (

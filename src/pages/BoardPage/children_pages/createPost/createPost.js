@@ -1,5 +1,5 @@
 import { renderTopBar } from "/src/components/general/renderTopBar.js";
-import { getNode, insertBefore, insertLast } from "/src/lib/index.js";
+import { getNode, insertBefore, insertLast, sessionHandler } from "/src/lib/index.js";
 import { addClass, addData, createData, relocateHREF, removeClass, dropDown, pickCategory } from "../../util/index.js";
 import { gsap } from 'gsap';
 import minus from "/src/assets/icons/board/minusCount.svg";
@@ -226,7 +226,8 @@ function prevPage() {
 }
 
 
-(function () {
+(() => {
+  sessionHandler();
   const createPostContainer = getNode(".board--create-post-container");
   insertBefore(createPostContainer, renderTopBar("blank"));
   renderCreateFirst(createPostContainer);
