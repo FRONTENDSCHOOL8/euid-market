@@ -154,19 +154,22 @@
 
     & .main--menu-bar {
       position: relative;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
       background: var(--primary);
       padding: 0.5rem;
       font-size: var(--font-m);
 
-      & .main--menu-list {
+      & > button {
         display: flex;
         justify-content: space-around;
         color: var(--Contents-contentTertiary);
         cursor: pointer;
+      }
 
-        & .isActive {
-          color: var(--background);
-        }
+      & .isActive {
+        color: var(--background);
       }
     }
 

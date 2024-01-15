@@ -42,7 +42,7 @@ const exchangeBoard = getNode('.main--exchange');
 const plusButton = getNode('.main--plus-button');
 const menuBar = getNode('.main--menu-bar');
 const banner = getNode('.main--banner');
-const menuList = getNodes('.main--menu-list li');
+const menuList = getNodes('.main--menu-bar button');
 const pageList = getNodes('.page-list');
 const swiperBanner = getNode('.swiper-wrapper');
 
@@ -187,7 +187,7 @@ function changeButtonColor() {
 
 function handleMenuBar(e) {
   const target = e.target;
-  const menu = target.closest('li');
+  const menu = target.closest('button');
 
   if (!menu) return;
 
