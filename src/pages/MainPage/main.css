@@ -1,5 +1,5 @@
-@import url(/src/pages/MainPage/detail/detail.css);
-@import url(/src/pages/MainPage/search/search.css);
+@import url(/src/pages/MainPage/children_pages/search/search.css);
+@import url(/src/pages/MainPage/children_pages/detail/detail.css);
 
 .app {
   /* max-width: 599px;
@@ -8,19 +8,46 @@
   & .loading {
     position: absolute;
     top: 0;
-    left: -10%;
+    left: 0;
     display: none;
     background-color: white;
-    width: 115%;
+    width: 100%;
     height: 100vh;
     z-index: 1200;
     overflow: hidden;
+
+    & > div:nth-child(1) {
+      position: absolute;
+      left: 50%;
+      top: 15%;
+      font-size: var(--font-l);
+      transform: translate(-50%);
+      color: var(--primary);
+    }
+
+    & .loading-bar {
+      position: absolute;
+      background-color: var(--Contents-contentSecondary);
+      width: 50%;
+      height: 10px;
+      left: 50%;
+      transform: translate(-50%);
+      top: 20%;
+      border-radius: 5px;
+      overflow: hidden;
+
+      & > div {
+        height: 100%;
+        background-color: var(--secondary);
+        width: 0px;
+      }
+    }
 
     & img {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-45%, -50%);
+      transform: translate(-50%, -50%);
       margin: 0 auto;
       width: 300px;
     }
@@ -35,11 +62,11 @@
   }
 }
 
-.Main-contents {
+.main--contents {
   position: relative;
   padding-bottom: 100px;
 
-  & .Main-banner {
+  & .main--banner {
     position: fixed;
     max-width: 599px;
     width: 100%;
@@ -56,7 +83,7 @@
       transform: scale(0.8);
     }
 
-    & .banner-container {
+    & .main--banner-container {
       position: relative;
       padding: 1.25rem;
       margin-bottom: 2.8125rem;
@@ -120,7 +147,7 @@
       position: fixed;
       width: 100%;
       max-width: 599px;
-      top: 0;
+      top: -2px;
       z-index: 10;
     }
 
@@ -142,7 +169,7 @@
       }
     }
 
-    & .Main-story-board {
+    & .main--story-board {
       display: none;
       grid-template-columns: repeat(2, 1fr);
       place-items: center;
@@ -175,7 +202,7 @@
           gap: 0.25rem;
 
           & div:nth-child(1) {
-            line-height: 1.5;
+            line-height: 1.3;
           }
 
           & div:nth-child(2) {
@@ -186,7 +213,7 @@
       }
     }
 
-    & .Main-story-board.isActive {
+    & .main--story-board.isActive {
       display: grid;
     }
 
@@ -208,7 +235,7 @@
         z-index: 10;
         border: 0;
 
-        & .active-button-list {
+        & .main--active-button-list {
           display: none;
 
           & li {
@@ -228,7 +255,7 @@
           }
         }
 
-        & .active-button-list.isActive {
+        & .main--active-button-list.isActive {
           display: flex;
           flex-flow: column nowrap;
           align-items: start;
@@ -276,26 +303,27 @@
             flex-flow: column nowrap;
             justify-content: space-evenly;
 
-            & .product-title {
+            & > div:nth-child(1) {
               font-size: 0.875rem;
+              line-height: 1.2;
             }
 
-            & .product-info-container {
+            & > div:nth-child(2) {
               color: var(--Contents-contentTertiary, #9da1b4);
               font-size: 0.6564375rem;
             }
 
-            & .product-state-container {
+            & div:nth-child(3) {
               display: flex;
               justify-content: start;
               align-items: center;
               gap: 0.5rem;
 
-              & .product-state {
+              & > span:nth-child(1) {
                 display: none;
               }
 
-              & .product-state.book {
+              & > span:nth-child(1).book {
                 display: inline;
                 padding: 0.35rem 0.3rem;
                 border-radius: 0.25rem;
@@ -304,7 +332,7 @@
                 font-size: 0.6564375rem;
               }
 
-              & .product-state.done {
+              & span:nth-child(1).done {
                 display: inline;
                 padding: 0.35rem 0.3rem;
                 border-radius: 0.25rem;
@@ -316,7 +344,7 @@
           }
         }
 
-        & .Main-like-container {
+        & > div {
           position: absolute;
           display: flex;
           justify-content: center;

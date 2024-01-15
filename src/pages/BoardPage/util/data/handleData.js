@@ -1,6 +1,9 @@
 
 import pb from '/src/lib/api/pocketbase';
 
+
+
+// 데이터 생서
 export function createData(args) {
   const data = {
     "status": args.status,
@@ -22,24 +25,21 @@ export async function addData(data) {
   const record = await pb.collection('posts').create(data);
 }
 
+// 데이터 불러오기
 export async function getData() {
-  const response = await fetch(
-    `${import.meta.env.VITE_PB_API}/collections/posts/records`
-  );
-  response.data = await response.json();
-  const items = response.data.items;
-  return items;
+  const result = await pb.collection('posts').getFullList();
+  return result;
 }
 
 export async function getQuestionData() {
-  const resultList = await pb.collection('posts').getList(1, 50, {
+  const resultList = await pb.collection('posts').getFullList({
     filter: 'category = "질의응답"'
   });
   return resultList;
 }
 
 export async function getTogetherData() {
-  const resultList = await pb.collection('posts').getList(1, 50, {
+  const resultList = await pb.collection('posts').getFullList({
     filter: 'category = "같이해요"'
   });
   return resultList;
@@ -55,6 +55,12 @@ export async function getUserProfilePicture(item, fileName="user_photo") {
 }
 
 export async function getOneData(id, collection) {
-  const data = await pb.collection(collection).getOne(id, {requestKey: null});
+  const data = await pb.collection(collection).getOne(id, { requestKey:null });
   return data
 }
+
+// pocketbase 데이터 요청 취소
+export function cancelRequests() {
+  pb.cancelAllRequests();
+}
+

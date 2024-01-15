@@ -52,10 +52,10 @@
     & .lte,
     .battery {
       position: absolute;
-      left: 20px;
+      left: 22px;
     }
     & .battery {
-      left: 50px;
+      left: 53px;
     }
   }
 }
@@ -122,5 +122,22 @@
 :focus-visible {
   outline: none;
   border: 4px solid orange;
-  border-radius: 0.25em;
+  border-radius: 0.6em;
+}
+
+.start-page-logo {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+
+  & img {
+    width: 10rem;
+  }
+  
+}
+
+.hidden {
+  display: none;
 }

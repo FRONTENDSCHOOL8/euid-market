@@ -6,12 +6,15 @@
   padding-right: 40px;
   display: flex;
   flex-flow: column;
-  gap: 20px;
+  gap: 10px;
 
-  & h1 {
-    display: inline-block
+  & header {
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
   }
-  .board--post-info-badge {
+
+  & .board--post-info-badge {
     padding: 7px 10px;
     width: fit-content;
     border-radius: 10px;
@@ -22,13 +25,13 @@
     gap: 4px;
   }
   
-  .board--post-info-requirements {
+  & .board--post-info-requirements {
     display: flex;
     align-items: center;
     gap: 8px;
   }
   
-  .board--post-info-creator {
+  & .board--post-info-creator {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -46,8 +49,13 @@
     }
   }
 
-  .board--post-info-creator-info {
+  & .board--post-info-creator-info {
     color: gray;
   }
 
+}
+
+
+.label-l {
+  padding: 0;
 }
