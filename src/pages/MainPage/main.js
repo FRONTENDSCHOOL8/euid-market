@@ -218,9 +218,11 @@ function buttonControl() {
       '.main--active-button-list > li',
       {
         background: 'var(--primary)',
+        borderRadius: 0,
       },
       {
         background: 'var(--background)',
+        borderRadius: 50,
       },
       '<'
     );
