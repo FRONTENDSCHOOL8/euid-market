@@ -7,54 +7,54 @@ import banner3 from '/src/assets/banner3.png';
 export function swiperTemplate() {
   const template = /* html */ `
 <div class="swiper-slide">
-	<div class="main--banner-container">
-		<h3>
-			<span>풀리지 않는 버그 속</span>
-			<span>개발자로 살아남기</span>
-			<a
-				href="/"
-				aria-label="풀리지 않는 버그 속에서 개발자가 살아남는 방법 확인하러가기"
-				>자세히 보기</a
-			>
-		</h3>
-		<div>
-			<span>01</span>
-			<span>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="41"
-					height="2"
-					viewBox="0 0 41 2"
-					fill="none">
-					<g clip-path="url(#clip0_238_3875)">
-						<rect
-							y="0.5"
-							width="41"
-							height="1"
-							fill="white" />
-						<rect
-							y="0.5"
-							width="9"
-							height="1"
-							fill="white" />
-					</g>
-					<defs>
-						<clipPath id="clip0_238_3875">
+		<div class="main--banner-container">
+			<h3>
+				<span>풀리지 않는 버그 속</span>
+				<span>개발자로 살아남기</span>
+				<a
+					href="/"
+					aria-label="풀리지 않는 버그 속에서 개발자가 살아남는 방법 확인하러가기"
+					>자세히 보기</a
+				>
+			</h3>
+			<div>
+				<span>01</span>
+				<span>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="41"
+						height="2"
+						viewBox="0 0 41 2"
+						fill="none">
+						<g clip-path="url(#clip0_238_3875)">
 							<rect
+								y="0.5"
 								width="41"
 								height="1"
-								fill="white"
-								transform="translate(0 0.5)" />
-						</clipPath>
-					</defs></svg
-			></span>
-			<span>03</span>
+								fill="white" />
+							<rect
+								y="0.5"
+								width="9"
+								height="1"
+								fill="white" />
+						</g>
+						<defs>
+							<clipPath id="clip0_238_3875">
+								<rect
+									width="41"
+									height="1"
+									fill="white"
+									transform="translate(0 0.5)" />
+							</clipPath>
+						</defs></svg
+				></span>
+				<span>03</span>
+			</div>
+			<img
+				class="banner1"
+				src="${banner1}"
+				alt="" />
 		</div>
-		<img
-			class="banner1"
-			src="${banner1}"
-			alt="" />
-	</div>
 </div>
 <div class="swiper-slide">
 	<div class="main--banner-container">
@@ -162,11 +162,11 @@ export function swiperTemplate() {
 }
 
 export function storyBoardTemplate(item) {
-  const { title, major, year, name, id } = item;
+  const { title, major, year, name } = item;
 
   const template = /* html */ `
       <li class="main--story">
-        <a href="${`/src/pages/MainPage/children_pages/senior/index#${id}`}">
+        <a href="/src/pages/ServicePage/index.html">
           <figure>
             <img class="main--story-image" src="${getPbImageURL(
               item
