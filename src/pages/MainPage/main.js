@@ -29,7 +29,7 @@ import {
   attr,
   toggleClass,
   loadingComplete,
-  sessionHandler
+  sessionHandler,
 } from '/src/lib/';
 
 sessionHandler();

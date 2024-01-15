@@ -123,6 +123,8 @@ startButton.addEventListener('click', async function (e) {
         user: model,
         token: token,
       });
+      const { localStorage } = window;
+      localStorage.setItem('session', 'logged_in');
       window.location.href = '/src/pages/Mainpage/';
     } else {
       // 코드가 일치하지 않으면 에러 메시지 표시
@@ -134,6 +136,5 @@ startButton.addEventListener('click', async function (e) {
   }
 });
 
-
-const {localStorage} = window;
-localStorage.setItem("session", "logged_in");
+// const { localStorage } = window;
+// localStorage.setItem('session', 'logged_in');
