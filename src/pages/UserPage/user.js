@@ -22,37 +22,43 @@ import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
 
 (async () => {
   const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
-  console.log(user_id);
-  const userProfile = getNode('.user--profile-menu');
-  const userProfileContents = getNode('.user--profile-contents');
-  const userProfileSubContents = getNode('.user--contents');
-  const logoutButton = getNode('.user--logout');
-  const userProfileMannerList = getNode('.user--profile-manner');
-  const userProfileMannerButton = getNode('.user--profile-manner-button');
-  const userProfileBadgeList = getNode('.user--profile-badge');
-  const userProfileBadgeButton = getNode('.user--profile-badge-button');
-
   sessionHandler();
   renderNavBar();
-
-  const userInfoResult = await pb.collection('users').getOne(user_id);
+  const userInfoResult = await pb.collection('users').getOne(user_id, {
+    expand: 'user_nickname',
+  });
   const userBadgeResult = await pb.collection('user_badge').getList(1, 50, {
     filter: `user_id= "${user_id}"`,
   });
-  //최상단 프로필
-  insertFirst(userProfile, profileMenuTemplate(userInfoResult));
-  //열정온도
+  const userProfile = getNode('.user--profile-menu');
+  const userProfileContents = getNode('.user--profile-contents');
+  const userProfileSubContents = getNode('.user--contents');
+  insertFirst(userProfile, await profileMenuTemplate(userInfoResult));
   insertFirst(
     getNode('.user--profile-temperture'),
     userTemperatureTemplate(userInfoResult.user_temperature)
   );
-  // 프로필 컨텐츠( 배지, 상품, 매너평가, 거래 후기)
   insertFirst(userProfileContents, profileContentsTemplate(userBadgeResult));
   insertFirst(
     userProfileSubContents,
     profileSubContentsTemplate(userInfoResult.user_nickname)
   );
+  const logoutButton = getNode('.user--logout');
+  function handleLogout() {
+    localStorage.removeItem('session');
+    localStorage.removeItem('auth');
+  }
+  logoutButton.addEventListener('click', handleLogout);
 
+  /* -------------------------------------------------------------------------- */
+  /*                                더 보기 클릭이벤트                                 */
+  /* -------------------------------------------------------------------------- */
+
+  // 뱃지 더 보기
+  const userProfileBadgeList = document.querySelector('.user--profile-badge');
+  const userProfileBadgeButton = document.querySelector(
+    '.user--profile-badge-button'
+  );
   /**
    * 뱃지 더보기 토글 버튼 클릭시 발생하는 함수
    */
@@ -67,6 +73,7 @@ import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
       userProfileBadgeList.classList.add('is-active');
       userProfileBadgeList.insertAdjacentHTML('afterend', badgeListTemplate);
       badge_view.forEach((item) => {
+        console.log(item);
         let { id, badge_img, badge_title } = item;
         const imgUrl = `${
           import.meta.env.VITE_PB_URL
@@ -86,6 +93,8 @@ import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
   /**
    * 거래후기 더보기 토글 버튼 클릭시 발생하는 함수
    */
+  const userProfileMannerButton = getNode('.user--profile-manner-button');
+  const userProfileMannerList = getNode('.user--profile-manner');
   async function showManner() {
     if (!Array.from(userProfileMannerButton.classList).includes('is-active')) {
       // pocektbase 데이터 리스트 불러오기
@@ -112,15 +121,7 @@ import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
       getNode('.user--profile-manner-wrapper').style = 'display:none';
     }
   }
-  /**
-   * 로그아웃 버튼 클릭시 발생하는 함수
-   */
-  function handleLogout() {
-    console.log('d');
-    localStorage.removeItem('session');
-    localStorage.removeItem('auth');
-  }
-  logoutButton.addEventListener('click', handleLogout);
+
   userProfileBadgeButton.addEventListener('click', showBadge);
   userProfileMannerButton.addEventListener('click', showManner);
 })();
