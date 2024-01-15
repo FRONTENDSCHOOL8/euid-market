@@ -33,7 +33,7 @@ import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
   const userProfile = getNode('.user--profile-menu');
   const userProfileContents = getNode('.user--profile-contents');
   const userProfileSubContents = getNode('.user--contents');
-  insertFirst(userProfile, profileMenuTemplate(userInfoResult));
+  insertFirst(userProfile, await profileMenuTemplate(userInfoResult));
   insertFirst(
     getNode('.user--profile-temperture'),
     userTemperatureTemplate(userInfoResult.user_temperature)

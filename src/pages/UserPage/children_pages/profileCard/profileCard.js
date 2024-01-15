@@ -25,9 +25,12 @@ const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
   ).items[0];
   const profileUserInfos = getNode('.profile--user-info');
   const profileUserBasicInfos = getNode('.profile--card-basic-infos');
-  insertFirst(profileUserInfos, profileCardUserInfoTemplate(userInfoResult));
+  insertFirst(
+    profileUserInfos,
+    await profileCardUserInfoTemplate(userInfoResult)
+  );
   insertFirst(
     profileUserBasicInfos,
-    profileCardBasicInfosTemplate(userInfoResult)
+    await profileCardBasicInfosTemplate(userInfoResult)
   );
 })();
