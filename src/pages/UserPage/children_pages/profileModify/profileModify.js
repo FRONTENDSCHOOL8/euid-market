@@ -28,8 +28,7 @@ import {
   sessionHandler,
 } from '/src/lib/';
 
-//배포전 수정 !!!!!!!!!!!!!!!1
-const TEST_USER_ID = 'c2zrq8ifbpivaop';
+const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
 
 //바로 랜더링
 (async () => {
@@ -41,19 +40,19 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   let userPrivacyResult = (
     await pb
       .collection('user_privacy')
-      .getList(1, 10, { filter: `user_id = "${TEST_USER_ID}" ` })
+      .getList(1, 10, { filter: `user_id = "${user_id}" ` })
   ).items[0];
   if (!userPrivacyResult) {
     let temp = {
       gender_is_public: true,
       age_is_public: true,
-      user_id: TEST_USER_ID,
+      user_id: user_id,
     };
     await pb.collection('user_privacy').create(temp);
     userPrivacyResult = (
       await pb
         .collection('user_privacy')
-        .getList(1, 10, { filter: `user_id = "${TEST_USER_ID}" ` })
+        .getList(1, 10, { filter: `user_id = "${user_id}" ` })
     ).items[0];
   }
   let {
@@ -65,7 +64,7 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     profileKeyword,
     profilePublicButtonTemplate(gender_is_public, age_is_public)
   );
-  const userInfoResult = await pb.collection('users').getOne(TEST_USER_ID);
+  const userInfoResult = await pb.collection('users').getOne(user_id);
   let { id: usersRecordID } = userInfoResult;
   return { privacyRecordID, usersRecordID };
 })().then((obj) => {
