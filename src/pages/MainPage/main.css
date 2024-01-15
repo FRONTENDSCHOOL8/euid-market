@@ -222,6 +222,10 @@
           & div:nth-child(2) {
             color: var(--Contents-contentSecondary);
             font-weight: 400;
+            width: 8.125rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
           }
         }
       }
