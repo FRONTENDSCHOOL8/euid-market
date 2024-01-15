@@ -5,7 +5,7 @@ import {
   profileCardBasicInfosTemplate,
 } from '/src/pages/UserPage/template';
 
-import { renderNavBar } from "/src/components/general/index.js";
+import { renderNavBar } from '/src/components/general/index.js';
 
 import { getNode, insertFirst, sessionHandler } from '/src/lib/';
 
@@ -24,11 +24,8 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
       .getList(1, 10, { filter: `id = "${TEST_USER_ID}" ` })
   ).items[0];
   const profileUserInfos = getNode('.profile--user-info');
-
-  insertFirst(profileUserInfos, profileCardUserInfoTemplate(userInfoResult));
-
   const profileUserBasicInfos = getNode('.profile--card-basic-infos');
-
+  insertFirst(profileUserInfos, profileCardUserInfoTemplate(userInfoResult));
   insertFirst(
     profileUserBasicInfos,
     profileCardBasicInfosTemplate(userInfoResult)

@@ -77,7 +77,6 @@ async function handleCode(e) {
     showDialog(randomCode);
     // 생성된 랜덤 코드를 로컬 스토리지에 저장
     const state = await setStorage(phoneNum, randomCode);
-
     console.log(userData);
   } catch (error) {
     alert('회원이 아닙니다. 회원가입하시겠어요?');
