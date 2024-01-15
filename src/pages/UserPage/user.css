@@ -221,6 +221,11 @@
         width: 16px;
       }
     }
+    & button:focus-visible {
+      outline: none;
+      border: 4px solid orange;
+      border-radius: 0.25em;
+    }
   }
   /* 더보기 버튼 */
   .user--profile-more-button.is-active {
@@ -306,5 +311,10 @@
     border: none;
     font-size: var(--font-m);
     padding: 0;
+  }
+  & button:focus-visible {
+    outline: none;
+    border: 4px solid orange;
+    border-radius: 0.25em;
   }
 }
