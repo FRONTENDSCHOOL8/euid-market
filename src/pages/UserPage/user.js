@@ -22,20 +22,24 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
 /* -------------------------------------------------------------------------- */
 
 (async () => {
-  sessionHandler();
-  renderNavBar();
-  //유저 정보 가져오기
-  const userInfoResult = await pb.collection('users').getOne(TEST_USER_ID, {
-    expand: 'user_nickname',
-  });
-  console.log(userInfoResult);
-  // 배지 정보 가져오기
-  const userBadgeResult = await pb.collection('user_badge').getList(1, 50, {
-    filter: `user_id= "${TEST_USER_ID}"`,
-  });
   const userProfile = getNode('.user--profile-menu');
   const userProfileContents = getNode('.user--profile-contents');
   const userProfileSubContents = getNode('.user--contents');
+  const logoutButton = getNode('.user--logout');
+  const userProfileMannerList = getNode('.user--profile-manner');
+  const userProfileMannerButton = getNode('.user--profile-manner-button');
+  const userProfileBadgeList = getNode('.user--profile-badge');
+  const userProfileBadgeButton = getNode('.user--profile-badge-button');
+
+  sessionHandler();
+  renderNavBar();
+
+  const userInfoResult = await pb.collection('users').getOne(TEST_USER_ID, {
+    expand: 'user_nickname',
+  });
+  const userBadgeResult = await pb.collection('user_badge').getList(1, 50, {
+    filter: `user_id= "${TEST_USER_ID}"`,
+  });
   //최상단 프로필
   insertFirst(userProfile, profileMenuTemplate(userInfoResult));
   //열정온도
@@ -45,31 +49,15 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   );
   // 프로필 컨텐츠( 배지, 상품, 매너평가, 거래 후기)
   insertFirst(userProfileContents, profileContentsTemplate(userBadgeResult));
-
   insertFirst(
     userProfileSubContents,
     profileSubContentsTemplate(userInfoResult.user_nickname)
   );
-  //로그아웃 (확인 필요 !!!!!!!)
-  const logoutButton = getNode('.user--logout');
-  function handleLogout() {
-    localStorage.removeItem('session');
-    localStorage.removeItem('auth');
-  }
-  logoutButton.addEventListener('click', handleLogout);
 
-  /* -------------------------------------------------------------------------- */
-  /*                                더 보기 클릭이벤트                                 */
-  /* -------------------------------------------------------------------------- */
-
-  // 뱃지 더 보기
-  const userProfileBadgeList = document.querySelector('.user--profile-badge');
-  const userProfileBadgeButton = document.querySelector(
-    '.user--profile-badge-button'
-  );
-
+  /**
+   * 뱃지 더보기 토글 버튼 클릭시 발생하는 함수
+   */
   async function showBadge() {
-    //토글 분기
     if (!Array.from(userProfileBadgeButton.classList).includes('is-active')) {
       const badge_view = (
         await pb.collection('user_badge_join_view').getList(1, 50, {
@@ -80,7 +68,6 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
       userProfileBadgeList.classList.add('is-active');
       userProfileBadgeList.insertAdjacentHTML('afterend', badgeListTemplate);
       badge_view.forEach((item) => {
-        console.log(item);
         let { id, badge_img, badge_title } = item;
         const imgUrl = `${
           import.meta.env.VITE_PB_URL
@@ -97,9 +84,9 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
     }
   }
 
-  // 거래후기 더 보기
-  const userProfileMannerButton = getNode('.user--profile-manner-button');
-  const userProfileMannerList = getNode('.user--profile-manner');
+  /**
+   * 거래후기 더보기 토글 버튼 클릭시 발생하는 함수
+   */
   async function showManner() {
     if (!Array.from(userProfileMannerButton.classList).includes('is-active')) {
       // pocektbase 데이터 리스트 불러오기
@@ -126,7 +113,14 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
       getNode('.user--profile-manner-wrapper').style = 'display:none';
     }
   }
-
+  /**
+   * 로그아웃 버튼 클릭시 발생하는 함수
+   */
+  function handleLogout() {
+    localStorage.removeItem('session');
+    localStorage.removeItem('auth');
+  }
+  logoutButton.addEventListener('click', handleLogout);
   userProfileBadgeButton.addEventListener('click', showBadge);
   userProfileMannerButton.addEventListener('click', showManner);
 })();
