@@ -31,6 +31,7 @@ import {
   loadingComplete,
   sessionHandler,
 } from '/src/lib/';
+import { relocateHREF } from '../BoardPage/util';
 
 // local storage에 사용자가 등록이 안되어있다면 초기 페이지로 이동
 sessionHandler();
@@ -233,15 +234,20 @@ function handleMenuBar(e) {
   const menu = target.closest('button');
 
   if (!menu) return;
-
   const menuName = menu.className;
 
-  activatePage(menuName);
+  if (menuName === 'main--menu-QnA') {
+    relocateHREF("/src/pages/BoardPage/");
+  } else if (menuName === 'main--menu-together') {
+    relocateHREF("/src/pages/BoardPage/");
+  } else {
+    activatePage(menuName);
 
-  if (menuName === 'main--menu-exchange') {
-    animation('.main--product');
-  } else if (menuName === 'main--menu-story') {
-    animation('.main--story');
+    if (menuName === 'main--menu-exchange') {
+      animation('.main--product');
+    } else if (menuName === 'main--menu-story') {
+      animation('.main--story');
+    }
   }
 }
 
