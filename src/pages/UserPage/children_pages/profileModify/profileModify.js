@@ -17,7 +17,7 @@ import {
   getCertifications,
   handleDivDisplayNone,
 } from '/src/pages/UserPage/utils/index.js';
-import { renderNavBar } from "/src/components/general/index.js";
+import { renderNavBar } from '/src/components/general/index.js';
 
 import {
   getNode,
@@ -36,27 +36,37 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   sessionHandler();
   renderNavBar();
   const profileKeyword = getNode('.profile--modify-profile-keyword');
+
   // 버튼 기본 렌더링 !
-  const userPrivacyResult = (
+  let userPrivacyResult = (
     await pb
       .collection('user_privacy')
       .getList(1, 10, { filter: `user_id = "${TEST_USER_ID}" ` })
   ).items[0];
-
-  const userInfoResult = await pb.collection('users').getOne(TEST_USER_ID);
-
+  if (!userPrivacyResult) {
+    let temp = {
+      gender_is_public: true,
+      age_is_public: true,
+      user_id: TEST_USER_ID,
+    };
+    await pb.collection('user_privacy').create(temp);
+    userPrivacyResult = (
+      await pb
+        .collection('user_privacy')
+        .getList(1, 10, { filter: `user_id = "${TEST_USER_ID}" ` })
+    ).items[0];
+  }
   let {
     id: privacyRecordID,
     gender_is_public,
     age_is_public,
   } = userPrivacyResult;
-
-  let { id: usersRecordID } = userInfoResult;
-
   insertAfter(
     profileKeyword,
     profilePublicButtonTemplate(gender_is_public, age_is_public)
   );
+  const userInfoResult = await pb.collection('users').getOne(TEST_USER_ID);
+  let { id: usersRecordID } = userInfoResult;
   return { privacyRecordID, usersRecordID };
 })().then((obj) => {
   let jobLists;

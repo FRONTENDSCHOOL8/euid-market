@@ -11,9 +11,9 @@ import {
   profileSubContentsTemplate,
 } from '/src/pages/UserPage/template.js';
 
-import { renderNavBar } from "/src/components/general/index.js";
+import { renderNavBar } from '/src/components/general/index.js';
 
-import { deleteStorage, getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
+import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
 //배포전 수정 !!!!!!!!!!!!!!!1
 const TEST_USER_ID = 'c2zrq8ifbpivaop';
 
@@ -53,9 +53,8 @@ const TEST_USER_ID = 'c2zrq8ifbpivaop';
   //로그아웃 (확인 필요 !!!!!!!)
   const logoutButton = getNode('.user--logout');
   function handleLogout() {
-    pb.authStore.clear();
-    deleteStorage('auth');
-    window.location.reload();
+    localStorage.removeItem('session');
+    localStorage.removeItem('auth');
   }
   logoutButton.addEventListener('click', handleLogout);
 
