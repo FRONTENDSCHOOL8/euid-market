@@ -21,12 +21,12 @@ export async function renderMainPosts(container) {
           <label class=" label-s board--badge">${item.category}</label> 
           <h2>${item.title.length > 30 ? item.title.slice(0, 30) + "..." : item.title}</h2>
           <figure class="board--flex">
-            <img src="/src/assets/icons/general/fullpeople.svg" alt="" >
+            <img src=${fullPeople} alt="" >
             <figcaption class="paragraph-m">${item.requirements}</figcaption>
           </figure>
           
           <figure class="board--flex">
-            <img src="/src/assets/icons/general/calendar.svg" alt="" >
+            <img src=${calendar} alt="" >
             <figcaption class="paragraph-m">${item.time}</figcaption>
           </figure>
         </div>
@@ -53,12 +53,12 @@ export async function renderMainPosts(container) {
           <label class=" label-s board--badge">${item.category}</label> 
           <h2>${item.title}</h2>
           <div class="board--flex">
-            <img src="/src/assets/icons/general/fullpeople.svg" alt="" >
+            <img src=${fullPeople} alt="" >
             <p>${item.requirements}</p>
           </div>
           
           <div class="board--flex">
-            <img src="/src/assets/icons/general/calendar.svg" alt="" >
+            <img src=${calendar} alt="" >
             <p>${item.time}</p>
           </div>
         </div>
