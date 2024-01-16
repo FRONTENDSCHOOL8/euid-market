@@ -17,7 +17,7 @@ export default defineConfig({
         ),
         searchPage: resolve(
           __dirname,
-          'src/pages/MainPage/children_pages/detail/index.html'
+          'src/pages/MainPage/children_pages/search/index.html'
         ),
 
         // 유저 페이지
