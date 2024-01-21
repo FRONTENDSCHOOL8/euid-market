@@ -1,7 +1,6 @@
 import { insertFirst } from '/src/lib/index';
-import { getData, getUserData, getUserProfilePicture, getQuestionData, getOneData, getTogetherData } from "../index.js";
+import { getData, getUserData, getUserProfilePicture, getQuestionData, getOneData, getTogetherData, clearContent, cancelRequests } from "../index.js";
 // import defaultPfp from "/src/assets/images/board/default_pfp.svg";
-import pb from '/src/lib/api/pocketbase';
 
 import fullPeople from "/src/assets/icons/general/fullpeople.svg";
 import calendar from "/src/assets/icons/general/calendar.svg";
@@ -10,8 +9,16 @@ import fullCalendar from "/src/assets/icons/board/fullCalendar.svg";
 
 
 export async function renderMainPosts(container) {
-  try {
-    const items = await getData();
+  const items = await getData();
+  if(!items) {
+    const template = /* html */ 
+    `
+      <div class="board--empty-post main">
+        <h1>게시물이 없습니다</h1>
+      </div>
+    `
+    insertFirst(container, template);
+  } else {
     items.forEach((item) => {
       let template;
       if(item.category === "같이해요") {
@@ -67,27 +74,24 @@ export async function renderMainPosts(container) {
 
       insertFirst(container, template);
     })
-
-  } catch {
-    const template = /* html */ 
-    `
-      <div class="board--empty-post">
-        <h1>게시물이 없습니다</h1>
-      </div>
-    `
-    insertFirst(container, template);
   }
 }
 
 export async function renderTogetherPosts(container) {
-  
-  try {
-    const data = await getTogetherData();
-      
+  const data = await getTogetherData();
+  if(!data) {
+    const template = /* html */ 
+    `
+    <div class="board--empty-post question">
+      <h1>게시물이 없습니다</h1>
+    </div>
+    `
+  insertFirst(container, template);
+
+  } else {
     data.forEach(async (item) => {
       const user = await getOneData(item.created_by, 'users')
       const userPfp = await getUserProfilePicture(user)
-      pb.cancelAllRequests();
       const template = /* html */ 
       `
         <div class="board--together-content" data-id=${item.id}>
@@ -120,19 +124,8 @@ export async function renderTogetherPosts(container) {
         </div>
       `
       insertFirst(container, template)      
-        
     })
-  } catch (error) {
-    const template = /* html */ 
-    `
-      <div class="board--empty-post">
-        <h1>게시물이 없습니다</h1>
-      </div>
-    `
-    insertFirst(container, template);
   }
-  
-  
   
 }
 
@@ -190,8 +183,16 @@ export async function renderTogetherPostInfo(container, id) {
 }
 
 export async function renderQuestionPosts(container) {
-  try {
-    const data = await getQuestionData();
+  const data = await getQuestionData();
+  if(!data) {
+    const template = /* html */ 
+    `
+    <div class="board--empty-post question">
+      <h1>게시물이 없습니다</h1>
+    </div>
+    `
+  insertFirst(container, template);
+  } else {
     data.forEach((item) => {
       const template = /* html */
       `
@@ -209,17 +210,7 @@ export async function renderQuestionPosts(container) {
       ` 
       insertFirst(container, template);
     })
-
-  } catch {
-    const template = /* html */ 
-    `
-      <div class="board--empty-post">
-        <h1>게시물이 없습니다</h1>
-      </div>
-    `
-    insertFirst(container, template);
   }
-  
 }
 
 export async function renderQuestionPostInfo(container, id) {
