@@ -31,7 +31,7 @@ import {
 function openPost(e) {
   e.preventDefault();
   
-  const target = e.target.closest("div");
+  const target = e.target.closest("button");
   if(!target) return;
   
   const id = target.dataset.id;

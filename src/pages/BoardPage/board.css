@@ -46,7 +46,7 @@
 
 .board--post-instance {
   padding: 12px;
-
+  width: 100%;
   display: flex;
   flex-flow: column;
   gap: 5px;
