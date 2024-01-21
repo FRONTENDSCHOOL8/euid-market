@@ -1,5 +1,5 @@
 import { renderNavBar } from "../../components/general/renderNavBar.js";
-import { getNode, sessionHandler } from "../../lib/index.js";
+import { clearContents, getNode, sessionHandler } from "../../lib/index.js";
 import { 
   renderMainPosts, 
   renderTogetherPosts, 
@@ -9,29 +9,29 @@ import {
   removeClass, 
   clearContent,
   changeLink,
-  relocateLink, 
-  cancelRequests } from "./util/index.js";
+  relocateLink,
+  cancelRequests, } from "./util/index.js";
 
 
 // 선택 카테고리 게시물 렌더링
-function renderPosts(button, container, option) {
-  addClass(button, "active-category");
+// function renderPosts(button, container, option) {
+//   addClass(button, "active-category");
  
-  const postType = {
-    "main": () => renderMainPosts(container),
-    "together": () => renderTogetherPosts(container),
-    "question": () => renderQuestionPosts(container)
-  };
+//   const postType = {
+//     "main": () => renderMainPosts(container),
+//     "together": () => renderTogetherPosts(container),
+//     "question": () => renderQuestionPosts(container)
+//   };
 
-  const render = postType[option];
-  render();
-}
+//   const render = postType[option];
+//   render();
+// }
 
 // 게시물 상세 페이지 이동
 function openPost(e) {
   e.preventDefault();
   
-  const target = e.target.closest("div");
+  const target = e.target.closest("button");
   if(!target) return;
   
   const id = target.dataset.id;
@@ -55,27 +55,26 @@ function handleCategory(e) {
   const button = target.closest("button");
   const buttonList = getNode(".board--category-bar-wrapper")
   const createPostBtn = getNode(".board--create-post");
-  const controller = new AbortController();
-  controller.abort();
+  clearContents(postContainer);
   cancelRequests();
-  clearContent(postContainer);
-
   if(!button) return;
 
   removeActive(buttonList);
 
+  addClass(button, "active-category");
+
   const targetBtn = {
     "1": () => {
       changeLink(createPostBtn);
-      renderPosts(button, postContainer, "main");
+      renderMainPosts(postContainer);
     },
     "2": () => {
       changeLink(createPostBtn);
-      renderPosts(button, postContainer, "together");
+      renderTogetherPosts(postContainer);
     },
     "3": () => {
       changeLink(createPostBtn, "/src/pages/BoardPage/children_pages/createQuestion/");
-      renderPosts(button, postContainer, "question");
+      renderQuestionPosts(postContainer);
     }
   };
   

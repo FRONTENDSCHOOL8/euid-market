@@ -1,7 +1,6 @@
 import { insertFirst } from '/src/lib/index';
-import { getData, getUserData, getUserProfilePicture, getQuestionData, getOneData, getTogetherData } from "../index.js";
+import { getData, getUserData, getUserProfilePicture, getQuestionData, getOneData, getTogetherData, clearContent, cancelRequests } from "../index.js";
 // import defaultPfp from "/src/assets/images/board/default_pfp.svg";
-import pb from '/src/lib/api/pocketbase';
 
 import fullPeople from "/src/assets/icons/general/fullpeople.svg";
 import calendar from "/src/assets/icons/general/calendar.svg";
@@ -10,14 +9,22 @@ import fullCalendar from "/src/assets/icons/board/fullCalendar.svg";
 
 
 export async function renderMainPosts(container) {
-  try {
-    const items = await getData();
+  const items = await getData();
+  if(!items) {
+    const template = /* html */ 
+    `
+      <div class="board--empty-post main">
+        <h1>게시물이 없습니다</h1>
+      </div>
+    `
+    insertFirst(container, template);
+  } else {
     items.forEach((item) => {
       let template;
       if(item.category === "같이해요") {
         template = /* html */ 
         `
-        <div class="board--post-instance" data-id=${item.id}>
+        <button class="board--post-instance" data-id=${item.id}>
           <label class=" label-s board--badge">${item.category}</label> 
           <h2>${item.title.length > 30 ? item.title.slice(0, 30) + "..." : item.title}</h2>
           <figure class="board--flex">
@@ -29,12 +36,12 @@ export async function renderMainPosts(container) {
             <img src=${calendar} alt="" >
             <figcaption class="paragraph-m">${item.time}</figcaption>
           </figure>
-        </div>
+        </button>
         `
       } else if(item.category === "질의응답") {
         template = /* html */
         `
-        <div class="board--post-instance" data-id=${item.id}>
+        <button class="board--post-instance" data-id=${item.id}>
           <label class="label-s board--badge">${item.category}</label> 
           <h2>${item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title}</h2>
           <p class="paragraph-s board--qna-content">${item.content.length > 25 ? item.content.slice(0, 25) + "..." : item.content}</p>
@@ -44,12 +51,12 @@ export async function renderMainPosts(container) {
             <p class="paragraph-s">• 몇일 전</p>
             <p class="paragraph-s">• 조회 123</p>
           </section>
-        </div>
+        </button>
         `  
       } else {
         template = /* html */ 
         `
-        <div class="board--post-instance">
+        <button class="board--post-instance">
           <label class=" label-s board--badge">${item.category}</label> 
           <h2>${item.title}</h2>
           <div class="board--flex">
@@ -61,36 +68,33 @@ export async function renderMainPosts(container) {
             <img src=${calendar} alt="" >
             <p>${item.time}</p>
           </div>
-        </div>
+        </button>
         `
       }
 
       insertFirst(container, template);
     })
-
-  } catch {
-    const template = /* html */ 
-    `
-      <div class="board--empty-post">
-        <h1>게시물이 없습니다</h1>
-      </div>
-    `
-    insertFirst(container, template);
   }
 }
 
 export async function renderTogetherPosts(container) {
-  
-  try {
-    const data = await getTogetherData();
-      
+  const data = await getTogetherData();
+  if(!data) {
+    const template = /* html */ 
+    `
+    <div class="board--empty-post question">
+      <h1>게시물이 없습니다</h1>
+    </div>
+    `
+  insertFirst(container, template);
+
+  } else {
     data.forEach(async (item) => {
       const user = await getOneData(item.created_by, 'users')
       const userPfp = await getUserProfilePicture(user)
-      pb.cancelAllRequests();
       const template = /* html */ 
       `
-        <div class="board--together-content" data-id=${item.id}>
+        <button class="board--together-content" data-id=${item.id}>
           <header>
             <section>
               <p style=${item.status === "모집중" ? "color:#5A85EE;" : "color:#919191;"} class="paragraph-s">${item.status}</p>
@@ -117,22 +121,11 @@ export async function renderTogetherPosts(container) {
 
             <p class="paragraph-s">35분 전</p>
           </div>
-        </div>
+        </button>
       `
       insertFirst(container, template)      
-        
     })
-  } catch (error) {
-    const template = /* html */ 
-    `
-      <div class="board--empty-post">
-        <h1>게시물이 없습니다</h1>
-      </div>
-    `
-    insertFirst(container, template);
   }
-  
-  
   
 }
 
@@ -190,12 +183,20 @@ export async function renderTogetherPostInfo(container, id) {
 }
 
 export async function renderQuestionPosts(container) {
-  try {
-    const data = await getQuestionData();
+  const data = await getQuestionData();
+  if(!data) {
+    const template = /* html */ 
+    `
+    <div class="board--empty-post question">
+      <h1>게시물이 없습니다</h1>
+    </div>
+    `
+  insertFirst(container, template);
+  } else {
     data.forEach((item) => {
       const template = /* html */
       `
-        <div class="board--post-instance"  data-id=${item.id}>
+        <button class="board--post-instance"  data-id=${item.id}>
           <label class="label-s board--badge">${item.stack}</label> 
           <h2>${item.title.length > 20 ? item.content.slice(0, 20) + "..." : item.title}</h2>
           <p class="paragraph-s board--qna-content">${item.content.length > 30 ? item.content.slice(0, 30) + "..." : item.content}</p>
@@ -205,21 +206,11 @@ export async function renderQuestionPosts(container) {
             <p class="paragraph-s">• 몇일 전</p>
             <p class="paragraph-s">• 조회 123</p>
           </section>
-        </div>
+        </button>    
       ` 
       insertFirst(container, template);
     })
-
-  } catch {
-    const template = /* html */ 
-    `
-      <div class="board--empty-post">
-        <h1>게시물이 없습니다</h1>
-      </div>
-    `
-    insertFirst(container, template);
   }
-  
 }
 
 export async function renderQuestionPostInfo(container, id) {
