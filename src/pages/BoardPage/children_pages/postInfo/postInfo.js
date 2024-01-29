@@ -5,11 +5,14 @@ import { renderTogetherPostInfo, renderQuestionPostInfo, getOneData } from "../.
 
 // 카테고리에 따른 게시물 상세 정보 렌더링
 async function renderPost(id, collection) {
-  const postData = await getOneData(id, collection); 
+  const postData = await getOneData(id, collection);
   const container = getNode(".board--post-info-container");
   if(postData.category === "같이해요") {
+    // TODO: 적절하게 추상화를 잘 하셨습니다. 훌륭합니다.
     renderTogetherPostInfo(container, id);
-  } else if(postData.category === "질의응답") {
+    return;
+  }
+  if(postData.category === "질의응답") {
     renderQuestionPostInfo(container, id);
   }
 }
