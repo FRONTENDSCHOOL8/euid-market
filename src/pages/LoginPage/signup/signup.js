@@ -5,6 +5,7 @@ import {
   getNickname,
 } from '/src/pages/LoginPage/util/';
 import PocketBase from 'pocketbase';
+import {addClass, removeClass} from "../../BoardPage/util/index.js";
 
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 const phoneInput = getNode('#phone');
@@ -68,10 +69,10 @@ async function handleCode(e) {
 function handleBtnActive(e) {
   e.preventDefault();
   if (codeInput.value.length > 0) {
-    startButton.classList.add('login--start-active');
+    addClass(startButton, 'login--start-active');
     startButton.disabled = false;
   } else {
-    startButton.classList.remove('login--start-active');
+    removeClass(startButton, 'login--start-active');
     startButton.disabled = true;
   }
 }
@@ -118,7 +119,7 @@ async function handleSignup(e) {
   } catch {
     // 코드가 일치하지 않으면 에러 메시지 표시
     codeInput.style.borderColor = 'red';
-    errorMessage.classList.remove('hidden');
+    removeClass(errorMessage, 'hidden');
   }
 }
 

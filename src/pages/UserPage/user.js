@@ -14,7 +14,7 @@ import {
 import { renderNavBar } from '/src/components/general/index.js';
 
 import { getNode, insertFirst, insertAfter, sessionHandler } from '/src/lib/';
-import { relocateHREF } from '../BoardPage/util';
+import {addClass, relocateHREF, removeClass} from '../BoardPage/util';
 //배포전 수정 !!!!!!!!!!!!!!!1
 
 /* -------------------------------------------------------------------------- */
@@ -72,9 +72,9 @@ import { relocateHREF } from '../BoardPage/util';
           filter: `user_id= "${user_id}" `,
         })
       ).items;
-      userProfileBadgeButton.classList.add('is-active');
-      userProfileBadgeList.classList.add('is-active');
-      userProfileBadgeList.insertAdjacentHTML('afterend', badgeListTemplate);
+      addClass(userProfileBadgeButton,'is-active');
+      addClass(userProfileBadgeList, 'is-active');
+      insertAfter(userProfileBadgeList, badgeListTemplate)
       badge_view.forEach((item) => {
         console.log(item);
         let { id, badge_img, badge_title } = item;
@@ -87,8 +87,8 @@ import { relocateHREF } from '../BoardPage/util';
         );
       });
     } else {
-      userProfileBadgeButton.classList.remove('is-active');
-      userProfileBadgeList.classList.remove('is-active');
+      removeClass(userProfileBadgeButton,'is-active');
+      removeClass(userProfileBadgeList,'is-active');
       getNode('.user--profile-badge-detail').style = 'display:none';
     }
   }
@@ -107,8 +107,8 @@ import { relocateHREF } from '../BoardPage/util';
         })
       ).items;
       insertAfter(userProfileMannerList, mannerListTemplate);
-      userProfileMannerButton.classList.add('is-active');
-      getNode('.user--profile-manner').classList.add('is-active');
+      addClass(userProfileMannerButton, 'is-active');
+      addClass(getNode('.user--profile-manner'), 'is-active');
       if (!manner_view.length == 0) {
         manner_view.forEach((item) => {
           let { manner_title, count_manner: count } = item;
@@ -119,8 +119,8 @@ import { relocateHREF } from '../BoardPage/util';
         });
       }
     } else {
-      userProfileMannerButton.classList.remove('is-active');
-      userProfileMannerList.classList.remove('is-active');
+      removeClass(userProfileMannerButton,'is-active');
+      removeClass(userProfileMannerList,'is-active');
       getNode('.user--profile-manner-wrapper').style = 'display:none';
     }
   }

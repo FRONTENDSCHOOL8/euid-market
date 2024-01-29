@@ -27,6 +27,7 @@ import {
   insertLast,
   sessionHandler,
 } from '/src/lib/';
+import {addClass, removeClass} from "../../../BoardPage/util/index.js";
 
 const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
 
@@ -126,11 +127,11 @@ const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
   function handleJob(e) {
     console.log(e.target);
     Array.from(jobLists.children).forEach((item) => {
-      item.classList.remove('is-active');
+      removeClass(item, 'is-active');
     });
-    e.target.classList.add('is-active');
+    addClass(e.target, 'is-active');
     tempJobData = e.target.dataset.userJob;
-    getNode('.profile--select-jobs-save').classList.add('is-active');
+    addClass(getNode('.profile--select-jobs-save'), 'is-active');
   }
   /**
    * 하는일 추가하기 팝업창을 닫는 함수
@@ -175,7 +176,7 @@ const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
     console.log(tempJobData);
     if (!tempJobData == '') {
       e.target.innerText = '저장완료!';
-      e.target.classList.add('is-active');
+      addClass(e.target, 'is-active');
       tempData['usersUpdatedData']['user_job'] = tempJobData;
       console.log(tempData['usersUpdatedData']);
       tempJobData = '';
@@ -183,7 +184,7 @@ const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
         handleJobForm();
       }, 2000);
     } else {
-      e.target.classList.remove('is-active');
+      removeClass(e.target, 'is-active');
       e.target.innerText = '직업을 선택해주세요!';
     }
   }
@@ -199,14 +200,14 @@ const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
       e.target.dataset.is_public;
     if (type === 'gender') {
       Array.from(genderIsPublic.children).forEach((item) => {
-        item.classList.remove('is-active');
+        removeClass(item, 'is-active');
       });
     } else if (type === 'age') {
       Array.from(ageIsPublic.children).forEach((item) => {
-        item.classList.remove('is-active');
+        removeClass(item, 'is-active');
       });
     }
-    e.target.classList.add('is-active');
+    addClass(e.target, 'is-active');
   }
   /**
    * 자격증 간편 등록 버튼 클릭시 자격증 API 호출 + 보여주는 함수
@@ -247,7 +248,7 @@ const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
   function handleCertificationSave(e) {
     console.log(e.target);
     e.target.innerText = '저장완료!';
-    e.target.classList.add('is-active');
+    addClass(e.target, 'is-active');
 
     tempData['usersUpdatedData']['user_certification'] =
       tempCertificationData.join(', ');
@@ -271,10 +272,10 @@ const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
     const consonant = e.target.closest('li');
     if (!consonant) return;
     getNodes('.profile--consonant-element').forEach((item) => {
-      item.classList.remove('is-active');
+      removeClass(item, 'is-active')
     });
     if (!Array.from(e.target.classList).includes('is-active')) {
-      e.target.classList.add('is-active');
+      addClass(e.target, 'is-active');
       getNodes('.profile--certification-element').forEach((item) => {
         item.remove();
       });
@@ -321,9 +322,9 @@ const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
     exposureCheckbox.checked = isChecked;
     responsibilityCheckbox.checked = isChecked;
     if (isChecked) {
-      submitButton.classList.add('is-active');
+      addClass(submitButton, 'is-active');
     } else {
-      submitButton.classList.remove('is-active');
+      removeClass(submitButton, 'is-active');
     }
   }
 
@@ -340,11 +341,11 @@ const { id: user_id } = JSON.parse(localStorage.getItem('auth'))['user'];
       responsibilityCheckbox.checked
     ) {
       allAgreeCheckbox.checked = true;
-      submitButton.classList.add('is-active');
+      addClass(submitButton, 'is-active');
       getNode('.profile--submit-error-message').remove();
     } else {
       allAgreeCheckbox.checked = false;
-      submitButton.classList.remove('is-active');
+      removeClass(submitButton, 'is-active');
     }
   }
 

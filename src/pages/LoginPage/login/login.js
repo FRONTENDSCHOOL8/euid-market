@@ -1,6 +1,7 @@
 import { getNode, setStorage, getStorage } from '/src/lib/';
 import { validation, doRandomCode } from '/src/pages/LoginPage/util/';
 import PocketBase from 'pocketbase';
+import {addClass, removeClass} from "../../BoardPage/util/index.js";
 
 const PASSWORDKEY = 'thsxndlxn';
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
@@ -54,10 +55,10 @@ async function handleCode(e) {
 function handleBtnActive(e) {
   e.preventDefault();
   if (codeInput.value.length > 0) {
-    startButton.classList.add('login--start-active');
+    addClass(startButton, 'login--start-active');
     startButton.disabled = false;
   } else {
-    startButton.classList.remove('login--start-active');
+    removeClass(startButton, 'login--start-active');
     startButton.disabled = true;
   }
 }
@@ -83,7 +84,7 @@ async function handleLogin(e) {
       window.location.href = '/src/pages/Mainpage/';
     } else {
       codeInput.style.borderColor = 'red';
-      errorMessage.classList.remove('hidden');
+      removeClass(errorMessage, 'hidden');
     }
   } catch (error) {
     console.error(error);
