@@ -9,7 +9,7 @@ import people from "/src/assets/icons/board/people.svg";
 import clock from "/src/assets/icons/board/clock.svg";
 
 // 게시물 생성 페이지 요소 렌더링
-function renderCreateFirst(container) { 
+function renderCreateFirst(container) {
   const template = /* html */
   `
   <main class="board--create-post-page one">
@@ -84,7 +84,7 @@ function renderCreateFirst(container) {
 }
 
 function renderCreateSecond(container) {
-  const template = /* html */ 
+  const template = /* html */
   `
   <div class="board--create-post-page two hidden">
     <h1 class="label-l">어떤 학생과 함께 할까요?</h1>
@@ -159,7 +159,7 @@ function handleRequirement(e) {
   const gender = getNode("#board--post-requirement-gender");
 
   if(!target) return;
-  
+
   const buttonContainer = getNode(".board--require-button-container");
   for(const child of buttonContainer.children) {
     removeClass(child, "board--button-active");
@@ -169,14 +169,24 @@ function handleRequirement(e) {
   gender.textContent = target.textContent;
 }
 
+function calcCount(option) {
+  const count = getNode('#board--people-count');
+  const countNum = Number(count.textContent);
+  const isPlusSign = option === "add";
+  // TODO: 이렇게 하면 자연어와 비슷하게 연출을 할 수 있지요.
+  if (isPlusSign) {
+      return countNum + 1;
+  }
+
+  return countNum -1;
+}
+
 // 인원수 지정 버튼 이벤트 리스너
 function handleCount(option) {
-  let count = getNode('#board--people-count');
-  let countNum = Number(count.textContent);
-  
-  countNum = option === "add" ? ++countNum : --countNum;   
+  const countNum = calcCount(option);
+  // TODO: 삼항연산자를 이용한 코드는 적극적으로 리팩토링을 하라는 신호입니다.
   if(countNum === 100 || countNum === 0) return;
-  count.textContent = countNum.toString();
+  getNode('#board--people-count').textContent = countNum.toString();
 }
 
 // 페이지 이동 및 에니메이션
@@ -186,13 +196,13 @@ function nextPage() {
   const nextButton = getNode("#board--next-data");
   const prevButton = getNode("#board--prev-data");
   const submitButton = getNode("#board--submit-data");
-  
+
   addClass(firstPage, "hidden");
   addClass(nextButton, "hidden");
   removeClass(prevButton, "hidden");
   removeClass(submitButton, "hidden");
   removeClass(secondPage, "hidden");
-  
+
   gsap.to(".board--create-post-page.one", {x: -1000, duration: .5});
   gsap.from(".board--create-post-page.two", {x: 1000, duration: .5});
 }
@@ -203,13 +213,13 @@ function prevPage() {
   const nextButton = getNode("#board--next-data");
   const prevButton = getNode("#board--prev-data");
   const submitButton = getNode("#board--submit-data");
-  
+
   addClass(secondPage, "hidden");
   addClass(prevButton, "hidden");
   addClass(submitButton, "hidden");
   removeClass(firstPage, "hidden");
   removeClass(nextButton, "hidden");
-  
+
   gsap.to(".board--create-post-page.one", {x: 0, duration: .5});
   gsap.to(".board--create-post-page.two", {x: 0, duration: .5});
 }
@@ -229,8 +239,8 @@ function prevPage() {
   const submitButton = getNode("#board--submit-data");
   const buttonContainer = getNode(".board--require-button-container");
   const categoryContainer = getNode(".board--create-category-container");
-  const categoryList = getNode(".board--create-category"); 
-  
+  const categoryList = getNode(".board--create-category");
+
   categoryContainer.addEventListener('click', dropDown);
   categoryList.addEventListener('click', pickCategory);
   buttonContainer.addEventListener("click", handleRequirement);
