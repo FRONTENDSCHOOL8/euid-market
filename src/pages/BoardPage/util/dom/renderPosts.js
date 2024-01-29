@@ -1,5 +1,5 @@
 import { insertFirst } from '/src/lib/index';
-import { getData, getUserData, getUserProfilePicture, getQuestionData, getOneData, getTogetherData, clearContent, cancelRequests } from "../index.js";
+import { getData, getUserData, getUserProfilePicture, getQuestionData, getOneData, getTogetherData } from "../index.js";
 // import defaultPfp from "/src/assets/images/board/default_pfp.svg";
 
 import fullPeople from "/src/assets/icons/general/fullpeople.svg";
@@ -11,7 +11,7 @@ import fullCalendar from "/src/assets/icons/board/fullCalendar.svg";
 export async function renderMainPosts(container) {
   const items = await getData();
   if(!items) {
-    const template = /* html */ 
+    const template = /* html */
     `
       <div class="board--empty-post main">
         <h1>게시물이 없습니다</h1>
@@ -22,7 +22,7 @@ export async function renderMainPosts(container) {
     items.forEach((item) => {
       let template;
       if(item.category === "같이해요") {
-        template = /* html */ 
+        template = /* html */
         `
         <button class="board--post-instance" data-id=${item.id}>
           <label class=" label-s board--badge">${item.category}</label> 
@@ -52,9 +52,9 @@ export async function renderMainPosts(container) {
             <p class="paragraph-s">• 조회 123</p>
           </section>
         </button>
-        `  
+        `
       } else {
-        template = /* html */ 
+        template = /* html */
         `
         <button class="board--post-instance">
           <label class=" label-s board--badge">${item.category}</label> 
@@ -80,19 +80,21 @@ export async function renderMainPosts(container) {
 export async function renderTogetherPosts(container) {
   const data = await getTogetherData();
   if(!data) {
-    const template = /* html */ 
+    const template = /* html */
     `
     <div class="board--empty-post question">
       <h1>게시물이 없습니다</h1>
     </div>
     `
-  insertFirst(container, template);
+    insertFirst(container, template);
+    // TODO: 이 지점에서 return 을 하면 불필요한 정신력 소모를 줄일 수 있지요.
+    return;
+  }
 
-  } else {
     data.forEach(async (item) => {
       const user = await getOneData(item.created_by, 'users')
       const userPfp = await getUserProfilePicture(user)
-      const template = /* html */ 
+      const template = /* html */
       `
         <button class="board--together-content" data-id=${item.id}>
           <header>
@@ -103,7 +105,7 @@ export async function renderTogetherPosts(container) {
             </section>
             <h2 class="label-m">${item.title.length > 25 ? item.title.slice(0, 25) + "..." : item.title}</h2>
           </header>
-
+    
           <figure>
             <img src=${fullPeople} alt="" />
             <figcaption class="paragraph-s">${item.requirements} 참여가능</figcaption>
@@ -112,21 +114,19 @@ export async function renderTogetherPosts(container) {
             <img src=${calendar} alt="" />
             <figcaption class="paragraph-s">${item.time}</figcaption>
           </figure>
-
+    
           <div>
             <figure>
               <img class="board--together-profile-picture" src=${userPfp} alt="유저 사진" />
               <figcaption class="paragraph-s">${item.curr_people}/${item.max_people}명</figcaption>
             </figure>
-
+    
             <p class="paragraph-s">35분 전</p>
           </div>
         </button>
       `
-      insertFirst(container, template)      
+      insertFirst(container, template)
     })
-  }
-  
 }
 
 export async function renderTogetherPostInfo(container, id) {
@@ -134,7 +134,7 @@ export async function renderTogetherPostInfo(container, id) {
   const user = await getUserData(data.created_by);
   const userPfp = await getUserProfilePicture(user);
 
-  const template = /* html */ 
+  const template = /* html */
   `
   <div class="board--post-info">
     <figure class="board--post-info-badge">
@@ -179,21 +179,24 @@ export async function renderTogetherPostInfo(container, id) {
   </div>
   `
   insertFirst(container, template);
-  
+
 }
 
 export async function renderQuestionPosts(container) {
   const data = await getQuestionData();
   if(!data) {
-    const template = /* html */ 
+    const template = /* html */
     `
     <div class="board--empty-post question">
       <h1>게시물이 없습니다</h1>
     </div>
     `
-  insertFirst(container, template);
-  } else {
-    data.forEach((item) => {
+    insertFirst(container, template);
+    // TODO: 이 지점에서 return 을 하면 불필요한 정신력 소모를 줄일 수 있지요.
+    return;
+  }
+
+  data.forEach((item) => {
       const template = /* html */
       `
         <button class="board--post-instance"  data-id=${item.id}>
@@ -207,10 +210,9 @@ export async function renderQuestionPosts(container) {
             <p class="paragraph-s">• 조회 123</p>
           </section>
         </button>    
-      ` 
+      `
       insertFirst(container, template);
     })
-  }
 }
 
 export async function renderQuestionPostInfo(container, id) {
@@ -218,7 +220,7 @@ export async function renderQuestionPostInfo(container, id) {
   const user = await getUserData(data.created_by);
   const userPfp = await getUserProfilePicture(user);
 
-  const template = /* html */ 
+  const template = /* html */
   `
   <div class="board--post-info">
     <figure class="board--post-info-badge">
@@ -255,17 +257,19 @@ export async function renderQuestionPostInfo(container, id) {
   </div>
   `
   insertFirst(container, template);
-    
+
 }
 
-export async function renderFilteredPosts(container, searchValue) {
+/*
+    TODO: let 을 사용해서 시선을 분산시키는 것 보다는 함수 호출을 여러번 쓰시길 권합니다.
+          if ~ else 를 여러 번 사용했다는 것은, 함수가 한가지 이상의 일을 하고 있다는 증거입니다.
+ */
+export async function renderFiltered같이해요Posts(container, searchValue) {
   const data = await getData();
   data.forEach((item) => {
     if(item.title.includes(searchValue)) {
-      let template;
-      if(item.category === "같이해요") {
-        template = /* html */ 
-        `
+        const template = /* html */
+            `
         <div class="board--post-instance" data-id=${item.id}>
           <label class=" label-s board--badge">${item.category}</label> 
           <h2>${item.title.length > 30 ? item.title.slice(0, 30) + "..." : item.title}</h2>
@@ -280,27 +284,59 @@ export async function renderFilteredPosts(container, searchValue) {
           </figure>
         </div>
         `
-      } else if(item.category === "질의응답") {
-        template = /* html */
-        `
-        <div class="board--post-instance" data-id=${item.id}>
-          <label class="label-s board--badge">${item.category}</label> 
-          <h2>${item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title}</h2>
-          <p class="paragraph-s board--qna-content">${item.content.length > 25 ? item.content.slice(0, 25) + "..." : item.content}</p>
-
-          <section class="board--flex">
-            <p class="paragraph-s">${item.location}</p>
-            <p class="paragraph-s">• 몇일 전</p>
-            <p class="paragraph-s">• 조회 123</p>
-          </section>
-        </div>
-        `  
-      }
-      insertFirst(container, template);
-      // alert('reached here');
-    } else {
-      return;
+        insertFirst(container, template);
     }
   })
+}
 
+export async function renderFiltered질의응답Posts(container, searchValue) {
+  const data = await getData();
+  data.forEach((item) => {
+    if (item.title.includes(searchValue)) {
+      /*
+          TODO: let 을 사용해서 시선을 분산시키는 것 보다는 함수 호출을 여러번 쓰시길 권합니다.
+                if ~ else 를 여러 번 사용했다는 것은, 함수가 한가지 이상의 일을 하고 있다는 증거입니다.
+       */
+      const template = /* html */
+          `
+      <div class="board--post-instance" data-id=${item.id}>
+        <label class="label-s board--badge">${item.category}</label> 
+        <h2>${item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title}</h2>
+        <p class="paragraph-s board--qna-content">${item.content.length > 25 ? item.content.slice(0, 25) + "..." : item.content}</p>
+
+        <section class="board--flex">
+          <p class="paragraph-s">${item.location}</p>
+          <p class="paragraph-s">• 몇일 전</p>
+          <p class="paragraph-s">• 조회 123</p>
+        </section>
+      </div>
+      `
+      insertFirst(container, template);
+    }
+  })
+}
+
+
+export async function renderFilteredPosts(container, searchValue) {
+  const data = await getData();
+  data.forEach((item) => {
+    // TODO: early return 으로 정신력 소모를 줄입시다.
+    const has검색어 = item.title.includes(searchValue);
+    if(!has검색어) {
+      return;
+    }
+    /*
+        TODO: let 을 사용해서 시선을 분산시키는 것 보다는 함수 호출을 여러번 쓰시길 권합니다.
+              if ~ else 를 여러 번 사용했다는 것은, 함수가 한가지 이상의 일을 하고 있다는 증거입니다.
+     */
+    if(item.category === "같이해요") {
+      // TODO: 도메인이 복잡하면 심볼의 이름을 한글로 만드는 것도 방법입니다. 문제는 돌고돌아 추상화입니다.
+      renderFiltered같이해요Posts(container, searchValue)
+      return;
+    }
+
+    if(item.category === "질의응답") {
+      renderFiltered질의응답Posts(container, searchValue)
+    }
+  })
 }

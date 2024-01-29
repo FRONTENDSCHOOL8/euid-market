@@ -8,30 +8,35 @@ const API =
  */
 export function getCertifications() {
   return fetch(`${API}`)
-    .then((res) => {
-      if (res.ok) {
+      .then((res) => {
+        if (!res.ok) {
+            /*
+            TODO: 원하는 상태가 반환이 되지 않았지만, 실행중에 발생한 에러라 어쩔 수 없는 상황에서는 예외를 던져 보세요!
+             */
+            throw new Error('not ok!')
+        }
         return res.json();
-      }
-    })
-    .then((jsonizeResult) => {
-      const categorizedObj = {};
-      let certificationList = [];
-      Array.from(jsonizeResult.data).forEach((item) => {
-        let { 종목명 } = item;
-        if (!certificationList.includes(종목명)) {
-          certificationList.push(종목명);
-        }
+      })
+      .then((jsonizeResult) => {
+        /*
+        * TODO: 근성이 돋보이는 코드입니다.
+        * 이렇게 Array.prototype.reduce 를 사용하는 코드로 변환하는것도 도전해 보시길 추천합니다.
+        * 함수형 프로그래밍과 좀 더 친해질 수 있을지도 모릅니다.
+        * let 을 사용한 코드는 반드시 원본 객체를 수정하게 되므로 예상하지 못하는 부작용(부수효과)을 일으킵니다.
+        * Array.prototype.reduce 를 사용하면 외부변수를 참조하지 않게 됩니다.
+        * */
+        return jsonizeResult.data.reduce((categorizedObj, item) => {
+          const { 종목명 } = item;
+           const initialLetter = 종목명.charAt(0);
+          const consonant = findConsonant(initialLetter);
+          if (!categorizedObj[consonant]) {
+            categorizedObj[consonant] = [종목명];
+          } else {
+            if (!categorizedObj[consonant].includes(종목명)) {
+              categorizedObj[consonant].push(종목명);
+            }
+          }
+          return categorizedObj;
+        }, {});
       });
-      certificationList.sort();
-      certificationList.forEach((certification) => {
-        let initialLetter = certification.charAt(0);
-        let consonant = findConsonant(initialLetter);
-        if (!categorizedObj[consonant]) {
-          categorizedObj[consonant] = [certification];
-        } else {
-          categorizedObj[`${consonant}`].push(certification);
-        }
-      });
-      return categorizedObj;
-    });
 }

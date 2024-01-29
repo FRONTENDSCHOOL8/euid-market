@@ -1,12 +1,12 @@
 import { renderNavBar } from "../../components/general/renderNavBar.js";
 import { clearContents, getNode, sessionHandler } from "../../lib/index.js";
-import { 
-  renderMainPosts, 
-  renderTogetherPosts, 
-  renderQuestionPosts, 
+import {
+  renderMainPosts,
+  renderTogetherPosts,
+  renderQuestionPosts,
   renderFilteredPosts,
-  addClass, 
-  removeClass, 
+  addClass,
+  removeClass,
   clearContent,
   changeLink,
   relocateLink,
@@ -16,7 +16,7 @@ import {
 // 선택 카테고리 게시물 렌더링
 // function renderPosts(button, container, option) {
 //   addClass(button, "active-category");
- 
+
 //   const postType = {
 //     "main": () => renderMainPosts(container),
 //     "together": () => renderTogetherPosts(container),
@@ -30,10 +30,10 @@ import {
 // 게시물 상세 페이지 이동
 function openPost(e) {
   e.preventDefault();
-  
+
   const target = e.target.closest("button");
   if(!target) return;
-  
+
   const id = target.dataset.id;
   localStorage.setItem("curr_id", id);
 
@@ -57,29 +57,34 @@ function handleCategory(e) {
   const createPostBtn = getNode(".board--create-post");
   clearContents(postContainer);
   cancelRequests();
+  // TODO: 이렇게 예외상황을 처음부터 차단하는것이 좋습니다. 훌륭합니다.
   if(!button) return;
 
   removeActive(buttonList);
 
   addClass(button, "active-category");
 
-  const targetBtn = {
-    "1": () => {
-      changeLink(createPostBtn);
-      renderMainPosts(postContainer);
-    },
-    "2": () => {
-      changeLink(createPostBtn);
-      renderTogetherPosts(postContainer);
-    },
-    "3": () => {
-      changeLink(createPostBtn, "/src/pages/BoardPage/children_pages/createQuestion/");
-      renderQuestionPosts(postContainer);
-    }
-  };
-  
-  const pickButton = targetBtn[button.dataset.index];
-  pickButton();
+  /**
+   * TODO: 이런 류의 추상화가 재활용을 어렵게 만듭니다(다른 사람이 읽기 싫어하는 코드가 된다는 뜻).
+   * 잘 하셨지만, 좀 더 자연어에 가깝게 연출해 보세요.
+   */
+  if (button.dataset.index === "1") {
+    changeLink(createPostBtn);
+    renderMainPosts(postContainer);
+    return;
+  }
+
+  if (button.dataset.index === "2") {
+    changeLink(createPostBtn);
+    renderTogetherPosts(postContainer);
+    return;
+  }
+
+  if (button.dataset.index === "3") {
+    changeLink(createPostBtn, "/src/pages/BoardPage/children_pages/createQuestion/");
+    renderQuestionPosts(postContainer);
+    return;
+  }
 }
 
 
@@ -93,12 +98,13 @@ function search(e) {
   removeActive(buttonList);
   clearContent(postContainer);
   addClass(totalBtn, "active-category");
-  
+
   if(search.value !== "") {
     renderFilteredPosts(postContainer, search.value);
-  } else {
-    renderMainPosts(postContainer);
+    return;
   }
+
+  renderMainPosts(postContainer);
 }
 
 (() => {
